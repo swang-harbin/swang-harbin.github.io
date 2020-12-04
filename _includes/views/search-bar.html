@@ -1,0 +1,43 @@
+<span class="site-search-bar">
+    <input type="text" class="site-search-input" placeholder="搜索 ..."/>
+    <ul class="results-container"></ul>
+</span>
+
+
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+
+<script type="text/javascript">
+    var searchWrapper = document.getElementsByClassName("site-search-bar")[0];
+    var show;
+
+    function showSearchBar() {
+        show = ("inline-block" !== show ? "inline-block" : "none");
+        searchWrapper.style.display = show;
+        cleanInput(show);
+    }
+
+    document.addEventListener("keyup", function (event) {
+        if ("Escape" == event.key || 27 == event.key) {
+            show = "none";
+            searchWrapper.style.display = show;
+        }
+        cleanInput(show);
+    })
+
+    function cleanInput(show) {
+        if ("inline-block" !== show) {
+            document.getElementsByClassName("site-search-input")[0].value = "";
+            document.getElementsByClassName("results-container")[0].innerHTML = "";
+        }
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementsByClassName('site-search-input')[0],
+        resultsContainer: document.getElementsByClassName('results-container')[0],
+        json: '/search.json',
+        searchResultTemplate: '<li style="list-style-type:none"><a style="color: blue" href="{url}" title="{desc}">{title}</a></li>',
+        noResultsText: '没有搜索到文章',
+        limit: 20,
+        fuzzy: false
+    })
+</script>

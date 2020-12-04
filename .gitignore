@@ -1,0 +1,5 @@
+.idea
+_site/
+.jekyll-metadata
+Gemfile.lock
+.jekyll-cache/

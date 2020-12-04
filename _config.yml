@@ -1,0 +1,123 @@
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: 馍馍好好吃
+email: 337229941@qq.com
+author: swang-harbin
+copyright: Copyright © 2020
+description: >- # this means to ignore newlines until "baseurl:"
+  博客
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://github-pages.王硕.我爱你" # the base hostname & protocol for your site, e.g. http://example.com
+favicon: "https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203232807.png" # the favicon for your site
+
+# Yat date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+yat:
+  date_format: "%b %d, %Y"
+
+# If you want more debug log, you can set true
+# debug: false
+
+# If you don't want transparent header, you can set false
+# header_transparent: true
+
+# Google analytics
+# google_analytics: [Tracking ID]
+
+# If you want to generate website sitemap, you can set true
+# sitemap: false
+
+# If you want to change site language, you can set lang option
+  lang: "zh-CN"  # default lang is en
+
+# Translate languges
+# langs refer to https://cloud.google.com/translate/docs/languages
+translate_langs:
+  - lang: zh-CN
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213023.png
+    text: 简体中文
+  - lang: zh-TW
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213030.png
+    text: 繁体中文
+  - lang: en
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213034.png
+    text: English
+  - lang: fr
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213107.png
+    text: Français
+  - lang: ja
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213101.png
+    text: 日本語
+  - lang: ko
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213056.png
+    text: 한국어
+  - lang: ru
+    img: https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201203213039.png
+    text: Россия
+
+# You can choose a theme color
+# Default theme colors as below:
+# coolblack: #090a0b
+# spacegrey: #353535
+# snowwhite: #ffffff
+#
+# theme_color: snowwhite
+#
+# Custom color as below:
+# theme_color: "#882250"
+
+# Night/Dark mode
+# Default mode is "auto", "auto" is for auto nightshift
+# (19:00 - 07:00), "manual" is for manual toggle, and
+# "on/off" is for always on/off.
+# night_mode: "auto"
+
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+header_pages:
+  - index.html
+  - tags.html
+  - categories.html
+  - archives.html
+  - search.html
+  - about.html
+
+# Page default value
+defaults:
+  home:
+    heading: "馍馍好好吃的博客"
+    subheading: "欢迎来到我的博客"
+    banner: "https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201129023941.png"
+
+# Pagination setting
+# paginate: 5
+
+# Disqus comments
+# disqus:
+#   shortname: "Your Disqus username"
+
+# Gitment comments
+# gitment:
+#   username: "Your GitHub username"
+#   repo: "The repo to store comments"
+#   client_id: "Your client ID"
+#   client_secret: "Your client secret"
+#   redirect_uri: "Your redirect url"   # If you use a custom domain name
+
+# Build settings
+# highlighter: none
+markdown: kramdown
+kmarkdown:
+  input: GFM
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-spaceship

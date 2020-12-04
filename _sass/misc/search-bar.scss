@@ -1,0 +1,29 @@
+.site-search-bar {
+  line-height: $header-height;
+  color: $header-text-color;
+  font-weight: $base-font-weight * 1.5;
+  line-height: $base-line-height;
+  width: 300px;
+  margin: 0 auto;
+  display: none;
+
+  .site-search-input {
+    @include relative-font-size(1.15);
+    background-color: rgba($header-background-color, 0.2);
+    width: inherit;
+    letter-spacing: -1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba($header-background-color, .6) inset;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+  }
+
+  .results-container {
+    @include relative-font-size(1.1);
+    background-color: rgba($header-background-color, 0);
+    width: inherit;
+    margin: 0;
+    border-radius: 3px;
+    position: absolute;
+  }
+
+}

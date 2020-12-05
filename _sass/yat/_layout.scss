@@ -421,10 +421,14 @@ html {
       }
     }
 
-    img, svg, iframe {
+    img, iframe {
       margin-left: auto;
       margin-right: auto;
       display: block;
+    }
+
+    svg {
+
     }
 
     h2, h3, h4, h5, h6 {

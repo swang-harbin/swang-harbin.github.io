@@ -91,7 +91,7 @@ header_pages:
 defaults:
   home:
     heading: "馍馍好好吃的博客"
-    subheading: "欢迎来到我的博客"
+    subheading: "&emsp;&emsp;你起不来的早有人能起, 你吃不了的苦有人能吃, </br>总有人要赢, 为什么不是你"
     banner: "https://gitee.com/swang-harbin/pic-bed/raw/master/images/2020/20201129023941.png"
 
 # Pagination setting

@@ -3,7 +3,7 @@ layout: post
 title: MySQL设置大小写及字符集
 subheading: 
 author: swang-harbin
-categories: datasource
+categories: database
 banner: 
 tags: MySQL
 ---

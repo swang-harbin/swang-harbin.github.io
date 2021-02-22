@@ -3,9 +3,9 @@ layout: post
 title: PostgreSQL psql的使用, SQL语法, 数据类型, 递归SQL用法
 subheading: 
 author: swang-harbin
-categories: SQL
+categories: database
 banner: 
-tags: PostgreSQL java
+tags: PostgreSQL
 ---
 
 # PostgreSQL psql的使用, SQL语法, 数据类型, 递归SQL用法

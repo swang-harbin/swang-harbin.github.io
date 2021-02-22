@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL: XA错误
+title: 'MySQL: XA错误'
 subheading: 
 author: swang-harbin
 categories: database

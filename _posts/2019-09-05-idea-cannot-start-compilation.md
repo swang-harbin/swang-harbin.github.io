@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cannot start compilation: the output path is not specified for module "..." Specify the output path
+title: 'Cannot start compilation: the output path is not specified for module "..." Specify the output path'
 subheading: 
 author: swang-harbin
 categories: java

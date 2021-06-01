@@ -106,3 +106,5 @@ deploy:
   repo: https://github.com/swang-harbin/swang-harbin.github.io
   branch: deploy
   #message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }})"
+  name: wangshuo
+  email: 337229941@qq.com

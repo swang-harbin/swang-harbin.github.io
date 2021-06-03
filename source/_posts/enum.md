@@ -3,10 +3,10 @@ title: 枚举
 date: '2019-12-13 00:00:00'
 updated: '2019-12-13 00:00:00'
 tags:
-- enum
-- java
+- Enum
+- Java
 categories:
-- java
+- Java
 ---
 #  枚举
 
@@ -47,7 +47,7 @@ class Color {
 
 ## 枚举的基本定义
 
-从JDK1.5之后, 在程序之中提供了enum的关键字, 利用此关键字可以实现枚举的定义
+从JDK1.5之后, 在程序之中提供了`enum`的关键字, 利用此关键字可以实现枚举的定义
 
 **定义一个枚举**
 
@@ -56,7 +56,7 @@ enum Color { // 枚举类
     RED, GREEN, BLUE; //实例化对象
 }
 
-//调用方式 :
+// 调用方式:
 Color c = Color.RED;
 ```
 

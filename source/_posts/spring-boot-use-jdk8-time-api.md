@@ -3,15 +3,15 @@ title: Spring Boot自动序列化/反序列化JDK8的时间API
 date: '2020-11-24 00:00:00'
 updated: '2020-11-24 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- Java
 ---
 
 # Spring Boot自动序列化/反序列化JDK8的时间API
 
-## Jdk8TimeConfig.class
+## Jdk8TimeConfig.java
 
 ```java
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -63,7 +63,7 @@ public class Jdk8TimeConfig {
 }
 ```
 
-## Jdk8TimeConverter.class
+## Jdk8TimeConverter.java
 
 ```java
 import org.slf4j.Logger;

@@ -5,7 +5,7 @@ updated: '2020-09-10 00:00:00'
 tags:
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # PostgreSQL设置开机自启动

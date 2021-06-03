@@ -3,9 +3,9 @@ title: Java程序员需要了解的底层知识
 date: '2020-07-04 00:00:00'
 updated: '2020-07-04 00:00:00'
 tags:
-- msb
+- MSB
 categories:
-- ''
+- MSB
 ---
 
 # 计算机底层知识 v1.0 [地址](https://ke.qq.com/webcourse/index.html#cid=398381&term_id=100475149&taid=4067441403892781&type=1024&vid=5285890799733685067)

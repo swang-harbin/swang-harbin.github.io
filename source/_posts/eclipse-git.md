@@ -3,10 +3,10 @@ title: Eclipse使用git提交项目
 date: '2019-07-03 00:00:00'
 updated: '2019-07-03 00:00:00'
 tags:
-- eclipse
-- java
+- Eclipse
+- Java
 categories:
-- java
+- Java
 ---
 # Eclipse使用git提交项目
 

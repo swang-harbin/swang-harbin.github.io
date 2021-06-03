@@ -4,18 +4,16 @@ date: '2020-04-22 00:00:00'
 updated: '2020-04-22 00:00:00'
 tags:
 - IDEA
-- java
+- Java
 categories:
-- java
+- Java
 ---
 
 # IDEA导入普通Web项目
 
-**keywords :** 普通web项目结构
-
 IDEA版本: IntelliJ IDEA 2020.1(Ultimate Edition)
 
-## 一. 普通Web项目目录结构介绍
+## 普通Web项目目录结构介绍
 
 ```
 project/
@@ -66,31 +64,31 @@ project/
         └── web.xml
 ```
 
-## 二. IDEA引入普通WEB项目
+## IDEA引入普通WEB项目
 
 以如下项目结构为例
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152733.png)
 
-### 1. 指定存放Java类的目录
+### 指定存放Java类的目录
 
 File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152753.png)
 
-### 2. 指定Java文件编译后的目录
+### 指定Java文件编译后的目录
 
 此处, 将其指定为WEB-INF下的classes目录
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152809.png)
 
-### 3. 设置使用tomcat运行项目时, 项目文件的输出位置
+### 设置使用tomcat运行项目时, 项目文件的输出位置
 
 此处设置为项目目录下的out文件夹
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152859.png)
 
-### 4. 设置项目依赖的jar包位置
+### 设置项目依赖的jar包位置
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152932.png)
 
@@ -98,7 +96,7 @@ File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152951.png)
 
-### 5. 指定web.xml和web根目录的位置
+### 指定web.xml和web根目录的位置
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153004.png)
 
@@ -110,15 +108,15 @@ File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153033.png)
 
-### 6. 预览项目结构效果图
+### 预览项目结构效果图
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153047.png)
 
-## 三. 使用tomcat运行项目, 并导出war包
+## 使用tomcat运行项目, 并导出war包
 
 注意: 此处需确保前两步没有问题
 
-### 1. 创建IDEA嵌入式tomcat可以运行的Artifacts
+### 创建IDEA嵌入式tomcat可以运行的Artifacts
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153104.png)
 
@@ -128,7 +126,7 @@ File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 此处可以看到输出文件夹在之前Project中设置的/project/out/目录下
 
-### 2. 创建可打成war包的Artifacts
+### 创建可打成war包的Artifacts
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153146.png)
 
@@ -136,7 +134,7 @@ File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153207.png)
 
-### 3. 配置IDEA使用嵌入式的tomcat
+### 配置IDEA使用嵌入式的tomcat
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153221.png)
 
@@ -158,7 +156,7 @@ File -> Project Structure...(Ctrl+Alt+Shift+s)
 
 保存后即可运行
 
-## 四. 导出war包
+## 导出war包
 
 Build -> Build Artifacts...
 

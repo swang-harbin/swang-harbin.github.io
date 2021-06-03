@@ -3,9 +3,9 @@ title: Java执行cmd命令
 date: '2019-10-30 00:00:00'
 updated: '2019-10-30 00:00:00'
 tags:
-- java
+- Java
 categories:
-- java
+- Java
 ---
 
 # Java使用cmd调用进程

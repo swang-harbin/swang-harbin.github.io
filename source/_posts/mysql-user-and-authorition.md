@@ -5,14 +5,14 @@ updated: '2020-03-31 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # MySQL的用户及权限管理
 
 MySQL版本: 5.7
 
-# 一. 用户相关常用命令
+## 用户相关常用命令
 
 用户相关信息存储在mysql.user表中
 
@@ -49,7 +49,7 @@ DROP USER 'user'@'host'
 RENAME USER 'user'@'host' TO 'new_user'@'new_host';
 ```
 
-# 二. 权限相关常用命令
+## 权限相关常用命令
 
 用户信息及全局权限信息保存在mysql.user表中, 数据库权限信息保存在mysql.db表中, 表权限信息保存在mysql.tables_priv表中, 列权限信息保存在mysql.columns_priv表中.
 
@@ -140,7 +140,7 @@ REVOKE priv_type[ ,priv_type ,... ,GRANT OPTION] ON priv_level FROM 'user'@'host
 SHOW GRANTS FOR 'user'@'host';
 ```
 
-# 三. MySQL对用户权限的判断流程
+## MySQL对用户权限的判断流程
 
 1. 首先判断GLOABLE权限(mysql.user表), 如果具备权限, 则不再向下一级别判断.
 2. 然后判断database级权限(mysql.db表), 如果具备权限, 则不再向下一级别判断.

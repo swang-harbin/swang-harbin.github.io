@@ -3,21 +3,23 @@ title: Disable SerializationFeature.FAIL_ON_EMPTY_BEANS
 date: '2019-12-18 00:00:00'
 updated: '2019-12-18 00:00:00'
 tags:
-- exception
-- java
+- Exception
+- Java
 categories:
-- java
+- Java
 ---
 
 # Disable SerializationFeature.FAIL_ON_EMPTY_BEANS
 
 ## 错误提示
 
-> com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: cc.ccue.springboot.entity.User\$HibernateProxy​\$sPsvljjm["hibernateLazyInitializer"])
+```console
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: icu.intelli.springboot.entity.User\$HibernateProxy\$sPsvljjm["hibernateLazyInitializer"])
+```
 
 ## 出错原因
 
-使用SpringBoot2.2.2整合JPA时, 调用userRepository.getOne(id)方法时, 出的错
+使用SpringBoot2.2.2整合JPA时, 调用`userRepository.getOne(id)`方法时, 出的错
 
 ## 解决办法
 
@@ -31,7 +33,7 @@ categories:
 
 ### 法2 :
 
-注册一个objectMapper覆盖掉默认的，这样就不用在每个类上面使用@JsonIgnoreProperties：
+注册一个objectMapper覆盖掉默认的，这样就不用在每个类上面使用`@JsonIgnoreProperties`：
 
 ```java
 @Bean

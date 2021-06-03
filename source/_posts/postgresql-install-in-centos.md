@@ -4,13 +4,14 @@ date: '2019-12-04 00:00:00'
 updated: '2019-12-04 00:00:00'
 tags:
 - PostgreSQL
+- CentOS7
 categories:
-- database
+- Database
 ---
 
 # CentOS7安装PostgreSQL12.2
 
-## 一. yum命令方式
+## yum命令方式
 
 参考 [官方文档](https://www.postgresql.org/download/linux/redhat/)
 
@@ -61,7 +62,7 @@ psql -U root -d mydb -h 127.0.0.1 -p 5432
 - 数据库服务器IP
 - 数据库服务器端口号
 
-## 二. 源文件方式
+## 源文件方式
 
 **CentOS7需要提前安装的软件包 :**
 
@@ -75,7 +76,7 @@ yum install -y gcc-c++ make readline-devel zlib-devel docbook-dtds docbook-style
 
 [官方安装文档](https://www.postgresql.org/docs/12/installation.html)
 
-### 2.1 配置
+### 配置
 
 第一步是在源目录修改pgSQL的配置文件. 使用默认配置只需要执行:
 
@@ -122,7 +123,7 @@ cd build_dir
 
 [更多参数详见官方说明](https://www.postgresql.org/docs/12/install-procedure.html)
 
-### 2.2 编译
+### 编译
 
 - 下列命令二选一, 开始编译:
 
@@ -149,7 +150,7 @@ make world
 PostgreSQL, contrib, and documentation successfully made. Ready to install.
 ```
 
-### 2.3 回归测试
+### 回归测试
 
 如果你想在安装之前对编译进行测试, 可以在这里进行回归测试. 该回归测试是用来测试PostgreSQL能否像开发人员预想的一样, 在当前机器运行.
 
@@ -157,7 +158,7 @@ PostgreSQL, contrib, and documentation successfully made. Ready to install.
 make check
 ```
 
-### 2.4 安装
+### 安装
 
 输入安装命令
 
@@ -185,9 +186,9 @@ make install-world
 
 如果在编译时, 发现`configura`操作失败了, 或者需要对configura进行修改(例如系统更新), 那么在重新配置和重新编译之前执行`make distclean`是很好的. 否则, 你对配置的改变可能不会应用到所有的地方.
 
-### 2.5 安装后的设置
+### 安装后的设置
 
-#### 2.5.1 设置分享库(shared libraries)
+#### 设置分享库(shared libraries)
 
 在某些系统上使用共享库, 你需要告诉系统怎么找到新安装的共享库. 一些不需要告诉的系统有: FreeBSD, HP-UX, Linux, NetBSD, OpenBSD, and Solaris.
 
@@ -208,7 +209,7 @@ setenv LD_LIBRARY_PATH /usr/local/pgsql/lib
 
 需要将`/usr/local/pgsql/lib`替换成第一步中`--libdir`指定的位置, 并将上面的命令放在`/etc/profile` 或 `~/.bash_profile`中.
 
-#### 2.5.2 环境变量
+#### 环境变量
 
 将`/usr/local/pgsql`或者第一步设置的`--bindir`目录添加到系统的`PATH`. 严格的说, 这是不必要的, 但是会让使用PostgreSQL更简便.
 
@@ -219,7 +220,7 @@ PATH=/usr/local/pgsql/bin:$PATH
 export PATH
 ```
 
-### 2.6 初始化
+### 初始化
 
 在做任何事情之前, 需要初始化数据库的存储区域, 称之为*database cluster*(数据库群, SQL标准术语叫*catalog cluster*). 一个数据库群是由数据库服务器的单个实例管理的数据库集合. 在初始化后, 会创建一个叫`postgres`的数据库作为默认数据库. 数据库服务本身不需要该数据库一定存在, 但是许多第三方的程序假定它存在. 使用如下命令初始化数据库群的目录, `/usr/local/pgsql/data`可自定义.
 
@@ -236,7 +237,7 @@ pg_ctl -D /usr/local/pgsql/data initdb
 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 ```
 
-### 2.7 启动服务
+### 启动服务
 
 数据库服务的名称叫`postgres`, `postgres`程序必须知道在哪里可以找到它要使用的数据. 通过`-D`选项来指定data目录的位置. 如果不使用`-D`, 服务将会去环境变量中查找`PGDATA`, 如果没有这个变量, 会启动失败.
 
@@ -258,11 +259,11 @@ postgres -D /usr/local/pgsql/data >logfile 2>&1 &
 pg_ctl start -D /usr/local/pgsql/data -l logfile
 ```
 
-### 2.8 连接
+### 连接
 
 安装完成后会自动创建一个与当前linux系统用户名相同的数据库角色, 并具有数据库的superuser权限. 并会创建一个默认的数据库叫postgres, 属于该角色
 
-#### 2.8.1 连接到一个数据库
+#### 连接到一个数据库
 
 ```shell
 psql dbname
@@ -270,7 +271,7 @@ psql dbname
 psql postgres
 ```
 
-#### 2.8.2 设置用户密码
+#### 设置用户密码
 
 登录到一个数据库后, 输入
 
@@ -278,11 +279,11 @@ psql postgres
 \password
 ```
 
-#### 2.8.2 远程连接
+#### 远程连接
 
 例如使用Navicat连接
 
-1. 修改**pg_hba.conf**和**postgresql.conf**文件,
+修改**pg_hba.conf**和**postgresql.conf**文件,
 
 > **pg_hba.conf**文件在默认在`/var/lib/pgsql/12/data/pg_hba.conf`,
 >

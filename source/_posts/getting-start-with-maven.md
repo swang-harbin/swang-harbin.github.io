@@ -3,14 +3,14 @@ title: 项目管理工具Maven快速入门
 date: '2019-12-26 00:00:00'
 updated: '2019-12-26 00:00:00'
 tags:
-- maven
-- java
+- Maven
+- Java
 categories:
-- java
+- Java
 ---
 # 项目管理工具Maven快速入门
 
-## 一. 简介
+## 简介
 
 服务于基于Java平台的项目构建, 依赖管理和项目信息管理.
 
@@ -20,7 +20,7 @@ categories:
 
 POM : project object model
 
-## 二. Maven优势
+## Maven优势
 
 1. 跨平台
 2. 服务于构建, 它是一个异常强大的构建工具, 能自动化构建过程, 从清理, 编译, 测试到生成报告, 再到打包和部署.
@@ -29,9 +29,9 @@ POM : project object model
 5. 依赖管理, 在这个开源的年代里, 几乎任何java应用都会借用一些第三方的开源类库, 这些类库都可以通过依赖的方式引入到项目中来. 随着依赖的增多, 版本不一致, 版本冲突, 依赖臃肿等问题都会接踵而至. 手工解决这些问题是十分枯燥的, Maven提供了一个优秀的解决方案, 它通过一个坐标系统准确的定位每一个组件, 让他们变得有秩序, 因此我们可以借助它有序的管理依赖, 轻松的解决繁杂的依赖问题. Maven为Java提供了一个免费的中央仓库, 在其中可以知道任何流行的开源类库.
 6. 项目规范化: maven对于项目目录结构, 测试用例命名方式等都有既定的规则, 只要遵循了这些成熟的规则, 用户在项目间切换的时候就免去了额外的学习成本, 可以说是 约定优于配置.
 
-## 三. 手动构建一个maven项目
+## 手动构建一个maven项目
 
-### 3.1 创建一个pom.xml
+### 创建一个pom.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -61,7 +61,7 @@ POM : project object model
 </project>
 ```
 
-### 3.2 创建一套目录结构
+### 创建一套目录结构
 
 | 目录                          | 目的                          |
 | ----------------------------- | ----------------------------- |
@@ -76,7 +76,7 @@ mkdir -p maven-demo/src/main/java maven-demo/src/resources
 mkdir -p maven-demo/src/test/java maven-demo/src/test/resources
 ```
 
-### 3.3 Hello Maven
+### Hello Maven
 
 在maven-demo/src/main/java目录下创建HelloMaven.java
 

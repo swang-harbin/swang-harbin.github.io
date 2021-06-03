@@ -5,7 +5,7 @@ updated: '2019-12-06 00:00:00'
 tags:
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # 远程访问PostgreSQL

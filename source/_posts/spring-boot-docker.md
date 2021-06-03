@@ -3,15 +3,17 @@ title: Spring Boot与Docker
 date: '2019-12-17 00:00:00'
 updated: '2019-12-17 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 五. Spring Boot与Docker
+# Spring Boot与Docker
 
-## 5.1 简介
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 简介
 
 **Docker**是一个开源的应用容器引擎
 
@@ -21,7 +23,7 @@ Docker支持将软件编译成一个镜像, 然后在镜像中对各种软件做
 
 运行中的这个镜像称为容器, 容器启动时非常快速的.
 
-## 5.2 Docker核心概念
+## Docker核心概念
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222133741.png)
 
@@ -42,9 +44,9 @@ Docker支持将软件编译成一个镜像, 然后在镜像中对各种软件做
 3. 直接使用docker运行这个镜像, 这个镜像就会生成一个容器
 4. 对容器的启动停止就是对软件的启动停止
 
-## 5.3 安装Docker
+## 安装Docker
 
-### 5.3.1 安装虚拟机
+### 安装虚拟机
 
 1. 安装VirtualBox或VMWare
 
@@ -70,7 +72,7 @@ Docker支持将软件编译成一个镜像, 然后在镜像中对各种软件做
 
 8. 使用客户端连接
 
-### 5.3.2 在Linux上安装Docker
+### 在Linux上安装Docker
 
 1. 查看CentOS版本:
 
@@ -106,9 +108,9 @@ Docker要求CentOS系统的内核版本高于3.10 `uname -a`
    systemctl stop docker
    ```
 
-## 5.4 常用操作
+## 常用操作
 
-### 5.4.1 镜像操作
+### 镜像操作
 
 | 操作 | 命令                   | 说明                                                    |
 | ---- | ---------------------- | ------------------------------------------------------- |
@@ -117,7 +119,7 @@ Docker要求CentOS系统的内核版本高于3.10 `uname -a`
 | 列表 | docker images          | 查看所有本地镜像                                        |
 | 删除 | docker rmi image-id    | 删除指定的本地镜像                                      |
 
-### 5.4.2 容器操作
+### 容器操作
 
 | 操作     | 命令                                                         | 说明                                                       |
 | -------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
@@ -202,7 +204,7 @@ Docker要求CentOS系统的内核版本高于3.10 `uname -a`
     docker logs 容器id
     ```
 
-### 5.4.3 安装MySQL
+### 安装MySQL
 
 拉取镜像
 

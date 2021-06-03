@@ -3,15 +3,15 @@ title: log4j详细配置
 date: '2019-12-12 00:00:00'
 updated: '2019-12-12 00:00:00'
 tags:
-- log4j
-- java
+- Log4j
+- Java
 categories:
-- java
+- Java
 ---
 
 # log4j详细配置
 
-## 一. log4j根配置语法
+## log4j根配置语法
 
 ```properties
 log4j.rootLogger = [ level ], appenderName, appenderName, ...
@@ -19,7 +19,7 @@ log4j.rootLogger = [ level ], appenderName, appenderName, ...
 
 把指定级别(level)的日志信息输出到指定的一个或多个位置(appenderName)
 
-## 二. 日志等级
+## 日志等级
 
 log4j根据日志信息的重要程度, 由高到低否分为OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL, 可以输出等级大于等于level的日志信息. 例如: 配置为WARN可以输出FATAL、ERROR、WARN日志信息.
 
@@ -27,7 +27,7 @@ log4j官方建议实际开发时只是用4个级别, 优先级从高到低分别
 
 如果rootLogger的level设置为DEBUG, 则所有的信息都可以输出
 
-## 三. 输出位置
+## 输出位置
 
 ```properties
 # DEBUG为level
@@ -94,14 +94,14 @@ log4j.appender.RollingFile.layout.ConversionPattern =%d [%t] %-5p [%c] - %m%n
 
 `log4j.appender.RollingFile.MaxBackupIndex`: 日志文件的个数, 如果超过了则覆盖
 
-## 四. layout日志信息格式
+## layout日志信息格式
 
 1. `org.apache.log4j.HTMLLayout`: 以HTML表格形式布局
 2. `org.apache.log4j.SimpleLayout`: 包含日志信息的级别和信息的字符串
 3. `org.apache.log4j.TTCCLayout`: 包含日志产生的时间, 线程, 类别等信息
 4. `org.apache.log4j.PatternLayout`: 可以灵活地指定布局模式
 
-### 4.1 HTMLLayout
+### HTMLLayout
 
 ```properties
 log4j.appender.Console=org.apache.log4j.ConsoleAppender  
@@ -139,7 +139,7 @@ Log session start time Fri Dec 13 11:00:02 GMT+08:00 2019<br>
 <td>0</td>
 <td title="main thread">main</td>
 <td title="Level">INFO</td>
-<td title="cc.ccue.HelloWorld category">cc.ccue.HelloWorld</td>
+<td title="icu.intelli.HelloWorld category">icu.intelli.HelloWorld</td>
 <td title="Message">普通info信息</td>
 </tr>
 
@@ -147,7 +147,7 @@ Log session start time Fri Dec 13 11:00:02 GMT+08:00 2019<br>
 <td>2</td>
 <td title="main thread">main</td>
 <td title="Level"><font color="#339933">DEBUG</font></td>
-<td title="cc.ccue.HelloWorld category">cc.ccue.HelloWorld</td>
+<td title="icu.intelli.HelloWorld category">icu.intelli.HelloWorld</td>
 <td title="Message">调试debug信息</td>
 </tr>
 
@@ -155,7 +155,7 @@ Log session start time Fri Dec 13 11:00:02 GMT+08:00 2019<br>
 <td>2</td>
 <td title="main thread">main</td>
 <td title="Level"><font color="#993300"><strong>WARN</strong></font></td>
-<td title="cc.ccue.HelloWorld category">cc.ccue.HelloWorld</td>
+<td title="icu.intelli.HelloWorld category">icu.intelli.HelloWorld</td>
 <td title="Message">警告warn信息</td>
 </tr>
 
@@ -163,7 +163,7 @@ Log session start time Fri Dec 13 11:00:02 GMT+08:00 2019<br>
 <td>2</td>
 <td title="main thread">main</td>
 <td title="Level"><font color="#993300"><strong>ERROR</strong></font></td>
-<td title="cc.ccue.HelloWorld category">cc.ccue.HelloWorld</td>
+<td title="icu.intelli.HelloWorld category">icu.intelli.HelloWorld</td>
 <td title="Message">报错error信息</td>
 </tr>
 
@@ -171,12 +171,12 @@ Log session start time Fri Dec 13 11:00:02 GMT+08:00 2019<br>
 <td>2</td>
 <td title="main thread">main</td>
 <td title="Level"><font color="#993300"><strong>FATAL</strong></font></td>
-<td title="cc.ccue.HelloWorld category">cc.ccue.HelloWorld</td>
+<td title="icu.intelli.HelloWorld category">icu.intelli.HelloWorld</td>
 <td title="Message">致命fatal信息</td>
 </tr>
 ```
 
-### 4.2 SimpleLayout
+### SimpleLayout
 
 输出:
 
@@ -188,19 +188,19 @@ ERROR - 报错error信息
 FATAL - 致命fatal信息
 ```
 
-### 4.3 TTCCLayout
+### TTCCLayout
 
 输出:
 
 ```
-[main] INFO cc.ccue.HelloWorld - 普通info信息
-[main] DEBUG cc.ccue.HelloWorld - 调试debug信息
-[main] WARN cc.ccue.HelloWorld - 警告warn信息
-[main] ERROR cc.ccue.HelloWorld - 报错error信息
-[main] FATAL cc.ccue.HelloWorld - 致命fatal信息
+[main] INFO icu.intelli.HelloWorld - 普通info信息
+[main] DEBUG icu.intelli.HelloWorld - 调试debug信息
+[main] WARN icu.intelli.HelloWorld - 警告warn信息
+[main] ERROR icu.intelli.HelloWorld - 报错error信息
+[main] FATAL icu.intelli.HelloWorld - 致命fatal信息
 ```
 
-### 4.4 PatternLayout
+### PatternLayout
 
 **实际开发应该使用的**
 
@@ -215,14 +215,14 @@ log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p [%c] - %m%n
 输出:
 
 ```
-2019-12-13 11:03:46,985 [main] INFO  [cc.ccue.HelloWorld] - 普通info信息
-2019-12-13 11:03:46,985 [main] DEBUG [cc.ccue.HelloWorld] - 调试debug信息
-2019-12-13 11:03:46,985 [main] WARN  [cc.ccue.HelloWorld] - 警告warn信息
-2019-12-13 11:03:46,985 [main] ERROR [cc.ccue.HelloWorld] - 报错error信息
-2019-12-13 11:03:46,985 [main] FATAL [cc.ccue.HelloWorld] - 致命fatal信息
+2019-12-13 11:03:46,985 [main] INFO  [icu.intelli.HelloWorld] - 普通info信息
+2019-12-13 11:03:46,985 [main] DEBUG [icu.intelli.HelloWorld] - 调试debug信息
+2019-12-13 11:03:46,985 [main] WARN  [icu.intelli.HelloWorld] - 警告warn信息
+2019-12-13 11:03:46,985 [main] ERROR [icu.intelli.HelloWorld] - 报错error信息
+2019-12-13 11:03:46,985 [main] FATAL [icu.intelli.HelloWorld] - 致命fatal信息
 ```
 
-#### 4.4.1 ConversionPattern配置说明
+#### ConversionPattern配置说明
 
 ```
 %m 输出代码中指定的消息;
@@ -244,7 +244,7 @@ log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p [%c] - %m%n
 %l 输出日志事件的发生位置，及在代码中的行数;
 ```
 
-## 五. Threshold属性指定输出等级
+## Threshold属性指定输出等级
 
 有时候我们需要把一些ERROR日志单独存到指定文件, 这时, 就需要用到Threshold属性
 
@@ -277,7 +277,7 @@ ErrorFile:
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222151340.png)
 
-## 六. Append属性指定是否追加内容
+## Append属性指定是否追加内容
 
 默认是true, 追加.
 

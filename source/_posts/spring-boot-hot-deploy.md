@@ -3,24 +3,26 @@ title: Spring Boot热部署
 date: '2020-01-20 00:00:00'
 updated: '2020-01-20 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 十一. Spring Boot热部署
+# Spring Boot热部署
 
-## 11.1 SpringBoot的热部署方式
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## SpringBoot的热部署方式
 
 **2种**
 
 - SpringLoader插件
 - DevTools工具
 
-## 11.2 SpringLoader的使3用
+## SpringLoader的使用
 
-### 11.2.1 项目准备
+### 项目准备
 
 **1. pom.xml种添加web和thymeleaf的启动器**
 
@@ -65,9 +67,9 @@ public class UserController {
 </html>
 ```
 
-### 11.2.2 使用SpringLoader进行项目的热部署
+### 使用SpringLoader进行项目的热部署
 
-#### 11.2.2.1 方式一: 以Maven插件方式使用SpringLoader
+#### 方式一: 以Maven插件方式使用SpringLoader
 
 **pom.xml中添加SpringLoader插件**
 
@@ -104,7 +106,7 @@ spring-boot:run
 
 **此方式很坑, 不建议使用**
 
-#### 11.2.2.2 方式二: 在项目中直接使用jar包的形式
+#### 方式二: 在项目中直接使用jar包的形式
 
 视频使用的springboot1.X, eclipse, 将springloaded的jar包放在了lib目录下, 我使用springboot2.x, idea使用在pom.xml中引入依赖的方式, 设置不生效. 配上原示例:
 
@@ -116,13 +118,13 @@ Run Configuration -> VM arguments添加
 
 该方式可以直接通过eclipse关闭. 依旧只能热部署Java代码
 
-## 11.3 DevTools工具
+## DevTools工具
 
-### 11.3.1 SpringLoader于DevTools的区别
+### SpringLoader于DevTools的区别
 
 SpringLoader: 在部署项目时, 使用的是热部署的方式 DevTools: 在部署项目时, 使用的是重新部署的方式
 
-### 11.3.2 DevTools的使用
+### DevTools的使用
 
 pom.xml中添加依赖
 

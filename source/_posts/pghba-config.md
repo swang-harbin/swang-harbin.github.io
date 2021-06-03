@@ -5,12 +5,12 @@ updated: '2019-12-06 00:00:00'
 tags:
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # pg_hba.conf配置文件说明
 
-## 一. TYPE
+## TYPE
 
 表示主机类型, 值可能为 :
 
@@ -18,7 +18,7 @@ categories:
 - host : 表示TCP/IP的socket连接
 - hostssl : 表示SSL加密的TCP/IP socket
 
-## 二. DATABASE
+## DATABASE
 
 表示数据库名称, 值可能为 :
 
@@ -28,7 +28,7 @@ categories:
 - replication :
 - 指定数据库名称 : 多个数据库用逗号(,)分隔
 
-## 三. USER
+## USER
 
 表示用户名称, 值可能为 :
 
@@ -36,9 +36,9 @@ categories:
 - 用户名 : 多个用户名用逗号(,)分隔
 - 
 
-## 四. ADDRESS
+## ADDRESS
 
-## 五. METHOD
+## METHOD
 
 ## 参考文档
 

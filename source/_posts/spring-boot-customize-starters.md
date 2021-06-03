@@ -3,15 +3,17 @@ title: Spring Boot自定义starters
 date: '2019-12-22 00:00:00'
 updated: '2019-12-22 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 八. Spring Boot自定义starters
+# Spring Boot自定义starters
 
-## 8.1 介绍
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 介绍
 
 starter : 场景启动器
 
@@ -55,32 +57,32 @@ starter : 场景启动器
     - 模式: 模块-spring-boot-starter
     - 举例: mybatis-spring-boot-starter
 
-## 8.2 编写starter
+## 编写starter
 
-### 8.2.1 创建一个空工程
+### 创建一个空工程
 
 IDEA : File -> New -> Project -> Empty Project
 
-Project name: ccue-spring-boot-starter
+Project name: intelli-spring-boot-starter
 
-### 8.2.2 创建一个Maven工程
+### 创建一个Maven工程
 
 IDEA : File -> New -> Project -> Spring Initializr
 
-Group: cc.ccue Artifact: ccue-spring-boot-starter-autoconfigurer Packaging: Jar Package: cc.ccue.starter
+Group: icu.intelli Artifact: intelli-spring-boot-starter-autoconfigurer Packaging: Jar Package: icu.intelli.starter
 
 什么模块都不需要选择
 
-### 8.2.3 添加依赖关系
+### 添加依赖关系
 
-在ccue-spring-boot-starter项目的pom文件中添加
+在intelli-spring-boot-starter项目的pom文件中添加
 
 ```xml
 <dependencies>
     <!-- 引入自动配置模块 -->
     <dependency>
-        <groupId>cc.ccue.starter</groupId>
-        <artifactId>ccue-spring-boot-starter-autoconfigurer</artifactId>
+        <groupId>icu.intelli.starter</groupId>
+        <artifactId>intelli-spring-boot-starter-autoconfigurer</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependencies>
@@ -88,7 +90,7 @@ Group: cc.ccue Artifact: ccue-spring-boot-starter-autoconfigurer Packaging: Jar 
 
 此时, 当我们使用我们自定义的starter时, 会自动将该starter的自动配置包导入到工程中, 从而该自动配置生效
 
-### 8.2.4 修改ccue-sprig-boot-starter-autoconfigurer
+### 修改intelli-sprig-boot-starter-autoconfigurer
 
 清理多余的目录结构, 保留如下即可:
 
@@ -107,10 +109,10 @@ Group: cc.ccue Artifact: ccue-spring-boot-starter-autoconfigurer Packaging: Jar 
         <version>1.5.10.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cc.ccue.starter</groupId>
-    <artifactId>ccue-spring-boot-starter-autoconfigurer</artifactId>
+    <groupId>icu.intelli.starter</groupId>
+    <artifactId>intelli-spring-boot-starter-autoconfigurer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ccue-spring-boot-starter-autoconfigurer</name>
+    <name>intelli-spring-boot-starter-autoconfigurer</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
@@ -125,9 +127,9 @@ Group: cc.ccue Artifact: ccue-spring-boot-starter-autoconfigurer Packaging: Jar 
 </project>
 ```
 
-### 8.2.4 添加自定义starter的自动配置代码
+### 添加自定义starter的自动配置代码
 
-#### 8.2.4.1 添加HelloService
+#### 添加HelloService
 
 ```java
 public class HelloService {
@@ -148,10 +150,10 @@ public class HelloService {
 }
 ```
 
-#### 8.2.4.2 添加HelloProperties
+#### 添加HelloProperties
 
 ```java
-@ConfigurationProperties(prefix = "ccue.hello") // 绑定配置文件中以ccue.hello开头的配置
+@ConfigurationProperties(prefix = "intelli.hello") // 绑定配置文件中以intelli.hello开头的配置
 public class HelloProperties {
 
     private String prefix;
@@ -175,7 +177,7 @@ public class HelloProperties {
 }
 ```
 
-#### 8.2.4.3 添加HelloServiceAutoConfiguration
+#### 添加HelloServiceAutoConfiguration
 
 ```java
 @Configuration
@@ -195,20 +197,20 @@ public class HelloServiceAutoConfiguration {
 }
 ```
 
-#### 8.2.4.4 添加/META-INF/spring.factories
+#### 添加/META-INF/spring.factories
 
 ```properties
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cc.ccue.starter.HelloServiceAutoConfiguration
+icu.intelli.starter.HelloServiceAutoConfiguration
 ```
 
-#### 8.2.4.4 测试
+#### 测试
 
-将ccue-spring-boot-starter-autoconfigurer和ccue-spring-boot-starter依次install到Maven仓库
+将intelli-spring-boot-starter-autoconfigurer和intelli-spring-boot-starter依次install到Maven仓库
 
 创建新项目测试自定义的starter: File -> New -> Project -> Spring Initializr
 
-Group: cc.ccue Artifact: spring-boot-08-starter-test Packaging: Jar Package: cc.ccue
+Group: icu.intelli Artifact: spring-boot-08-starter-test Packaging: Jar Package: icu.intelli
 
 选中Web模块
 
@@ -218,8 +220,8 @@ Project name: spring-boot-08-starter-test
 
 ```xml
 <dependency>
-    <groupId>cc.ccue.starter</groupId>
-    <artifactId>ccue-spring-boot-starter</artifactId>
+    <groupId>icu.intelli.starter</groupId>
+    <artifactId>intelli-spring-boot-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -243,8 +245,8 @@ public class HelloController {
 编辑配置文件
 
 ```properties
-ccue.hello.prefix=CCUE
-ccue.hello.suffix=HELLO WORLD
+intelli.hello.prefix=CCUE
+intelli.hello.suffix=HELLO WORLD
 ```
 
 访问http://localhost:8080/hello, 返回

@@ -4,13 +4,14 @@ date: '2019-12-09 00:00:00'
 updated: '2019-12-09 00:00:00'
 tags:
 - MySQL
+- CentOS7
 categories:
 - database
 ---
 
 # CentOS7安装绿色版MySQL57
 
-## 一. 创建用户和组
+## 创建用户和组
 
 ```
 # groupadd mysql
@@ -19,13 +20,13 @@ categories:
 
 因为这个用户只需要有所有权, 不需要登录, **useradd**使用 -r 和 -s /bin/false选项创建一个不能登录服务主机的用户. 如果**useradd**命令不支持这些, 可以忽略它们. 用户名和组名也可以不叫mysql
 
-## 二. 压缩包下载
+## 压缩包下载
 
 [MySQL Product Archives](https://downloads.mysql.com/archives/community/)
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222184621.png)
 
-### 2.1 解压
+### 解压
 
 ```shell
 # tar -zxvf mysql-VERSION-OS.tar.gz

@@ -3,17 +3,17 @@ title: MySQL server has gone away
 date: '2019-09-06 00:00:00'
 updated: '2019-09-06 00:00:00'
 tags:
-- exception
+- Exception
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # 错误-MySQL server has gone away
 
 ## 出现原因:
 
-> 使用Navicat导入大sql文件时,报MySQL server has gone away错误。由于max_allowed_packet的值过小。该值的作用是限制MySQL服务接收到的包的大小。
+使用Navicat导入大sql文件时,报MySQL server has gone away错误。由于max_allowed_packet的值过小。该值的作用是限制MySQL服务接收到的包的大小。
 
 ## 解决方法
 

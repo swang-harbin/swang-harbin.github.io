@@ -3,15 +3,16 @@ title: Spring Boot与Web开发
 date: '2019-12-17 00:00:00'
 updated: '2019-12-17 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
-https://note.youdao.com/web/#/file/FA57155742284F2F8201B37209C96B9F/markdown/110DA72F153C45A98BE32CC66B7FF221/
-# 四. Spring Boot与Web开发
+# Spring Boot与Web开发
 
-## 4.1 简介
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 简介
 
 **使用SpringBoot:**
 
@@ -26,7 +27,7 @@ https://note.youdao.com/web/#/file/FA57155742284F2F8201B37209C96B9F/markdown/110
 - **xxxAutoConfiguration**: 帮我们给容器中自动配置组件
 - **xxxProperties**: 配置类来封装配置文件的内容
 
-## 4.2 SpringBoot对静态资源的映射规则
+## SpringBoot对静态资源的映射规则
 
 SpringBoot跟Web相关的配置都在**WebMvcAutoConfiguration**里
 
@@ -71,7 +72,7 @@ public class ResourceProperties {
 
    - webjars : 以jar包的方式引入静态资源
 
-   - [webjars官网](https://www.webjars.org/): 可以将常用的前端框架以Maven依赖的方式引入到项目中 ![image](https://note.youdao.com/yws/res/49673/02679AA3C2C04788AD20B5A2845D9A71?ynotemdtimestamp=1613927951471)
+   - [webjars官网](https://www.webjars.org/): 可以将常用的前端框架以Maven依赖的方式引入到项目中 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210607235730.png)
 
      测试访问: http://localhost:8080/webjars/jquery/3.4.1/jquery.js
 
@@ -103,7 +104,7 @@ public class ResourceProperties {
 
 5. 可以通过`spring.resources.static-locations`属性自定义静态文件夹数组, 会使默认配置失效
 
-## 4.3 模板引擎
+## 模板引擎
 
 JSP, Velocity, Freemarker, Thymeleaf
 
@@ -113,7 +114,7 @@ SpringBoot推荐的Thymeleaf;
 
 语法简单, 功能更强大.
 
-### 4.3.1 引入Thymeleaf
+### 引入Thymeleaf
 
 ```xml
 <dependency>
@@ -132,7 +133,7 @@ SpringBoot推荐的Thymeleaf;
 </properties>
 ```
 
-### 4.3.2 Thymeleaf使用&语法
+### Thymeleaf使用&语法
 
 ```java
 @ConfigurationProperties(prefix = "spring.thymeleaf")
@@ -162,7 +163,7 @@ public class ThymeleafProperties {
 <div th:text="${hello}">这是显示欢迎信息</div>
 ```
 
-### 4.3.3 Thymeleaf语法规则
+### Thymeleaf语法规则
 
 1. th:text : 改变当前元素里面的文本内容
 
@@ -239,11 +240,11 @@ public class ThymeleafProperties {
        No-Operation: _
    ```
 
-## 4.4 SpringMVC自动配置
+## SpringMVC自动配置
 
 [Developing Web Applications](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/html/spring-boot-features.html#boot-features-developing-web-applications)
 
-### 4.4.1 Spring MVC auto-configuration
+### Spring MVC auto-configuration
 
 Spring Boot自动配置好了SpringMVC
 
@@ -296,9 +297,9 @@ Spring Boot自动配置好了SpringMVC
 
 **[org.springframework.boot.autoconfigure.web](http://org.springframework.boot.autoconfigure.web/) : web的所有自动配置场景**
 
-### 4.4.2 扩展SpringMVC
+### 扩展SpringMVC
 
-If you want to keep Spring Boot MVC features and you want to add additional MVC configuration (interceptors, formatters, view controllers, and other features), you can add your own @Configuration class of type WebMvcConfigurer but without @EnableWebMvc. If you wish to provide custom instances of RequestMappingHandlerMapping, RequestMappingHandlerAdapter, or ExceptionHandlerExceptionResolver, you can declare a WebMvcRegistrationsAdapter instance to provide such components.
+> If you want to keep Spring Boot MVC features and you want to add additional MVC configuration (interceptors, formatters, view controllers, and other features), you can add your own @Configuration class of type WebMvcConfigurer but without @EnableWebMvc. If you wish to provide custom instances of RequestMappingHandlerMapping, RequestMappingHandlerAdapter, or ExceptionHandlerExceptionResolver, you can declare a WebMvcRegistrationsAdapter instance to provide such components.
 
 ```xml
 <mvc:view-controller path="/hello" view-name="success" />
@@ -321,8 +322,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // 浏览器发送/ccue请求, 也来到success页面
-        registry.addViewController("/ccue").setViewName("success");
+        // 浏览器发送/intelli请求, 也来到success页面
+        registry.addViewController("/intelli").setViewName("success");
     }
 }
 ```
@@ -365,7 +366,7 @@ public static class EnableWebMvcConfiguration extends DelegatingWebMvcConfigurat
 
 **效果: **SpringMvc的配置和我们的扩展配置都会起作用
 
-### 4.4.3 全面接管SpringMVC
+### 全面接管SpringMVC
 
 If you want to take complete control of Spring MVC, you can add your own @Configuration annotated with @EnableWebMvc.
 
@@ -411,7 +412,7 @@ public class WebMvcAutoConfiguration {
 1. `@EnableWebMvc`将`WebMvcConfigurationSupport`组件导入进来了;
 2. 导入的`WebMvcConfigurationSupport`只是SpringMVC最基本的功能.
 
-## 4.5 如何修改SpringBoot的默认配置
+## 如何修改SpringBoot的默认配置
 
 **SpringBoot自动配置的模式 :**
 
@@ -419,9 +420,9 @@ public class WebMvcAutoConfiguration {
 2. 在SpringBoot中会有非常多的xxxConfigurer, 帮助我们进行扩展配置
 3. 在SpringBoot中会有很多的xxx.Customizer帮助我们进行定制配置
 
-## 4.6 RestfulCRUD
+## RestfulCRUD
 
-### 4.6.1 默认访问首页
+### 默认访问首页
 
 ```java
 @Configuration
@@ -434,7 +435,7 @@ public class MyMvcConfiguarer implements WebMvcConfigurer {
 }
 ```
 
-### 4.6.2 国际化
+### 国际化
 
 **1. 编写国际化配置文件**
 
@@ -604,7 +605,7 @@ public LocaleResolver localeResolver(){
 }
 ```
 
-### 4.6.3 登录
+### 登录
 
 开发期间模板引擎页面修改后, 要实时生效 :
 
@@ -634,7 +635,7 @@ registry.addViewController("/main.html").setViewName("dashboard");
 return "redirect:/main.html";
 ```
 
-### 4.6.4 拦截器进行登录验证
+### 拦截器进行登录验证
 
 1. 创建登录拦截器类
 
@@ -677,7 +678,7 @@ public class MyMvcConfigurer implements WebMvcConfigurer {
 }
 ```
 
-### 4.6.5 CRUD-员工列表
+### CRUD-员工列表
 
 实验要求 :
 
@@ -757,7 +758,7 @@ insert的功能片段在div标签中
 </div>
 ```
 
-### 4.6.6 CRUD-员工添加
+### CRUD-员工添加
 
 最常遇到的问题是, 提交的数据格式不对 : 特别是生日
 
@@ -773,7 +774,7 @@ insert的功能片段在div标签中
 spring.mvc.date-format=
 ```
 
-### 4.6.7 CRUD-员工修改
+### CRUD-员工修改
 
 form表单只支持POST和GET请求, 此时需要使用PUT请求方式:
 
@@ -781,7 +782,7 @@ form表单只支持POST和GET请求, 此时需要使用PUT请求方式:
 2. 页面创建一个post表单
 3. 创建一个input项, name="_method"; 值就是我们指定的请求方式
 
-### 4.6.8 CRUD-员工删除
+### CRUD-员工删除
 
 使用DELETE请求方式, 参考员工修改
 
@@ -793,9 +794,9 @@ thymeleaf设置自定义属性
 <form action="xxx" th:attr="key1=val1, key2=val2"
 ```
 
-### 4.6.7 错误处理机制
+### 错误处理机制
 
-#### 4.6.7.1 SpringBoot默认的错误处理机制
+#### SpringBoot默认的错误处理机制
 
 **默认效果 :**
 
@@ -923,7 +924,7 @@ private ModelAndView resolve(String viewName, Map<String, Object> model) {
    }
    ```
 
-#### 4.6.7.2 如何定制错误响应
+#### 如何定制错误响应
 
 - 如何定制错误的页面
 
@@ -999,13 +1000,13 @@ private ModelAndView resolve(String viewName, Map<String, Object> model) {
 
 **最终的效果 :** 响应是自适应的, 可以通过定制ErrorAttribute改变需要定制的内容
 
-### 4.6.8 配置嵌入式Servlet容器
+### 配置嵌入式Servlet容器
 
 SpringBoot默认用的是嵌入式Servlet容器(Tomcat);
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222015309.png)
 
-#### 4.6.8.1 如何定制和修改Servlet容器的相关配置
+#### 如何定制和修改Servlet容器的相关配置
 
 1. 修改和server有关的配置(ServerProperties)
 
@@ -1046,7 +1047,7 @@ public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactory
 }
 ```
 
-#### 4.6.8.2 注册Servlet三大组件[Servlet, Filter, Listener]
+#### 注册Servlet三大组件[Servlet, Filter, Listener]
 
 由于SpringBoot默认是以jar包的方式启动嵌入式的Servlet容器来启动SpringBoot的web应用, 没有web.xml文件.
 
@@ -1090,7 +1091,7 @@ SpringBoot帮我们自动配置SpringMVC的时候, 自动注册了SpringMVC的�
 
 可通过server.servletPath(springboot2.x使用spring.mvc.servlet.path)来修改SpringMVC前端控制器默认拦截的请求路径
 
-#### 4.6.8.3 使用其他Servlet容器
+#### 使用其他Servlet容器
 
 SpringBoot 1.5.9默认支持:
 
@@ -1120,7 +1121,7 @@ SpringBoot2.2.2默认支持:
 </dependency>
 ```
 
-#### 4.6.8.4 嵌入式Servlet容器自动配置原理
+#### 嵌入式Servlet容器自动配置原理
 
 ```java
 //SpringBoot 1.5.9
@@ -1322,7 +1323,7 @@ private Collection<EmbeddedServletContainerCustomizer> getCustomizers() {
 
 3. 后置处理器从容器中获取所有的EmbeddedServletContainerCustomizer, 调用定制器的定制方法
 
-#### 4.6.8.5 嵌入式Servlet容器启动原理
+#### 嵌入式Servlet容器启动原理
 
 什么时候创建嵌入式的Servlet容器工厂? 什么时候获取嵌入式的Servlet容器并启动Tomcat?
 
@@ -1391,7 +1392,7 @@ private Collection<EmbeddedServletContainerCustomizer> getCustomizers() {
 
 **IOC容器启动创建嵌入式的Servlet容器**
 
-### 4.6.9 使用外置的Servlet容器
+### 使用外置的Servlet容器
 
 **嵌入式Servlet容器 :** 应用打成可执行的jar
 
@@ -1413,7 +1414,7 @@ spring.mvc.view.suffix=.jsp
 1. 必须创建一个war项目: jar项目可以修改pom.xml中的`<packaging>war</packaging>`
 
    ```xml
-   <groupId>cc.ccue</groupId>
+   <groupId>icu.intelli</groupId>
    <artifactId>spring-boot-jpa-demo</artifactId>
    <version>1.0-SNAPSHOT</version>
    <packaging>war</packaging>
@@ -1455,7 +1456,7 @@ spring.mvc.view.suffix=.jsp
 
 6. 启动外置tomcat就可以使用(此处直接运行Application.java使用的还是嵌入式的tomcat)
 
-### 4.6.10 原理
+### 原理
 
 **jar包 :** 执行SpringBoot主类的main方法, 启动IOC容器, 创建嵌入式Servlet容器;
 
@@ -1481,7 +1482,7 @@ servlet3.0 : 8.2.4 Shared libraries 65.79/ runtimes pluggability :
 
 4. 每一个WebApplicationInitializer都调用自己的onStartup方法
 
-5. 相当于我们的SpringBootServletInitialize的类会被创建对象, 并执行onStartup方法 ![image](https://note.youdao.com/yws/res/50850/6DD736C73C924A49AD2B203389D76C7C?ynotemdtimestamp=1613927951471)
+5. 相当于我们的SpringBootServletInitialize的类会被创建对象, 并执行onStartup方法 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210608000048.png)
 
 6. SpringBootServletInitialize实例执行onStartup的时候会createRootApplicationContext, 创建容器
 

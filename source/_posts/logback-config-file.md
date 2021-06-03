@@ -3,10 +3,10 @@ title: logback配置文件介绍
 date: '2019-12-13 00:00:00'
 updated: '2019-12-13 00:00:00'
 tags:
-- logback
-- java
+- Logback
+- Java
 categories:
-- java
+- Java
 ---
 
 # logback配置文件介绍
@@ -104,7 +104,7 @@ categories:
 
     <!--记录哪个包下的信息, 一个类/包只能对应一个logger-->
     <!--additivity: 默认true, 按logger中的日志级别, 将日志输出到它父级(root)的位置(console)-->
-    <logger name="cc.ccue" level="${log.level}" additivity="true">
+    <logger name="icu.intelli" level="${log.level}" additivity="true">
         <appender-ref ref="debugAppender"/>
         <appender-ref ref="infoAppender"/>
         <appender-ref ref="errorAppender"/>

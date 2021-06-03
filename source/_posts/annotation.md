@@ -3,10 +3,10 @@ title: Annotation注解
 date: '2019-12-23 00:00:00'
 updated: '2019-12-23 00:00:00'
 tags:
-- annotation
-- java
+- Annotation
+- Java
 categories:
-- java
+- Java
 ---
 # Annotation注解
 
@@ -14,7 +14,7 @@ Annotation是从JDK1.5之后提出的一个新的开发技术结构, 利用Annot
 
 如果要想清楚Annotation的产生意义, 必须了解下程序开发结构的历史, 从历史来讲,
 
-## 一. 程序开发共分为三个过程 :
+## 程序开发共分为三个过程 :
 
 ### 过程一
 
@@ -40,11 +40,11 @@ Annotation是从JDK1.5之后提出的一个新的开发技术结构, 利用Annot
 
 如果全部都使用注解开发, 难度太高了, 配置文件也有好处也有缺点, 所以现在使用注解加配置文件的形式开发.
 
-# 二. Java中的内置注解
+## Java中的内置注解
 
-## 2.1 基本注解
+### 基本注解
 
-### 1. @Override(覆盖)
+#### @Override(覆盖)
 
 检查该方法是否是重写方法. 如果如果发现其父类, 或者是引用的接口中并没有该方法时, 会报编译错误
 
@@ -81,7 +81,7 @@ class Sub extends Base {
 }
 ```
 
-### 2. @Deprecated(过期操作)
+#### @Deprecated(过期操作)
 
 标记过时方法. 如果使用该注解标记的方法, 会报编译警告
 
@@ -112,7 +112,7 @@ public class Date
 }
 ```
 
-### 3. @SuppressWarnings(压制警告)
+#### @SuppressWarnings(压制警告)
 
 指示编译器去忽略该注解中声明的警告
 
@@ -160,11 +160,11 @@ class Base {
 }
 ```
 
-## 2.2 元注解
+### 元注解
 
 注解在其他注解类上的注解, 称为元注解
 
-### 1. @Retention
+#### @Retention
 
 指明标识了该注解的注解的生命周期. 默认值为`RetentionPolicy.CLASS`.
 
@@ -203,7 +203,7 @@ public enum RetentionPolicy {
 }
 ```
 
-### 2. @Documented
+#### @Documented
 
 指明标注了该注解的注解能够包含到Javadoc中去
 
@@ -219,7 +219,7 @@ public @interface Documented {
 }
 ```
 
-### 3. @Target
+#### @Target
 
 指明标注了该注解的注解可以标注在那些地方, 例如类, 属性, 方法等.
 
@@ -283,7 +283,7 @@ public enum ElementType {
 }
 ```
 
-### 4. @Inherited
+#### @Inherited
 
 指明标注了该注解的注解具有继承性. 例如MyAnnotation被标注了@Inherited, 现在一个类Base使用了MyAnnotation, 则它的子类Sub也具有MyAnnotation注解.
 
@@ -300,7 +300,7 @@ public @interface Inherited {
 }
 ```
 
-### 5. @Repeatable
+#### @Repeatable
 
 指明标注了该注解的注解, 可以在其可标注的地方标注多次.
 
@@ -338,9 +338,9 @@ public @interface MyAnnos {
 }
 ```
 
-## JDK1.7后新增非元注解
+### JDK1.7后新增非元注解
 
-### 1. @SafeVarargs
+#### @SafeVarargs
 
 忽略任何使用参数为泛型变量的方法或构造函数调用产生的警告
 
@@ -355,7 +355,7 @@ package java.lang;
 public @interface SafeVarargs {}
 ```
 
-### 2. @FunctionalInterface
+#### @FunctionalInterface
 
 标识一个匿名函数或函数式接口
 
@@ -373,7 +373,7 @@ import java.lang.annotation.*;
 public @interface FunctionalInterface {}
 ```
 
-# 三. 自定义注解
+## 自定义注解
 
 Java中使用`@interface`声明一个类为注解
 
@@ -388,7 +388,7 @@ public @interface MyAnno {
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@interface MyAnno {
+public @interface MyAnno {
 
 }
 ```
@@ -399,7 +399,7 @@ public @interface MyAnno {
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@interface MyAnno {
+public @interface MyAnno {
     // 指定注解中有一个属性name, 没有默认值, 所以在使用该注解的时候, 必须给出值
     String name();
 
@@ -412,25 +412,25 @@ public @interface MyAnno {
 
 ```java
 @MyAnno(name = "base")
-class Base{
+public class Base{
     
 }
 ```
 
-通过反射获取注解中的值
+使用Annotation之后最大特点是可以结合反射, 通过反射获取注解中的值
 
 ```java
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@interface MyAnno {
+public @interface MyAnno {
     String name();
 
     boolean value() default false;
 }
 
 @MyAnno(name = "base")
-class Base {
+public class Base {
     public static void main(String[] args) {
         Class<Base> clazz = Base.class;
         MyAnno anno = clazz.getAnnotation(MyAnno.class);
@@ -444,3 +444,4 @@ class Base {
 ```
 base false
 ```
+

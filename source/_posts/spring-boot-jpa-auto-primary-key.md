@@ -3,15 +3,16 @@ title: Spring Data JPA自动生成主键, 创建时间和更新时间
 date: '2020-05-18 00:00:00'
 updated: '2020-05-18 00:00:00'
 tags:
-- spring-data-jpa
-- java
+- Spring Boot
+- Spring Data JPA
+- Java
 categories:
-- java
+- Java
 ---
 
 # Spring JPA自动生成主键, 创建时间和更新时间
 
-## 1.自定义的基本DO父类
+## 自定义的基本DO父类
 
 ```java
 import org.hibernate.annotations.GenericGenerator;
@@ -92,7 +93,7 @@ public class BaseDO implements Serializable {
 }
 ```
 
-## 2. BaseDO的子类RegionDO
+## BaseDO的子类RegionDO
 
 ```java
 import javax.persistence.Column;
@@ -133,7 +134,7 @@ public class RegionDO extends BaseDO {
 }
 ```
 
-## 3. 在Application.java上添加`@EnableJpaAuditing`注解, 启动JPA审核功能
+## 在Application.java上添加`@EnableJpaAuditing`注解, 启动JPA审核功能
 
 ```java
 import org.springframework.boot.SpringApplication;
@@ -154,10 +155,10 @@ public class Application {
 }
 ```
 
-## 4. Repository(DAO)层
+## Repository(DAO)层
 
 ```java
-import cc.ccue.dataobject.RegionDO;
+import icu.intelli.dataobject.RegionDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

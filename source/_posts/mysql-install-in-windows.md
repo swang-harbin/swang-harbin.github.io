@@ -10,7 +10,7 @@ categories:
 
 # Windows安装绿色版MySQL
 
-## 一.下载压缩包
+## 下载压缩包
 
 [MySQL绿色版官方下载地址](https://downloads.mysql.com/archives/community/)
 
@@ -20,7 +20,7 @@ categories:
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222184341.png)
 
-## 二.新建my.ini配置文件
+## 新建my.ini配置文件
 
 在bin文件夹的同级目录新建一个my.ini文件,一定要修改basedir和datadir为正确的位置,否则之后的服务会启动失败
 
@@ -89,11 +89,11 @@ default_authentication_plugin=mysql_native_password
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 ```
 
-## 三.安装并配置启动MySQL服务
+## 安装并配置启动MySQL服务
 
 [MySQL官方说明](https://dev.mysql.com/doc/refman/8.0/en/windows-start-service.html)
 
-### 法一 (8.0.17和5.7.27版本适用)
+### 法1 (8.0.17和5.7.27版本适用)
 
 设置好环境变量(略)或移动到bin目录下,以管理员身份运行cmd窗口
 

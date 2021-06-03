@@ -4,8 +4,9 @@ date: '2020-07-01 00:00:00'
 updated: '2020-07-01 00:00:00'
 tags:
 - MySQL
+- Docker
 categories:
-- database
+- Database
 ---
 
 # Docker安装MySQL
@@ -63,3 +64,4 @@ docker中 **/etc/mysql/my.cnf** 内容如下
 ```
 
 引入了 */etc/mysql/conf.d/* 和 */etc/mysql/mysql.conf.d/*目录下的配置文件信息, 所以将宿主机上存放自定义配置文件的目录映射到docker中的 */etc/mysql/conf.d/*, mysql即会读取其中的配置文件.
+

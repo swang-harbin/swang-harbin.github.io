@@ -5,7 +5,7 @@ updated: '2020-05-23 00:00:00'
 tags:
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # PostgreSQL psql的使用, SQL语法, 数据类型, 递归SQL用法

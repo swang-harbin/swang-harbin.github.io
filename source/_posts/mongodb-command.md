@@ -5,7 +5,7 @@ updated: '2019-11-20 00:00:00'
 tags:
 - MongoDB
 categories:
-- database
+- Database
 ---
 
 # MongoDB常用命令
@@ -30,7 +30,7 @@ categories:
 
 ## 操作集合中的文档
 
-### 一.插入文档
+### 插入文档
 
 - 基本命令:`db.集合名.insert(BSON文档)`,如果集合不存在会自动创建
 
@@ -60,7 +60,7 @@ db.col.insert({title: 'MongoDB 教程',
 
 - 使用`db.集合名.save(document)`方式插入,如果不指定_id字段,save()和insert()类似,如果指定_id字段,save()方法会更新该_id的数据
 
-### 二.更新文档
+### 更新文档
 
 使用update()方法和save()方法来更新集合中的文档.
 
@@ -151,7 +151,7 @@ db.col.save({
 db.col.pretty()
 ```
 
-### 三.删除文档
+### 删除文档
 
 语法:
 
@@ -200,7 +200,7 @@ db.col.remove({"title" : "MongoDB 教程"}, true)
 db.col.remove({})
 ```
 
-### 四.查询文档
+### 查询文档
 
 语法
 
@@ -233,7 +233,7 @@ db.collection.find({}, {"title":1, "_id":0})
 
 注:默认会显示_id字段,1代表显示,0代表不显示
 
-### 五.条件操作符
+### 条件操作符
 
 #### MongoDB与RDBMS WHERE语句比较
 
@@ -325,7 +325,7 @@ db.col.find({"title" : {$type : 2}})
 db.col.find({"title" : {$type : "string"})
 ```
 
-### 六.分页操作
+### 分页操作
 
 #### Limit()方法
 
@@ -351,7 +351,7 @@ db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
 
 注:skip()方法默认参数为0
 
-### 七.排序操作
+### 排序操作
 
 使用sort()方法进行排序,1为升序排列,-1为降序排列,语法:
 

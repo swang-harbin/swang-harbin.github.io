@@ -3,24 +3,26 @@ title: Spring Boot定时任务
 date: '2020-01-15 00:00:00'
 updated: '2020-01-15 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 十四. SpringBoot定时任务
+# SpringBoot定时任务
+
+[SpringBoot基础系列目录](spring-boot-table.md)
 
 **课程内容**
 
 - Scheduled 定时任务器
 - 整合Quartz定时任务框架
 
-## 14.1 Scheduled定时任务器
+## Scheduled定时任务器
 
 Scheduled定时任务器: 是Spring3.0以后自带的一个定时任务器
 
-### 14.1.1 在pom.xml中添加scheduled的坐标
+### 在pom.xml中添加scheduled的坐标
 
 ```xml
 <dependency>
@@ -31,10 +33,10 @@ Scheduled定时任务器: 是Spring3.0以后自带的一个定时任务器
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222140010.png)
 
-### 14.1.2 编写定时任务类
+### 编写定时任务类
 
 ```java
-package cc.ccue.scheduled;
+package icu.intelli.scheduled;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -60,10 +62,10 @@ public class ScheduledDemo {
 }
 ```
 
-### 14.1.3 在启动类中开启定时任务的使用
+### 在启动类中开启定时任务的使用
 
 ```java
-package cc.ccue;
+package icu.intelli;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -83,7 +85,7 @@ public class Application {
 }
 ```
 
-## 14.2 Cron表达式
+## Cron表达式
 
 Cron表达式是一个字符串, 分为6或7个域, 每一个域代表一个含义
 
@@ -129,9 +131,9 @@ Cron表达式的时间字段除允许设置数值外, 还可使用一些**特殊
 - `@Scheduled(cron = "0 0 1 1 * ?")` : 每月一号 1:00:00 执行一次
 - `@Scheduled(cron="0 0 1 * * *")` : 每天凌晨1点执行一次
 
-## 14.3 Spring Boot整合Quartz定时任务框架
+## Spring Boot整合Quartz定时任务框架
 
-### 14.3.1 Quartz介绍及使用思路
+### Quartz介绍及使用思路
 
 **quartz (开源项目)**
 
@@ -143,7 +145,7 @@ Quartz是OpenSymphony开源组织在Job scheduling(**作业调度**)领域又一
 2. Trigger 触发器, 你什么时候去做
 3. Scheduler 任务调度, 你什么时候需要去做什么事
 
-### 14.3.2 Quartz的基本使用
+### Quartz的基本使用
 
 建立普通maven项目, 在pom.xml中引入quartz
 
@@ -158,7 +160,7 @@ Quartz是OpenSymphony开源组织在Job scheduling(**作业调度**)领域又一
 创建MyJob类
 
 ```java
-package cc.ccue.quartz;
+package icu.intelli.quartz;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -186,7 +188,7 @@ public class MyJob implements Job {
 测试类
 
 ```java
-package cc.ccue.quartz;
+package icu.intelli.quartz;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
@@ -216,7 +218,7 @@ public class QuartzMain {
 }
 ```
 
-### 14.3.3 SpringBoot整合Quartz
+### SpringBoot整合Quartz
 
 SpringBoot版本 1.5.x
 
@@ -247,9 +249,9 @@ SpringBoot版本 1.5.x
 创建QuartzConfig配置类, 使用到的是简单Trigger
 
 ```java
-package cc.ccue.config;
+package icu.intelli.config;
 
-import cc.ccue.quartz.MyJob;
+import icu.intelli.quartz.MyJob;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
@@ -306,7 +308,7 @@ public class QuartzConfig {
 修改启动类, 添加@EnableScheduling, 启动即可
 
 ```java
-package cc.ccue;
+package icu.intelli;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -331,9 +333,9 @@ public class Application {
 使用CronTrigger
 
 ```java
-package cc.ccue.config;
+package icu.intelli.config;
 
-import cc.ccue.quartz.MyJob;
+import icu.intelli.quartz.MyJob;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
@@ -385,15 +387,14 @@ public class QuartzConfig {
 }
 ```
 
-### 14.3.4 在Job类中注入Service
+### 在Job类中注入Service
 
 MyJob类实现了Job类
 
 ```java
-package cc.ccue.quartz;
+package icu.intelli.quartz;
 
-
-import cc.ccue.service.UserService;
+import icu.intelli.service.UserService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -417,7 +418,7 @@ public class MyJob implements Job {
 UserService
 
 ```java
-package cc.ccue.service;
+package icu.intelli.service;
 
 import org.springframework.stereotype.Service;
 
@@ -432,9 +433,9 @@ public class UserService {
 QuartzConfig
 
 ```java
-package cc.ccue.config;
+package icu.intelli.config;
 
-import cc.ccue.quartz.MyJob;
+import icu.intelli.quartz.MyJob;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
@@ -471,7 +472,7 @@ public class QuartzConfig {
 Application
 
 ```java
-package cc.ccue;
+package icu.intelli;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -507,7 +508,7 @@ public class QuartzConfig {
 创建MyAdaptableJobFactory
 
 ```java
-package cc.ccue.config;
+package icu.intelli.config;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -547,9 +548,9 @@ public class MyAdaptableJobFactory extends AdaptableJobFactory {
 修改QuartzConfig, 使用自定义的MyAdaptableJobFactory
 
 ```java
-package cc.ccue.config;
+package icu.intelli.config;
 
-import cc.ccue.quartz.MyJob;
+import icu.intelli.quartz.MyJob;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;

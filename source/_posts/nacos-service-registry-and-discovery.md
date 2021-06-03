@@ -1,31 +1,31 @@
 ---
-title: 一.Nacos服务注册与发现
+title: Nacos服务注册与发现
 date: '2019-11-28 00:00:00'
 updated: '2019-11-28 00:00:00'
 tags:
-- nacos
-- java
+- Nacos
+- Java
 categories:
-- java
+- Java
 ---
 
-# 一. Nacos服务注册与发现
+# Nacos服务注册与发现
 
-## 1.1 服务注册
+## 服务注册
 
 服务实例将自身服务注册到注册中心, 包括服务所在IP和Port, 服务版本以及访问协议等.
 
 类比为增强版的DNS
 
-## 1.2 服务发现
+## 服务发现
 
 应用实例通过注册中心, 获取到注册到其中的服务实例的信息, 通过这些信息去请求它们提供的服务.
 
-## 1.3  为什么需要服务注册和发现
+## 为什么需要服务注册和发现
 
 在微服务中, 由于自动扩缩, 故障与升级, 整组服务实例会动态变更
 
-## 1.4 安装启动nacos
+## 安装启动nacos
 
 nacos : 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
 
@@ -37,11 +37,11 @@ nocas包含一个监听的API, 以及一个控制台
 > username : nacos
 > password : nacos
 
-## 1.5 nacos注册与发现示例代码
+## nacos注册与发现示例代码
 
 github地址 : https://github.com/szihai/Nacos-discovery-demo
 
-### 1.5.1 服务端:
+### 服务端:
 
 #### ProviderApplication.java
 
@@ -138,7 +138,7 @@ management.endpoints.web.exposure.include=*
 
 详情需要了解Spring Boot的端点相关
 
-### 1.5.2 消费端
+### 消费端
 
 #### POM文件
 
@@ -232,3 +232,11 @@ class TestController {
     }
 }
 ```
+
+## 链接
+
+一. [Nacos服务注册与发现](./nacos-service-registry-and-discovery.md)
+
+二.[Nacos分布式配置中心](./nacos-distribut-configuration-center.md)
+
+三.[Nacos服务注册中心](./nacos-service-registry-center.md)

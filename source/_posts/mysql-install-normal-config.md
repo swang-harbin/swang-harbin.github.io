@@ -5,7 +5,7 @@ updated: '2020-05-08 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # MySQL设置大小写及字符集
@@ -31,9 +31,9 @@ show variables like 'character_set%'
 
 ```cnf
 [mysql]
-default-character-set=utf8
+default-character-set=utf8mb4
 [mysqld]
-character_set_server=utf8
+character_set_server=utf8mb4
 ```
 
 重启服务

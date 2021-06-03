@@ -3,11 +3,10 @@ title: Spring Data JPA连接不同类型的多源数据库
 date: '2020-03-12 00:00:00'
 updated: '2020-03-12 00:00:00'
 tags:
-- spring-data-jpa
-- spring-boot-jpa
-- java
+- Spring Data JPA
+- Java
 categories:
-- java
+- Java
 ---
 
 # Spring Data JPA连接不同类型的多源数据库
@@ -17,9 +16,9 @@ categories:
 - Spring Boot : 1.5.X
 - Spring Data JPA : 1.11.16
 
-## 一. 编写配置类
+## 编写配置类
 
-### 1.1 数据源配置
+### 数据源配置
 
 DataSourceConfig.java, **确保该类会被添加到IOC容器中**
 
@@ -67,7 +66,7 @@ public class DataSourceConfig {
 }
 ```
 
-### 1.2 第一个数据源的JPA配置
+### 第一个数据源的JPA配置
 
 注意修改Repository所在位置和实体类所在位置, 该配置类需被添加到IOC容器
 
@@ -99,7 +98,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
-        basePackages = {"cc.ccue.dao.primary"})
+        basePackages = {"icu.intelli.dao.primary"})
 public class PrimaryDataSourceJpaConfig {
 
 
@@ -128,7 +127,7 @@ public class PrimaryDataSourceJpaConfig {
                 .dataSource(primaryDataSource)
                 .properties(getVendorProperties(primaryDataSource))
                 // 设置实体类所在位置
-                .packages("cc".ccue.po.primary")
+                .packages("icu.intelli.po.primary")
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();
     }
@@ -172,7 +171,7 @@ public class PrimaryDataSourceJpaConfig {
 }
 ```
 
-### 1.3 第二个数据源的JPA配置
+### 第二个数据源的JPA配置
 
 注意修改Repository所在位置和实体类所在位置, 该配置类需被添加到IOC容器
 
@@ -203,7 +202,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactorySecondary",
         transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"cc.ccue.dao.secondary"})
+        basePackages = {"icu.intelli.dao.secondary"})
 public class SecondaryDataSourceJpaConfig {
 
     @Autowired
@@ -221,7 +220,7 @@ public class SecondaryDataSourceJpaConfig {
                 .dataSource(secondaryDataSource)
                 .properties(getVendorProperties(secondaryDataSource))
                 // 设置实体类所在位置
-                .packages("cc.ccue.po.secondary")
+                .packages("icu.intelli.po.secondary")
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }
@@ -246,7 +245,7 @@ public class SecondaryDataSourceJpaConfig {
 }
 ```
 
-## 二. 编写配置文件
+## 编写配置文件
 
 该配置文件需要被添加到Spring容器中, 可以在SpringBoot启动类上使用`@PropertySource("classpath:jdbc.properties")`添加
 
@@ -309,13 +308,13 @@ spring.jpa.primary.dialect=org.hibernate.dialect.MySQL5Dialect
 spring.jpa.secondary.dialect=org.hibernate.spatial.dialect.postgis.PostgisDialect
 ```
 
-## 三. 测试
+## 测试
 
 ```java
-import cc.ccue.Application;
-import cc.ccue.dao.productfileinfo.ProductFileInfoDao;
-import cc.ccuedao2.DecodingTypeRepository;
-import cc.ccue.entity2.DecodingType;
+import icu.intelli.Application;
+import icu.intelli.dao.productfileinfo.ProductFileInfoDao;
+import icu.intellidao2.DecodingTypeRepository;
+import icu.intelli.entity2.DecodingType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -358,6 +357,6 @@ public class myTest {
 }
 ```
 
-# 参考文档
+## 参考文档
 
 [SpringBoot 1.5.XX多数据源配置](https://blog.csdn.net/u011751078/article/details/79784228)

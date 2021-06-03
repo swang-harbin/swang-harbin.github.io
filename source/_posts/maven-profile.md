@@ -3,15 +3,15 @@ title: maven使用profile
 date: '2020-01-08 00:00:00'
 updated: '2020-01-08 00:00:00'
 tags:
-- maven
-- java
+- Maven
+- Java
 categories:
-- java
+- Java
 ---
 
 # Maven使用Profile
 
-## 一. Profile简介
+## Profile简介
 
 在开发过程中，我们的软件会面对不同的运行环境，比如开发环境、测试环境、生产环境，而我们的软件在不同的环境中，有的配置可能会不一样，比如数据源配置、日志文件配置、以及一些软件运行过程中的基本配置，那每次我们将软件部署到不同的环境时，都需要修改相应的配置文件，这样来回修改，很容易出错，而且浪费劳动力。
 
@@ -25,7 +25,7 @@ profile可以让我们定义一系列的配置信息，然后指定其激活条�
 2. 针对于特定用户的profile配置，我们可以在用户的settings.xml文件中定义profile。该文件在用户家目录下的“.m2”目录下。
 3. 全局的profile配置。全局的profile是定义在Maven安装目录下的“conf/settings.xml”文件中的。
 
-## 二. pom.xml方式的使用
+## pom.xml方式的使用
 
 在项目的pom.xml的`project`标签下添加
 
@@ -69,9 +69,9 @@ profile可以让我们定义一系列的配置信息，然后指定其激活条�
 
 两者做对比, 会发现有部分重复的标签, 这些标签都可以定义在`<profile>`标签中, 根据不同的运行环境, 使得某些属性生效.
 
-## 二. Profile的用处
+## Profile的用处
 
-### 2.1 结合SpringBoot的profile功能优化配置方式
+### 结合SpringBoot的profile功能优化配置方式
 
 #### SpringBoot配置文件的目录结构
 
@@ -157,7 +157,7 @@ profile可以让我们定义一系列的配置信息，然后指定其激活条�
 
 选中`prod`, 执行package， 可见打包了prod文件夹下的application.properties和application-prod.properties配置文件.
 
-# 参考文档
+## 参考文档
 
 - [maven（三）最详细的profile的使用](https://blog.csdn.net/java_collect/article/details/83870215)
 - [maven profile动态选择配置文件](https://www.cnblogs.com/0201zcr/p/6262762.html)

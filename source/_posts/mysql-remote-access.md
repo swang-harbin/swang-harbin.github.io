@@ -5,12 +5,12 @@ updated: '2019-10-26 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # 远程访问MySQL
 
-## 一. 添加指定IP访问
+## 添加指定IP访问
 
 > GRANT ALL ON *.* TO 用户名@'IP地址' IDENTIFIED BY '密码';
 
@@ -20,7 +20,7 @@ GRANT ALL ON *.* to root@'10.60.160.12' IDENTIFIED BY 'root';
 FLUSH PRIVILEGES;
 ```
 
-## 二. 添加指定IP段访问
+## 添加指定IP段访问
 
 > GRANT ALL ON *.* TO 用户名@'[xxx.xxx.xxx](http://xxx.xxx.xxx/).%' IDENTIFIED BY '密码';
 
@@ -30,7 +30,7 @@ GRANT ALL ON *.* to root@'10.60.160.%' IDENTIFIED BY 'root';
 FLUSH PRIVILEGES;
 ```
 
-## 三. 添加任意IP访问
+## 添加任意IP访问
 
 > GRANT ALL ON *.* TO 用户名@'%' IDENTIFIED BY '密码';
 

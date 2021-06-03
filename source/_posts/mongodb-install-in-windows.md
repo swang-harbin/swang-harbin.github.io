@@ -5,17 +5,17 @@ updated: '2019-11-20 00:00:00'
 tags:
 - MongoDB
 categories:
-- database
+- Database
 ---
 
 # Windows安装绿色版MongoDB
 
-## 一.下载MongoDB.zip
+## 下载MongoDB.zip
 
 - [MongoDB官方下载地址](https://www.mongodb.com/download-center/community)
 - [MongoDB官方安装教程](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
-## 二.解压
+## 解压
 
 使用的MongoDB版本为mongodb-win32-x86_64-2012plus-4.2.1.zip
 
@@ -23,7 +23,7 @@ categories:
 
  ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222193328.png)
 
-## 三.创建存放数据和日志的文件夹和文件
+## 创建存放数据和日志的文件夹和文件
 
 1. 在bin的同级目录下创建data和log**文件夹**
 2. 在data文件夹中创建db空**文件夹**
@@ -31,7 +31,7 @@ categories:
 
 注:文件路径在何处创建都无所谓,关键在于mongo.config的配置.
 
-## 四.创建mongo.config配置文件
+## 创建mongo.config配置文件
 
 在bin的同级目录创建mongo.config文件,注意修改**dbpath**和**logpath**为正确的位置
 
@@ -166,7 +166,7 @@ replSet=name
 #keyFile=/path/to/keyfile
 ```
 
-## 五.安装并启动服务
+## 安装并启动服务
 
 配置好环境变量(略)或在bin目录下以管理员身份运行cmd
 

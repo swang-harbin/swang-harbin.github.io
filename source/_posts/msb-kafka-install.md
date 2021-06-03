@@ -3,11 +3,11 @@ title: Kafka安装
 date: '2020-07-18 00:00:00'
 updated: '2020-07-18 00:00:00'
 tags:
-- msb
-- kafka
-- java
+- MSB
+- Kafka
+- Java
 categories:
-- java
+- Java
 ---
 
 # Kafka安装

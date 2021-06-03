@@ -6,16 +6,18 @@ tags:
 - PostGIS
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # 源码方式安装PostGIS3.0.1
 
-PostGIS是以插件的形式安装到PostgreSQL中的, 因此需要首先安装PostgreSQL, 参考[CentOS安装PostgreSQL12.2](2019-12-04-postgresql-install-in-centos.md)
+PostGIS是以插件的形式安装到PostgreSQL中的, 因此需要首先安装PostgreSQL, 参考[CentOS安装PostgreSQL12.2](./postgresql-install-in-centos.md)
 
-## 一. 包管理器安装
+## 包管理器安装
 
-## 二. 源码方式安装
+略
+
+## 源码方式安装
 
 解压Postgis源码包
 

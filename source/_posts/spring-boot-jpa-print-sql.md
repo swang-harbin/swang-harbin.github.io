@@ -3,10 +3,11 @@ title: SpringBoot JPA日志打印SQL语句和参数
 date: '2019-12-24 00:00:00'
 updated: '2019-12-24 00:00:00'
 tags:
-- spring-boot-jpa
-- java
+- Spring Boot
+- Spring Data JPA
+- Java
 categories:
-- java
+- Java
 ---
 
 # SpringBoot JPA日志打印SQL语句和参数

@@ -3,19 +3,21 @@ title: Spring Boot入门
 date: '2019-12-16 00:00:00'
 updated: '2019-12-16 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 一. Spring Boot入门
+# Spring Boot入门
 
-## 1.1 Spring Boot简介
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## Spring Boot简介
 
 > 简化Spring应用开发的一个框架; 整个Spring技术栈的一个大整合; J2EE开发的一站式解决方案;
 
-## 1.2 微服务
+## 微服务
 
 2014年, [martin fowler](https://martinfowler.com/)
 
@@ -29,9 +31,9 @@ categories:
 
 [详细参照微服务文档](https://martinfowler.com/microservices/)
 
-## 1.3 环境要求
+## 环境要求
 
-### 1.3.1 Maven设置
+### Maven设置
 
 给MAVEN的settings.xml配置文件的profiles标签添加, 设置maven编译时使用的JDK版本
 
@@ -50,15 +52,15 @@ categories:
 </profile>
 ```
 
-## 1.4 Spring Boot HelloWorld
+## Spring Boot HelloWorld
 
 一个功能: 浏览器发送一个hello请求, 服务器接收请求并处理, 相应Hello World字符串;
 
-### 1.4.1 创建一个maven工程;
+### 创建一个maven工程;
 
 创建maven工程, `packing`设置为`jar`
 
-### 1.4.2 导入Spring Boot相关依赖
+### 导入Spring Boot相关依赖
 
 ```xml
 <!-- Inherit defaults from Spring Boot -->
@@ -77,7 +79,7 @@ categories:
 </dependencies>
 ```
 
-### 1.4.3 编写一个主程序 : 启动一个Spring Boot应用
+### 编写一个主程序 : 启动一个Spring Boot应用
 
 ```java
 /**
@@ -93,7 +95,7 @@ public class HelloWorldMainApplication {
 }
 ```
 
-### 1.4.4 编写相关的Controller, Service
+### 编写相关的Controller, Service
 
 ```java
 @Controller
@@ -108,9 +110,9 @@ public class HelloController {
 }
 ```
 
-### 1.4.5 运行主程序测试
+### 运行主程序测试
 
-### 1.4.6 简化部署
+### 简化部署
 
 导入spring boot的maven插件后, 使用maven的package命令即可将应用打成jar包
 
@@ -128,11 +130,11 @@ public class HelloController {
 
 使用`java -jar xxx.jar`直接运行
 
-## 1.5 Hello World探究
+## Hello World探究
 
-### 1.5.1 POM文件
+### POM文件
 
-#### 1.5.1.1 父项目
+#### 父项目
 
 ```xml
 <parent>
@@ -153,7 +155,7 @@ public class HelloController {
 
 以后我们导入依赖, 默认是不需要写版本的; (没有在dependencies里面管理的依赖依然需要声明版本号)
 
-#### 1.5.1.2 导入的启动器(依赖)
+#### 导入的启动器(依赖)
 
 ```xml
 <dependency>
@@ -168,7 +170,7 @@ public class HelloController {
 
 Spring Boot将所有的功能场景都抽取出来, 做成一个个的starter(启动器), 只需要在项目里面引入这些starter, 相关场景的所有依赖都会自动导入进来. 要用什么功能就导入什么场景的启动器
 
-### 1.5.2 主程序类, 主入口类
+### 主程序类, 主入口类
 
 ```java
 /**
@@ -238,7 +240,7 @@ J2EE的整体整合解决方案和自动配置都在spring-boot-autoconfigure-2.
 
 ![image-20210222003132759](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222004235.png)
 
-## 1.6 使用Spring Initializer快速创建Spring Boot项目
+## 使用Spring Initializer快速创建Spring Boot项目
 
 IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
 

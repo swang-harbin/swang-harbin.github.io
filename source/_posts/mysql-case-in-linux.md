@@ -5,7 +5,7 @@ updated: '2019-11-21 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # MySQL在Linux上区分大小写
@@ -22,7 +22,7 @@ categories:
 show variables like 'lower%';
 ```
 
-0代表区分大小写, 1代表不区分大小写
+`0`代表区分大小写, `1`代表不区分大小写
 
 **注意:**
 

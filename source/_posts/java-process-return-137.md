@@ -3,10 +3,10 @@ title: Java使用Process.waitFor()返回137
 date: '2020-06-10 00:00:00'
 updated: '2020-06-10 00:00:00'
 tags:
-- exception
-- java
+- Exception
+- Java
 categories:
-- java
+- Java
 ---
 
 # Java使用Process.waitFor()执行python返回137

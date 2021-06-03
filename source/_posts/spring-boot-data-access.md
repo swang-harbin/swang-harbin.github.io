@@ -3,15 +3,17 @@ title: Spring Boot与数据访问
 date: '2019-12-18 00:00:00'
 updated: '2019-12-18 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 六. Spring Boot与数据访问
+# Spring Boot与数据访问
 
-## 6.1 简介
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 简介
 
 对于数据访问层, 无论是SQL还是NOSQL, SpringBoot默认采用整合Spring Data的方式进行统一处理, 添加大量自动配置, 屏蔽了很多设置. 引入各种xxxTemplate, xxxRepository来简化我们对数据访问层的操作. 对我们来说只需要进行简单的设置即可. 我们将在数据访问章节测试使用SQL相关, NOSQL在缓存, 消息, 检索等章节测试
 
@@ -21,9 +23,9 @@ categories:
 
 spring-boot-starter-data-xxx
 
-## 6.2 整合基本JDBC与数据源
+## 整合基本JDBC与数据源
 
-### 6.2.1 JDBC
+### JDBC
 
 pom.xml
 
@@ -137,11 +139,11 @@ org.springframework.boot.autoconfigure.jdbc
 
 5. 操作数据库 : 自动配置了jdbcTemplate操作数据库
 
-### 6.2.1 使用druid
+### 使用druid
 
 使用http://localhost:8080/druid登录druid控制台
 
-#### 6.2.1.1 方式一: 使用com.alibaba.druid
+#### 方式一: 使用com.alibaba.druid
 
 **环境 :**
 
@@ -238,7 +240,7 @@ druid1.1.8
    }
    ```
 
-#### 6.2.1.2 方式二: 使用druid-spring-boot-starter
+#### 方式二: 使用druid-spring-boot-starter
 
 SpringBoot 2.2.2
 druid-spring-boot-starter 1.1.10
@@ -314,7 +316,7 @@ druid-spring-boot-starter 1.1.10
 
    更多参数说明, 见[官方文档](https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter)
 
-## 6.3 整合MyBatis
+## 整合MyBatis
 
 1. 添加mybatis依赖
 
@@ -346,7 +348,7 @@ druid-spring-boot-starter 1.1.10
 
 4. 创建java bean 略
 
-## 6.4 Mybatis注解版
+## Mybatis注解版
 
 ```java
 // 指定这是一个操作数据库的mapper
@@ -392,17 +394,17 @@ public class MyBatisConfig {
 
 ```java
 // 标注在SpringBoot主程序上
-@MapperScan(value = "cc.ccue.springboot.mapper")
+@MapperScan(value = "icu.intelli.springboot.mapper")
 @SpringBootApplication
 public class Application {
 
 // 或者MyBatis的自定义配置类上
-@MapperScan(value = "cc.ccue.springboot.mapper")
+@MapperScan(value = "icu.intelli.springboot.mapper")
 @org.springframework.context.annotation.Configuration
 public class MyBatisConfig {
 ```
 
-## 6.5 Mybatis配置文件版
+## Mybatis配置文件版
 
 **mapper.java**
 
@@ -422,9 +424,9 @@ public interface EmployeeMapper {
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cc.ccue.springboot.mapper.EmployeeMapper">
+<mapper namespace="icu.intelli.springboot.mapper.EmployeeMapper">
 
-    <select id="getEmpById" resultType="cc.ccue.springboot.bean.Employee">
+    <select id="getEmpById" resultType="icu.intelli.springboot.bean.Employee">
         SELECT *
         FROM
             employee
@@ -470,11 +472,11 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 ```
 
-## 6.6 整合JPA
+## 整合JPA
 
-### 6.6.1 Spring Data
+### Spring Data
 
-#### 6.6.1.1 简介
+#### 简介
 
 SpringData项目的目的是为了简化构建基于Spring框架应用的数据访问技术, 包括非关系数据库, Map-Reduce框架, 云数据服务等等, 另外也包含对关系数据库的访问支持.
 
@@ -515,7 +517,7 @@ SpringData为我们提供使用统一的API来对数据访问层进行操作; �
 
 - Specification查询(Spring Data JPA支持JPA2.0的Criteria查询)
 
-### 6.6.1 整合JPA
+### 整合JPA
 
 JPA也是基于ORM(Object Relational Mapping)思想的
 

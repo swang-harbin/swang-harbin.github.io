@@ -1,12 +1,12 @@
 ---
-title: 二.Nacos分布式配置中心
+title: Nacos分布式配置中心
 date: '2019-11-28 00:00:00'
 updated: '2019-11-28 00:00:00'
 tags:
-- nacos
-- java
+- Nacos
+- Java
 categories:
-- java
+- Java
 ---
 
 # 分布式配置中心
@@ -114,7 +114,7 @@ spring.cloud.nacos.config.file-extension=yaml
 
 ### profile的使用
 
-#### 1. 在nacos中创建配置文件
+#### 在nacos中创建配置文件
 
 nacos-config-example-{profile}
 
@@ -122,7 +122,7 @@ nacos-config-example-{profile}
 > nacos-config-example-develop.yaml
 > application-product.properties
 
-#### 2. 修改bootstrap.properties
+#### 修改bootstrap.properties
 
 添加**spring.profiles.active=粒度**, 并修改**[spring.application.name](http://spring.application.name/)**和**spring.cloud.nacos.config.file-extension**的值
 
@@ -134,15 +134,15 @@ spring.profiles.active=develop
 
 ### namespace的使用
 
-#### 1. 在nacos中创建新的namespace
+#### 在nacos中创建新的namespace
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222145102.png)
 
-#### 2. 在新的namespace中创建配置文件
+#### 在新的namespace中创建配置文件
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222145117.png)
 
-#### 3. 修改bootstrapt.properties
+#### 修改bootstrapt.properties
 
 添加**spring.cloud.nacos.config.namespace=Namespace ID**
 
@@ -150,3 +150,11 @@ spring.profiles.active=develop
 # 例:
 spring.cloud.nacos.config.namespace=74ce8dac-3b1f-43e1-82ad-645f9c7ff741
 ```
+
+## 链接
+
+一. [Nacos服务注册与发现](./nacos-service-registry-and-discovery.md)
+
+二.[Nacos分布式配置中心](./nacos-distribut-configuration-center.md)
+
+三.[Nacos服务注册中心](./nacos-service-registry-center.md)

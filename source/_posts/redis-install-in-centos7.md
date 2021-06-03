@@ -3,18 +3,19 @@ title: CentOS7安装Redis
 date: '2019-11-21 00:00:00'
 updated: '2019-11-21 00:00:00'
 tags:
-- redis
+- Redis
+- CentOS7
 categories:
-- database
+- Database
 ---
 
 # CentOS7安装Redis
 
-## 一. 下载Redis
+## 下载Redis
 
 [Redis官网](https://redis.io/)
 
-## 二. 安装gcc和make
+## 安装gcc和make
 
 因为redis是用c编写的, 所以首先安装gcc和make
 
@@ -23,7 +24,7 @@ yum install gcc-c++
 yum install make
 ```
 
-## 三. 解压安装Redis
+## 解压安装Redis
 
 1. 创建redis目录, 在该目录下解压redis-x.x.x.tar.gz, 切换到redis-x.x.x目录, 使用`make`命令进行编译 
 
@@ -45,7 +46,7 @@ make install PREFIX=../../
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222192819.png)
 
-## 四. 相关命令
+## 相关命令
 
 设置redis后台启动, 修改redis.conf
 

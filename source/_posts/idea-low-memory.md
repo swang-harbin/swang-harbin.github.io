@@ -4,11 +4,11 @@ title: The IDE is running low on memory and this might affect performance. Pleas
 date: '2019-11-22 00:00:00'
 updated: '2019-11-22 00:00:00'
 tags:
-- idea
-- exception
-- java
+- IDEA
+- Exception
+- Java
 categories:
-- java
+- Java
 ---
 
 # The IDE is running low on memory and this might affect performance. Please consider increasing available heap.
@@ -33,6 +33,6 @@ IDEA设置的堆内存过小, 需要修改IDEA的堆内存大小
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222154655.png)
 
-# 参考文档
+## 参考文档
 
 [【IDEA】The IDE is running low on memory and this might affect performance. Please consider increasing](https://blog.csdn.net/qq_36762765/article/details/102896007)

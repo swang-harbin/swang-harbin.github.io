@@ -3,17 +3,19 @@ title: Spring Boot启动配置原理
 date: '2019-12-18 00:00:00'
 updated: '2019-12-18 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 七. Spring Boot启动配置原理
+# Spring Boot启动配置原理
+
+[SpringBoot基础系列目录](spring-boot-table.md)
 
 SpringBoot1.5.9版本
 
-## 7.1 几个重要的事件回调机制:
+## 几个重要的事件回调机制:
 
 配置在META-INF/spring.factories
 
@@ -25,9 +27,9 @@ SpringBoot1.5.9版本
 - ApplicationRunner
 - CommandLineRunner
 
-## 7.2 启动流程
+## 启动流程
 
-### 7.2.1 创建SpringApplication对象
+### 创建SpringApplication对象
 
 ```java
 initialize(sources)
@@ -53,7 +55,7 @@ private void initialize(Object[] sources) {
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222134810.png)
 
-### 7.2.2 运行run方法
+### 运行run方法
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
@@ -125,7 +127,7 @@ public ConfigurableApplicationContext run(String... args) {
   - 回调容器中所有的ApplicationRunner, CommandLineRunner的run方法
   - 监听器SpringApplicationRunListener回调finished
 
-### 7.2.3 事件监听机制
+### 事件监听机制
 
 **1. 创建实现ApplicationContextInitializer接口的类**
 
@@ -199,18 +201,18 @@ public class HelloCommandLineRunner implements CommandLineRunner {
 
 ```properties
 org.springframework.boot.SpringApplicationRunListener=\
-cc.ccue.listener.HelloSpringApplicationRunListener
+icu.intelli.listener.HelloSpringApplicationRunListener
 
 org.springframework.context.ApplicationContextInitializer=\
-cc.ccue.listener.HelloApplicationContextInitialier
+icu.intelli.listener.HelloApplicationContextInitialier
 ```
 
 **6. 启动SpringBoot应用会报错**
 
 ```
-Exception in thread "main" java.lang.IllegalArgumentException: Cannot instantiate interface org.springframework.boot.SpringApplicationRunListener : cc.ccue.listener.HelloSpringApplicationRunListener
+Exception in thread "main" java.lang.IllegalArgumentException: Cannot instantiate interface org.springframework.boot.SpringApplicationRunListener : icu.intelli.listener.HelloSpringApplicationRunListener
 xxxxxxxxx
-Caused by: java.lang.NoSuchMethodException: cc.ccue.listener.HelloSpringApplicationRunListener.<init>(org.springframework.boot.SpringApplication, [Ljava.lang.String;)
+Caused by: java.lang.NoSuchMethodException: icu.intelli.listener.HelloSpringApplicationRunListener.<init>(org.springframework.boot.SpringApplication, [Ljava.lang.String;)
 xxxxxxxxx
 ```
 

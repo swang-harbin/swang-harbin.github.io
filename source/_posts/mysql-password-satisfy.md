@@ -5,7 +5,7 @@ updated: '2019-12-03 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # 错误-Your password does not satisfy the current policy requirements
@@ -16,7 +16,7 @@ categories:
 
 ## 解决方法
 
-### 1. 查看MySQL密码策略
+### 查看MySQL密码策略
 
 ```mysql
 SHOW VARIABLES LIKE 'validate_password%';
@@ -24,7 +24,7 @@ SHOW VARIABLES LIKE 'validate_password%';
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222190745.png)
 
-### 2. 修改验证强度等级
+### 修改验证强度等级
 
 将validate_password_policy设置为LOW, 则只验证密码长度
 
@@ -32,7 +32,7 @@ SHOW VARIABLES LIKE 'validate_password%';
 set global validate_password_policy=LOW; 
 ```
 
-### 3. 修改密码长度验证
+### 修改密码长度验证
 
 可将validate_password_length设置为4, 最小值为4
 

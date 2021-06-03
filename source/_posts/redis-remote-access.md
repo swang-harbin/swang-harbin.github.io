@@ -3,16 +3,16 @@ title: 远程访问Redis
 date: '2019-10-26 00:00:00'
 updated: '2019-10-26 00:00:00'
 tags:
-- redis
+- Redis
 categories:
-- database
+- Database
 ---
 
 # Redis设置从其他机器访问
 
 允许所有机器连接redis, 注解掉所有bind, 并将protected-mode属性设置为no.
 
-## 一. 配置文件中的bind属性说明
+## 配置文件中的bind属性说明
 
 1. 默认情况
 
@@ -45,7 +45,7 @@ categories:
 # is running).
 ```
 
-## 二. protected-mode属性说明
+## protected-mode属性说明
 
 **作用**: 只有本机可以访问redis
 
@@ -79,7 +79,7 @@ categories:
 
 ## 限制只有指定的主机可以连接到redis
 
-只能通过防火墙来控制,参考[CentOS7防火墙端口相关](http:)
+只能通过防火墙来控制
 
 ## 参考链接
 

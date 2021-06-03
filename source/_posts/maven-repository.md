@@ -3,10 +3,10 @@ title: Maven仓库
 date: '2019-12-25 00:00:00'
 updated: '2019-12-25 00:00:00'
 tags:
-- maven
-- java
+- Maven
+- Java
 categories:
-- java
+- Java
 ---
 
 # Maven仓库
@@ -30,7 +30,7 @@ maven项目中依赖的搜索顺序, 由先到后:
 5. 镜像仓库: settings.xml中通过`<mirrors></mirror>`设置
 6. 中央仓库:
 
-## 一. 本地仓库
+## 本地仓库
 
 默认是在`${user.home}/.m2/repository`, 可以通过修改`${user.home}/.m2/setting.xml`修改指定用户的maven本地仓库设置.
 
@@ -40,9 +40,9 @@ maven项目中依赖的搜索顺序, 由先到后:
 <localRepository>/path/to/local/repository</localRepository>
 ```
 
-## 二. 远程仓库
+## 远程仓库
 
-### 2.1 中央仓库
+### 中央仓库
 
 所有pom都会继承超级pom, 在超级pom中配置了maven官方的中央仓库
 
@@ -87,7 +87,7 @@ maven项目中依赖的搜索顺序, 由先到后:
 <activeProfile>central</activeProfile>
 ```
 
-### 3.2 私服
+### 私服
 
 私服是假设在局域网内的仓库服务, 私服代理广域网上的远程仓库, 供局域网内的Maven用户使用. 当maven需要下载构件时, 他从私服请求该构件, 如果私服中不存在该构件, 则从外部的远程仓库缓存到私服后, 再为maven提供下载服务, 还可以把一些无法从外部仓库下载到的构件上传到私服上.
 
@@ -128,9 +128,9 @@ maven项目中依赖的搜索顺序, 由先到后:
 </server>
 ```
 
-### 3.3 其他公共库
+### 其他公共库
 
-## 二. 镜像仓库
+## 镜像仓库
 
 由于网络或访问流量过大等问题, 造成访问远程仓库很慢, 因此将远程仓库镜像到多个地方, 提升访问速度
 

@@ -3,9 +3,9 @@ title: 接口的过渡抽象类
 date: '2019-12-13 00:00:00'
 updated: '2019-12-13 00:00:00'
 tags:
-- java
+- Java
 categories:
-- java
+- Java
 ---
 
 # 接口的过渡抽象类
@@ -43,7 +43,7 @@ interface IMessage {
 
 class IMessageImpl implements IMessage {
     public String message() {
-        return "ccue.cc";
+        return "intelli.icu";
     }
 }
 
@@ -92,7 +92,7 @@ interface IMessage {
 class IMessageImpl implements IMessage {
     public String message() {
         if (this.connect()) {
-            return "ccue.cc";
+            return "intelli.icu";
         }
         return "没有消息发送";
     }

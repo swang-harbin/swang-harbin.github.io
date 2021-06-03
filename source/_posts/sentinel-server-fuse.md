@@ -3,10 +3,10 @@ title: Sentinel服务熔断
 date: '2019-11-28 00:00:00'
 updated: '2019-11-28 00:00:00'
 tags:
-- sentinel
-- java
+- Sentinel
+- Java
 categories:
-- java
+- Java
 ---
 
 # Sentinel服务熔断
@@ -15,15 +15,15 @@ Sentinel : 阿里巴巴开源的面向分布式服务架构的轻量级流量控
 
 GitHub : https://github.com/alibaba/Sentinel
 
-## 1. Sentinel介绍
+## Sentinel介绍
 
-### 1.1 背景
+### 背景
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222150016.png)
 
 微服务中, 其中一个服务不可用, 拖垮其他服务, 进而拖垮更多服务, 造成服务雪崩.
 
-### 1.2 核心特性
+### 核心特性
 
 - 限流 : 限定QPS的阈值, 保护服务不对突然而来的流量打垮
 - 流量整型 : 流量是随机的, 不均匀的, 不可预测的, 需要将流量调整成匀速的, 或缓慢增加的
@@ -40,28 +40,30 @@ GitHub : https://github.com/alibaba/Sentinel
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222150042.png)
 
-### 1.3 开源生态
+### 开源生态
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222150057.png)
 
-### 1.4 流控降级组件对比
+### 流控降级组件对比
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222150109.png)
 
-## 2. 使用场景
+## 使用场景
 
-### 2.1 启动控制台
+### 启动控制台
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222150128.png)
 
-### 2.2 Spring Cloud Web应用接入
+### Spring Cloud Web应用接入
 
-### 2.3 Spring Cloud Gateway网关接入
+### Spring Cloud Gateway网关接入
 
-### 2.4 Dubbo服务接入
+### Dubbo服务接入
 
-### 2.5 手动埋点
+### 手动埋点
 
-## 3. 阿里云应用高可用服务AHAS
+## 阿里云应用高可用服务AHAS
 
-# [// TODO](https://edu.aliyun.com/lesson_1943_16990?spm=5176.8764728.0.0.7d3679bfnaWU7Y#_16990)
+## 视频地址
+
+https://edu.aliyun.com/lesson_1943_16990?spm=5176.8764728.0.0.7d3679bfnaWU7Y#_16990

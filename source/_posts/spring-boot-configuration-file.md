@@ -3,15 +3,17 @@ title: Spring Boot配置文件
 date: '2019-12-16 00:00:00'
 updated: '2019-12-16 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 二. Spring Boot配置文件
+# Spring Boot配置文件
 
-## 2.1 配置文件
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 配置文件
 
 Spring Boot使用一个全局的配置文件, 配置文件名是固定的;
 
@@ -42,9 +44,9 @@ server:
 #</server>
 ```
 
-## 2.2 YAML语法:
+## YAML语法:
 
-### 2.2.1 基本语法
+### 基本语法
 
 k:(空格)v : 表示一堆键值对(空格必须有)
 
@@ -58,7 +60,7 @@ server:
 
 属性和值也是大小写敏感的
 
-### 2.2.2 值的写法
+### 值的写法
 
 #### 字面量 : 普通的值(数字, 字符串, 布尔)
 
@@ -112,7 +114,7 @@ pets:
 pets: {cat,dog,pig}
 ```
 
-### 2.2.3 配置文件值注入
+### 配置文件值注入
 
 配置文件
 
@@ -167,11 +169,11 @@ public class Person {
 
 `lastName: 张三` 和 `last-name: 张三` 是一样的
 
-#### 2.2.3.1 properties配置乱码问题
+#### properties配置乱码问题
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222005022.png)
 
-#### 2.2.3.2 @Value获取值和@ConfigurationProperties获取值比较
+#### @Value获取值和@ConfigurationProperties获取值比较
 
 | -                  | @ConfigurationProperties | @Value     |
 | ------------------ | ------------------------ | ---------- |
@@ -187,7 +189,7 @@ public class Person {
 
 如果, 专门编写了一个JavaBean来和配置文件进行映射, 我们就直接使用`@ConfigurationProperties`
 
-#### 2.2.3.3 配置文件注入值数据校验
+#### 配置文件注入值数据校验
 
 ```java
 @Component
@@ -209,7 +211,7 @@ public class Person {
     private Boolean boss;
 ```
 
-#### 2.2.3.4 @PropertySource和@ImportResource
+#### @PropertySource和@ImportResource
 
 `@ConfigurationProperties`注解默认从全局配置文件中获取值
 
@@ -241,7 +243,7 @@ SpringBoot推荐使用全注解的方式给容器中添加组件:
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="helloService" class="cc.ccue.springboot.bean.HelloService"></bean>
+    <bean id="helloService" class="icu.intelli.springboot.bean.HelloService"></bean>
 </beans>
 ```
 
@@ -264,16 +266,16 @@ public class MyAppConfig {
 }
 ```
 
-## 2.4 配置文件占位符
+## 配置文件占位符
 
-### 2.4.1 随机数
+### 随机数
 
 ```properties
 $(random.value), $(random.int), $(random.long)
 $(random.int(10)), $(random.int[1024, 65536])
 ```
 
-### 2.4.2 占位符获取之前配置的值, 如果没有可以使用:获取默认值
+### 占位符获取之前配置的值, 如果没有可以使用:获取默认值
 
 ```properties
 person.last-name=张三${random.uuid}
@@ -287,17 +289,17 @@ person.dog.name=${person.hello:hello}_dog
 person.dog.age=15
 ```
 
-## 2.5 Profile
+## Profile
 
 Profile是Spring对不同环境提供不同配置功能的支持, 可以通过激活, 指定参数等方式快速切换环境
 
-### 2.5.1 多Profile文件
+### 多Profile文件
 
 在主配置文件编写的时候, 文件名可以是application-{profile}.properties/yml
 
 默认使用application.properties/yml的配置
 
-### 2.5.2 yml支持多文档块方式
+### yml支持多文档块方式
 
 ```yaml
 server:

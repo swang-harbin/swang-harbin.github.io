@@ -3,15 +3,17 @@ title: Spring Boot与日志
 date: '2019-12-16 00:00:00'
 updated: '2019-12-16 00:00:00'
 tags:
-- spring-boot
-- java
+- Spring Boot
+- Java
 categories:
-- java
+- [Java, SpringBoot基础系列]
 ---
 
-# 三. Spring Boot与日志
+# Spring Boot与日志
 
-## 3.1 日志框架介绍
+[SpringBoot基础系列目录](spring-boot-table.md)
+
+## 日志框架介绍
 
 市面上的日志框架: JUL, JCL, Jboss-logging, logback, log4j, log4j2, slf4j...
 
@@ -25,9 +27,9 @@ SpringBoot: 底层是Spring框架, Spring框架默认使用JCL;
 
 **SpringBoot选用 slf4j 和 logback **
 
-## 3.2 slf4j的使用
+## slf4j的使用
 
-### 3.2.1 如何在系统中使用slf4j
+### 如何在系统中使用slf4j
 
 以后开发的时候, 日志记录方法的调用, 不应该直接调用日志的实现, 而是应调用日志的抽象;
 
@@ -53,7 +55,7 @@ public class HelloWorld {
 
 每一个日志的实现框架都有自己的配置文件, 使用slf4j后, **配置文件还是用日志实现框架的**
 
-### 3.2.2 遗留问题
+### 遗留问题
 
 A系统(slf4j + logback) : 依赖Spring(commons-logging), Hibernate(jboss-logging), Mybatis
 
@@ -69,7 +71,7 @@ A系统(slf4j + logback) : 依赖Spring(commons-logging), Hibernate(jboss-loggin
 2. 用中间包来替换原有的日志框架;
 3. 导入slf4j其他的实现.
 
-## 3.3 SpringBoot日志关系
+## SpringBoot日志关系
 
 ```xml
 <dependency>
@@ -111,9 +113,9 @@ xml<dependency>
 
 SpringBoot能自动适配所有的日志, 而且底层使用slf4j+logback的方式记录日志, 引入其他框架的时候, 只需要把这个框架依赖的日志框架排除掉;
 
-## 3.4 日志使用
+## 日志使用
 
-### 3.4.1 默认配置
+### 默认配置
 
 SpringBoot默认帮我们配置好了日志
 
@@ -145,7 +147,7 @@ class ApplicationTests {
 
 ```properties
 # 指定某个包的日志记录级别
-logging.level.cc.ccue=trace
+logging.level.icu.intelli=trace
 
 # 不指定路径在当前项目下生成springboot.log日志
 # 可以指定完整路径:
@@ -163,7 +165,7 @@ logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} === %msg%n
 ```
 
-### 3.4.1 指定配置
+### 指定配置
 
 [官方对日志的说明](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/html/spring-boot-features.html#boot-features-logging)
 
@@ -194,7 +196,7 @@ logback.xml : 直接被日志框架识别
 </springProfile>
 ```
 
-## 3.5 切换日志框架
+## 切换日志框架
 
 可以按照slf4j的日志适配图, 进行相关的切换;
 

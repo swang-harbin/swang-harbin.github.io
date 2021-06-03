@@ -3,9 +3,9 @@ title: Java静态导入
 date: '2020-01-03 00:00:00'
 updated: '2020-01-03 00:00:00'
 tags:
-- java
+- Java
 categories:
-- java
+- Java
 ---
 
 # Java静态导入

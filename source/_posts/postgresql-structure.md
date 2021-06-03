@@ -4,14 +4,14 @@ date: '2020-03-17 00:00:00'
 updated: '2020-03-17 00:00:00'
 tags:
 - PostgreSQL
-- java
+- Java
 categories:
-- java
+- Java
 ---
 
 # PostgreSQL物理, 逻辑, 进程结构以及系统表系统函数
 
-## 一. PostgreSQL逻辑结构概貌
+## PostgreSQL逻辑结构概貌
 
 ![postgre逻辑结构](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222182838.png)
 
@@ -21,7 +21,7 @@ categories:
 - Object: 包含Tables, Index, View, Function(s), 序列Sequence(s), Other(s)
 - Field: Tables中还包含Row和Col
 
-## 二. PostgreSQL物理结构概貌
+## PostgreSQL物理结构概貌
 
 ![物理](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222182854.png)
 
@@ -30,14 +30,14 @@ categories:
 - WALs: 日志文件
 - Archived: 归档文件
 
-## 三. PostgreSQL进程结构概貌
+## PostgreSQL进程结构概貌
 
 1. 用户(APP)先与postmaster主进程联系, 主进程fork出一个backend process进程与APP进行后续操作.
 2. WAL writer负责将WAL buffer写入到XLOGs日志, backend process发现WAL buffer满了(等情况)后, 也会将WAL buffer中的信息写入到XLOGs日志
 3. bgwriter负责将Shared buffer中的信息写入到Datafiles, 当backed process中新来了一条插入语句, 但是Shared buffer满了(等情况)的话, backed process也会将Shared buffer中的数据写入到Datafiles
 4. Archiver将写满的XLOG文件归档到ARCH FILEs
 
-## 四. PostgreSQL部分命令
+## PostgreSQL部分命令
 
 **Informational**
 
@@ -46,7 +46,7 @@ categories:
 - `\d[S+]`: 查看tables, views和sequences
 - `\d[S+] NAME`: tables, views, sequences或index的描述
 
-## 五. PostgreSQL系统表介绍
+## PostgreSQL系统表介绍
 
 - 系统表, 系统表之间基本上都是oid(隐藏字段)关联. 例如pg_attrdef.adrelid关联pg_class.oid
 - 查询所有系统表: `\dS`或`select relkind, relname from pg_class where relnamespace = (select oid from pg_namespace where nspname='pg_catalog') and relkind='r' order by 1,2;\`
@@ -104,7 +104,7 @@ categories:
 | r       | pg_type                 | 数据库中的类型信息                                           |
 | r       | pg_user_mapping         | foregin server的用户配置信息                                 |
 
-## 六. PostgreSQL系统视图介绍
+## PostgreSQL系统视图介绍
 
 - 获取所有系统视图: `\dvS`或`select relkind, relname from pg_class where relnamespace = (select oid from pg_namespace where nspname='pg_catalog') and relkind='v' order by 1,2;`
 
@@ -157,7 +157,7 @@ categories:
 | v       | pg_user_mappings                | 外部表的用户映射权限信息                         |
 | v       | pg_views                        | 视图信息                                         |
 
-## 七. PostgreSQL管理函数
+## PostgreSQL管理函数
 
 - https://www.postgresql.org/docs/9.3/functions-admin.html
 
@@ -270,9 +270,11 @@ categories:
 
 ### 应用锁函数, 对于长时间持锁的应用非常有效. 因为长时间的数据库重量锁会带来垃圾回收的问题
 
-Name | Return Type | Description pg_advisory_lock(key bigint) | void | Obtain exclusive session level advisory lock pg_advisory_lock(key1 int, key2 int) | void | Obtain exclusive session level advisory lock pg_advisory_lock_shared(key bigint) | void | Obtain shared session level advisory lock pg_advisory_lock_shared(key1 int, key2 int) | void | Obtain shared session level advisory lock pg_advisory_unlock(key bigint) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock(key1 int, key2 int) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock_all() | void | Release all session level advisory locks held by the current session pg_advisory_unlock_shared(key bigint) | boolean | Release a shared session level advisory lock pg_advisory_unlock_shared(key1 int, key2 int) | boolean | Release a shared session level advisory lock pg_advisory_xact_lock(key bigint) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock(key1 int, key2 int) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock_shared(key bigint) | void | Obtain shared transaction level advisory lock pg_advisory_xact_lock_shared(key1 int, key2 int) | void | Obtain shared transaction level advisory lock pg_try_advisory_lock(key bigint) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock(key1 int, key2 int) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock_shared(key bigint) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_lock_shared(key1 int, key2 int) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_xact_lock(key bigint) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock(key1 int, key2 int) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key bigint) | boolean | Obtain shared transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key1 int, key2 int) | boolean | Obtain shared transaction level advisory lock if available
+Name | Return Type | Description 
+--- | --- | ---
+pg_advisory_lock(key bigint) | void | Obtain exclusive session level advisory lock pg_advisory_lock(key1 int, key2 int) | void | Obtain exclusive session level advisory lock pg_advisory_lock_shared(key bigint) | void | Obtain shared session level advisory lock pg_advisory_lock_shared(key1 int, key2 int) | void | Obtain shared session level advisory lock pg_advisory_unlock(key bigint) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock(key1 int, key2 int) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock_all() | void | Release all session level advisory locks held by the current session pg_advisory_unlock_shared(key bigint) | boolean | Release a shared session level advisory lock pg_advisory_unlock_shared(key1 int, key2 int) | boolean | Release a shared session level advisory lock pg_advisory_xact_lock(key bigint) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock(key1 int, key2 int) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock_shared(key bigint) | void | Obtain shared transaction level advisory lock pg_advisory_xact_lock_shared(key1 int, key2 int) | void | Obtain shared transaction level advisory lock pg_try_advisory_lock(key bigint) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock(key1 int, key2 int) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock_shared(key bigint) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_lock_shared(key1 int, key2 int) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_xact_lock(key bigint) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock(key1 int, key2 int) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key bigint) | boolean | Obtain shared transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key1 int, key2 int) | boolean | Obtain shared transaction level advisory lock if available
 
-## 七. PostgreSQL进程结构
+## PostgreSQL进程结构
 
 进程源码大部分再: src/backend/postmaster
 
@@ -286,7 +288,7 @@ Name | Return Type | Description pg_advisory_lock(key bigint) | void | Obtain ex
 - autovacuum lanucher: 负责回收垃圾数据的进程, 如果开启了autovacuum, 那么postmaster会fork此进程
 - autovacuum worker: 负责回收垃圾数据的work进程, 是lanucher进程fork出来的
 
-## 八. PostgreSQL物理结构
+## PostgreSQL物理结构
 
 对象对应的物理文件再哪里?
 

@@ -3,9 +3,9 @@ title: 数据库设计
 date: '2019-11-22 00:00:00'
 updated: '2019-11-22 00:00:00'
 tags:
-- ''
+- Database
 categories:
-- database
+- Database
 ---
 
 # 数据库设计
@@ -19,11 +19,11 @@ categories:
 | 节约存储空间     | 浪费大量存储空间             |
 | 高效的访问       | 访问数据低效                 |
 
-## 一. 数据库设计步骤
+## 数据库设计步骤
 
 需求分析 -> 逻辑设计 -> 物理设计 -> 维护优化
 
-### 一. 需求分析
+### 需求分析
 
 #### 为什么要进行数据分析?
 
@@ -92,7 +92,7 @@ categories:
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222194348.png)
 
-### 二. 逻辑设计
+### 逻辑设计
 
 1. 将需求转化为数据库的逻辑模型
 2. 通过ER图(Entity Relationship Diagram)的形式对逻辑模型进行展示
@@ -210,11 +210,11 @@ categories:
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222195044.png)
 
-### 三. 物理设计
+### 物理设计
 
 1. 选择合适的数据库管理系统.
 
-   ![image](https://note.youdao.com/yws/res/43355/4AE36E981BF047E9A44CDD5318DCB9DF?ynotemdtimestamp=1613994069444)
+   ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210603094551.png)
 
 2. 定义数据库, 表及字段的命名规范.
 
@@ -339,9 +339,9 @@ FROM
 2. 增加数据的读取效率
 3. 反范式化一定要适度
 
-### 四. 维护优化
+### 维护优化
 
-#### 1. 维护数据字典
+#### 维护数据字典
 
 1. 使用第三方工具对数据字典进行维护
 2. 利用数据本身的备注字段来维护数据字典
@@ -373,7 +373,7 @@ WHERE
 
 MySQL的元数据信息均存储在了information_schema数据库下的表中
 
-#### 2. 维护索引
+#### 维护索引
 
 ##### 如何选择合适的列建立索引?
 
@@ -387,7 +387,7 @@ MySQL的元数据信息均存储在了information_schema数据库下的表中
 2. 定期维护索引碎片
 3. 在SQL语句中不要使用强制索引关键字
 
-#### 3. 维护表结构
+#### 维护表结构
 
 ##### 注意事项
 
@@ -404,7 +404,7 @@ MySQL的元数据信息均存储在了information_schema数据库下的表中
 3. 控制使用用户自定义函数
 4. 不要使用数据库中的全文索引
 
-#### 4. 在适当的时候对表进行水平拆分或垂直拆分
+#### 在适当的时候对表进行水平拆分或垂直拆分
 
 ##### 表的垂直拆分
 

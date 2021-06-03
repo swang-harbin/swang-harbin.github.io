@@ -3,13 +3,15 @@ title: hibernate-spatial文档
 date: '2020-09-03 00:00:00'
 updated: '2020-09-03 00:00:00'
 tags:
-- spring-data-jpa
+- 'Spring Data JPA'
 - PostGIS
 categories:
-- database
+- 'Spring Data'
 ---
 
-Spring Data JPA操作空间数据
+# Spring Data JPA操作空间数据
+
+引入如下依赖
 
 ```xml
 <dependency>

@@ -1,5 +1,7 @@
 node_modules
-db.json
 
+db.json
 .deploy_git/
 public/
+
+.idea/

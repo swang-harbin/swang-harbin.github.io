@@ -103,7 +103,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/swang-harbin/swang-harbin.github.io
+  repo: git@github.com:swang-harbin/swang-harbin.github.io.git
   branch: deploy
   #message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }})"
   name: wangshuo

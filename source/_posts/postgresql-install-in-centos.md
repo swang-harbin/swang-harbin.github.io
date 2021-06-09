@@ -4,7 +4,7 @@ date: '2019-12-04 00:00:00'
 updated: '2019-12-04 00:00:00'
 tags:
 - PostgreSQL
-- CentOS7
+- CentOS
 categories:
 - Database
 ---

@@ -4,7 +4,7 @@ date: '2019-11-21 00:00:00'
 updated: '2019-11-21 00:00:00'
 tags:
 - Redis
-- CentOS7
+- CentOS
 categories:
 - Database
 ---

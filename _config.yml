@@ -96,6 +96,25 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+feed:
+  enable: true
+  type:
+    - atom
+    - rss2
+  path: 
+    - atom.xml
+    - rss2.xml
+  # 文章数, 0为全部
+  limit: 0
+  hub:
+  # 是否包含文章内容
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
 ## Themes: https://hexo.io/themes/
 theme: next
 

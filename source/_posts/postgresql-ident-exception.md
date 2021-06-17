@@ -5,7 +5,7 @@ updated: '2019-12-09 00:00:00'
 tags:
 - PostgreSQL
 categories:
-- database
+- Database
 ---
 
 # failed to retrieve PostgreSQL server_version_num

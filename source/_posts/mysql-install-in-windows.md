@@ -5,7 +5,7 @@ updated: '2019-11-20 00:00:00'
 tags:
 - MySQL
 categories:
-- database
+- Database
 ---
 
 # Windows安装绿色版MySQL

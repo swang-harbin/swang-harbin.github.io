@@ -21,7 +21,7 @@ IDEA设置的堆内存过小, 需要修改IDEA的堆内存大小
 
 修改IDEA安装目录的bin目录下的**idea64.exe.vmoptions**配置文件, 将堆内存设置为2G(自定义)
 
-```shell
+```bash
 -Xmx2048m
 ```
 

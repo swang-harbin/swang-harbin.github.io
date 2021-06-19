@@ -71,7 +71,7 @@ POM : project object model
 | ${basedir}/src/test/java      | 项目的测试类, 比如说JUnit代码 |
 | ${basedir}/src/test/resources | 测试使用的资源                |
 
-```shell
+```bash
 mkdir -p maven-demo/src/main/java maven-demo/src/resources
 mkdir -p maven-demo/src/test/java maven-demo/src/test/resources
 ```

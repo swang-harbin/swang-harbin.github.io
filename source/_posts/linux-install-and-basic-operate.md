@@ -114,7 +114,7 @@ init的其他命令 :
 
 修改/etc/gdm/custom.conf, 添加:
 
-```
+```properties
 [daemon]
 # 开启自动登陆
 AutomaticLoginEnable=true
@@ -149,11 +149,11 @@ AutomaticLogin=root
 
 #### 虚拟终端(tty: teletyperwriters, /dev/tty# #为[1-6])
 
-tty可有n个, Ctrl+Alt+F[1-6]
+tty可有n个, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F[1-6]</kbd>
 
 #### 图形终端(/dev/tty7) startx, xwindows
 
-- CentOS 6: Ctrl + Alt + F7
+- CentOS 6: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F7</kbd>
 - CentOS 7: 在哪个终端启动, 即位于哪个虚拟终端
 
 #### 串行终端(/dev/ttyS#)
@@ -166,7 +166,7 @@ pty, SSH远程连接
 
 #### 查看当前的终端设备
 
-```
+```bash
 tty
 ```
 
@@ -196,8 +196,6 @@ shell程序(命令解释器): sh(b类型嗯ourn 史蒂夫·伯恩), csh, tcsh, k
 
 - shell是一种高级程序设计语言
 
-![image.png](http://note.youdao.com/yws/res/55537/WEBRESOURCE859af1a1abd56f16fb40e8ac5f72e25d)
-
 ### bash shell
 
 - GNU Bourne-Again Shell(bash)是GNU计划中重要的工具软件之一, 目前也是Linux标准的shell, 与sh兼容
@@ -216,7 +214,7 @@ shell程序(命令解释器): sh(b类型嗯ourn 史蒂夫·伯恩), csh, tcsh, k
 
 - 命令提示符号: prompt
 
-    ```
+    ```bash
     [root@localhost ~]#
         # 管理员
         $ 普通用户
@@ -224,26 +222,26 @@ shell程序(命令解释器): sh(b类型嗯ourn 史蒂夫·伯恩), csh, tcsh, k
     
 - 显示提示符格式
 
-    ```
+    ```bash
     [root@localhost ~]# echo $PS1
     ```
     
 - 修改提示符格式
     - 设置颜色:
-        ```
+        ```bash
         \[\e[F;Bm\]
         ```
         示例: 
-        ```
+        ```bash
         白底黑字
         \[\e[30;47m\]
         ```
         - 背景色和特殊背景可以同时使用, 特殊背景可以同时使用多个, 使用格式: 
-            ```
+            ```bash
             \[\e[F;B;Bm\]
             ```
             示例:
-            ```
+            ```bash
             白底黑字高亮
             \[\e[30;47;1m\] 或 \[\e[30;1;47m\] 
             白底黑字高亮闪烁
@@ -263,33 +261,34 @@ shell程序(命令解释器): sh(b类型嗯ourn 史蒂夫·伯恩), csh, tcsh, k
             | 37 白       | 47 白     | 7 反显         |
             | null        | null      | 8 隐藏         |
             | null        | null      | 9 删除线       |
-        
-        > 可将其放到任意提示符前面, 来对他后面的命令提示符颜色进行修改
+            
+            可将其放到任意提示符前面, 来对他后面的命令提示符颜色进行修改
         
     - 命令提示符符号说明
-    ```
+    ```bash
     PS1="\[\e[1;5;41;33m\][\u@\h \W]\\$\[\e[0m\]"
     ```
     
-    | 符号    | 说明                                                 |
-    | ------- | ---------------------------------------------------- |
-    | \e[F;Bm | 设置颜色                                             |
-    | \u      | 当前用户名                                           |
-    | \H      | 主机名全称                                           |
-    | \h      | 主机名简称                                           |
-    | \W      | 当前工作目录基名                                     |
-    | \w      | 当前工作目录全名                                     |
-    | \d      | 当前日期, 格式: weekday month date, 例如: Fri Apr 03 |
-    | \t      | 24小时格式时间, HH:mm:ss                             |
-    | \T      | 12小时格式时间, HH:mm:ss                             |
-    | \A      | 24小时格式时间, HH:mm                                |
-    | \v      | BASH版本信息                                         |
-    | \\!     | 命令历史数                                           |
-    | \\#     | 开机后命令历史数                                     |
-    | \\\\$   | 用户身份提示字符                                     |
-> 通过命令行修改, 重新登陆后会失效, 可通过添加文件的方式持久化修改:
+    | 符号      | 说明                                                 |
+    | --------- | ---------------------------------------------------- |
+    | `\e[F;Bm` | 设置颜色                                             |
+    | `\u`        | 当前用户名                                           |
+    | `\H`        | 主机名全称                                           |
+    | `\h`        | 主机名简称                                           |
+    | `\W`        | 当前工作目录基名                                     |
+    | `\w`        | 当前工作目录全名                                     |
+    | `\d`        | 当前日期, 格式: weekday month date, 例如: Fri Apr 03 |
+    | `\t`        | 24小时格式时间, HH:mm:ss                             |
+    | `\T`        | 12小时格式时间, HH:mm:ss                             |
+    | `\A`        | 24小时格式时间, HH:mm                                |
+    | `\v`        | BASH版本信息                                         |
+    | `\!`       | 命令历史数                                           |
+    | `\#`       | 开机后命令历史数                                     |
+    | `\\$`     | 用户身份提示字符                                     |
 
-```
+通过命令行修改, 重新登陆后会失效, 可通过添加文件的方式持久化修改:
+
+```bash
 vi /etc/profile.d/xxx.sh
 添加
 PS1="\[\e[1;33m\][\u@\h \W]\\$\[\e[0m\]"
@@ -304,22 +303,22 @@ PS1="\[\e[1;33m\][\u@\h \W]\\$\[\e[0m\]"
 **在shell中可执行的命令有两类**
 
 - 内部命令: 由shell自带的, 而且通过某命令形式提供
-    - help 内部命令列表
-    - enable 内部命令列表
-    - enable cmd 启用内部命令
-    - enable -n cmd 禁用内部命令
-    - enable -n 查看所有禁用的内部命令
+    - `help` 内部命令列表
+    - `enable` 内部命令列表
+    - `enable cmd` 启用内部命令
+    - `enable -n cmd` 禁用内部命令
+    - `enable -n` 查看所有禁用的内部命令
 
 - 外部命令: 在文件系统路径下有对应的可执行程序文件
-    - 查看路径: which -a | --skip-alis; whereis
+    - 查看路径: `which -a | --skip-alis`或 `whereis`
 
 **区别指定的命令是内部或外部命令**
 
-```
+```bash
 type COMMAND
 ```
 
-```
+```bash
 # 查看某个命令的列表
 type -a COMMAND
 ```
@@ -334,25 +333,26 @@ type -a COMMAND
 
 **hash常见用法 :**
 
-- hash 显示hash缓存
-- hash -l 显示hash缓存, 可作为输入使用
-- hash -p path name 将命令全路径path起别名为name
-- hash -t name 打印缓存中name的路径
-- hash -d name 清除name缓存
-- hash -r 清除缓存
+- `hash` 显示hash缓存
+- `hash -l` 显示hash缓存, 可作为输入使用
+- `hash -p path name` 将命令全路径path起别名为name
+- `hash -t name` 打印缓存中name的路径
+- `hash -d name` 清除name缓存
+- `hash -r` 清除缓存
 
-shell解析器查找命令优先级: alias>内部命令>hash表>$PATH
+shell解析器查找命令优先级: **alias>内部命令>hash表>$PATH**
 
 
 ### 命令别名
 
 **显示当前shell进程所有可用的别名 :**
-```
+
+```bash
 alias
 ```
 
 **定义别名NAME, 其相当于执行命令VALUE :**
-```
+```bash
 alias NAME='VALUE'
 ```
 
@@ -367,14 +367,14 @@ alias NAME='VALUE'
 - . /path/to/config_cile
 
 **撤销别名 :**
-```
+```bash
 unalias [-a] NAME [name ...]
 -a 取消所有别名
 ```
 
 **如果别名同原命令同名, 如果要执行原命令, 可使用 :**
 
-```
+```bash
 \ALIASNAME
 "ALIASNAME"
 'ALIASNAME'
@@ -385,45 +385,46 @@ command ALIASNAME
 
 ### 命令格式
 
-**格式 :** COMMAND [OPTIONS...] [ARGUMENTS...]
+**格式 :** `COMMAND [OPTIONS...] [ARGUMENTS...]`
 
 - OPTIONS: 用于启动或关闭命令的某个或某些功能
-    - 短选项: -c 例如: -l, -h
-    - 长选项: --word 例如: --all, --human-readable
+    - 短选项: `-c` 例如: `-l`, `-h`
+    - 长选项: `--word` 例如: `--all`, `--human-readable`
 - ARGUMENTS: 命令的作用对象, 比如文件名, 用户名等
 
 **注意 :**
 - 多个选项以及多个参数命令之间使用空白字符分隔
-- 取消和结束命令执行: Ctrl+c, Ctrl+d
-- 多个命令可以用;符号分开
-- 一个命令可以用\分成多行
+- 取消和结束命令执行: <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd>
+- 多个命令可以用`;`符号分开
+- 一个命令可以用`\`分成多行
 
 ### 日期和时间
 
 **Linux的两种时钟 :**
+
 - 系统时钟: 由Linux内核通过CPU的工作频率进行的
 - 硬件时钟: 主板
 
 **相关命令 :**
-- date: 显示和设置系统时间
-    - date +%s
-    - date -d @1509536033
-    - date MMDDHHmmYYYY.ss
-- hwclock, clock: 显示硬件时钟
-    - -s, --hctosys 以硬件时钟为准, 校正系统时钟
-    - -w, --systohc 以系统时钟为准, 校正硬件时钟
+- `date`: 显示和设置系统时间
+    - `date +%s`
+    - `date -d @1509536033`
+    - `date MMDDHHmmYYYY.ss`
+- `hwclock`, `clock`: 显示硬件时钟
+    - `-s, --hctosys` 以硬件时钟为准, 校正系统时钟
+    - `-w, --systohc` 以系统时钟为准, 校正硬件时钟
 
 **时区 :**
 /etc/localtime
 
-```
+```bash
 [root@localhost ~]# ll /etc/localtime 
 lrwxrwxrwx. 1 root root 35 Dec 30 23:45 /etc/localtime -> ../usr/share/zoneinfo/Asia/Shanghai
 ```
 
 **调整时区**
 
-```
+```bash
 # 查看所有时区
 timedatectl list-timezones
 # 修改时区
@@ -436,36 +437,49 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 **与网络时间同步**
 
 1. 安装ntp
-```
-# yum install ntp
-```
+
+   ```bash
+   # yum install ntp
+   ```
+
 2. 停止ntpd服务
-```
-# systemctl stop ntpd
-```
+
+   ```bash
+   # systemctl stop ntpd
+   ```
+
 3. 设置同步的网站
-```
-# ntpdate ntp.api.bz
-```
+
+   ```bash
+   # ntpdate ntp.api.bz
+   ```
+
 4. 启动ntpd服务
-```
-# systemctl start ntpd
-```
+
+   ```bash
+   # systemctl start ntpd
+   ```
+
 5. 同步硬件时钟与系统时钟相同
-```
-# hwclock -w
-```
+
+   ```bash
+   # hwclock -w
+   ```
+
 6. 设置ntpd服务开机启动
-```
-# systemctl enable ntpd
-```
+
+   ```bash
+   # systemctl enable ntpd
+   ```
+
 7. 查看当前时间信息
-```
-# timedatectl
-```
+
+   ```bash
+   # timedatectl
+   ```
 
 **显示日历 :**
-```
+```bash
 cal
 cal -y
 cal 2019

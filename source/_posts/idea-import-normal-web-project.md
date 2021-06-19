@@ -15,7 +15,7 @@ IDEA版本: IntelliJ IDEA 2020.1(Ultimate Edition)
 
 ## 普通Web项目目录结构介绍
 
-```
+```bash
 project/
 ├── src
 └── web
@@ -38,7 +38,7 @@ project/
 
 推荐常用的目录结构
 
-```
+```bash
 project/
 ├── src
 │   └── com

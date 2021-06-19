@@ -26,77 +26,77 @@ categories:
 
 ## JDK1.8新特性
 
-**1. 为了解决接口设计的缺陷, 所以在接口中允许开发者定义普通方法.**
+1. 为了解决接口设计的缺陷, 所以在接口中允许开发者定义普通方法.
 
-范例: 观察普通方法定义
+   范例: 观察普通方法定义
 
-```java
-interface IMessage {
-    public String message();
+   ```java
+   interface IMessage {
+       public String message();
+   
+       // 方法都具备public
+       public default boolean connect() {
+           System.out.println("建立消息的发送通道.");
+           return true;
+       }
+   }
+   
+   class IMessageImpl implements IMessage {
+       public String message() {
+           return "intelli.icu";
+       }
+   }
+   
+   public class Test {
+   
+       public static void main(String[] args) {
+           IMessage iMessage = new IMessageImpl();
+           if (iMessage.connect()) {
+               System.out.println(iMessage.message());
+           }
+       }
+   }
+   ```
 
-    // 方法都具备public
-    public default boolean connect() {
-        System.out.println("建立消息的发送通道.");
-        return true;
-    }
-}
+   接口中的普通方法必须追加default声明, 但是该操作属于挽救功能, 所以如果不是必须的情况, 不应该作为你设计的首选.
 
-class IMessageImpl implements IMessage {
-    public String message() {
-        return "intelli.icu";
-    }
-}
+2. 除了可以追加普通方法之外, 接口里面也可以定义static方法, 而static方法, 可以使用接口直接调用
 
-public class Test {
+   范例: 观察static方法定义
 
-    public static void main(String[] args) {
-        IMessage iMessage = new IMessageImpl();
-        if (iMessage.connect()) {
-            System.out.println(iMessage.message());
-        }
-    }
-}
-```
+   ```java
+   public class Test {
+   
+       public static void main(String[] args) {
+           IMessage iMessage = IMessage.getInstance();
+           if (iMessage.connect()) {
+               System.out.println(iMessage.message());
+           }
+       }
+   }
+   
+   interface IMessage {
+       public String message();
+   
+       // 方法都具备public
+       public default boolean connect() {
+           System.out.println("建立消息的发送通道.");
+           return true;
+       }
+       // 定义接口的static方法
+       public static IMessage getInstance() {
+           return new IMessageImpl();
+       }
+   }
+   
+   class IMessageImpl implements IMessage {
+       public String message() {
+           if (this.connect()) {
+               return "intelli.icu";
+           }
+           return "没有消息发送";
+       }
+   }
+   ```
 
-接口中的普通方法必须追加default声明, 但是该操作属于挽救功能, 所以如果不是必须的情况, 不应该作为你设计的首选.
-
-**2. 除了可以追加普通方法之外, 接口里面也可以定义static方法, 而static方法, 可以使用接口直接调用**
-
-范例: 观察static方法定义
-
-```java
-public class Test {
-
-    public static void main(String[] args) {
-        IMessage iMessage = IMessage.getInstance();
-        if (iMessage.connect()) {
-            System.out.println(iMessage.message());
-        }
-    }
-}
-
-interface IMessage {
-    public String message();
-
-    // 方法都具备public
-    public default boolean connect() {
-        System.out.println("建立消息的发送通道.");
-        return true;
-    }
-    // 定义接口的static方法
-    public static IMessage getInstance() {
-        return new IMessageImpl();
-    }
-}
-
-class IMessageImpl implements IMessage {
-    public String message() {
-        if (this.connect()) {
-            return "intelli.icu";
-        }
-        return "没有消息发送";
-    }
-}
-```
-
-如果现在真的可以在接口里面定义普通方法或static方法, 那么这个功能就已经可以取代抽象类了, 但是**不应该将这两个功能作为接口的主要设计原则**. 应该奉行: **接口就是抽象方法**.
+   如果现在真的可以在接口里面定义普通方法或static方法, 那么这个功能就已经可以取代抽象类了, 但是**不应该将这两个功能作为接口的主要设计原则**. 应该奉行: **接口就是抽象方法**.

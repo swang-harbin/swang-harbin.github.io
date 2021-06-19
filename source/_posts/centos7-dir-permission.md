@@ -11,9 +11,9 @@ categories:
 # CentOS修改文件或目录权限
 
 类型 | root用户 | 组用户 | 当前用户
----|--- | --- | --- |
--(文件)|rwx() | rwx | rwx |
-d(目录)|rwx | rwx | rwx |
+---|--- | --- | --- 
+- (文件)|rwx() | rwx | rwx 
+d (目录)|rwx | rwx | rwx 
 
 rwx从左到右分别为1,2,4
 

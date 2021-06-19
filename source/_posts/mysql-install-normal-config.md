@@ -14,7 +14,7 @@ categories:
 
 Windows默认不区分, Linux默认区分. 0代表区分, 1代表不区分
 
-```cnf
+```properties
 [mysqld]
 lower_case_table_names=1
 ```
@@ -29,7 +29,7 @@ show variables like 'character_set%'
 
 设置默认字符集
 
-```cnf
+```properties
 [mysql]
 default-character-set=utf8mb4
 [mysqld]
@@ -38,7 +38,7 @@ character_set_server=utf8mb4
 
 重启服务
 
-```shell
+```bash
 systemctl restart mysqld
 ```
 

@@ -44,7 +44,7 @@ categories:
 ### 进制
 
 Linux中自带bc计算器
-```
+```bash
 # 进入计算器
 $ bc
 # 输出2进制, o(output)
@@ -253,16 +253,16 @@ linux使用```lscpu```查看cpu信息
 ###### 基本参数
 
 - 容量: 
-    
+  
     > 容量是硬盘最主要的参数. 单位有MB, GB, TB
 - 转速: 
-    
+  
     > 转速是指硬盘盘片每分钟转动的圈数, 单位为RPM. 现在硬盘转速已经达到10000rpm, 15000rpm
 - 传输速率
-    
+  
     > 传输速率(Data Transfer Rate). 指硬盘速写数据的速度, 单位为兆字节每秒(MB/s)
 - 缓存
-    
+  
     > 硬盘缓存的目的是为了解决系统前后级读写速度不匹配的问题, 以提高硬盘的读写速度
 
 ###### 接口类型
@@ -478,10 +478,11 @@ y = x + 200             // 切换回用户空间</br>
     > 汇编语言: 和机器语言一一对应, 与硬件相关的特有代码, 驱动程序开发
 
 - 中级语言: C
-    
+  
     > 系统级应用, 驱动程序
     
 - 高级语言: java, python, go, php, Objective-C, C#
+    
     > 应用级程序开发
 
 **C: hello.c**
@@ -595,12 +596,11 @@ Linux操作系统包含 :
 
 **debian :** ubuntu, mint
 
-**redhat :** 
+**redhat :** RHEL: RedHat Enterprise Linux ,每18个月发行一个新版本
 
-    RHEL: RedHat Enterprise Linux ,每18个月发行一个新版本
-    - CentOS: 兼容RHEL的格式
-    - 中标麒麟: 中标软件
-    - Fedora: 每6个月发行一个新版本
+- CentOS: 兼容RHEL的格式
+- 中标麒麟: 中标软件
+- Fedora: 每6个月发行一个新版本
 
 **ArchLinux :** 轻量简洁
 
@@ -619,7 +619,7 @@ Linux操作系统包含 :
 
 ![clipboard](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210603221527.png)
 
-```
+```bash
 $ uname -r
 3.10.0-1062.1.2.el7.x86_64
 $ cat /etc/redhat-release

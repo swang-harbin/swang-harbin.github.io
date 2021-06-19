@@ -15,19 +15,22 @@ categories:
 ## 解决方法
 
 - 安装yum-complete-transaction
-```bash
-yum -y install yum-utils
-```
+
+  ```bash
+  yum -y install yum-utils
+  ```
 
 - 清除yum缓存
-```bash
-yum clearall
-```
+
+  ```bash
+  yum clearall
+  ```
 
 - 清除未完成事物
-```bash
-yum-complete-transaction --cleanup-only
-```
+
+  ```bash
+  yum-complete-transaction --cleanup-only
+  ```
 
 ## 参考文档
 [There are unfinished transactions remaining解决方法](https://m.jb51.net/LINUXjishu/268748.html)

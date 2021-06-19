@@ -26,10 +26,11 @@ npm是集成在node中, 可以使用```npm -v```查看版本
 ### 安装cnpm
 - cnpm是淘宝团队做的国内镜像, 由于npm的服务器位于国外, 速度较慢, 因此可以使用cnpm
 
-以管理员身份运行cmd, 输入
-```bash
-npm install -g cnpm --registry=http://registry.npm.taobao.org
-```
+  以管理员身份运行cmd, 输入
+
+  ```bash
+  npm install -g cnpm --registry=http://registry.npm.taobao.org
+  ```
 
 ### 修改npm仓库位置
 

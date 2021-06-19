@@ -99,37 +99,37 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 1. 安装mysqld服务
 
-服务名可选,默认为mysql
+   服务名可选,默认为mysql
 
-```shell
-mysqld install [服务名]
-```
+   ```bash
+   mysqld install [服务名]
+   ```
 
-1. 初始化MySQL
+2. 初始化MySQL
 
-```shell
-mysqld --initialize --console
-```
+   ```bash
+   mysqld --initialize --console
+   ```
 
-此时会打印出系统随机生成的密码,注意保存,在第一次登录时需要使用
+   此时会打印出系统随机生成的密码,注意保存,在第一次登录时需要使用
 
-1. 启动MySQL服务
+3. 启动MySQL服务
 
-```shell
-net start [服务名]
-```
+   ```bash
+   net start [服务名]
+   ```
 
-4.修改密码
+4. 修改密码
 
-```mysql
-mysql -uroot -p初始密码;
-
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new password';
-```
+   ```mysql
+   mysql -uroot -p初始密码;
+   
+   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new password';
+   ```
 
 其他相关命令:
 
-```shell
+```bash
 net stop [服务名]   // 停止服务
 mysqld --remove [服务名]    // 移除mysql服务
 ```
@@ -138,20 +138,22 @@ mysqld --remove [服务名]    // 移除mysql服务
 
 1. 安装mysqld服务
 
-服务名可选,默认为mysql
+   服务名可选,默认为mysql
 
-```mysql
-mysqld install [服务名]
-```
+   ```bash
+   mysqld install [服务名]
+   ```
 
-1. 启动MySQL服务
+2. 启动MySQL服务
 
-```shell
-net start [服务名]
-```
+   ```bash
+   net start [服务名]
+   ```
 
-3.初始化密码
+3. 初始化密码
 
-```mysql
-mysqladmin -u root password 密码
-```
+   ```mysql
+   mysqladmin -u root password 密码
+   ```
+
+   

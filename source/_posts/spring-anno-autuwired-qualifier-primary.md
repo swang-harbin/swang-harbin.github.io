@@ -16,192 +16,192 @@ categories:
 
 ## @Autowired
 
-**1. 容器中只有一个BookService类型的bean时**
+1. 容器中只有一个BookService类型的bean时
 
-BookController
+   BookController
 
-```java
-import icu.intelli.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+   ```java
+   import icu.intelli.service.BookService;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.stereotype.Controller;
+   
+   @Controller
+   public class BookController {
+   
+       // 自动注入bookService
+       @Autowired
+       private BookService bookService;
+       
+       // 打印bookService
+       public void printBookService() {
+           System.out.println(this.bookService);
+       }
+   }
+   ```
 
-@Controller
-public class BookController {
+   BookService
 
-    // 自动注入bookService
-    @Autowired
-    private BookService bookService;
-    
-    // 打印bookService
-    public void printBookService() {
-        System.out.println(this.bookService);
-    }
-}
-```
+   ```java
+   import org.springframework.stereotype.Service;
+   
+   @Service
+   public class BookService {
+   
+   }
+   ```
 
-BookService
+   MainConfig, 将BookService和BookController扫描到容器中
 
-```java
-import org.springframework.stereotype.Service;
+   ```java
+   @Configuration
+   // 将Service和Controller扫描到容器
+   @ComponentScan({"icu.intelli.controller", "icu.intelli.service"})
+   public class MainConfig {
+   
+   }
+   ```
 
-@Service
-public class BookService {
+   IOCTest
 
-}
-```
+   ```java
+   import icu.intelli.config.MainConfig;
+   import icu.intelli.controller.BookController;
+   import icu.intelli.service.BookService;
+   import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+   
+   public class IOCTest {
+   
+       public static void main(String[] args) {
+           // 获取IOC容器
+           AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
+           // 获取bookController
+           BookController bean = applicationContext.getBean(BookController.class);
+           // 调用printBookService方法
+           bean.printBookService();
+   
+           // 获取容器中的bookService
+           BookService bean1 = applicationContext.getBean(BookService.class);
+           System.out.println(bean1);
+       }
+   }
+   ```
 
-MainConfig, 将BookService和BookController扫描到容器中
+   运行结果
 
-```java
-@Configuration
-// 将Service和Controller扫描到容器
-@ComponentScan({"icu.intelli.controller", "icu.intelli.service"})
-public class MainConfig {
+   ```java
+   icu.intelli.service.BookService@4d339552
+   icu.intelli.service.BookService@4d339552
+   ```
 
-}
-```
+   **结论: 当容器中只有一个同一类型的bean时, Spring对标注了@Autowired的属性根据类型进行装配**
 
-IOCTest
+2. 容器中有多个个BookService类型的bean时
 
-```java
-import icu.intelli.config.MainConfig;
-import icu.intelli.controller.BookController;
-import icu.intelli.service.BookService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+   修改BookService添加lable属性并添加getter和setter方法, 重写toString方法, 已做区分
 
-public class IOCTest {
+   ```java
+   import org.springframework.stereotype.Service;
+   
+   // bean名称默认为类名首字母小写(bookService)
+   @Service
+   public class BookService {
+       // 默认lable为1
+       private String lable = "1";
+   
+       public String getLable() {
+           return lable;
+       }
+   
+       public void setLable(String lable) {
+           this.lable = lable;
+       }
+   
+       @Override
+       public String toString() {
+           return "BookService{" +
+                   "lable='" + lable + '\'' +
+                   '}';
+       }
+   }
+   ```
 
-    public static void main(String[] args) {
-        // 获取IOC容器
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
-        // 获取bookController
-        BookController bean = applicationContext.getBean(BookController.class);
-        // 调用printBookService方法
-        bean.printBookService();
+   在MainConfig中注入一个新的BookService, 名称为bookService2, lable为1
 
-        // 获取容器中的bookService
-        BookService bean1 = applicationContext.getBean(BookService.class);
-        System.out.println(bean1);
-    }
-}
-```
+   ```java
+   import icu.intelli.service.BookService;
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.ComponentScan;
+   import org.springframework.context.annotation.Configuration;
+   
+   
+   @Configuration
+   // 将Service和Controller扫描到容器
+   @ComponentScan({"icu.intelli.controller", "icu.intelli.service"})
+   public class MainConfig {
+   
+       @Bean("bookService2")
+       public BookService bookService() {
+           BookService bookService = new BookService();
+           bookService.setLable("2");
+           return bookService;
+       }
+   }
+   ```
 
-运行结果
+   此时BookController为
 
-```
-icu.intelli.service.BookService@4d339552
-icu.intelli.service.BookService@4d339552
-```
+   ```java
+   import icu.intelli.service.BookService;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.stereotype.Controller;
+   
+   @Controller
+   public class BookController {
+   
+       @Autowired
+       private BookService bookService;
+   
+       public void printBookService() {
+           System.out.println(this.bookService);
+       }
+   }
+   ```
 
-**结论: 当容器中只有一个同一类型的bean时, Spring对标注了@Autowired的属性根据类型进行装配**
+   IOCTest
 
-**2. 容器中有多个个BookService类型的bean时**
+   ```java
+   import icu.intelli.config.MainConfig;
+   import icu.intelli.controller.BookController;
+   import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+   
+   public class IOCTest {
+   
+       public static void main(String[] args) {
+           // 获取IOC容器
+           AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
+           BookController bean = applicationContext.getBean(BookController.class);
+           bean.printBookService();
+       }
+   }
+   ```
 
-修改BookService添加lable属性并添加getter和setter方法, 重写toString方法, 已做区分
+   测试输出
 
-```java
-import org.springframework.stereotype.Service;
+   ```
+   BookService{lable='1'}
+   ```
 
-// bean名称默认为类名首字母小写(bookService)
-@Service
-public class BookService {
-    // 默认lable为1
-    private String lable = "1";
+   可知, 此时向BookController中注入的是名为bookService的Bean.
 
-    public String getLable() {
-        return lable;
-    }
+   将BookController中的`private BookService bookService`修改为`private BookService bookService2`
 
-    public void setLable(String lable) {
-        this.lable = lable;
-    }
+   测试IOCTest输出
 
-    @Override
-    public String toString() {
-        return "BookService{" +
-                "lable='" + lable + '\'' +
-                '}';
-    }
-}
-```
+   ```
+   BookService{lable='2'}
+   ```
 
-在MainConfig中注入一个新的BookService, 名称为bookService2, lable为1
-
-```java
-import icu.intelli.service.BookService;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
-
-@Configuration
-// 将Service和Controller扫描到容器
-@ComponentScan({"icu.intelli.controller", "icu.intelli.service"})
-public class MainConfig {
-
-    @Bean("bookService2")
-    public BookService bookService() {
-        BookService bookService = new BookService();
-        bookService.setLable("2");
-        return bookService;
-    }
-}
-```
-
-此时BookController为
-
-```java
-import icu.intelli.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class BookController {
-
-    @Autowired
-    private BookService bookService;
-
-    public void printBookService() {
-        System.out.println(this.bookService);
-    }
-}
-```
-
-IOCTest
-
-```java
-import icu.intelli.config.MainConfig;
-import icu.intelli.controller.BookController;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-public class IOCTest {
-
-    public static void main(String[] args) {
-        // 获取IOC容器
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
-        BookController bean = applicationContext.getBean(BookController.class);
-        bean.printBookService();
-    }
-}
-```
-
-测试输出
-
-```
-BookService{lable='1'}
-```
-
-> 可知, 此时向BookController中注入的是名为bookService的Bean.
-
-将BookController中的`private BookService bookService`修改为`private BookService bookService2`
-
-测试IOCTest输出
-
-```
-BookService{lable='2'}
-```
-
-**结论: 当容器中有多个同一类型的bean时, Spring对标注了@Autowired的属性根据属性名进行装配**
+   **结论: 当容器中有多个同一类型的bean时, Spring对标注了@Autowired的属性根据属性名进行装配**
 
 ## @Qualifier
 
@@ -277,7 +277,7 @@ public class BookController {
 BookService{lable='2'}
 ```
 
-> Spring注入了@Primary标注的bean
+Spring注入了@Primary标注的bean
 
 修改BookController, 使用@Qualifier指定注入的bean
 

@@ -44,13 +44,13 @@ VIP是一个对外提供访问的虚拟IP, 可自定义, 不需要提供真实�
 
 此处防止出错, 将官方展示的依赖包全部安装
 
-```shell
+```bash
 yum install -y make autoconf automake openssl-devel libnl3-devel ipset-devel iptables-devel file-devel net-snmp-devel glib2-devel json-c-devel pcre2-devel libnftnl-devel libmnl-devel python-sphinx epel-release python-sphinx_rtd_theme latexmk texlive texlive-titlesec texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
 ```
 
 ### 下载源码压缩包
 
-```shell
+```bash
 wget https://www.keepalived.org/software/keepalived-2.0.19.tar.gz
 wget https://nginx.org/download/nginx-1.9.9.tar.gz
 ```
@@ -61,7 +61,7 @@ wget https://nginx.org/download/nginx-1.9.9.tar.gz
 
 keepalived默认安装位置/usr/local/keepalived
 
-```shell
+```bash
 $ tar -zxvf keepalived-2.0.19.tar.gz
 $ cd keepalived-2.0.19
 $ ./configure
@@ -75,7 +75,7 @@ $ make install
 
 nginx默认安装位置/usr/local/nginx
 
-```shell
+```bash
 $ tar -zxvf nginx-1.9.9.tar.gz
 $ cd nginx-1.9.9
 $ ./configure
@@ -139,7 +139,7 @@ http {
 }
 ```
 nginx启动命令默认在如下位置， 启动nginx
-```shell
+```bash
 /usr/local/nginx/sbin/nginx
 ```
 
@@ -249,7 +249,7 @@ vrrp_instance VI_1 {
 
 **1. 分别启动主备服务器上的keepalived和nginx**
 
-```shell
+```bash
 systemctl start keepalived
 /nginx/path/sbin/nginx -c /nginx/path/conf/nginx.conf
 ```
@@ -257,7 +257,7 @@ systemctl start keepalived
 
 **2. 使用```ip addr```命令, 查看master主服务器的网卡信息, 发现ens33中包含VIP的信息**
 
-```shell
+```bash
 [root@localhost keepalived]# ip addr
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -276,7 +276,7 @@ systemctl start keepalived
 ```
 
 **3. 使用```ip addr```命令, 查看backup备用服务器的网卡信息, ens33网卡中不包含VIP的信息**
-```shell
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -303,7 +303,7 @@ systemctl start keepalived
 
 **5. 关闭master主服务器的keepalived服务, 使用```ip addr```再次查看, 已不存在VIP**
 
-```shell
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -320,7 +320,7 @@ systemctl start keepalived
 
 **6. 使用```ip addr```查看backup备用服务器, VIP已经飘移到该服务器**
 
-```shell
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -365,7 +365,7 @@ keepalived配置文件的vrrp_script chk_http_port中的script一般有两种写
 
 keepalived通过脚本执行的返回结果, 改变vrrp_instance的优先级(priority), 然后继续发送通告消息, backup比较优先级再决定是否抢占IP.
 
-```shell
+```bash
 需要安装psmisc软件包, 并将配置文件中的
 script "/root/software/chk_nginx.sh"
 修改为
@@ -391,7 +391,7 @@ script "killall -0 nginx"
 手动在脚本里面检测是否有异常情况, 如果有直接关闭keepalived进程, backup机器接收不到advertisement则会抢占IP.
 
 脚本文件chk_nginx.sh如下, 需要修改启动nginx和停止keepalived的代码 :
-```shell
+```bash
 counter=$(ps -C nginx --no-heading|wc -l)
 echo "current nginx : $counter"
 if [ "${counter}" = "0" ]; then

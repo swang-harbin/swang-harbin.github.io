@@ -9,7 +9,7 @@ categories:
 ---
 # xrandr设置显示比例
 
-```
+```bash
 xrandr --output HDMI-1 --scale 1x1
 ```
 

@@ -42,13 +42,13 @@ nginx监听来自本地80端口的请求, 如果路径与/hello匹配, 便将请
 ### Kong
 
 创建一个叫upstream-name 的 upstream
-```shell
+```bash
 curl -i -X POST http://kong:8001/upstreams \
     -- data "name=upstream-name"
 ```
 
 添加两个负载均衡节点, 即两个真实的服务
-```shell
+```bash
 curl -i -X POST http://kong:8081/upstreams/upstreams-name/targets \
     --data "target=10.1.3.15:8080" \
     --data "weight=100"
@@ -72,14 +72,14 @@ upstream upstream-name {
 
 配置一个service(反向代理服务), host对应upstream-name
 
-```shell
+```bash
 curl -i -X POST http://kong:8001/services \
     --data "name=service-name" \
     --data "host=upstream-name"
 ```
 
 为上面的service配置route信息
-```shell
+```bash
 curl -X POST http://localhost:8001/services/service-name/routes/ \
     --data "hosts[]=route's IP or domain" \
     --data "path[]=/hello"
@@ -97,7 +97,7 @@ location /hello {
 
 ## 测试Kong负载均衡
 
-```shell
+```bash
 curl http://route's IP or domain:8000/hello/hi
 ```
 

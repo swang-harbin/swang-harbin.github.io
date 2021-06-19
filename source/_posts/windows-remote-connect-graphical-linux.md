@@ -51,9 +51,10 @@ https://www.realvnc.com/en/connect/download/viewer/
 
 ### 输入受控机器IP即可连接
 
-![image](https://note.youdao.com/yws/res/52930/56FD9BC7111C4938889A0AEC96B261AC)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619224104.png)
 
 ## 参考文档
 
 - [通过windows远程访问linux桌面的方法（简单）](https://www.cnblogs.com/lizhangshu/p/9709531.html)
 - [Linux和Windows间的远程桌面访问](https://blog.csdn.net/u011054333/article/details/79905102)
+

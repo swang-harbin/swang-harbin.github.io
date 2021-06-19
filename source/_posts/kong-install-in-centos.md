@@ -14,13 +14,13 @@ categories:
 通过官方文档可以下载rpm包, 或者设置yum仓库.
 
 ### 使用rpm包安装
-```shell
+```bash
  $ sudo yum install epel-release
  $ sudo yum install kong-1.4.1.*.noarch.rpm --nogpgcheck
 ```
 
 ### 使用repository安装
-```shell
+```bash
  $ sudo yum update -y
  $ sudo yum install -y wget
  $ wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
@@ -45,12 +45,12 @@ Kong支持有数据库运行和无数据库运行.
 Kong支持使用PostgreSQL9.5+ 和 Cassandra 3.x.x 作为他的数据存储.
 
 **如果使用PostgreSQL**, 需要提供一个数据库的用户:
-```shell
+```bash
 CREATE USER kong;
 CREATE DATABASE kong OWNER kong;
 ```
 然后验证配置初始化kong的配置到数据库
-```shell
+```bash
  $ kong migrations bootstrap [-c /path/to/kong.conf]
 ```
 
@@ -58,7 +58,7 @@ CREATE DATABASE kong OWNER kong;
 
 ### 不使用数据库
 需要创建一个```kong.yml```, 在当前目录执行以下命令, 创建一个带基本结构的kong.yml, 详细讲解见[使用DB-less模式]()
-```shell
+```bash
  $ kong config init
 ```
 
@@ -70,12 +70,12 @@ database = off
 declarative_config = /path/to/kong.yml
 ```
 然后验证kong的配置并初始化
-```shell
+```bash
  $ kong migrations bootstrap [-c /path/to/kong.conf]
 ```
 
 ## 启动Kong
-```shell
+```bash
  $ kong start [-c /path/to/kong.conf]
 ```
 
@@ -92,11 +92,11 @@ declarative_config = /path/to/kong.yml
 
 ## 其他操作
 停止kong
-```shell
+```bash
 kong stop [-p /prefix/kong/is/running/at/kong-2.0.2]
 ```
 
 重载kong
-```shell
+```bash
 kong reload
 ```

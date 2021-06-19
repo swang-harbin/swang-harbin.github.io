@@ -33,14 +33,14 @@ database = off
 ```
 
 使用创建的**kong.conf**, 启动kong
-```shell
+```bash
 # 启动kong
 $ kong start -c kong.conf
 ```
 
 #### 通过设置环境变量指定
 
-```shell
+```bash
 # 设置环境变量
 $ export KONG_DATABASE=off
 # 创建kong.conf
@@ -53,7 +53,7 @@ $ kong start -c kong.conf
 
 在Kong启动后, 访问管理页面, 验证**database**被设置成了**off**
 
-```shell
+```bash
 $ http :8081/
 
 # 返回
@@ -76,7 +76,7 @@ Server: kong/1.1.0
 ```
 Kong运行起来了, 但是没有加载声明式配置文件. 这意味着, 这个节点的配置是空的. 这没有任何的路由, 服务或者实体:
 
-```shell
+```bash
 $ http :8001/routes
 
 # 返回
@@ -97,7 +97,7 @@ Server: kong/1.1.0
 ### 创建声明配置文件
 
 通过如下命令, 在当前目录创建一个具备结构的声明配置文件**kong.yml**
-```shell
+```bash
 $ kong config -c kong.conf init
 ```
 
@@ -106,7 +106,7 @@ $ kong config -c kong.conf init
 #### 介绍和创建
 
 kong的声明配置文件包含实体和他们的值, 以下是一个小的, 但是完整的例子, 说明了多个特征 : 
-```shell
+```bash
 _format_version: "1.1"
 
 services:
@@ -129,7 +129,7 @@ consumers:
 在最上面, 可以定义任意的Kong实体, 可以是**核心实体**(在上例中的**services**和**consumers**), 也可以是**自定义实体**(例如:**keyauth_credentials**), 自定义实体可以对声明配置文件的固有格式进行扩展, 这也是```kong config```命令必须要有一个```kong.conf```的原因, 以便用户来管理**plugins**.
 
 实体间**one-to-one**的关系可以通过嵌套来表示, 而涉及到两个以上的实体关系, 必须使用其顶级实体, 通过定义的主键或名字指定. 例如一个插件即需要一个服务方也需要一个消费方 : 
-```shell
+```bash
 plugins:
 # 该插件的名称
 - name: syslog
@@ -140,7 +140,7 @@ plugins:
 ```
 
 #### 格式检查
-```shell
+```bash
 $ kong config -c kong.conf parse kong.yml
 
 parse successful
@@ -153,7 +153,7 @@ parse successful
 ##### 在kong.conf中指定
 
 在**kong.conf**中添加 : 
-```shell
+```bash
 declarative_config = /ymlpath/kong.yml
 
 # 启动kong
@@ -162,7 +162,7 @@ $ kong start -c kong.conf
 
 ##### 设置环境变量指定
 
-```shell
+```bash
 # 设置DB-less模式
 $ export KONG_DATABASE=off
 # 设置kong.yml位置
@@ -173,7 +173,7 @@ $ kong start -c kong.conf
 
 ##### 在运行时修改配置
 可以在一个运行中的kong节点通过http请求**/config**端点进行配置 : 
-```shell
+```bash
 $ http :8001/config config=@kong.yml
 ```
 该方式替换了之前加载进内存中的配置.

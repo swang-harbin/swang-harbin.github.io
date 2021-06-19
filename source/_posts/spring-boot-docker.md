@@ -60,13 +60,13 @@ Docker支持将软件编译成一个镜像, 然后在镜像中对各种软件做
 
 6. 设置好网络后使用命令重启虚拟机网络
 
-   ```shell
+   ```bash
    systemctl restart network
    ```
 
 7. 查看linux的ip地址
 
-   ```shell
+   ```bash
    ifconfig
    ```
 
@@ -76,35 +76,39 @@ Docker支持将软件编译成一个镜像, 然后在镜像中对各种软件做
 
 1. 查看CentOS版本:
 
-Docker要求CentOS系统的内核版本高于3.10 `uname -a`
+   ```bash
+   uname -a
+   ```
 
-1. 升级软件包及内核(选做)
+   Docker要求CentOS系统的内核版本高于3.10 
 
-   ```shell
+2. 升级软件包及内核(选做)
+
+   ```bash
    yum update
    ```
 
-2. 安装Docker
+3. 安装Docker
 
-   ```shell
+   ```bash
    yum install docker
    ```
 
-3. 启动Docker
+4. 启动Docker
 
-   ```shell
+   ```bash
    systemctl start docker
    ```
 
-4. 设置Docker开机自启
+5. 设置Docker开机自启
 
-   ```shell
+   ```bash
    systemctl enable docker
    ```
 
-5. 停止Docker
+6. 停止Docker
 
-   ```shell
+   ```bash
    systemctl stop docker
    ```
 
@@ -138,69 +142,69 @@ Docker要求CentOS系统的内核版本高于3.10 `uname -a`
 
 1. 搜索镜像
 
-   ```shell
+   ```bash
    docker search tomcat
    ```
 
 2. 拉取镜像
 
-   ```shell
+   ```bash
    docker pull tomcat
    ```
 
 3. 根据镜像启动容器
 
-   ```shell
+   ```bash
    docker run --name mytomcat -d tomcat:latest
    ```
 
 4. 查看运行中的容器
 
-   ```shell
+   ```bash
    docker ps
    ```
 
 5. 停止运行中的容器
 
-   ```shell
+   ```bash
    docker stop 容器id
    ```
 
 6. 查看所有的容器
 
-   ```shell
+   ```bash
    docker ps -a
    ```
 
 7. 启动容器
 
-   ```shell
+   ```bash
    docker start 容器id
    ```
 
 8. 删除容器
 
-   ```shell
+   ```bash
    docker stop 容器id
    docker rm 容器id
    ```
 
 9. 启动一个做了端口映射的tomcat
 
-   ```shell
+   ```bash
    docker run -d -p 8888:8080 tomcat
    ```
 
 10. 为了演示简单关闭了linux防火墙
 
-    ```shell
+    ```bash
     systemctl status firewalld
     systemctl stop firewalld
     ```
 
 11. 查看容器日志
 
-    ```shell
+    ```bash
     docker logs 容器id
     ```
 
@@ -208,13 +212,13 @@ Docker要求CentOS系统的内核版本高于3.10 `uname -a`
 
 拉取镜像
 
-```shell
+```bash
 docker pull mysql
 ```
 
 错误的启动
 
-```shell
+```bash
 docker run --name msql01 -d mysql
 
 错误日志
@@ -230,13 +234,13 @@ docker run --name msql01 -d mysql
 
 正确的启动
 
-```shell
+```bash
 docker run --name mysql1  -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 ```
 
 几个其他的高级操作
 
-```shell
+```bash
 指定配置文件
 docker run --name container-name -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pwd -d mysql:tag
 把主机的/my/custom文件夹挂载到mysql docker容器的/etc/mysql/conf.d文件夹里面

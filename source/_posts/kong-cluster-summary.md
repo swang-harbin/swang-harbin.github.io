@@ -78,7 +78,7 @@ pg_database=kong
 
 安装及启动命令
 
-```shell
+```bash
 docker run -d --name kong --network=kong-net 
 -e "KONG_DATABASE=postgres" 
 -e "KONG_PG_HOST=10.1.100.152" 
@@ -102,7 +102,7 @@ kong:1.4.2
 
 **添加 logController**
 
-```shell
+```bash
 curl -X POST http://10.1.100.152:8001/upstreams \
 	--data 'name=log-upstream'
 	
@@ -130,7 +130,7 @@ curl -X POST http://10.1.100.152:8001/services/log-service/routes/ \
 
 **添加 testController**
 
-```shell
+```bash
 curl -X POST http://10.1.100.152:8001/upstreams \
 	--data 'name=test-upstream'
 	
@@ -155,7 +155,7 @@ curl -X POST http://10.1.100.152:8001/services/test-service/routes/ \
 
 nginx.conf
 
-```shell
+```bash
 events {
 }
 http {
@@ -180,7 +180,7 @@ http {
 
 nginx.conf
 
-```shell
+```bash
 events {
 }
 http {

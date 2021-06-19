@@ -18,7 +18,7 @@ categories:
 
 添加 **/etc/systemd/system/postgresql.service**
 
-```shell
+```properties
 [Unit]
 Description=PostgreSQL database server
 Documentation=man:postgres(1)

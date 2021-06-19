@@ -27,7 +27,7 @@ host all all 0.0.0.0/0 trust
 
 postgresql.conf :
 
-```
+```properties
 listen_addresses='*'
 ```
 

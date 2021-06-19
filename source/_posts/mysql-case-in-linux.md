@@ -40,13 +40,13 @@ show variables like 'lower%';
 
 使用root用户登录, 编辑**/etc/my.cnf**文件, 在**[mysqld]**下加入如下代码
 
-```
+```properties
 lower_case_table_names=1
 ```
 
 重新启动数据库
 
-```
+```bash
 systemctl restart mysqld mysql
 ```
 

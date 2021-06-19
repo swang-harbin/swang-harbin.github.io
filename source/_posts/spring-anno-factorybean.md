@@ -124,11 +124,11 @@ bean3的类型为: class icu.intelli.bean.ColorFactoryBean
 
 **分析**
 
-> 由于ColorFactoryBean中isSingleton返回false, 因此使用多例模式, 执行了两次getObject()方法, 两个对象bean1与bean2不相等
+由于ColorFactoryBean中isSingleton返回false, 因此使用多例模式, 执行了两次getObject()方法, 两个对象bean1与bean2不相等
 
-> 直接通过beanName:colorFactoryBean获取到的bean类型为Color类型
+直接通过beanName:colorFactoryBean获取到的bean类型为Color类型
 
-> 如果需要获取ColorFactoryBean类型的对象, 需要在beanName前添加一个&前缀, 即&colorFactoryBean. 是因为在BeanFactory接口中包含如下变量
+如果需要获取ColorFactoryBean类型的对象, 需要在beanName前添加一个&前缀, 即&colorFactoryBean. 是因为在BeanFactory接口中包含如下变量
 
 ```java
 public interface BeanFactory {

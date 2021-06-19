@@ -22,16 +22,16 @@ categories:
 ```
 
 ## 重启daemon
-```shell
+```bash
 systemctl daemon-reload
 ```
 
 ## 重启Docker
-```shell
+```bash
 systemctl restart docker
 ```
 
 ## 测试
-```shell
+```bash
 docker info
 ```

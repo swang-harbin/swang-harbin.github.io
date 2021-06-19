@@ -15,19 +15,19 @@ categories:
 ## 安装vsftpd
 
 CentOS:
-```shell
+```bash
 $ sudo dnf install vsftpd
 ```
 
 Ubuntu:
-```shell
+```bash
 $ sudo apt-get install vsftpd
 ```
 
 ## 配置FTP服务
 
 vsftpd-3.0.3的配置文件为/etc/vsftpd.conf, 该文件本身有详细的文档说明, 所以这里只修改一些有用的配置, 使你能快速的搭建起FTP服务. 关于配置的详细信息可以使用man手册查看
-```shell
+```bash
 man vsftpd.conf
 ```
 

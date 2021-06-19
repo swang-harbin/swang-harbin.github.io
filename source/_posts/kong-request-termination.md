@@ -11,7 +11,7 @@ categories:
 
 [官方文档](https://docs.konghq.com/hub/kong-inc/request-termination/)
 
-![kong-inc_request-termination.png](https://note.youdao.com/yws/res/65801/WEBRESOURCE123656dee0bb5c7cf44409c1e095075a)
+![kong-inc_request-termination](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619013329.png)
 
 该插件使用指定的状态码和信息终止传入的请求. 这允许(临时)停止在服务或路由撒谎那个的流量, 甚至阻止使用者.
 

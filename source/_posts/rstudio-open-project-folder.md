@@ -12,4 +12,4 @@ categories:
 
 File -> New Project... -> Existing Directory
 
-![image.png](http://note.youdao.com/yws/res/78570/WEBRESOURCEaa04f61c7f5d45599f5dfb91b7204048)
+![image.png](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619222443.png)

@@ -90,59 +90,59 @@ XMLHttpRequest对象默认情况下是无法获取到非同源服务器下的数
 
 ==**跨域的本质其实就是服务器返回一个方法调用, 这个方法是我们事先定义好的, 而方法中的参数就是我们想要的数据.**==
 
-- demo :
+**示例**
 
-    - weather.html
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Title</title>
-            <script type="text/javascript">
-                window.onload = function () {
-                    var btn = document.querySelector("#btn");
-                    btn.onclick = function () {
-                        var cityName = document.querySelector("#city").value;
-    
-                        // 动态创建script标签, 动态指定src属性的值
-                        var script = document.createElement("script");
-                        // 引入外部js/php文件, 动态添加相关参数并指定方法名
-                        script.src = "http://www.lisi.com/data.php?city=" + cityName + "&callback=foo";
-                        // 将function移动到业务逻辑中
-                        window["foo"] = fucntion(data)
-                        {
-                            console.log(data);
-                        }
-                        ;
-                        var head = document.querySelector("head");
-                        head.appendChild(script);
-                    }
-                }
-            </script>
-        </head>
-        <body>
-            <h1>天气查询</h1>
-            <input type="text" id="city" placeholder="请输入城市名称">
-            <input type="button" id="btn" value="查询">
-        </body>
-    </html>
-    ```
-    
-    - http://www.lisi.com/data.php
-    
-    ```php
-    <?php
-        
-        $cbName = $_GET["callback"];
-        $city = $_GET["city"];
-        if($city == "beijing"){
-            echo $cbName."('北京的天气晴')"
-        }else{
-            echo $cbName."('没有查询到天气信息')"
-        }
-    ?>
-    ```
+- weather.html
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Title</title>
+          <script type="text/javascript">
+              window.onload = function () {
+                  var btn = document.querySelector("#btn");
+                  btn.onclick = function () {
+                      var cityName = document.querySelector("#city").value;
+  
+                      // 动态创建script标签, 动态指定src属性的值
+                      var script = document.createElement("script");
+                      // 引入外部js/php文件, 动态添加相关参数并指定方法名
+                      script.src = "http://www.lisi.com/data.php?city=" + cityName + "&callback=foo";
+                      // 将function移动到业务逻辑中
+                      window["foo"] = fucntion(data)
+                      {
+                          console.log(data);
+                      }
+                      ;
+                      var head = document.querySelector("head");
+                      head.appendChild(script);
+                  }
+              }
+          </script>
+      </head>
+      <body>
+          <h1>天气查询</h1>
+          <input type="text" id="city" placeholder="请输入城市名称">
+          <input type="button" id="btn" value="查询">
+      </body>
+  </html>
+  ```
+
+- http://www.lisi.com/data.php
+
+  ```php
+  <?php
+      
+      $cbName = $_GET["callback"];
+      $city = $_GET["city"];
+      if($city == "beijing"){
+          echo $cbName."('北京的天气晴')"
+      }else{
+          echo $cbName."('没有查询到天气信息')"
+      }
+  ?>
 
 淘宝提示词案例接口 :
 属性 | 说明
@@ -191,4 +191,4 @@ XMLHttpRequest对象默认情况下是无法获取到非同源服务器下的数
     </body>
 </html>
 ```
-jsonp : json with padding, 是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。用 JSONP 抓到的资料并不是 JSON，而是任意的JavaScript，用 JavaScript 直译器执行而不是用 JSON 解析器解析。
+jsonp : json with padding, 是JSON的一种"使用模式"，可用于解决主流浏览器的跨域数据访问的问题。用 JSONP 抓到的资料并不是 JSON，而是任意的JavaScript，用 JavaScript 直译器执行而不是用 JSON 解析器解析。

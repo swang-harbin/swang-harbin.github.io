@@ -13,7 +13,7 @@ categories:
 
 ## 创建用户和组
 
-```
+```bash
 # groupadd mysql
 # useradd -r -g mysql -s /bin/false mysql
 ```

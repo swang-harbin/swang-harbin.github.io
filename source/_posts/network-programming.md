@@ -43,84 +43,84 @@ ServerSocket的主要目的是设置服务器的监听端口, 而Socket需要指
 
 - 实现服务器端的定义
 
-```java
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Scanner;
-
-public class EchoServer {
-
-    public static void main(String[] args) throws IOException {
-        ServerSocket server = new ServerSocket(9999); // 设置服务器端的监听端口
-        System.out.println("等待客户端连接...........");
-        Socket client = server.accept(); // 有客户端连接
-        // 1. 首先需要先接收客户端发送来的信息, 然后才可以将信息处理后发送回客户端
-        Scanner scan = new Scanner(client.getInputStream()); // 客户端输入流
-        scan.useDelimiter("\n"); // 设置分隔符
-        PrintWriter out = new PrintWriter(client.getOutputStream()); //客户端输出流
-        boolean flag = true; // 循环标记
-        while (flag) {
-            if (scan.hasNext()) { // 现在有数据发送过来
-                String val = scan.next();
-                if ("byebye".equalsIgnoreCase(val)) {
-                    out.println("byebye....");
-                    flag = false;
-                } else {
-                    out.println("[echo] " + val);
-                }
-                out.flush(); // 强制刷新缓冲区
-            }
-        }
-        out.close();
-        scan.close();
-        client.close();
-        server.close();
-    }
-}
-```
+  ```java
+  import java.io.IOException;
+  import java.io.PrintWriter;
+  import java.net.ServerSocket;
+  import java.net.Socket;
+  import java.util.Scanner;
+  
+  public class EchoServer {
+  
+      public static void main(String[] args) throws IOException {
+          ServerSocket server = new ServerSocket(9999); // 设置服务器端的监听端口
+          System.out.println("等待客户端连接...........");
+          Socket client = server.accept(); // 有客户端连接
+          // 1. 首先需要先接收客户端发送来的信息, 然后才可以将信息处理后发送回客户端
+          Scanner scan = new Scanner(client.getInputStream()); // 客户端输入流
+          scan.useDelimiter("\n"); // 设置分隔符
+          PrintWriter out = new PrintWriter(client.getOutputStream()); //客户端输出流
+          boolean flag = true; // 循环标记
+          while (flag) {
+              if (scan.hasNext()) { // 现在有数据发送过来
+                  String val = scan.next();
+                  if ("byebye".equalsIgnoreCase(val)) {
+                      out.println("byebye....");
+                      flag = false;
+                  } else {
+                      out.println("[echo] " + val);
+                  }
+                  out.flush(); // 强制刷新缓冲区
+              }
+          }
+          out.close();
+          scan.close();
+          client.close();
+          server.close();
+      }
+  }
+  ```
 
 - 实现客户端的定义
 
-```java
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.util.Scanner;
-
-public class EchoClient {
-
-    private static final BufferedReader KEYBOARD_INPUT = new BufferedReader(new InputStreamReader(System.in));
-
-    public static void main(String[] args) throws IOException {
-        Socket client = new Socket("localhost", 9999); // 定义服务端的连接信息
-        // 现在客户端需要有输入与输出的操作支持, 所以依然要准备Scanner与PrintWrite
-        Scanner scan = new Scanner(client.getInputStream()); // 接收服务端的输入内容
-        scan.useDelimiter("\n");
-        PrintWriter out = new PrintWriter(client.getOutputStream()); // 向服务端发送数据
-        boolean flag = true;
-        while (flag) {
-            System.out.println("请输入要发送的内容:");
-            String input = KEYBOARD_INPUT.readLine();
-            out.println(input);
-            out.flush();
-            if (scan.hasNext()) {   // 服务器端有回应了
-                String val = scan.next();
-                System.out.println(val);
-                if ("byebye".equalsIgnoreCase(val)) {
-                    flag = false;
-                }
-            }
-        }
-        out.close();
-        scan.close();
-        client.close();
-    }
-}
-```
+  ```java
+  import java.io.BufferedReader;
+  import java.io.IOException;
+  import java.io.InputStreamReader;
+  import java.io.PrintWriter;
+  import java.net.Socket;
+  import java.util.Scanner;
+  
+  public class EchoClient {
+  
+      private static final BufferedReader KEYBOARD_INPUT = new BufferedReader(new InputStreamReader(System.in));
+  
+      public static void main(String[] args) throws IOException {
+          Socket client = new Socket("localhost", 9999); // 定义服务端的连接信息
+          // 现在客户端需要有输入与输出的操作支持, 所以依然要准备Scanner与PrintWrite
+          Scanner scan = new Scanner(client.getInputStream()); // 接收服务端的输入内容
+          scan.useDelimiter("\n");
+          PrintWriter out = new PrintWriter(client.getOutputStream()); // 向服务端发送数据
+          boolean flag = true;
+          while (flag) {
+              System.out.println("请输入要发送的内容:");
+              String input = KEYBOARD_INPUT.readLine();
+              out.println(input);
+              out.flush();
+              if (scan.hasNext()) {   // 服务器端有回应了
+                  String val = scan.next();
+                  System.out.println(val);
+                  if ("byebye".equalsIgnoreCase(val)) {
+                      flag = false;
+                  }
+              }
+          }
+          out.close();
+          scan.close();
+          client.close();
+      }
+  }
+  ```
 
 此时就完成了一个最基础的服务器与客户端之间的通讯
 
@@ -203,44 +203,44 @@ public class EchoServer {
 
 - 实现一个UDP客户端
 
-```java
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-
-public class UDPClient {
-
-    public static void main(String[] args) throws IOException {
-        DatagramSocket client = new DatagramSocket(9999); // 连接到9999端口
-        byte data[] = new byte[1024]; //接收消息
-        DatagramPacket packet = new DatagramPacket(data, data.length);
-        System.out.println("客户端等待接收发送的消息.........");
-        client.receive(packet); // 接收消息, 所有的消息都在data字节数组中
-        System.out.println("接收到的消息内容为: " + new String(data, 0, packet.getLength()));
-        client.close();
-    }
-}
-```
+  ```java
+  import java.io.IOException;
+  import java.net.DatagramPacket;
+  import java.net.DatagramSocket;
+  
+  public class UDPClient {
+  
+      public static void main(String[] args) throws IOException {
+          DatagramSocket client = new DatagramSocket(9999); // 连接到9999端口
+          byte data[] = new byte[1024]; //接收消息
+          DatagramPacket packet = new DatagramPacket(data, data.length);
+          System.out.println("客户端等待接收发送的消息.........");
+          client.receive(packet); // 接收消息, 所有的消息都在data字节数组中
+          System.out.println("接收到的消息内容为: " + new String(data, 0, packet.getLength()));
+          client.close();
+      }
+  }
+  ```
 
 - 实现一个UDP服务端
 
-```java
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-
-public class UDPServer {
-
-    public static void main(String[] args) throws IOException {
-        DatagramSocket server = new DatagramSocket(9000);
-        String str = "www.example.com"; // 要发送的消息的内容
-        DatagramPacket packet = new DatagramPacket(str.getBytes(), 0, str.length(), InetAddress.getByName("localhost"), 9999);
-        server.send(packet);
-        System.out.println("消息发送完毕....");
-        server.close();
-    }
-}
-```
+  ```java
+  import java.io.IOException;
+  import java.net.DatagramPacket;
+  import java.net.DatagramSocket;
+  import java.net.InetAddress;
+  
+  public class UDPServer {
+  
+      public static void main(String[] args) throws IOException {
+          DatagramSocket server = new DatagramSocket(9000);
+          String str = "www.example.com"; // 要发送的消息的内容
+          DatagramPacket packet = new DatagramPacket(str.getBytes(), 0, str.length(), InetAddress.getByName("localhost"), 9999);
+          server.send(packet);
+          System.out.println("消息发送完毕....");
+          server.close();
+      }
+  }
+  ```
 
 UDP发送的数据一定是不可靠的, 但是TCP由于要保证可靠的连接所以所需要的服务器资源就越多

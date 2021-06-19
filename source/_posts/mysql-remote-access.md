@@ -12,7 +12,7 @@ categories:
 
 ## 添加指定IP访问
 
-> GRANT ALL ON *.* TO 用户名@'IP地址' IDENTIFIED BY '密码';
+`GRANT ALL ON *.* TO 用户名@'IP地址' IDENTIFIED BY '密码';`
 
 ```mysql
 use mysql;
@@ -22,7 +22,7 @@ FLUSH PRIVILEGES;
 
 ## 添加指定IP段访问
 
-> GRANT ALL ON *.* TO 用户名@'[xxx.xxx.xxx](http://xxx.xxx.xxx/).%' IDENTIFIED BY '密码';
+`GRANT ALL ON *.* TO 用户名@'[xxx.xxx.xxx](http://xxx.xxx.xxx/).%' IDENTIFIED BY '密码';`
 
 ```mysql
 use mysql;
@@ -32,7 +32,7 @@ FLUSH PRIVILEGES;
 
 ## 添加任意IP访问
 
-> GRANT ALL ON *.* TO 用户名@'%' IDENTIFIED BY '密码';
+`GRANT ALL ON *.* TO 用户名@'%' IDENTIFIED BY '密码';`
 
 ```mysql
 use mysql;
@@ -44,15 +44,13 @@ FLUSH PRIVILEGES;
 
 新版本的MySQL将创建用户和赋予权限分开了, 因此使用上方命令会报错:
 
-```
-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFIED BY 'root'' at line 1
-```
+> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFIED BY 'root'' at line 1
 
 需要使用如下命令:
 
 ### 创建用户
 
-> CREATE USER '用户名'@'访问主机' IDENTIFIED BY '密码';
+`CREATE USER '用户名'@'访问主机' IDENTIFIED BY '密码';`
 
 例如:
 
@@ -62,7 +60,7 @@ CREATE USER 'root'@'%' IDENTIFIED BY 'root';
 
 ### 赋予权限
 
-> GRANT 权限列表 ON 数据库 TO '用户名'@'访问主机';
+`GRANT 权限列表 ON 数据库 TO '用户名'@'访问主机';`
 
 例如:
 
@@ -72,7 +70,7 @@ GRANT ALL ON *.* TO 'root'@'%';
 
 ### 撤销权限
 
-> REVOKE 权限列表 ON 数据库 FROM '用户名'@'访问主机';
+`REVOKE 权限列表 ON 数据库 FROM '用户名'@'访问主机';`
 
 例如:
 
@@ -82,7 +80,7 @@ REVOKE ALL ON *.* FROM 'root'@'%';
 
 ### 删除用户
 
-> DROP USER '用户名'@'访问主机';
+`DROP USER '用户名'@'访问主机';`
 
 例如:
 

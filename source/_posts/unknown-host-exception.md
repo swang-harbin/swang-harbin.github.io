@@ -25,7 +25,7 @@ categories:
 
 如果hostname不是本机的网卡ip, 则证明可能有问题, 需要在/etc/hosts配置文件中添加下列信息
 
-```shell
+```bash
 # <IP地址> <hostname1> <hostname2>
 # 例如
 127.0.0.1 localhost localhost.admin
@@ -35,7 +35,7 @@ categories:
 
 修改本机hostname
 
-```shell
+```bash
 hostname <new hostname>
 ```
 

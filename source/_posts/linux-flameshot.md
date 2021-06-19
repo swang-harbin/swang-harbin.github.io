@@ -12,17 +12,18 @@ categories:
 ## 安装命令:
 
 Ubuntu
-```
+```bash
 sudo apt install flameshot
 ```
 
 Fedora
-```
+```bash
 sudo dnf install flameshot
 ```
 
 ## 启动命令
 
-```
+```bash
 flameshot gui
 ```
+

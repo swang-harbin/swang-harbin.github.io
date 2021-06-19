@@ -19,7 +19,7 @@ categories:
 
 在set local上方添加
 
-```shell
+```bash
 SET CATALINA_OPTS=-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
 
 # 设置dos窗口的Title
@@ -29,7 +29,7 @@ set local
 
 **Linux修改catalina.sh, 添加**
 
-```shell
+```bash
 CATALINA_OPTS="-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
 ```
 
@@ -37,7 +37,7 @@ CATALINA_OPTS="-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transpor
 
 使用如下命令运行jar
 
-```shell
+```bash
 java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -jar  /jar/path/xxx.jar
 ```
 

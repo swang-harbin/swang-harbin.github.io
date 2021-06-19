@@ -26,9 +26,9 @@ categories:
 5. 可以说Google是Hadoop的思想之源(Google在大数据方面的三篇论文)
    
     ```
-                GFS --> HDFS
-                Map-Resuce --> MR
-                BigTable --> HBase
+    GFS --> HDFS
+    Map-Resuce --> MR
+    BigTable --> HBase
     ```
 6. 2003-2004年, Google公开了部分GFS和MapReduce思想的细节, 以此为基础Doug Cutting等人用了**2年业余时间**实现了DFS和MapReduce机制, 使Nutch性能飙升.
 7. 2005年Hadoop作为Lucene的子项目Nutch的一部分正式引入Apache基金会.
@@ -91,15 +91,15 @@ HDFS: Hadoop Distributed File System, Hadoop分布式文件系统
 
 1. NameNode(nn): 存储文件的元数据, 如文件名, 文件目录结构, 文件属性(生成时间, 副本数, 文件权限), 以及每个文件的块列表和块所在的DataNode等.
 
-> 相当于目录
+   > 相当于目录
 
 2. DataNode(dn): 在本地文件系统存储文件块数据, 以及块数据的校验和.
 
-> 相当于目录指向的大量数据
+   > 相当于目录指向的大量数据
 
 3. Secondary NameNode(2nn): 用来监控HDFS状态的辅助后台程序, 每隔一段时间获取HDFS元数据的快照.
 
-> 辅助NameNode的
+   > 辅助NameNode的
 
 ### YARN架构
 
@@ -148,81 +148,87 @@ MapReduce将计算过程分为两个阶段: Map和Reduce
 
 ## 虚拟机环境准备
 
-- 1. 克隆虚拟机
-- 2. 修改克隆虚拟机的静态IP
+1. 克隆虚拟机
 
-    > /etc/sysconfig/network-scripts/ifcfg-eth0
-  
-    ```
-    TYPE="Ethernet"
-    PROXY_METHOD="none"
-    BROWSER_ONLY="no"
-    BOOTPROTO="static"
-    IPADDR="192.168.122.101"
-    GATEWAY="192.168.122.1"
-    NETMASK="255.255.255.0"
-    DNS1="8.8.8.8"
-    DEFROUTE="yes"
-    IPV4_FAILURE_FATAL="no"
-    IPV6INIT="yes"
-    IPV6_AUTOCONF="yes"
-    IPV6_DEFROUTE="yes"
-    IPV6_FAILURE_FATAL="no"
-    IPV6_ADDR_GEN_MODE="stable-privacy"
-    NAME="eth0"
-    UUID="a5227980-3d9c-4718-8125-0b2023521442"
-    DEVICE="eth0"
-    ONBOOT="yes"
-    ```
-- 3. 修改主机名
-    > /etc/hostname
+2. 修改克隆虚拟机的静态IP
 
-    ```
-    192-168-122-101
-    ```
-  
-    > 在/etc/hosts文件中添加
-  
-    ```
-    192.168.122.101 192-168-122-101
-    192.168.122.102 192-168-122-102
-    ```
-- 4. 关闭防火墙
-  
-    ```
-    systemctl stop firewalld
-    ```
-  
-- 5. 创建hadooptest用户
+   /etc/sysconfig/network-scripts/ifcfg-eth0
 
-    ```
-    useradd hadooptest
-    ```
-  
-- 6. 配置hadooptest用户具有root权限
-    > /etc/sudoers, 在如下部分添加hadooptest用户
+   ```properties
+   TYPE="Ethernet"
+   PROXY_METHOD="none"
+   BROWSER_ONLY="no"
+   BOOTPROTO="static"
+   IPADDR="192.168.122.101"
+   GATEWAY="192.168.122.1"
+   NETMASK="255.255.255.0"
+   DNS1="8.8.8.8"
+   DEFROUTE="yes"
+   IPV4_FAILURE_FATAL="no"
+   IPV6INIT="yes"
+   IPV6_AUTOCONF="yes"
+   IPV6_DEFROUTE="yes"
+   IPV6_FAILURE_FATAL="no"
+   IPV6_ADDR_GEN_MODE="stable-privacy"
+   NAME="eth0"
+   UUID="a5227980-3d9c-4718-8125-0b2023521442"
+   DEVICE="eth0"
+   ONBOOT="yes"
+   ```
 
-    ```
-    ## Allow root to run any commands anywhere 
-    root    ALL=(ALL)       ALL
-    hadooptest    ALL=(ALL)    ALL
-    ```
+3. 修改主机名
 
-- 7. 在/opt目录下创建文件夹
+   /etc/hostname
 
-1. 创建module和software文件夹
-2. 将这两个文件夹所有者和所属组给hadooptest用户和hadooptest组
+   ```
+   192-168-122-101
+   ```
+
+   在/etc/hosts文件中添加
+
+   ```properties
+   192.168.122.101 192-168-122-101
+   192.168.122.102 192-168-122-102
+   ```
+
+4. 关闭防火墙
+
+   ```bash
+   systemctl stop firewalld
+   ```
+
+5. 创建hadooptest用户
+
+   ```bash
+   useradd hadooptest
+   ```
+
+6. 配置hadooptest用户具有root权限
+
+   /etc/sudoers, 在如下部分添加hadooptest用户
+
+   ```bash
+   ## Allow root to run any commands anywhere 
+   root    ALL=(ALL)       ALL
+   hadooptest    ALL=(ALL)    ALL
+   ```
+
+7. 在/opt目录下创建文件夹
+
+   1. 创建module和software文件夹
+
+   2. 将这两个文件夹所有者和所属组给hadooptest用户和hadooptest组
 
 ## 安装JDK, 并设置环境变量
 
 解压software文件夹中的jdk-8u241-linux-x64.tar.gz到module目录
 
-```
+```bash
 tar -zxvf /opt/software/jdk-8u241-linux-x64.tar.gz -C /opt/module
 ```
 
 配置环境~/.bash_profile
-```
+```bash
 # Java Environment
 JAVA_HOME=/opt/module/jdk1.8.0_241
 PATH=$JAVA_HOME/bin:$PATH
@@ -232,7 +238,7 @@ export JAVA_HOME PATH CLASSPATH
 ```
 
 使配置生效
-```
+```bash
 source ~/.bash_profile
 ```
 
@@ -240,12 +246,12 @@ source ~/.bash_profile
 
 解压software文件夹中的hadoop-2.7.7.tar.gz到module目录
 
-```
+```bash
 tar -zxvf /opt/software/hadoop-2.7.7.tar.gz -C /opt/module
 ```
 
 配置环境~/.bash_profile
-```
+```bash
 # Hadoop Environment
 HADOOP_HOME=/opt/module/hadoop-2.7.7
 PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
@@ -254,7 +260,7 @@ export HADOOP_HOME PATH
 ```
 
 使配置生效
-```
+```bash
 source ~/.bash_profile
 ```
 
@@ -291,7 +297,7 @@ Hadoop官方网站: http://hadoop.apache.org/
 
 查找符合'dfs[a-z.]+'正则表达式的字段
 
-```
+```bash
 $ mkdir input
 $ cp etc/hadoop/*.xml input
 $ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar grep input output 'dfs[a-z.]+'
@@ -299,193 +305,207 @@ $ cat output/*
 ```
 注: output文件夹一定不能存在
 
-```
+```bash
 1	dfsadmin
 ```
 
 ## 官方WordCount案例
 
 1. 创建输入文件夹
-```
-$ mkdir wcinput
-```
+
+   ```bash
+   $ mkdir wcinput
+   ```
+
 2. 创建输入文件
-```
-$ vim wcinput/wc.input
-```
-内容
-```
-tianyi huichao lihua
-zhangchen xiaoheng
-xinbo xinbo
-gaoyang gaoyang yanjing yanjing
-```
+
+   ```bash
+   $ vim wcinput/wc.input
+   ```
+
+   内容
+
+   ```
+   tianyi huichao lihua
+   zhangchen xiaoheng
+   xinbo xinbo
+   gaoyang gaoyang yanjing yanjing
+   ```
+
 3. 运行程序
-```
-bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar wordcount wcinput wcoutput
-```
+
+   ```bash
+   bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar wordcount wcinput wcoutput
+   ```
+
 4. 查看结果
 
-```
-cat wcoutput/*
-```
+   ```bash
+   cat wcoutput/*
+   ```
 
-```
-gaoyang	2
-huichao	1
-lihua	1
-tianyi	1
-xiaoheng	1
-xinbo	2
-yanjing	2
-zhangchen	1
-```
+   ```
+   gaoyang	2
+   huichao	1
+   lihua	1
+   tianyi	1
+   xiaoheng	1
+   xinbo	2
+   yanjing	2
+   zhangchen	1
+   ```
+
 ## 伪分布式模式
 
 ### 修改配置文件
 
-a. etc/hadoop/hadoop-env.sh, 修改JAVA_HOME位置
+1. etc/hadoop/hadoop-env.sh, 修改JAVA_HOME位置
 
-```
-# Set Hadoop-specific environment variables here.
+   ```bash
+   # Set Hadoop-specific environment variables here.
+   
+   # The only required environment variable is JAVA_HOME.  All others are
+   # optional.  When running a distributed configuration it is best to
+   # set JAVA_HOME in this file, so that it is correctly defined on
+   # remote nodes.
+   
+   # The java implementation to use.
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
 
-# The only required environment variable is JAVA_HOME.  All others are
-# optional.  When running a distributed configuration it is best to
-# set JAVA_HOME in this file, so that it is correctly defined on
-# remote nodes.
+2. [etc/hadoop/core-site.xml](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/core-default.xml):
 
-# The java implementation to use.
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
+   ```xml
+   <configuration>
+       <!-- 指定HDFS中NameNode的地址 -->
+       <property>
+           <name>fs.defaultFS</name>
+           <value>hdfs://localhost:9000</value>
+       </property>
+   
+       <!-- 指定Hadoop运行时产生文件的存储目录-->
+       <property>
+           <name>hadoop.tmp.dir</name>
+           <!-- 默认: /tmp/hadoop-${user.name} -->
+           <value>/opt/module/hadoop-2.7.7/data/tmp</value>
+       </property>
+   </configuration>
+   ```
 
-b. [etc/hadoop/core-site.xml](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/core-default.xml):
+3. [etc/hadoop/hdfs-site.xml](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml):
 
-```
-<configuration>
-    <!-- 指定HDFS中NameNode的地址 -->
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
-    </property>
+   ```xml
+   <configuration>
+       <!-- 指定HDFS副本的数量 -->
+       <property>
+           <name>dfs.replication</name>
+           <value>1</value>
+       </property>
+   </configuration>
+   ```
 
-    <!-- 指定Hadoop运行时产生文件的存储目录-->
-    <property>
-        <name>hadoop.tmp.dir</name>
-        <!-- 默认: /tmp/hadoop-${user.name} -->
-        <value>/opt/module/hadoop-2.7.7/data/tmp</value>
-    </property>
-</configuration>
-```
-
-c. [etc/hadoop/hdfs-site.xml](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml):
-
-```
-<configuration>
-    <!-- 指定HDFS副本的数量 -->
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-</configuration>
-```
 如果只有1台服务器, value设置为>1的值, 也只有1份备份. 在添加足够节点后, 会自动将指定数量的数据备份到其他节点
 
 
 ### 启动集群
 
 1. ==格式化NameNode==(第一次启动时格式化, 以后就不要总格式化)
-```
-$ bin/hdfs namenode -format
-```
-在格式化之前要关闭NameNode和DataNode进程, 删除data和logs目录.
 
-执行结束后会创建hadoop.tmp.dir指定的文件夹, 并在该目录下生成相应数据.
+   ```bash
+   $ bin/hdfs namenode -format
+   ```
 
+   在格式化之前要关闭NameNode和DataNode进程, 删除data和logs目录.
+
+   执行结束后会创建hadoop.tmp.dir指定的文件夹, 并在该目录下生成相应数据.
 
 2. 启动NameNode daemon和DataNode daemon:
-```
-$ sbin/hadoop-daemon.sh start namenode
-$ sbin/hadoop-daemon.sh start datanode
-```
-或
-```
-$ sbin/start-dfs.sh
-```
 
-hadoop daemon的日志默认输出在$HADOOP_LOG_DIR目录(默认值为$HADOOP_HOME/logs).
+   ```bash
+   $ sbin/hadoop-daemon.sh start namenode
+   $ sbin/hadoop-daemon.sh start datanode
+   ```
 
-使用`jps`命令可以查看是否启动成功
-```
-$ jps
-3027 NameNode
-3125 DataNode
-3197 Jps
-```
+   或
+
+   ```bash
+   $ sbin/start-dfs.sh
+   ```
+
+   hadoop daemon的日志默认输出在$HADOOP_LOG_DIR目录(默认值为$HADOOP_HOME/logs).
+
+   使用`jps`命令可以查看是否启动成功
+
+   ```bash
+   $ jps
+   3027 NameNode
+   3125 DataNode
+   3197 Jps
+   ```
 
 3. NameNode信息的浏览器访问接口, 默认是
 
-- NameNode - `http://localhost:9870/`或`http://localhost:50070/`
+   NameNode - `http://localhost:9870/`或`http://localhost:50070/`
 
 4. 设置执行MapReduce作业所需的HDFS目录(集群使用的目录)
 
-```
-$ bin/hdfs dfs -mkdir /user
-$ bin/hdfs dfs -mkdir -p /user/<username>
+   ```bash
+   $ bin/hdfs dfs -mkdir /user
+   $ bin/hdfs dfs -mkdir -p /user/<username>
+   
+   示例:
+   $ bin/hdfs dfs -mkdir -p /user/hadooptest/input
+   ```
 
-示例:
-$ bin/hdfs dfs -mkdir -p /user/hadooptest/input
-```
+   此时, 可在通过访问NameNode信息的浏览器访问接口 Utilities -> Browse the file system查看创建的文件信息
 
-此时, 可在通过访问NameNode信息的浏览器访问接口 Utilities -> Browse the file system查看创建的文件信息
-
-![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142913.png)
+   ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142913.png)
 
 5. 输入文件复制到分布式文件系统中：
 
-```
-$ bin/hdfs dfs -mkdir input
-$ bin/hdfs dfs -put etc/hadoop/*.xml input
-
-示例:
-$ bin/hdfs dfs -put etc/hadoop/*.xml /user/hadooptest/input
-```
+   ```bash
+   $ bin/hdfs dfs -mkdir input
+   $ bin/hdfs dfs -put etc/hadoop/*.xml input
+   
+   示例:
+   $ bin/hdfs dfs -put etc/hadoop/*.xml /user/hadooptest/input
+   ```
 
 6. 运行hadoop官方提供的grep示例
 
-```
-$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar grep input output 'dfs[a-z.]+'
-
-示例:
-$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar grep /user/hadooptest/input /user/hadooptest/output 'dfs[a-z.]+'
-```
+   ```bash
+   $ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar grep input output 'dfs[a-z.]+'
+   
+   示例:
+   $ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar grep /user/hadooptest/input /user/hadooptest/output 'dfs[a-z.]+'
+   ```
 
 7. 检查输出文件: 将输出文件从分布式文件系统复制到本地文件系统并检查它们：
 
-```
-$ bin/hdfs dfs -get output output
-$ cat output/*
+   ```bash
+   $ bin/hdfs dfs -get output output
+   $ cat output/*
+   
+   示例
+   $ mkdir ./output
+   $ bin/hdfs dfs -get /user/hadooptest/output/* ./output
+   $ cat output/*
+   ```
 
-示例
-$ mkdir ./output
-$ bin/hdfs dfs -get /user/hadooptest/output/* ./output
-$ cat output/*
-```
+   或, 查看分布式文件系统上的输出文件:
 
-或
-
-查看分布式文件系统上的输出文件:
-```
-$ bin/hdfs dfs -cat output/*
-
-示例
-$ bin/hdfs dfs -cat /user/hadooptest/output/*
-```
+   ```bash
+   $ bin/hdfs dfs -cat output/*
+   
+   示例
+   $ bin/hdfs dfs -cat /user/hadooptest/output/*
+   ```
 
 8. 停止hadoop daemon
 
-```
-$ sbin/stop-dfs.sh
-```
+   ```bash
+   $ sbin/stop-dfs.sh
+   ```
 
 
 ## 查看日志文件
@@ -511,103 +531,106 @@ hadoop-hadooptest-datanode-192-168-122-101.log
 
 1. 配置etc/hadoop/yarn-env.sh
 
-```
-# some Java parameters
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
+   ```bash
+   # some Java parameters
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
 
 2. [etc/hadoop/yarn-site.xml](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml):
 
-```
-<configuration>
-    <!-- Reducer获取数据的方式 -->
-    <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
-    </property>
-    <!-- 指定YARN的ResourceManager的地址 -->
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>192-168-122-101</value>
-    </property>
-    
-    <property>
-        <name>yarn.nodemanager.env-whitelist</name>
-        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-    </property>
-</configuration>
-```
+   ```xml
+   <configuration>
+       <!-- Reducer获取数据的方式 -->
+       <property>
+           <name>yarn.nodemanager.aux-services</name>
+           <value>mapreduce_shuffle</value>
+       </property>
+       <!-- 指定YARN的ResourceManager的地址 -->
+       <property>
+           <name>yarn.resourcemanager.hostname</name>
+           <value>192-168-122-101</value>
+       </property>
+   
+       <property>
+           <name>yarn.nodemanager.env-whitelist</name>
+           <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+       </property>
+   </configuration>
 
 3. etc/hadoop/mapred-env.sh
 
-```
-# export JAVA_HOME=/home/y/libexec/jdk1.6.0/
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
+   ```bash
+   # export JAVA_HOME=/home/y/libexec/jdk1.6.0/
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
 
 4. [etc/hadoop/mapred-site.xml:](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
 
-```
-$ cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml
-```
+   ```bash
+   $ cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml
+   ```
 
-```
-<configuration>
-    <!-- 指定MR运行在YARN上 -->
-    <property>
-        <name>mapreduce.framework.name</name>
-        <!-- 默认是local,  可以的值local, classic或yarn -->
-        <value>yarn</value>
-    </property>
-    <property>
-        <name>mapreduce.application.classpath</name>
-        <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
-    </property>
-</configuration>
-```
+   ```xml
+   <configuration>
+       <!-- 指定MR运行在YARN上 -->
+       <property>
+           <name>mapreduce.framework.name</name>
+           <!-- 默认是local,  可以的值local, classic或yarn -->
+           <value>yarn</value>
+       </property>
+       <property>
+           <name>mapreduce.application.classpath</name>
+           <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+       </property>
+   </configuration>
+   ```
 
 5. 启动ResourceManager daemon 和 NodeManager daemon:
-```
-$ sbin/yarn-daemon.sh start resourcemanager
-$ sbin/yarn-daemon.sh start nodemanager
-```
 
-或
+   ```bash
+   $ sbin/yarn-daemon.sh start resourcemanager
+   $ sbin/yarn-daemon.sh start nodemanager
+   ```
 
-```
-$ sbin/start-yarn.sh
-```
+   或
 
-使用```jps```查看启动状态
-```
-$ jps
-3027 NameNode
-5267 NodeManager
-5299 Jps
-5012 ResourceManager
-3125 DataNode
-```
+   ```bash
+   $ sbin/start-yarn.sh
+   ```
+
+   使用```jps```查看启动状态
+
+   ```bash
+   $ jps
+   3027 NameNode
+   5267 NodeManager
+   5299 Jps
+   5012 ResourceManager
+   3125 DataNode
+   ```
+
 6. ResourceManager的浏览器访问接口, 默认为:
 
-- ResourceManager - http://localhost:8088/
+   ResourceManager - http://localhost:8088/
 
 7. 运行一个MapReduce任务
 
-```
-# 删除之前在hdfs中生成的output文件夹
-$ hdfs dfs -rm -r /user/hadooptest/output
-# 运行官方示例grep
-$ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar  grep /user/hadooptest/input/*.xml /user/hadooptest/output 'dfs[a-z.]+'
-```
+   ```bash
+   # 删除之前在hdfs中生成的output文件夹
+   $ hdfs dfs -rm -r /user/hadooptest/output
+   # 运行官方示例grep
+   $ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar  grep /user/hadooptest/input/*.xml /user/hadooptest/output 'dfs[a-z.]+'
+   ```
 
-可在http://localhost:8088/接口查看执行信息
+   可在http://localhost:8088/接口查看执行信息
 
-![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142916.png)
+   ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142916.png)
 
 8. 停止 daemons
-```
-$ sbin/stop-yarn.sh
-```
+
+   ```bash
+   $ sbin/stop-yarn.sh
+   ```
 
 ### 配置历史服务器
 
@@ -619,7 +642,7 @@ MapReduce任务执行结束后, 可以看到如下图的`HISTORY`
 
 #### 配置etc/hadoop/mapred-site.xml
 
-```
+```xml
 <configuration>
     <!-- 历史服务器端地址 -->
     <property>
@@ -634,12 +657,12 @@ MapReduce任务执行结束后, 可以看到如下图的`HISTORY`
 </configuration>
 ```
 #### 启动历史服务
-```
+```bash
 $ sbin/mr-jobhistory-daemon.sh start historyserver
 ```
 
 #### 查看历史服务器是否启动
-```
+```bash
 $ jps
 6702 JobHistoryServer
 ```
@@ -664,7 +687,7 @@ $ jps
 
 #### 配置etc/hadoop/yarn-site.xml
 
-```
+```xml
 <configuration>
     <!-- 开启日志聚集功能 -->
     <property>
@@ -681,14 +704,14 @@ $ jps
 
 #### 关闭HistoryManager, ResourceManager和NodeManager
 
-```
+```bash
 $ sbin/mr-jobhistory-daemon.sh stop historyserver
 $ sbin/yarn-daemon.sh stop resourcemanager
 $ sbin/yarn-daemon.sh stop nodemanager
 ```
 
 #### 启动NodeManager, ResourceManager和HistoryManager
-```
+```bash
 $ sbin/yarn-daemon.sh start nodemanager
 $ sbin/yarn-daemon.sh start resourcemanager
 $ sbin/mr-jobhistory-daemon.sh start historyserver
@@ -696,12 +719,12 @@ $ sbin/mr-jobhistory-daemon.sh start historyserver
 
 #### 删除HDFS上已经存在的输出文件
 
-```
+```bash
 bin/hdfs dfs -rm -r /user/hadooptest/output
 ```
 
 #### 执行Grep程序
-```
+```bash
 $ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.7.jar grep /user/hadooptest/input /user/hadooptest/output 'dfs[a-z.]+'
 ```
 
@@ -728,7 +751,7 @@ Hadoop配置文件分为两类: 默认配置文件和自定义配置文件, 只�
 
 2. 自定义配置文件
 
-**core-site.xml**, **hdfs-site.xml**, **yarn-site.xml**, **mapred-site.xml**四个配置文件存放在$HADOOP_HOME/etc/hadoop这个路径下, 用户可根据项目需求重新进行修改配置.
+**core-site.xml**, **hdfs-site.xml**, **yarn-site.xml**, **mapred-site.xml**四个配置文件存放在`$HADOOP_HOME/etc/hadoop`这个路径下, 用户可根据项目需求重新进行修改配置.
 
 ## 完全分布式运行模式(开发重点)
 
@@ -754,7 +777,7 @@ Hadoop配置文件分为两类: 默认配置文件和自定义配置文件, 只�
 
 - scp定义: scp可以实现服务器与服务器之间的数据拷贝.(from server1 to server2)
 - 基本语法
-    ```
+    ```bash
     scp     -r      $pdir/$fname            $user@$host:$pdir/$fname
     命令    递归    要拷贝的文件路径/名称   用户名@主机:目的路径/名称
     ```
@@ -766,7 +789,7 @@ rsync主要用于备份和镜像. 具有速度快, 避免复制相同内容和�
 rsync和scp区别: 用rsync做文件的复制要比scp的速度快, rsync只对差异文件做更新. scp是把所有文件都复制过去.
 
 - 基本语法
-    ```
+    ```bash
     rsync   -rvl        $pdir/$fname            $user@$host:$pdir/$fname
     命令    选项参数    要拷贝的文件路径/名称   目的用户@主机:目的路径/名称
     ```
@@ -781,7 +804,7 @@ rsync和scp区别: 用rsync做文件的复制要比scp的速度快, rsync只对�
 - 1. 需求: 循环复制文件到所有节点的相同目录下
 - 2. 需求分析:
     - rsync命令原始拷贝:
-        ```
+        ```bash
         rsync -rvl /opt/module root@192.168.122.103:/opt/module
         ```
     - 期望脚本
@@ -789,50 +812,58 @@ rsync和scp区别: 用rsync做文件的复制要比scp的速度快, rsync只对�
     - 说明: 在/home/hadooptest/bin这个目录下存放的脚本, hadooptest用户可以在系统任何地方直接执行
 - 3. 脚本实现
     - 在/home/hadooptest目录下创建bin目录, 并在bin目录下xsync创建文件, 内容如下
-    ```
-    [hadooptest@192-168-122-101 ~]$ ls
-    [hadooptest@192-168-122-101 ~]$ mkdir bin
-    [hadooptest@192-168-122-101 ~]$ cd bin
-    [hadooptest@192-168-122-101 bin]$ touch xsync
-    [hadooptest@192-168-122-101 bin]$ vim xsync
-    ```
-    在该文件中编写如下代码
-    ```
-    #!/bin/bash
-    #1 获取输入参数个数, 如果没有参数, 直接退出
-    pcount=$#
-    if((pcount==0)); then
-    echo no args;
-    exit;
-    fi
-    
-    #2 获取文件名称
-    p1=$1
-    fname=`basename $p1`
-    echo fname=$fname
-    
-    #3 获取上级目录到绝对路径
-    pdir=`cd -P $(dirname $p1); pwd`
-    echo pdir=$pdir
-    
-    #4 获取当前用户名称
-    user=`whoami`
-    
-    #5 循环
-    for((host=102; host<104; host++)); do
-        echo ----------192-168-122-$host----------
-        rsync -rvl $pdir/$pname $user@192-168-122-$host:$pdir
-    done
-    ```
+  
+      ```bash
+      [hadooptest@192-168-122-101 ~]$ ls
+      [hadooptest@192-168-122-101 ~]$ mkdir bin
+      [hadooptest@192-168-122-101 ~]$ cd bin
+      [hadooptest@192-168-122-101 bin]$ touch xsync
+      [hadooptest@192-168-122-101 bin]$ vim xsync
+      ```
+  
+        在该文件中编写如下代码
+  
+      ```bash
+      #!/bin/bash
+      #1 获取输入参数个数, 如果没有参数, 直接退出
+      pcount=$#
+      if((pcount==0)); then
+      echo no args;
+      exit;
+      fi
+      
+      #2 获取文件名称
+      p1=$1
+      fname=`basename $p1`
+      echo fname=$fname
+      
+      #3 获取上级目录到绝对路径
+      pdir=`cd -P $(dirname $p1); pwd`
+      echo pdir=$pdir
+      
+      #4 获取当前用户名称
+      user=`whoami`
+      
+      #5 循环
+      for((host=102; host<104; host++)); do
+          echo ----------192-168-122-$host----------
+          rsync -rvl $pdir/$pname $user@192-168-122-$host:$pdir
+      done
+      ```
+  
     - 修改xsync具有执行权限
-    ```
-    $ chmod 777 xsync
-    ```
+  
+      ```bash
+      $ chmod 777 xsync
+      ```
+  
     - 调用脚本形式: xsync 文件名称
-    ```
-    xsync /home/hadooptest/bin
-    ```
-  ==注意: 如果将xsync放到/home/hadooptest/bin目录下仍然不能实现全局使用, 可以将xsync移动到/user/local/bin目录下.==
+  
+      ```bash
+      xsync /home/hadooptest/bin
+      ```
+  
+      ==注意: 如果将xsync放到/home/hadooptest/bin目录下仍然不能实现全局使用, 可以将xsync移动到/user/local/bin目录下.==
 
 ### 集群配置
 
@@ -851,108 +882,115 @@ ResourceManager占用内存也较大, 所以也要和NameNode, SecondaryNameNode
 
 1. 核心配置文件
 
-配置etc/hadoop/core-site.xml
-```
-<configuration>
-    <!-- 指定HDFS中NameNode的地址 -->
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://192-168-122-101:9000</value>
-    </property>
-    <!-- 指定Hadoop运行时产生文件的存储目录-->
-    <property>
-        <name>hadoop.tmp.dir</name>
-        <value>/opt/module/hadoop-2.7.7/data/tmp</value>
-    </property>
-</configuration>
-```
+   配置etc/hadoop/core-site.xml
+
+   ```xml
+   <configuration>
+       <!-- 指定HDFS中NameNode的地址 -->
+       <property>
+           <name>fs.defaultFS</name>
+           <value>hdfs://192-168-122-101:9000</value>
+       </property>
+       <!-- 指定Hadoop运行时产生文件的存储目录-->
+       <property>
+           <name>hadoop.tmp.dir</name>
+           <value>/opt/module/hadoop-2.7.7/data/tmp</value>
+       </property>
+   </configuration>
+   ```
 
 2. HDFS配置文件
 
-配置etc/hadoop/hadoop-env.sh
-```
-# The only required environment variable is JAVA_HOME.  All others are
-# optional.  When running a distributed configuration it is best to
-# set JAVA_HOME in this file, so that it is correctly defined on
-# remote nodes.
+   配置etc/hadoop/hadoop-env.sh
 
-# The java implementation to use.
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
+   ```bash
+   # The only required environment variable is JAVA_HOME.  All others are
+   # optional.  When running a distributed configuration it is best to
+   # set JAVA_HOME in this file, so that it is correctly defined on
+   # remote nodes.
+   
+   # The java implementation to use.
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
 
-配置etc/hadoop/hdfs-site.xml
-```
-<configuration>
-    <!-- 指定HDFS副本的数量 -->
-    <property>
-        <name>dfs.replication</name>
-        <value>3</value>
-    </property>
-    <!-- 指定Hadoop辅助名称节点主机配置 -->
-    <property>
-        <name>dfs.namenode.secondary.http-address</name>
->         <value>192-168-122-103:50090</value>
-    </property>
-</configuration>
-```
+   配置etc/hadoop/hdfs-site.xml
+
+   ```xml
+   <configuration>
+       <!-- 指定HDFS副本的数量 -->
+       <property>
+           <name>dfs.replication</name>
+           <value>3</value>
+       </property>
+       <!-- 指定Hadoop辅助名称节点主机配置 -->
+       <property>
+           <name>dfs.namenode.secondary.http-address</name>
+           <value>192-168-122-103:50090</value>
+       </property>
+   </configuration>
+   ```
 
 3. YARN配置文件
 
-配置etc/hadoop/yarn-env.sh
-```
-# some Java parameters
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
+   配置etc/hadoop/yarn-env.sh
 
-配置etc/hadoop/yarn-site.xml
-```
-<configuration>
+   ```bash
+   # some Java parameters
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
 
-<!-- Site specific YARN configuration properties -->
-    <!-- Reducer获取数据的方式 -->
-    <property>
-        <name>yarn.nodemanager.aux-services</name>
-        <value>mapreduce_shuffle</value>
-    </property>
-    <!-- 指定YARN的ResourceManager的地址 -->
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>192-168-122-102</value>
-    </property>
+   配置etc/hadoop/yarn-site.xml
 
-    <property>
-        <name>yarn.nodemanager.env-whitelist</name>
-        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-    </property>
-</configuration>
-```
+   ```xml
+   <configuration>
+   
+       <!-- Site specific YARN configuration properties -->
+       <!-- Reducer获取数据的方式 -->
+       <property>
+           <name>yarn.nodemanager.aux-services</name>
+           <value>mapreduce_shuffle</value>
+       </property>
+       <!-- 指定YARN的ResourceManager的地址 -->
+       <property>
+           <name>yarn.resourcemanager.hostname</name>
+           <value>192-168-122-102</value>
+       </property>
+   
+       <property>
+           <name>yarn.nodemanager.env-whitelist</name>
+           <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+       </property>
+   </configuration>
+   ```
 
 4. MapReduce配置文件
 
-配置etc/hadoop/mapred-env.sh
-```
-# export JAVA_HOME=/home/y/libexec/jdk1.6.0/
-export JAVA_HOME=/opt/module/jdk1.8.0_241
-```
-配置etc/hadoop/mapred-site.xml
+   配置etc/hadoop/mapred-env.sh
 
-```
-<configuration>
-    <!-- 指定MR运行在YARN上 -->
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
-    <property>
-        <name>mapreduce.application.classpath</name>
-        <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
-    </property>
-</configuration>
-```
+   ```bash
+   # export JAVA_HOME=/home/y/libexec/jdk1.6.0/
+   export JAVA_HOME=/opt/module/jdk1.8.0_241
+   ```
+
+   配置etc/hadoop/mapred-site.xml
+
+   ```xml
+   <configuration>
+       <!-- 指定MR运行在YARN上 -->
+       <property>
+           <name>mapreduce.framework.name</name>
+           <value>yarn</value>
+       </property>
+       <property>
+           <name>mapreduce.application.classpath</name>
+           <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+       </property>
+   </configuration>
+   ```
 
 #### 在集群上分发配置好的Hadoop配置文件
 
-```
+```bash
 $ xsync /opt/module/hadoop-2.7.7/
 ```
 
@@ -961,12 +999,12 @@ $ xsync /opt/module/hadoop-2.7.7/
 关掉所有节点jps显示的进程, 删除所有节点data和logs目录
 
 初始化101上的hdfs文件系统
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ bin/hdfs namenode -format
 ```
 
 启动101上的NameNode和DataNode
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh start namenode
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh start datanode
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ jps
@@ -976,7 +1014,7 @@ $ xsync /opt/module/hadoop-2.7.7/
 ```
 
 启动102上的DataNode
-```
+```bash
 [hadooptest@192-168-122-102 hadoop-2.7.7]$ sbin/hadoop-daemon.sh start datanode
 [hadooptest@192-168-122-103 hadoop-2.7.7]$ jps
 1698 SecondaryNameNode
@@ -985,12 +1023,12 @@ $ xsync /opt/module/hadoop-2.7.7/
 ```
 
 启动103上的DataNode
-```
+```bash
 [hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh start datanode
 ```
 
 启动103上的secondarynamenode
-```
+```bash
 [hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh start secondarynamenode
 [hadooptest@192-168-122-103 hadoop-2.7.7]$ jps
 1698 SecondaryNameNode
@@ -998,7 +1036,7 @@ $ xsync /opt/module/hadoop-2.7.7/
 1597 DataNode
 ```
 查看NameNode访问接口
-```
+```bash
 http://192.168.122.101:50070
 ```
 
@@ -1011,9 +1049,9 @@ http://192.168.122.101:50070
 
 1. 基本语法
 
-```
-ssh 另一台电脑的ip地址
-```
+   ```bash
+   ssh 另一台电脑的ip地址
+   ```
 
 2. ssh连接时出现Host key verification failed的解决方法
 
@@ -1036,44 +1074,50 @@ ssh 另一台电脑的ip地址
 
 2. 在101服务器(服务器A)上生成密钥对
 
-```
-[hadooptest@192-168-122-101 .ssh]$ cd ~/.ssh
-[hadooptest@192-168-122-101 .ssh]$ ssh-keygen -t rsa
-```
-一路回车, 生成如下两个文件
+   ```bash
+   [hadooptest@192-168-122-101 .ssh]$ cd ~/.ssh
+   [hadooptest@192-168-122-101 .ssh]$ ssh-keygen -t rsa
+   ```
 
-- id_rsa : 私钥
-- id_rsa.pub : 公钥
+   一路回车, 生成如下两个文件
+
+   - id_rsa : 私钥
+
+   - id_rsa.pub : 公钥
 
 3. 将101服务器(服务器A)的公钥拷贝到102服务器(服务器B)
 
-```
-[hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.102
-```
-此时查看102服务器(服务器B)的.ssh文件夹, 已生成如下文件
-```
-[hadooptest@192-168-122-102 .ssh]$ ls
-authorized_keys
-```
+   ```bash
+   [hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.102
+   ```
+
+   此时查看102服务器(服务器B)的.ssh文件夹, 已生成如下文件
+
+   ```bash
+   [hadooptest@192-168-122-102 .ssh]$ ls
+   authorized_keys
+   ```
 
 4. 此时从101服务器(服务器A)登录102服务器(服务器B)不在需要输入密码
-```
-[hadooptest@192-168-122-101 .ssh]$ ssh 192.168.122.102
-Last login: Thu Apr  9 12:02:31 2020 from gateway
-[hadooptest@192-168-122-102 ~]$ 
-```
+
+   ```bash
+   [hadooptest@192-168-122-101 .ssh]$ ssh 192.168.122.102
+   Last login: Thu Apr  9 12:02:31 2020 from gateway
+   [hadooptest@192-168-122-102 ~]$ 
+   ```
 
 5. 依次将101服务器(服务器A)的公钥拷贝到103和101上
 
-```
-[hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.103
-[hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.101
-```
+   ```bash
+   [hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.103
+   [hadooptest@192-168-122-101 .ssh]$ ssh-copy-id 192.168.122.101
+   ```
 
 6. 此时使用如下命令连接101, 102, 103不在需要输入密码
-```
-[hadooptest@192-168-122-101 .ssh]$ ssh 192.168.122.10X
-```
+
+   ```bash
+   [hadooptest@192-168-122-101 .ssh]$ ssh 192.168.122.10X
+   ```
 
 **==注意事项说明及后续必须操作 :==**
 
@@ -1082,18 +1126,20 @@ Last login: Thu Apr  9 12:02:31 2020 from gateway
 - 为101设置免登录到102, 103是因为101上的NameNode需要访问另外两个节点上的DataNode
 
 - 还需要使用相同方法, 为102服务器生成密钥对, 并将公钥拷贝到101和103, 因为102上的ResourceManager需要管理101和103上的NodeManager, 
-```
-[hadooptest@192-168-122-102 .ssh]$ ssh-keygen -t rsa
-[hadooptest@192-168-122-102 .ssh]$ ssh-copy-id 192.168.122.101; ssh-copy-id 192.168.122.102; ssh-copy-id 192.168.122.103
-```
+
+  ```bash
+  [hadooptest@192-168-122-102 .ssh]$ ssh-keygen -t rsa
+  [hadooptest@192-168-122-102 .ssh]$ ssh-copy-id 192.168.122.101; ssh-copy-id 192.168.122.102; ssh-copy-id 192.168.122.103
+  ```
 
 - 还需在101上采用root帐号, 配置以下无密登录到101, 102, 103.
-```
-[hadooptest@192-168-122-101 .ssh]$ su root
-[root@192-168-122-101 .ssh]# cd ~/.ssh
-[root@192-168-122-101 .ssh]# ssh-keygen -t rsa
-[root@192-168-122-101 .ssh]# ssh-copy-id 192.168.122.101; ssh-copy-id 192.168.122.102; ssh-copy-id 192.168.122.103;
-```
+
+  ```bash
+  [hadooptest@192-168-122-101 .ssh]$ su root
+  [root@192-168-122-101 .ssh]# cd ~/.ssh
+  [root@192-168-122-101 .ssh]# ssh-keygen -t rsa
+  [root@192-168-122-101 .ssh]# ssh-copy-id 192.168.122.101; ssh-copy-id 192.168.122.102; ssh-copy-id 192.168.122.103;
+  ```
 
 #### .ssh文件夹下(~/.ssh)的文件功能解释
 
@@ -1123,33 +1169,36 @@ authorized_keys | 存放授权过得无密登录服务器公钥
 
 同步所有节点配置文件
 
-```
+```bash
 xsync etc/hadoop/slaves
 ```
 
 #### 关闭之前启动的所有进程
 
 - 101服务器:
-```
-[hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
-[hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop namenode
-```
+
+  ```bash
+  [hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
+  [hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop namenode
+  ```
 
 - 102服务器:
-```
-[hadooptest@192-168-122-102 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
-```
+
+  ```bash
+  [hadooptest@192-168-122-102 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
+  ```
 
 - 103服务器:
-```
-[hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
-[hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop secondarynamenode
-```
+
+  ```bash
+  [hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop datanode
+  [hadooptest@192-168-122-103 hadoop-2.7.7]$ sbin/hadoop-daemon.sh stop secondarynamenode
+  ```
 
 #### 启动集群
 
 在101上启动dfs, 因为NameNode在101上
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ sbin/start-dfs.sh
 ```
 
@@ -1158,7 +1207,7 @@ xsync etc/hadoop/slaves
 
 在102上启动yarn, 因为ResourceManager在102上
 
-```
+```bash
 [hadooptest@192-168-122-102 hadoop-2.7.7]$ sbin/start-yarn.sh
 ```
 
@@ -1177,13 +1226,13 @@ xsync etc/hadoop/slaves
 **1. 上传文件到集群**
 
 上传小文件
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ hdfs dfs -mkdir -p /user/hadooptest/input
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ hdfs dfs -put ./README.txt /user/hadooptest/input/README.txt
 ```
 
 上传大文件
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ hdfs dfs -put /opt/software/hadoop-2.7.7.tar.gz /user/hadooptest/input
 ```
 
@@ -1196,85 +1245,97 @@ xsync etc/hadoop/slaves
     ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142940.png)
 
 
-```
+```bash
 [hadooptest@192-168-122-101 hadoop-2.7.7]$ cd data/tmp/dfs/data/current/BP-1241632574-192.168.122.101-1586406239550/current/finalized/subdir0/subdir0/
 ```
 
 **2. 上传文件后查看文件存放在什么位置**
 
-a. 查看HDFS文件存储路径
+1. 查看HDFS文件存储路径
 
-```
-/opt/module/hadoop-2.7.7/data/tmp/dfs/data/current/BP-1241632574-192.168.122.101-1586406239550/current/finalized/subdir0/subdir0
-```
+   ```bash
+   /opt/module/hadoop-2.7.7/data/tmp/dfs/data/current/BP-1241632574-192.168.122.101-1586406239550/current/finalized/subdir0/subdir0
+   ```
 
-b. 查看HDFS在磁盘存储文件内容
-```
-[hadooptest@192-168-122-101 subdir0]$ cat blk_1073741825
-For the latest information about Hadoop, please visit our website at:
-...此处省略若干行...
-```
+2. 查看HDFS在磁盘存储文件内容
 
-c. 拼接大文件
-```
-[hadooptest@192-168-122-101 subdir0]$ cat blk_1073741826 >> temp.text
-[hadooptest@192-168-122-101 subdir0]$ cat blk_1073741827 >> temp.text 
-```
+   ```bash
+   [hadooptest@192-168-122-101 subdir0]$ cat blk_1073741825
+   For the latest information about Hadoop, please visit our website at:
+   ...此处省略若干行...
+   ```
 
-d. 解压
-```
-tar -zxvf temp.text
-```
-> 会发现解压后的文件和上传的tar.gz解压后的文件完全一致
+3. 拼接大文件
 
-e. 下载
+   ```bash
+   [hadooptest@192-168-122-101 subdir0]$ cat blk_1073741826 >> temp.text
+   [hadooptest@192-168-122-101 subdir0]$ cat blk_1073741827 >> temp.text 
+   ```
 
-```
-[hadooptest@192-168-122-101 hadoop-2.7.7]$ hadoop fs -get /user/hadooptest/input/hadoop-2.7.7.tar.gz ./
-```
+4. 解压
+
+   ```bash
+   tar -zxvf temp.text
+   ```
+
+   > 会发现解压后的文件和上传的tar.gz解压后的文件完全一致
+
+5. 下载
+
+   ```bash
+   [hadooptest@192-168-122-101 hadoop-2.7.7]$ hadoop fs -get /user/hadooptest/input/hadoop-2.7.7.tar.gz ./
+   ```
 
 ### 集群启动停止方式总结
 
 #### 各个服务组件逐一启动/停止
 
 1. 分别启动/停止HDFS组件
-```
-sbin/hadoop-daemon.sh start/stop namenode/datanode/secondarynamenode
-```
+
+   ```bash
+   sbin/hadoop-daemon.sh start/stop namenode/datanode/secondarynamenode
+   ```
+
 2. 启动/停止YARN
-```
-sbin/yarn-daemon.sh start/stop resourcemanager/nodemanager
-```
+
+   ```bash
+   sbin/yarn-daemon.sh start/stop resourcemanager/nodemanager
+   ```
+
 #### 各个模块分开启动/停止(配置ssh是前提) ==常用==
 
 1. 整体启动/停止HDFS
-```
-sbin/start-dfs.sh / sbin/stop-dfs.sh
-```
+
+   ```bash
+   sbin/start-dfs.sh / sbin/stop-dfs.sh
+   ```
 
 2. 整体启动/停止YARN
 
-```
-sbin/start-yarn.sh / sbin/stop-yarn.sh
-```
+   ```bash
+   sbin/start-yarn.sh / sbin/stop-yarn.sh
+   ```
 
-==官网不建议使用start-all.sh和stop-all.sh==
+   ==官网不建议使用start-all.sh和stop-all.sh==
 
 ### 集群时间同步
 
 #### crond系统定时任务介绍
 
 1. 重新启动crond服务
-```
-systemctl restart crond
-```
+
+   ```bash
+   systemctl restart crond
+   ```
 
 **crontab定时任务设置**
 
 1. 基本语法
-```
-crontab [选项]
-```
+
+   ```bash
+   crontab [选项]
+   ```
+
 2. 选项说明
 
 选项 | 功能
@@ -1285,12 +1346,13 @@ crontab [选项]
 
 3. 参数说明
 
-```
-crontab -e
-```
-进入crontab编辑页面. 会打开vim编辑你的工作.
+   ```bash
+   crontab -e
+   ```
 
-格式: `* * * * * 执行的任务`
+   进入crontab编辑页面. 会打开vim编辑你的工作.
+
+   格式: `* * * * * 执行的任务`
 
 项目 | 含义 | 范围
 --- | --- | ---
@@ -1322,17 +1384,18 @@ crontab -e
 
 4. 案例实操
 
-每隔1分钟, 向/root/bailongma.txt文件中添加一个11的数字
-```
-*/1 * * * * /bin/echo "11" >> /root/bailongma.txt
-```
+   每隔1分钟, 向/root/bailongma.txt文件中添加一个11的数字
+
+   ```bash
+   */1 * * * * /bin/echo "11" >> /root/bailongma.txt
+   ```
 
 #### 集群时间同步
 
 时间同步的方式: 找一台机器, 作为时间服务器, 所有的机器与这台集群时间进行定时的同步. 比如, 每隔10分钟同步一次时间.
 
 
-```
+```mermaid
 graph LR
 时间服务器101-- 102定时去获取101时间服务器主机的时间-->其他机器102
 ```
@@ -1348,16 +1411,14 @@ graph LR
 4. 重新启动ntpd服务
 5. 设置ntpd服务开机启动
 
-
-
 **对其他机器102的操作**
 
 1. 在其他机器配置10分钟与时间服务器同步一次
-    ```
+    ```bash
     # crontab -e
     ```
     编写内容如下:
-    ```
+    ```bash
     */10 * * * * /user/sbin/ntpdate 192.168.122.101
     ```
 2. 修改任意机器时间
@@ -1368,76 +1429,89 @@ graph LR
 
 1. 时间服务器配置(必须root用户)
 
-- 检查ntp是否安装
-    ```
-    [root@192-168-122-101 ~]# rpm -qa | grep ntp
-    fontpackages-filesystem-1.44-8.el7.noarch
-    ntp-4.2.6p5-29.el7.centos.x86_64
-    ntpdate-4.2.6p5-29.el7.centos.x86_64
-    ```
-- 修改ntp配置文件
-    ```
-    [root@192-168-122-101 ~]# vim /etc/ntp.conf
-    ```
-    - 修改1: 授权192.168.122.0-192.168.122.255网段上的所有机器可以从这台机器上查询和同步时间
-        ```
-        # Hosts on local network are less restricted.
-        # restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
-        restrict 192.168.122.0 mask 255.255.255.0 nomodify notrap
-        ```
-    - 修改2: 集群在局域网中, 不使用其他互联网上的时间
-        ```
-        # Use public servers from the pool.ntp.org project.
-        # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-        # 注释掉所有
-        # server 0.centos.pool.ntp.org iburst
-        # server 1.centos.pool.ntp.org iburst
-        # server 2.centos.pool.ntp.org iburst
-        # server 3.centos.pool.ntp.org iburst
-        ```
-    - 添加3: 当该节点丢失网络连接, 依然可以采用本地时间作为时间服务器为集群中的其他节点提供时间同步
-        ```
-        # Enable writing of statistics records.
-        #statistics clockstats cryptostats loopstats peerstats
-        # 如果没有网络使用本地时间
-        server 127.127.1.0
-        # 配置时间的准确度等级
-        fudge 127.127.1.0 stratum 10
-        ```
-- 修改/etc/sysconfig/ntpd文件
-    ```
-    [root@192-168-122-101 ~]# vim /etc/sysconfig/ntpd
-    ```
-    增加如下内容(让硬件时间与系统时间一起同步)
-    ```
-    SYNC_HWCLOCK=yes
-    ```
-- 重新启动ntpd服务
-    ```
-    [root@192-168-122-101 ~]# systemctl restart ntpd
-    ```
-- 设置ntpd服务开机自启
-    ```
-    [root@192-168-122-101 ~]# systemctl enable ntpd
-    ```
+   检查ntp是否安装
+
+   ```bash
+   [root@192-168-122-101 ~]# rpm -qa | grep ntp
+   fontpackages-filesystem-1.44-8.el7.noarch
+   ntp-4.2.6p5-29.el7.centos.x86_64
+   ntpdate-4.2.6p5-29.el7.centos.x86_64
+   ```
+
+   修改ntp配置文件
+
+   ```bash
+   [root@192-168-122-101 ~]# vim /etc/ntp.conf
+   ```
+
+   - 修改1: 授权192.168.122.0-192.168.122.255网段上的所有机器可以从这台机器上查询和同步时间
+
+     ```bash
+     # Hosts on local network are less restricted.
+     # restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+     restrict 192.168.122.0 mask 255.255.255.0 nomodify notrap
+     ```
+
+   - 修改2: 集群在局域网中, 不使用其他互联网上的时间
+
+     ```bash
+     # Use public servers from the pool.ntp.org project.
+     # Please consider joining the pool (http://www.pool.ntp.org/join.html).
+     # 注释掉所有
+     # server 0.centos.pool.ntp.org iburst
+     # server 1.centos.pool.ntp.org iburst
+     # server 2.centos.pool.ntp.org iburst
+     # server 3.centos.pool.ntp.org iburst
+     ```
+
+   - 添加3: 当该节点丢失网络连接, 依然可以采用本地时间作为时间服务器为集群中的其他节点提供时间同步
+
+     ```bash
+     # Enable writing of statistics records.
+     #statistics clockstats cryptostats loopstats peerstats
+     # 如果没有网络使用本地时间
+     server 127.127.1.0
+     # 配置时间的准确度等级
+     fudge 127.127.1.0 stratum 10
+     ```
+
+修改/etc/sysconfig/ntpd文件
+```bash
+[root@192-168-122-101 ~]# vim /etc/sysconfig/ntpd
+# 增加如下内容(让硬件时间与系统时间一起同步)
+SYNC_HWCLOCK=yes
+```
+重新启动ntpd服务
+```bash
+[root@192-168-122-101 ~]# systemctl restart ntpd
+```
+
+设置ntpd服务开机自启
+```bash
+[root@192-168-122-101 ~]# systemctl enable ntpd
+```
 
 2. 其他机器配置(必须root用户)
 
-- 在其他机器配置10分钟与时间服务器同步一次
-    ```
-    [root@192-168-122-102 hadooptest]# crontab -e
-    ```
-    添加如下内容
-    ```
-    */10 * * * * /usr/sbin/ntpdate 192.168.122.101
-    ```
+   - 在其他机器配置10分钟与时间服务器同步一次
 
-- 修改其他机器时间, 过10分钟再次查看是否自动同步
-    ```
-    [root@192-168-122-102 hadooptest]# date -s "2018-11-11 11:11:11"
-    
-    [root@192-168-122-102 hadooptest]# date
-    ```
+     ```bash
+     [root@192-168-122-102 hadooptest]# crontab -e
+     ```
+
+     添加如下内容
+
+     ```bash
+     */10 * * * * /usr/sbin/ntpdate 192.168.122.101
+     ```
+
+   - 修改其他机器时间, 过10分钟再次查看是否自动同步
+
+     ```bash
+     [root@192-168-122-102 hadooptest]# date -s "2018-11-11 11:11:11"
+     
+     [root@192-168-122-102 hadooptest]# date
+     ```
 
 https://edu.aliyun.com/lesson_1800_15237#_15237
 
@@ -1463,7 +1537,7 @@ https://edu.aliyun.com/lesson_1800_15237#_15237
 
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142945.png)
 
-```
+```bash
 # 查看namenode版本信息
 $ cat data/tmp/dfs/name/current/VERSION
 #Wed Apr 08 15:06:15 CST 2020

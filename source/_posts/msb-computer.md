@@ -30,17 +30,17 @@ categories:
 
 读书的原则：不求甚解，观其大略
 
-- <编码: 隐匿在计算机软硬件背后的语言>
-- <深入理解计算机系统>
+- \<编码: 隐匿在计算机软硬件背后的语言\>
+- \<深入理解计算机系统\>
 - 语言:
-  - C: K&R <C程序设计语言> <C Primer Plus>
+  - C: K&R \<C程序设计语言\> \<C Primer Plus\>
   - Java
 - 数据结构与算法: --毕生的学习 leetCode
-  - <Java数据结构与算法> <算法>
-  - <算法导论> <计算机程序设计艺术> // 难
+  - \<Java数据结构与算法\> \<算法\>
+  - \<算法导论\> \<计算机程序设计艺术\> // 难
   - 操作系统: Linux内核源码解析 Linux内核设计与实现 30天自制操作系统
-  - 网络: 机工<TCP/IP详解> 卷一 翻译一般
-  - 编译原理: 机工 龙书(<编译原理>) <编程语言实现模式>
+  - 网络: 机工\<TCP/IP详解\> 卷一 翻译一般
+  - 编译原理: 机工 龙书(\<编译原理\>) \<编程语言实现模式\>
   - 数据库: SQLite源码 Derby-JDK自带数据库
 
 ## 硬件基础知识
@@ -73,7 +73,7 @@ https://www.bilibili.com/video/av47388949?p=2
 
 汇编语言的本质：机器语言的助记符, 其实它就是机器语言
 
-计算机通电 -> CPU读取内存中程序（电信号输入） -> 时钟发生器不断震荡通断电 -> 推动CPU内部一步一步执行 （执行多少步取决于指令需要的时钟周期）-> 计算完成 -> 写回（电信号）-> 写给显卡输出（sout，或者图形）
+计算机通电 -\> CPU读取内存中程序（电信号输入） -\> 时钟发生器不断震荡通断电 -\> 推动CPU内部一步一步执行 （执行多少步取决于指令需要的时钟周期）-\> 计算完成 -\> 写回（电信号）-\> 写给显卡输出（sout，或者图形）
 
 ### 量子计算机
 
@@ -85,17 +85,17 @@ https://www.bilibili.com/video/av47388949?p=2
 
 ### CPU的基本组成
 
-PC -> Program Counter 程序计数器 （记录当前指令地址）
+PC -\> Program Counter 程序计数器 （记录当前指令地址）
 
-Registers -> 寄存器 暂时存储CPU计算需要用到的数据
+Registers -\> 寄存器 暂时存储CPU计算需要用到的数据
 
-ALU -> Arithmetic & Logic Unit 运算单元
+ALU -\> Arithmetic & Logic Unit 运算单元
 
-CU -> Control Unit 控制单元
+CU -\> Control Unit 控制单元
 
-MMU -> Memory Management Unit 内存管理单元
+MMU -\> Memory Management Unit 内存管理单元
 
-cache -> 缓存
+cache -\> 缓存
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222181655.png)
 
@@ -105,7 +105,7 @@ cache -> 缓存
 
 | device      | time   |
 | ----------- | ------ |
-| Registers   | < 1ns  |
+| Registers   | \< 1ns |
 | L1 cache    | 约1ns  |
 | L1 cache    | 约3ns  |
 | L1 cache    | 约15ns |
@@ -357,7 +357,7 @@ ZGC - NUMA aware
 
 ### 启动过程（不重要）
 
-通电 -> bios uefi 工作 -> 自检 -> 到硬盘固定位置加载bootloader -> 读取可配置信息 -> CMOS
+通电 -\> bios uefi 工作 -\> 自检 -\> 到硬盘固定位置加载bootloader -\> 读取可配置信息 -\> CMOS
 
 ### 用户态与内核态
 
@@ -487,7 +487,7 @@ public class HelloFiber2 {
 }
 ```
 
-作业：目前是10000个Fiber -> 1个JVM线程，想办法提高效率，10000Fiber -> 10份 -> 10Threads
+作业：目前是10000个Fiber -\> 1个JVM线程，想办法提高效率，10000Fiber -\> 10份 -\> 10Threads
 
 #### 纤程的应用场景
 
@@ -582,11 +582,11 @@ linux kernel 2.6采用CFS调度策略：Completely Fair Scheduler
 
 返回值通过ax返回
 
-java读网络 – jvm read() – c库read() - >
+java读网络 – jvm read() – c库read() - \>
 
 内核空间 -> system_call() （系统调用处理程序）
 
--> sys_read()
+-\> sys_read()
 
 #### 从汇编角度理解软中断
 

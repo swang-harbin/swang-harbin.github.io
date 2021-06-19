@@ -105,11 +105,11 @@ Boss{car=icu.intelli.bean.Car@10d59286}
 icu.intelli.bean.Car@10d59286
 ```
 
-> 可知, 向Boss中注入的Car是IOC容器中的car
+可知, 向Boss中注入的Car是IOC容器中的car
 
 ## 将@Autowired标注有参构造器上
 
-修改Boss.java, 将@Autowird标注在有参构造器上
+修改Boss.java, 将`@Autowird`标注在有参构造器上
 
 ```java
 package icu.intelli.bean;
@@ -155,7 +155,7 @@ Boss{car=icu.intelli.bean.Car@24b1d79b}
 icu.intelli.bean.Car@24b1d79b
 ```
 
-> 可知, Spring调用了Boss的有参构造器创建对象, 并且使用的参数是从IOC容器中获取的
+可知, Spring调用了Boss的有参构造器创建对象, 并且使用的参数是从IOC容器中获取的
 
 ## 将@Autowired标注在参数上
 
@@ -204,11 +204,11 @@ Boss{car=icu.intelli.bean.Car@5123a213}
 icu.intelli.bean.Car@5123a213
 ```
 
-> 与标注在有参构造上相同, 在创建Boss对象时, 调用其有参构造, 并使用IOC容器中的组件进行赋值
+与标注在有参构造上相同, 在创建Boss对象时, 调用其有参构造, 并使用IOC容器中的组件进行赋值
 
 ### 标注在普通方法参数上
 
-修改Boss.java, 将@Autowired标注在setCar方法上
+修改Boss.java, 将`@Autowired`标注在setCar方法上
 
 ```java
 package icu.intelli.bean;
@@ -245,7 +245,7 @@ Boss{car=null}
 icu.intelli.bean.Car@704921a5
 ```
 
-> 并没有对car进行赋值
+并没有对car进行赋值
 
 ### 标注在@Bean创建bean的方法参数上
 
@@ -300,4 +300,4 @@ Boss{car=icu.intelli.bean.Car@77846d2c}
 icu.intelli.bean.Car@77846d2c
 ```
 
-> @Bean+方法参数, 默认不写@Autowired, 也可以自动装配, 注意使用set方法
+`@Bean`+方法参数, 默认不写`@Autowired`, 也可以自动装配, 注意使用set方法

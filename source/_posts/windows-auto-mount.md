@@ -10,7 +10,7 @@ categories:
 # Windows开机自动挂载挂载盘
 ## 创建批处理文件
 新建文本文档,将格式修改为.bat,得到nfs_auto.bat
-```
+```bash
 mount \\172.168.13.119\home X:
 ```
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143026.png)
@@ -19,7 +19,7 @@ mount \\172.168.13.119\home X:
 1. 在Windows的**管理工具**中,打开**任务计划程序**
 2. 选择**操作**->**创建任务**
 
-![创建任务](https://note.youdao.com/yws/res/41952/32B278DA0F384AF5932088F37B08F56D)
+   ![创建任务](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619223943.png)
 
 3. 选择**常规**,设置任务计划**名称**,选择**不管用户是否登录都要运行、使用最高权限运行(I)**
 
@@ -35,7 +35,7 @@ mount \\172.168.13.119\home X:
 
 6. 选择**条件**,**网络**选择**任何连接**.
 
-![image](https://note.youdao.com/yws/res/41986/8ADE69D414F84D59BA18AE53D201389A)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619224015.png)
 
 7.选择**设置**,选择**如果请求后任务还在运行，强行将其停止(F)**、**请勿启动新实例**.
 

@@ -23,7 +23,7 @@ createdb: could not connect to database template1: FATAL:  role "root" does not 
 
 因为创建数据库必须登入数据库才行, 数据库中并没有root这个角色, 因为安装好pgSQL后, postgreSQL会自动创建一个Linux用户和一个对应的数据库角色, 均叫`postgres`, 它是一个具备数据库超级管理员权限的角色, 所以可以使用postgres角色去创建其他数据库角色. 此处可以不创建该root角色, 可以直接通过postgres角色去访问数据库.
 
-```shell
+```bash
 # 切换到系统的postgres用户
 su - postgres
 # 登录到主数据库
@@ -38,7 +38,7 @@ create user root superuser;
 
 使用\q, exit依次退出主数据库和postgres角色, 使用root角色登录到主数据库
 
-```shell
+```bash
 # 退出主数据库
 \q
 # 退出postgres角色
@@ -51,7 +51,7 @@ psql postgres
 
 登录到数据库
 
-```shell
+```bash
 psql -U root -d mydb -h 127.0.0.1 -p 5432
 ```
 
@@ -66,7 +66,7 @@ psql -U root -d mydb -h 127.0.0.1 -p 5432
 
 **CentOS7需要提前安装的软件包 :**
 
-```shell
+```bash
 yum install -y gcc-c++ make readline-devel zlib-devel docbook-dtds docbook-style-xsl fop libxslt
 ```
 
@@ -80,7 +80,7 @@ yum install -y gcc-c++ make readline-devel zlib-devel docbook-dtds docbook-style
 
 第一步是在源目录修改pgSQL的配置文件. 使用默认配置只需要执行:
 
-```shell
+```bash
 ./configure
 ```
 
@@ -88,7 +88,7 @@ yum install -y gcc-c++ make readline-devel zlib-devel docbook-dtds docbook-style
 
 如果想自己指定编译目录, 可以在源目录的外部运行`configure`, 这个过程也叫做VPATH 编译.
 
-```shell
+```bash
 # 创建存放编译结果的目录
 mkdir build_dir
 # 移动到该目录下
@@ -127,34 +127,30 @@ cd build_dir
 
 - 下列命令二选一, 开始编译:
 
-```shell
-make
-make all
-```
+  ```bash
+  make
+  make all
+  ```
 
-编译成功后会显示
+  编译成功后会显示
 
-```
-All of PostgreSQL successfully made. Ready to install.
-```
+  > All of PostgreSQL successfully made. Ready to install.
 
 - 如果想要编译所有的可以编译的, 包括文档(HTML和手册), 以及附加模块(contrib), 请使用:
 
-```shell
-make world
-```
+  ```bash
+  make world
+  ```
 
-编译成功后会显示
+  编译成功后会显示
 
-```
-PostgreSQL, contrib, and documentation successfully made. Ready to install.
-```
+  > PostgreSQL, contrib, and documentation successfully made. Ready to install.
 
 ### 回归测试
 
 如果你想在安装之前对编译进行测试, 可以在这里进行回归测试. 该回归测试是用来测试PostgreSQL能否像开发人员预想的一样, 在当前机器运行.
 
-```shell
+```bash
 make check
 ```
 
@@ -162,7 +158,7 @@ make check
 
 输入安装命令
 
-```shell
+```bash
 make install
 ```
 
@@ -170,13 +166,13 @@ make install
 
 如需安装文档(HTML和手册页)
 
-```shell
+```bash
 make install-docs
 ```
 
 如需全部安装(包含HTML和手册页和附加模块)
 
-```shell
+```bash
 make install-world
 ```
 
@@ -196,16 +192,16 @@ make install-world
 
 - 使用Bourne shells(sh, ksh, base, zsh) :
 
-```shell
-LD_LIBRARY_PATH=/usr/local/pgsql/lib
-export LD_LIBRARY_PATH
-```
+  ```bash
+  LD_LIBRARY_PATH=/usr/local/pgsql/lib
+  export LD_LIBRARY_PATH
+  ```
 
 - 使用 csh 或 tcsh :
 
-```shell
-setenv LD_LIBRARY_PATH /usr/local/pgsql/lib
-```
+  ```bash
+  setenv LD_LIBRARY_PATH /usr/local/pgsql/lib
+  ```
 
 需要将`/usr/local/pgsql/lib`替换成第一步中`--libdir`指定的位置, 并将上面的命令放在`/etc/profile` 或 `~/.bash_profile`中.
 
@@ -215,7 +211,7 @@ setenv LD_LIBRARY_PATH /usr/local/pgsql/lib
 
 将下面代码添加到shell的启动文件, 例如`~/.bash_profile`(如果想对所有用户生效, 放在`/etc/profile`下)
 
-```shell
+```bash
 PATH=/usr/local/pgsql/bin:$PATH
 export PATH
 ```
@@ -224,7 +220,7 @@ export PATH
 
 在做任何事情之前, 需要初始化数据库的存储区域, 称之为*database cluster*(数据库群, SQL标准术语叫*catalog cluster*). 一个数据库群是由数据库服务器的单个实例管理的数据库集合. 在初始化后, 会创建一个叫`postgres`的数据库作为默认数据库. 数据库服务本身不需要该数据库一定存在, 但是许多第三方的程序假定它存在. 使用如下命令初始化数据库群的目录, `/usr/local/pgsql/data`可自定义.
 
-```shell
+```bash
 initdb -D /usr/local/pgsql/data
 或
 pg_ctl -D /usr/local/pgsql/data initdb
@@ -232,7 +228,7 @@ pg_ctl -D /usr/local/pgsql/data initdb
 
 如果提示`bash: initdb: command not found...`, 可通过指定initdb的绝对路径方式执行
 
-```shell
+```bash
 例如:
 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 ```
@@ -241,7 +237,7 @@ pg_ctl -D /usr/local/pgsql/data initdb
 
 数据库服务的名称叫`postgres`, `postgres`程序必须知道在哪里可以找到它要使用的数据. 通过`-D`选项来指定data目录的位置. 如果不使用`-D`, 服务将会去环境变量中查找`PGDATA`, 如果没有这个变量, 会启动失败.
 
-```shell
+```bash
 postgres -D /usr/local/pgsql/data
 # 如果提示command not found, 使用
 /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data
@@ -251,7 +247,7 @@ postgres -D /usr/local/pgsql/data
 
 **使用以下命令让服务在后台运行:**
 
-```shell
+```bash
 # 普通的Unix shell命令, 指定了将服务的标准输出和标准错误输出保存在logfile中
 postgres -D /usr/local/pgsql/data >logfile 2>&1 &
 
@@ -265,7 +261,7 @@ pg_ctl start -D /usr/local/pgsql/data -l logfile
 
 #### 连接到一个数据库
 
-```shell
+```bash
 psql dbname
 # 例如, 连接到默认数据库:
 psql postgres
@@ -275,7 +271,7 @@ psql postgres
 
 登录到一个数据库后, 输入
 
-```shell
+```bash
 \password
 ```
 
@@ -293,25 +289,25 @@ psql postgres
 
 **pg_hba.conf :**
 
-```shell
+```bash
 # 在ipv4下添加
 host all all 0.0.0.0/0 trust
 ```
 
 **postgresql.conf :**
 
-```shell
+```bash
 listen_addresses='*'
 ```
 
 **关闭PostgreSQL服务**
 
-```shell
+```bash
 /path/for/postgresql/bin/pg_ctl -D /path/for/postgresql/data stop
 ```
 
 **启动PostgreSQL服务**
 
-```shell
+```bash
 /path/for/postgresql/bin/pg_ctl -D /path/for/postgresql/data -l /path/for/postgresql/logs/logfile start
 ```

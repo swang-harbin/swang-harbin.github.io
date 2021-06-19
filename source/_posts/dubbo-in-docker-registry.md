@@ -24,11 +24,11 @@ categories:
 
 例如 : 
 将
-```
+```bash
 172.1.0.2 foikjen2idio
 ```
 修改为
-```
+```bash
 192.168.122.234 foikjen2idio
 ```
 

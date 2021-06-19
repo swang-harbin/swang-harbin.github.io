@@ -64,7 +64,7 @@ public @interface Override {
 - 虽然明确继承一个父类并进行方法的覆盖, 但是忘记写extends关键字
 - 在进行方法覆盖时单词写错了
 
-可通过@Override标记在方法上, 明确表示该方法是覆盖的方法, 可以在编译过程中将bug暴露出来, 保证覆盖的准确性
+可通过`@Override`标记在方法上, 明确表示该方法是覆盖的方法, 可以在编译过程中将bug暴露出来, 保证覆盖的准确性
 
 示例:
 
@@ -285,7 +285,7 @@ public enum ElementType {
 
 #### @Inherited
 
-指明标注了该注解的注解具有继承性. 例如MyAnnotation被标注了@Inherited, 现在一个类Base使用了MyAnnotation, 则它的子类Sub也具有MyAnnotation注解.
+指明标注了该注解的注解具有继承性. 例如MyAnnotation被标注了`@Inherited`, 现在一个类Base使用了MyAnnotation, 则它的子类Sub也具有MyAnnotation注解.
 
 ```java
 package java.lang.annotation;

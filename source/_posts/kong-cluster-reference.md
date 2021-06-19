@@ -27,11 +27,11 @@ Kong集群允许你通过添加更多的机器来水平扩展系统, 并处理�
 一个单独的Kong节点连接到数据库(cassandra 或 PostgreSQL)创建一个单节点的Kong集群. 任何通过该节点的Admin API做的改变会即时生效. 例: 
 
 想象有一个Kong节点A, 如果我们删除以前注册的服务
-```shell
+```bash
 curl -X DELETE http://127.0.0.1:8001/services/test-service
 ```
 这时, 任何访问A节点的请求都会返回**404 Not Found**, 因为该节点从内部缓存中清除了它:
-```shell
+```bash
 curl -i http://127.0.0.1:8000/test-service
 ```
 
@@ -41,7 +41,7 @@ curl -i http://127.0.0.1:8000/test-service
 
 所有的节点进行周期性的后台工作去同步其他节点执行的改变. 这项工作的频率可以通过如下配置设置: 
 
-```shell
+```bash
 db_update_frequency (default: 5 seconds)
 ```
 
@@ -58,7 +58,7 @@ db_update_frequency (default: 5 seconds)
 另外, Kong还缓存未命中的数据. 例如你配置的一个服务没有plugin, Kong将会缓存这个信息. 例 : 
 
 在A节点, 我们添加一个Service和一个Route
-```shell
+```bash
 # node A
 $ curl -X POST http://127.0.0.1:8001/services \
     --data "name=example-service" \
@@ -71,7 +71,7 @@ $ curl -X POST http://127.0.0.1:8001/services/example-service/routes \
 (注意, 我们使用/services/example-service/routes作为快捷方式: 也可以使用/routes端点代替, 但是这时我们需要使用service_id作为参数, 这个新的服务ID是UUID)
 
 对A节点和B节点的代理端口发送请求, 将会缓存该服务, 并缓存没有在该服务上配置plugin的事实: 
-```shell
+```bash
 # node A
 curl http://127.0.0.1:8000/example
 
@@ -79,7 +79,7 @@ HTTP 200 OK
 ...
 ```
 
-```shell
+```bash
 # node B
 curl http://127.0.0.2:8000/example
 
@@ -88,7 +88,7 @@ HTTP 200 OK
 ```
 
 现在我们通过A节点的Admin API添加一个插件:
-```shell
+```bash
 # node A
 curl -X POST http://127.0.0.1:8001/services/example-service/plugins \
     --data "name=example-plugin"

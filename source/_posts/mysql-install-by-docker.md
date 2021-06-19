@@ -24,7 +24,7 @@ $ touch /path-on-host-machine/conf/my.cnf
 
 其中data目录必须为空, my.cnf的内容如下
 
-```cnf
+```properties
 ## 必须包含的配置
 [mysqld]
 user=mysql
@@ -58,7 +58,7 @@ $ docker run --name some-mysql \
 
 docker中 **/etc/mysql/my.cnf** 内容如下
 
-```cnf
+```properties
 !includedir /etc/mysql/conf.d/
 !includedir /etc/mysql/mysql.conf.d/
 ```

@@ -13,7 +13,7 @@ categories:
 
 ## 查看正在运行中的容器
 
-```shell
+```bash
 [root@localhost ~]$ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
 b19505cec84d        tomcat              "catalina.sh run"        4 minutes ago       Up 2 seconds        0.0.0.0:8888->8080/tcp   affectionate_driscoll
@@ -24,7 +24,7 @@ b19505cec84d        tomcat              "catalina.sh run"        4 minutes ago  
 
 ## 停止需要修改端口映射的容器
 
-```shell
+```bash
 [root@localhost ~]$ docker stop b195
 b195
 ```
@@ -124,10 +124,10 @@ b195
 ```
 
 ## 重启docker服务
-```shell
+```bash
 systemctl restart docker
 ```
 ## 启动相应容器
-```shell
+```bash
 docker start b19505cec84d
 ```

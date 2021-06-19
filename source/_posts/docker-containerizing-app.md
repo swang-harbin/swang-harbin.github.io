@@ -17,7 +17,7 @@ categories:
 ## 建立
 
 ### 拉取示例代码
-```shell
+```bash
 git clone -b v1 https://github.com/docker-training/node-bulletin-board
 cd node-bulletin-board/bulletin-board-app
 ```
@@ -37,16 +37,20 @@ CMD [ "npm", "start" ]
 **说明:**
 
 - FROM
-> 指定程序使用的基础镜像,必须为第一个命令
+
+  > 指定程序使用的基础镜像,必须为第一个命令
 
 - WORKDIR
-> 指定文件中后续的指令执行时所在的目录
+
+  > 指定文件中后续的指令执行时所在的目录
 
 - COPY
-> 将主机上的文件拷贝到镜像中
+
+  > 将主机上的文件拷贝到镜像中
 
 - RUN
-> 在镜像中执行的命令
+
+  > 在镜像中执行的命令
 
 参考文档:  
 [Dockerfile文件详解](https://www.cnblogs.com/panwenbin-logs/p/8007348.html)  
@@ -55,32 +59,36 @@ CMD [ "npm", "start" ]
 ## 构建和测试镜像
 
 ### 构建一个新镜像
-```shell
+```bash
 docker image build -t bulletinboard:1.0 .
 ```
 
 ### 基于该镜像启动一个容器
-```shell
+```bash
 docker container run --publish 8000:8080 --detach --name bb bulletinboard:1.0
 ```
 **说明**
 
 - --publish 8000:8080
-> 指定入方向端口为8000,出方向端口为8080,并且,防火墙规则默认禁止网路访问该容器
+
+  > 指定入方向端口为8000,出方向端口为8080,并且,防火墙规则默认禁止网路访问该容器
 
 - --detach
-> 要求Docker后台运行该容器
+
+  > 要求Docker后台运行该容器
 
 - --name
-> 指定一个容器名称,在之后的操作中可以引用该名称
+
+  > 指定一个容器名称,在之后的操作中可以引用该名称
 
 **注意**
+
 > 在启动容器的时候我们不需要输入其他任何的指定,因为在Dockerfile的CMD中我们已经指定了需要执行的命令,Docker会自动去执行那些命令.
 
 ### 测试
 使用浏览器访问localhos:8000
 
 ### 删除容器
-```shell
+```bash
 docker container rm --force bb
 ```

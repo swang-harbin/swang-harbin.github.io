@@ -113,7 +113,7 @@ ring-balancer被设计为单节点使用或集群使用. 对于加权轮询算�
 切换target的基础架构仅需要向服务发送一个**PATCH**请求, 去改变他的**host**值. 
 
 设置"Blue"环境, 运行version1的地址服务:
-```
+```bash
 # 创建一个upstream
 curl -X POST http://kong:8001/upstreams \
     --data "name=upstreams-name"
@@ -142,7 +142,7 @@ curl -X POST http://kong:8001/services/service-name/routes/ \
 
 
 在部署version2之前, 先设置"Green"环境
-```
+```bash
 # 创建一个新的upstream
 curl -X POST http://kong:8001/upstreams \
     --data "name=upstream-name-2"
@@ -157,7 +157,7 @@ curl -X POST http://kong:8001/upstreams/upstream-name-2/targets \
 ```
 
 激活Blue/Green, 只需要更新服务即可: 
-```
+```bash
 # 从Blue upstream切换到Green upstream, v1 -> v2
 $ curl -X PATCH http://kong:8001/services/service-name \
     --data "host=upstream-name-2"
@@ -173,7 +173,7 @@ $ curl -X PATCH http://kong:8001/services/service-name \
 使用ring-balancer, target的权重能够被精细地调整, 从而实现平滑的[金丝雀发布](http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/)
 
 使用2个非常简单的targets示例: 
-```
+```bash
 # 第一个target权重为1000
 curl -X POST http://kong:8001/upstreams/upstreams-name/targets \
     --data "target=192.168.34.17:80"
@@ -185,7 +185,7 @@ curl -X POST http://kong:8001/upstreams/upstreams-name/targets \
     --data "weight=0"
 ```
 通过多次请求, 每次仅修改target的权重, 流量将会缓慢的路由到其他target. 例如: 将它设置为10%
-```
+```bash
 # 修改第一个targets的权重为900
 $ curl -X POST http://kong:8001/upstreams/upstreams-name/targets \
     --data "target=192.168.34.17:80"

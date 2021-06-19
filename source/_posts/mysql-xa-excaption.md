@@ -13,9 +13,7 @@ categories:
 
 ## 异常信息
 
-```
-Caused by: com.atomikos.datasource.ResourceException: XA resource 'XA1DBMS1': resume for XID '3132372E302E302E312E746D30303037303030303032:3132372E302E302E312E746D3730' raised -7: the XA resource has become unavailable
-```
+> Caused by: com.atomikos.datasource.ResourceException: XA resource 'XA1DBMS1': resume for XID '3132372E302E302E312E746D30303037303030303032:3132372E302E302E312E746D3730' raised -7: the XA resource has become unavailable
 
 ## 解决方式
 

@@ -34,13 +34,13 @@ categories:
 
 使用如下命令查看日志
 
-```shell
+```bash
 egrep -i -r 'killed process' /var/log
 ```
 
 可见
 
-```
+```bash
 /var/log/messages:Jun 10 09:28:33 10-20-73-69 kernel: Killed process 56524 (python) total-vm:7681564kB, anon-rss:6813304kB, file-rss:24kB
 ```
 

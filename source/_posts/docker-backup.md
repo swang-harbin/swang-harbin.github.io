@@ -25,7 +25,7 @@ categories:
 **示例 :**
 
 提交容器为镜像
-```shell
+```bash
 docker commit old-container-id new-image-name
 ```
 
@@ -50,12 +50,12 @@ docker commit old-container-id new-image-name
 **示例 :**
 
 将容器导出为tar包
-```shell
+```bash
 docker export -o /path/to/outfile.tar container-id
 ```
 
 将已导出的tar包恢复成镜像
-```shell
+```bash
 docker import /path/to/outfile.tar new-image-name
 ```
 
@@ -73,17 +73,17 @@ docker import /path/to/outfile.tar new-image-name
 - 语法: `docker load [OPTIONS]`
 - Options:
   - `-i, --input string`: 从文件中加载, 而不是STDIN
-  - `-q, --quiet`     Suppress the load output
+  - `-q, --quiet` Suppress the load output
 
 **示例 :**
 
 将容器所用的镜像导出为tar包
-```shell
+```bash
 docker save -o /path/to/outfile.tar postgres:10
 ```
 
 将导出的tar包引入为镜像
-```shell
+```bash
 docker load -i /path/to/outfile.tar 
 ```
 

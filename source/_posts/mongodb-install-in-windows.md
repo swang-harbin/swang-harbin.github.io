@@ -35,7 +35,7 @@ categories:
 
 在bin的同级目录创建mongo.config文件,注意修改**dbpath**和**logpath**为正确的位置
 
-```config
+```properties
 # 数据库文件的存放位置
 dbpath=D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\data\db
 
@@ -45,7 +45,7 @@ logpath=D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\log\m
 
 其他配置说明
 
-```config
+```properties
 # 数据库文件的存放位置
 dbpath=D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\data\db
 
@@ -172,16 +172,16 @@ replSet=name
 
 1. 安装mongod服务
 
-```shell
-mongod --config "[配置文件路径]" --serviceName "[服务名]"
-mongod --config "D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\mongo.config" --serviceName MongoDB --install
-```
+   ```bash
+   mongod --config "[配置文件路径]" --serviceName "[服务名]"
+   mongod --config "D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\mongo.config" --serviceName MongoDB --install
+   ```
 
-2.启动服务
+2. 启动服务
 
-```shell
-net start [服务名]
-```
+   ```bash
+   net start [服务名]
+   ```
 
 ## 参考文档
 

@@ -17,20 +17,20 @@ categories:
 
 解压二进制包, 移动文件
 
-```shell
+```bash
 tar -zxvf mysql-5.7.30-el7-x86_64.tar.gz
 mv ./mysql-5.7.30-el7-x86_64 /home/normal/softwore/mysql
 ```
 
 创建data, conf, log目录
 
-```shell
+```bash
 mkdir data conf log
 ```
 
 初始化
 
-```shell
+```bash
 bin/mysqld --defaults-file=/home/normal/software/mysql/conf/my.cnf --initialize
 ```
 
@@ -53,19 +53,19 @@ default-character-set=utf8mb4
 
 后台启动mysqld服务
 
-```shell
+```bash
 nohup ./bin/mysqld_safe --defaults-file=./conf/my.cnf 2>&1 1>>log/mysql.log &
 ```
 
 查看随机生成的密码, 文件对应配置文件中的*log_error*
 
-```shell
+```bash
 cat /home/normal/software/mysql/error.log
 ```
 
 使用mysql客户端登录, 需要使用-S指定sock文件位置, 对应在配置文件中*socket*的配置
 
-```shell
+```bash
 ./bin/mysql -uroot -p -S /home/normal/software/mysql/mysql.sock
 ```
 
@@ -79,7 +79,7 @@ GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 配置环境变量
 
-```shell
+```bash
 vi ~/.bash_profile
 # 添加
 export PATH=/home/normal/software/mysql/bin:$PATH
@@ -87,6 +87,6 @@ export PATH=/home/normal/software/mysql/bin:$PATH
 
 使环境变量生效
 
-```shell
+```bash
 source ~/.bash_profile
 ```

@@ -43,17 +43,20 @@ location /xxx/ {
 对`proxy_pass`的配置包含如下两种情况
 
 1. backend后面没有`/`: 
-```nginx
-location /xxx/ {
-    proxy_pass http://192.168.1.1:8080;
-}
-```
+
+   ```nginx
+   location /xxx/ {
+       proxy_pass http://192.168.1.1:8080;
+   }
+   ```
+
 2. backend后面有`/`: 
-```nginx
-location /xxx/ {
-    proxy_pass http://192.168.1.1:8080/;
-}
-```
+
+   ```nginx
+   location /xxx/ {
+       proxy_pass http://192.168.1.1:8080/;
+   }
+   ```
 
 如果此时有一个请求为Url为`/xxx/endpoint`
 - 第1种向backend发送的请求为`http://192.168.1.1:8080/xxx/endpoint`, 包含location中的配置

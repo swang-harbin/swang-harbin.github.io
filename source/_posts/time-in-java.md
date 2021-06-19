@@ -10,7 +10,7 @@ categories:
 
 # Java中时间相关的类
 
-## 一. 部分时间系统
+## 部分时间系统
 
 **格林尼治标准时(GMT)**/**世界时(UT)**: Greenwich Mean Time/Universal Time, 以地球自转为基础的时间计量系统, 指当太阳横穿格林尼治本初子午线时的时间, 由于地球自转速度变化的影响, 这个时刻可能和真太阳时相差16分钟.
 
@@ -22,11 +22,11 @@ categories:
 
 在不需要精确到秒的情况下，通常将GMT和UTC视作等同
 
-## 二. Java中时间相关的类
+## Java中时间相关的类
 
 epoch: 时代, 代表1970-01-01 00:00:00
 
-### 2.1 java.util.Date
+### java.util.Date
 
 **构造方法**
 
@@ -56,7 +56,7 @@ Date类中保存的是以UTC时间计算距离epoch的毫秒数, 该毫秒数是
 - public long getTime() {}: 获取当前时间距离epoch的UTC毫秒数
 - public boolean equals/before/after(Date when) {}: 时间比较
 
-### 2.2 java.util.Calendar
+### java.util.Calendar
 
 日历类, 注意Month是从0开始
 
@@ -78,7 +78,7 @@ Date类中保存的是以UTC时间计算距离epoch的毫秒数, 该毫秒数是
 - public final Instant toInstant() {}: 转换为Instant类型对象
 - public final void set(int year, int month, int date, int hourOfDay, int minute, int second) {} : 设置年月日时分秒的值
 
-### 2.3 java.util.TimeZone
+### java.util.TimeZone
 
 表示时区, 通常java.util.Date和java.util.Calendar类会使用到
 
@@ -93,9 +93,9 @@ Date类中保存的是以UTC时间计算距离epoch的毫秒数, 该毫秒数是
 - public static synchronized TimeZone getTimeZone(String ID) {}: 根据字符串类型的时区ID获取TimeZone类型对象, 受支持的ID可使用前两个方法获取
 - public static TimeZone getTimeZone(ZoneId zoneId) {}: 根据ZoneId类型的时区ID获取TimeZone类型对象, ZoneId是jdk1.8之后才有的
 
-## 2.4 java.text.SimpleDateFormat
+## java.text.SimpleDateFormat
 
-## 2.5 java.time.LocalDateTime
+## java.time.LocalDateTime
 
 不包含任何时区信息
 

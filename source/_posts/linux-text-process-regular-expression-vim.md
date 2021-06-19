@@ -53,14 +53,14 @@ categories:
         - `+/STRING`: 从搜索字符串匹配开始显示文件
         - `-V`: 输出版本信息并退出
     - 查看时常用的命令
-        - `Enter`: 向下n行, 需要定义. 默认为1
-        - `Ctrl+f`, `空格`: 向下滚动一屏
-        - `Ctrl+b`: 返回上一屏
-        - `=`: 输出当前行的行号
+        - <kbd>Enter</kbd>: 向下n行, 需要定义. 默认为1
+        - <kbd>Ctrl</kbd>+<kbd>f</kbd>, <kbd>空格</kbd>: 向下滚动一屏
+        - <kbd>Ctrl</kbd>+<kbd>b</kbd>: 返回上一屏
+        - <kbd>=</kbd>: 输出当前行的行号
         - `:f`: 输出当前文件名和当前行号
-        - `v`: 调用vi编辑器
+        - <kbd>v</kbd>: 调用vi编辑器
         - `!命令`: 调用shell脚本并执行命令
-        - `q`: 退出
+        - <kbd>q</kbd>: 退出
 - `less`: 一页一页地查看文件或STDIN输出
     - 语法`less [OPTIONS] file`
     - OPTIONS
@@ -77,36 +77,38 @@ categories:
         - `-S`: 行过长时将超出部分舍弃
         - `-x 数字`: 将"tab"键显示为规定的数字空格
     - 查看时有用的命令包括
-        - `e`, `Ctrl+e`, `j`, `Ctrl+N`, `Enter`: 下一行
-        - `y`, `Ctrl+y`, `k`, `Ctrl+k`, `Ctrl+p`: 上一行
-        - `f`, `Ctrl+f`, `Ctrl+v`, `Space`: 下一屏
-        - `b`, `Ctrl+b`, `ESC-v`: 上一屏
-        - `z`: 下一屏, 并设置缓冲区为当前窗口高度
-        - `w`: 上一屏, 并设置缓冲区为当前窗口高度
-        - `ESC-Space`: 下一屏, 但是在文件结尾不停止
-        - `d`, `Ctrl+d`: 下半屏, 并设置缓冲区为窗口一半的高度
-        - `u`, `Ctrl+u`: 上半屏, 并设置缓冲区为窗口一半的高度
-        - `ESC-)`, `右方向键`: 
-        - `ESC-(`, `左方向键`: 
-        - `F`: 跟随, 类似于`tail -f`
-        - `r`, `Ctrl+r`, `Ctrl+l`: 重新绘制屏幕
-        - `R`: 重新绘制屏幕, 丢弃缓存输入
+        - <kbd>e</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>j</kbd>, <kbd>Ctrl</kbd>+<kbd>N</kbd>, <kbd>Enter</kbd>: 下一行
+        - <kbd>y</kbd>, <kbd>Ctrl</kbd>+<kbd>y</kbd>, <kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd>: 上一行
+        - <kbd>f</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd>, <kbd>Ctrl</kbd>+<kbd>v</kbd>, <kbd>Space</kbd>: 下一屏
+        - <kbd>b</kbd>, <kbd>Ctrl</kbd>+<kbd>b</kbd>, <kbd>ESC</kbd><kbd>v</kbd>: 上一屏
+        - <kbd>z</kbd>: 下一屏, 并设置缓冲区为当前窗口高度
+        - <kbd>w</kbd>: 上一屏, 并设置缓冲区为当前窗口高度
+        - <kbd>ESC</kbd><kbd>Space</kbd>: 下一屏, 但是在文件结尾不停止
+        - <kbd>d</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd>: 下半屏, 并设置缓冲区为窗口一半的高度
+        - <kbd>u</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd>: 上半屏, 并设置缓冲区为窗口一半的高度
+        - <kbd>ESC</kbd><kbd>)</kbd>, `右方向键`: 
+        - <kbd>ESC</kbd><kbd>(</kbd>, `左方向键`: 
+        - <kbd>F</kbd>: 跟随, 类似于`tail -f`
+        
+        - <kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>l</kbd>: 重新绘制屏幕
+        
+        - <kbd>R</kbd>: 重新绘制屏幕, 丢弃缓存输入
         - `/文本`: 向下搜索文本
         - `?文本`: 向上搜索文本
         - `n`/`N`: 跳到下一个/上一个匹配
-        - `ESC-n`/`ESC-N`: 跳到下一个/上一个匹配, 跨越文件
+        - <kbd>ESC</kbd><kbd>n</kbd>/<kbd>N</kbd>: 跳到下一个/上一个匹配, 跨越文件
         - `&文本`: 只显示匹配的行
-        - `g`, `<` `ESC-<`: 跳到第一行
-        - `G`, `>` `ESC->`: 跳到最后一行
-        - `p`, `%`: 跳到文件的开始
-        - `t`: 跳到下一个标签
-        - `T`: 跳到上一个标签
-        - `{`, `(`, `[`: 查找对应的} ) ]
-        - `}`, `)`, `]`: 查找对应的{ ( [
-        - `ESC-Ctrl+f <c1> <c2>`: 查找右括号<c2>
-        - `ESC-Ctrl+f <c1> <c2>`: 查找左括号<c1>
-        - `h`: 显示帮助
-        - `q`:　退出
+        - <kbd>g</kbd>, <kbd>\<</kbd>, <kbd>ESC</kbd><kbd>\<</kbd>: 跳到第一行
+        - <kbd>G</kbd>, <kbd>\></kbd> <kbd>ESC</kbd><kbd>\></kbd>: 跳到最后一行
+        - <kbd>p</kbd>, `%`: 跳到文件的开始
+        - <kbd>t</kbd>: 跳到下一个标签
+        - <kbd>T</kbd>: 跳到上一个标签
+        - <kbd>{</kbd>, <kbd>(</kbd>, <kbd>[</kbd>: 查找对应的} ) ]
+        - <kbd>}</kbd>, <kbd>)</kbd>, <kbd>]</kbd>: 查找对应的{ ( [
+        - <kbd>ESC</kbd><kbd>Ctrl</kbd>+<kbd>f</kbd> `<c1> <c2>`: 查找右括号\<c2\>
+        - <kbd>ESC</kbd><kbd>Ctrl</kbd>+<kbd>f</kbd> `<c1> <c2>`: 查找左括号\<c1\>
+        - <kbd>h</kbd>: 显示帮助
+        - <kbd>q</kbd>:　退出
     - `less`命令是man命令使用的分页器
 
 可以结合管道, 将一些命令的执行结果做分页处理. 
@@ -151,23 +153,28 @@ categories:
 - `--output-delimiter=STRING`: 指定输出分隔符
 - 示例
     - 取出用户名和uid
-    ```
-    cut -d : -f 1,3 /etc/passwd
-    或指定输出分隔符
-    cut -d : -f 1,3 --output-delimiter=* /etc/passwd
-    ```
+    
+      ```bash
+      cut -d : -f 1,3 /etc/passwd
+      或指定输出分隔符
+      cut -d : -f 1,3 --output-delimiter=* /etc/passwd
+      ```
+    
     - 取出分区利用率
-    ```
-    df | tr -s ' ' % | cut -d% -f5
-    ```
+    
+      ```bash
+      df | tr -s ' ' % | cut -d% -f5
+      ```
+    
     - 取出网卡的ip地址
-    ```
-    ifconfig eth0| head -n2 | tail -n1 | tr -s ' ' '/' | cut -d/ -f3
-    或
-    ifconfig eth0| head -n2 | tail -n1 | tr -s ' ' | cut -d' ' -f3
-    或
-    ifconfig eth0 | head -2 | tail -1 | tr -dc '[0-9]. '| tr -s ' ' | cut -d' ' -f2
-    ```
+    
+      ```bash
+      ifconfig eth0| head -n2 | tail -n1 | tr -s ' ' '/' | cut -d/ -f3
+      或
+      ifconfig eth0| head -n2 | tail -n1 | tr -s ' ' | cut -d' ' -f3
+      或
+      ifconfig eth0 | head -2 | tail -1 | tr -dc '[0-9]. '| tr -s ' ' | cut -d' ' -f2
+      ```
 
 
 #### 横向合并paste
@@ -186,7 +193,7 @@ categories:
 
 - 计数行总数, 单词总数, 字节总数和字符总数
 - 可以对文件或STDIN中的数据运行
-    ```
+    ```bash
     $ wc story.txt
     39      237     1901    story.txt
     行数    单词数  字节数  文件名
@@ -200,14 +207,14 @@ categories:
 
 - 示例
     - 查看文档中的所有单词个数
-        ```
+        ```bash
         cat /etc/profile | tr -cs 'a-zA-Z' '\n' | wc -l
         ```
 
 #### 文本排序sort
 
 - 把整理过的文本显示在STDOUT, 不改变原始文件
-    ```
+    ```bash
     sort [OPTION]... [FILE]...
     ```
 - 常用选项:
@@ -221,17 +228,22 @@ categories:
 
 - 示例
     - 按照uid排序
-    ```
-    sort -t: -k3 /etc/passwd
-    ```
+    
+      ```bash
+      sort -t: -k3 /etc/passwd
+      ```
+    
     - 抽奖
-    ```
-    seq 63 | sort -R | head -n1
-    ```
+    
+      ```bash
+      seq 63 | sort -R | head -n1
+      ```
+    
     - 查找分区利用率最大的值
-    ```
-    df | tr -s ' ' '%' | cut -d% -f5 | sort -nr | head -n1
-    ```
+    
+      ```bash
+      df | tr -s ' ' '%' | cut -d% -f5 | sort -nr | head -n1
+      ```
 
 #### uniq
 
@@ -242,7 +254,7 @@ categories:
     - `-u`: 仅显示不曾重复的行
     注: 连续且完全相同方为重复
 - 常和`sort`命令一起配合使用
-    ```
+    ```bash
     sort userlist.txt | uniq -c
     ```
 
@@ -258,47 +270,51 @@ categories:
 - 不加参数的`diff f1 f2`
 
     1. 使用`paste`查看f1和f2
-    
-    ```
-    $ paste f1 f2
-    aaa	aaa
-    bbb	bbb
-    ccc	cc
-    ddd	eee
-    eee	fff
-    fff	ggg
-    ggg	hhh
-    hhh	jjj
-    iii	kkk
-    jjj	lll
-    kkk	mmm
-    lll	nnn
-    	ooo
-    ```
+
+       ```bash
+       $ paste f1 f2
+       aaa	aaa
+       bbb	bbb
+       ccc	cc
+       ddd	eee
+       eee	fff
+       fff	ggg
+       ggg	hhh
+       hhh	jjj
+       iii	kkk
+       jjj	lll
+       kkk	mmm
+       lll	nnn
+       	ooo
+       ```
+
     2. 使用`diff f1 f2`查看区别
-    ```
-    $ diff f1 f2
-    3,4c3
-    < ccc
-    < ddd
-    ---
-    > cc
-    9d7
-    < iii
-    12a11,13
-    > mmm
-    > nnn
-    > ooo
-    ```
+
+       ```bash
+       $ diff f1 f2
+       3,4c3
+       < ccc
+       < ddd
+       ---
+       > cc
+       9d7
+       < iii
+       12a11,13
+       > mmm
+       > nnn
+       > ooo
+       ```
+
     3. 说明
-    > `3,4c3`表示f1文件的3-4行被修改(c(change))为f2文件的第3行, 其中`< ccc`, `< ddd`表示删除(<)了f1的第3行的`ccc`和第4行的`ddd`, `---`表示上方为f1, 下方为f2, `> cc`表示f2中第3行增加(>)了`cc`
-    
-    > `9d7`表示f1文件的第9行被删除(d(delete))了, f1中被删除(<)的行内容是`iii`
-    
-    > `12a11,13`表示在f1的第12行添加(a)了内容, 对应f2文件的11-13行, f2中增加(>)的内容是`mmm`, `nnn`, `ooo`
+
+       - `3,4c3`表示f1文件的3-4行被修改(c(change))为f2文件的第3行, 其中`< ccc`, `< ddd`表示删除(<)了f1的第3行的`ccc`和第4行的`ddd`, `---`表示上方为f1, 下方为f2, `> cc`表示f2中第3行增加(>)了`cc`
+
+       - `9d7`表示f1文件的第9行被删除(d(delete))了, f1中被删除(<)的行内容是`iii`
+
+       - `12a11,13`表示在f1的第12行添加(a)了内容, 对应f2文件的11-13行, f2中增加(>)的内容是`mmm`, `nnn`, `ooo`
 
 - 使用`-u`选项  
-    ```
+    ```bash
     $ diff -u f1 f2
     --- f1	2020-04-14 13:52:17.972393288 +0800
     +++ f2	2020-04-14 14:22:36.610610276 +0800
@@ -321,15 +337,16 @@ categories:
     +ooo
     ```
     说明: 
-    > `---`表示变动前的文件, `+++`表示变动后的文件
     
-    > `-1,12`, `-`表示f1, `1`表示从第1行开始, `12`表示连续12行
+    -  `---`表示变动前的文件, `+++`表示变动后的文件
     
-    > `+1,13`, `+`表示f2, `1`表示从第一行开始, `13`表示连续13行
-
-    > `-1,12 +1,13`即表示下面显示的是f1的从第1行开始连续12行以及f2从第1行开始连续13行的内容
+    -  `-1,12`, `-`表示f1, `1`表示从第1行开始, `12`表示连续12行
     
-    > 下方具体变动部分, 带`-`的表示从f1中删除的, 带`+`表示f2中新增的, 不带任何标识的表示没有发生变化
+    - `+1,13`, `+`表示f2, `1`表示从第一行开始, `13`表示连续13行
+    
+    - `-1,12 +1,13`即表示下面显示的是f1的从第1行开始连续12行以及f2从第1行开始连续13行的内容
+    
+    - 下方具体变动部分, 带`-`的表示从f1中删除的, 带`+`表示f2中新增的, 不带任何标识的表示没有发生变化
 
 #### 修补文件patch
 
@@ -338,7 +355,7 @@ categories:
 - OPTION
     - `-b`: 备份每一个原始文件
 - 示例
-    ```
+    ```bash
     # 将`diff -u f1 f2`输出的结果保存在一种叫"补丁"的文件中
     $ diff -u f1 f2 > f1.patch
     # 使用"补丁"文件对f1进行升级操作
@@ -348,21 +365,22 @@ categories:
 #### 练习
 
 1. 查出/tmp的权限, 以数字方式显示
-```
-stat /tmp |head -n4|tail -n1|cut -d/ -f1|cut -d'1' -f2
-```
+
+   ```bash
+   stat /tmp |head -n4|tail -n1|cut -d/ -f1|cut -d'1' -f2
+   ```
 
 
 ### Linux文本处理三剑客
 
-- grep: 文本过滤工具
-grep, egrep, fgrep(不支持正则表达式搜索)
-- sed: stream editor, 文本编辑工具
-- awk: Linux上的实现gawk, 文本报告生成器
+- `grep`: 文本过滤工具
+`grep`, `egrep`, `fgrep`(不支持正则表达式搜索)
+- `sed`: stream editor, 文本编辑工具
+- `awk`: Linux上的实现gawk, 文本报告生成器
 
 #### grep
 
-- grep: Global search REgular expression and Print out the line
+- `grep`: Global search REgular expression and Print out the line
 - 作用: 文本搜索工具, 根据用户指定的"模式"对目标文本逐行进行匹配检查; 打印匹配到的行
     - 模式: pattern, 由正则表示式字符及文本字符所编写的过滤条件
 - 语法: `grep [OPTION]... PATTERN [FILE]...`
@@ -378,7 +396,7 @@ grep, egrep, fgrep(不支持正则表达式搜索)
     - `-B #`: before, 前#行
     - `-C #`: context, 前后各#行
     - `-e`: 实现多个选项间的逻辑or关系
-        - `grep -e 'cat' -e 'dog' file
+        - `grep -e 'cat' -e 'dog' file`
     - `-w`: 匹配整个单词
     - `-E`: 使用ERE
     - `-F`: 相当于fgrep, 不支持正则表达式
@@ -475,40 +493,55 @@ grep, egrep, fgrep(不支持正则表达式搜索)
 #### 练习
 
 1. 显示/proc/meminfo文件中以大小s开头的行(要求: 使用两种方法)
-```
-grep "^[Ss]" /proc/meminfo
-grep "^\(s\|S\)" /proc/meminfo
-```
-2. 显示/etc/passwd文件中不以/bin/bash结尾的行
-```
-grep "/bin/bash$" /etc/passwd
-```
-3. 显示用户rpc默认的shell程序
-```
 
-```
+   ```bash
+   grep "^[Ss]" /proc/meminfo
+   grep "^\(s\|S\)" /proc/meminfo
+   ```
+
+2. 显示/etc/passwd文件中不以/bin/bash结尾的行
+
+   ```bash
+   grep "/bin/bash$" /etc/passwd
+   ```
+
+3. 显示用户rpc默认的shell程序
+
+   ```bash
+   
+   ```
+
 4. 找到/etc/passwd中的两位或三位数
-```
-grep "[0-9]\{2,3\}" /etc/passwd
-```
+
+   ```bash
+   grep "[0-9]\{2,3\}" /etc/passwd
+   ```
+
 5. 显示CentOS7的/etc/grub2.cfg文件中, 至少以一个空白字符开头的且后面有非空白字符的行
-```
-grep "^[[:space:]]\{1,\}[^[:space:]]" /etc/grub2.cfg
-```
+
+   ```bash
+   grep "^[[:space:]]\{1,\}[^[:space:]]" /etc/grub2.cfg
+   ```
+
 6. 找出`netstat -tan`命令结果中以LISTEN后跟任意多个空白字符结尾的行
-```
-netstat -tan | grep "LISTEN[[:space:]]*$"
-```
+
+   ```bash
+   netstat -tan | grep "LISTEN[[:space:]]*$"
+   ```
+
 7. 显示CentOS7上所有系统用户的用户名和UID
-```
-cut -d: -f1,3 /etc/passwd
-```
+
+   ```bash
+   cut -d: -f1,3 /etc/passwd
+   ```
+
 8. 添加用户bash, testbash, basher, sh, nologin(其shell为/sbin/nologin), 找出/etc/passwd用户名和shell同名的行
 
 9. 利用`df`和`grep`, 取出磁盘各分区利用率, 并从大到小排序
-```
 
-```
+   ```bash
+   
+   ```
 
 ### 扩展正则表达式
 
@@ -541,7 +574,7 @@ cut -d: -f1,3 /etc/passwd
 - `^`: 行首
 - `$`: 行尾
 - `\<`, `\b`: 词首
-- `\>`, `\b`: 词尾
+- `\>`, `\B`: 词尾
 
 **分组**
 
@@ -553,40 +586,55 @@ cut -d: -f1,3 /etc/passwd
 #### 练习
 
 1. 显示三个用户root, linux, wang的UID和默认shell
-```
-cut -d: -f1,7 /etc/passwd | grep -E  "^((root)|(linux)|(wang))"
-```
-2. 找出/etc/rc.d/init.d/functions文件中行首为某单词(包括下划线)后面跟一个小括号的行
-```
-egrep "^\<()" /etc/rc.d/init.d/functions
-```
-3. 使用`egrep`取出/etc/rc.d/init.d/functions中其基名
-```
-echo "/etc/rc.d/init.d/functions" | egrep -o "[^/]+$"
-```
-4. 使用`egrep`取出上面路径的目录名
-```
-echo "/etc/rc.d/init.d" | egrep -o ".*[^/]" | egrep -o ".*/"
-```
-5. 统计`last`命令中以root登录的每个主机IP地址登录次数
-```
 
-```
+   ```bash
+   cut -d: -f1,7 /etc/passwd | grep -E  "^((root)|(linux)|(wang))"
+   ```
+
+2. 找出/etc/rc.d/init.d/functions文件中行首为某单词(包括下划线)后面跟一个小括号的行
+
+   ```bash
+   egrep "^\b()" /etc/rc.d/init.d/functions
+   ```
+
+
+3. 使用`egrep`取出/etc/rc.d/init.d/functions中其基名
+
+   ```bash
+   echo "/etc/rc.d/init.d/functions" | egrep -o "[^/]+$"
+   ```
+
+4. 使用`egrep`取出上面路径的目录名
+
+   ```bash
+   echo "/etc/rc.d/init.d" | egrep -o ".*[^/]" | egrep -o ".*/"
+   ```
+
+5. 统计`last`命令中以root登录的每个主机IP地址登录次数
+
+   ```bash
+   echo "/etc/rc.d/init.d" | egrep -o ".*[^/]" | egrep -o ".*/"
+   ```
+
 6. 利用扩展正则表达式分别表示0-9, 10-99, 100-199, 200-249, 250-255
-- 0-9: `[0-9]`
-- 10-99: `[1-9][0-9]`
-- 100-199: `1[0-9]{2}`
-- 200-249: `2[0-4][0-9]`
-- 250-255: `25[0-5]`
+
+    - 0-9: `[0-9]`
+    - 10-99: `[1-9][0-9]`
+    - 100-199: `1[0-9]{2}`
+    - 200-249: `2[0-4][0-9]`
+    - 250-255: `25[0-5]`
 
 7. 显示`ifconfig`命令结果中所有IPv4地址
-```
-ifconfig | grep -Eo "(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
-```
-8. 将此字符串: welcome to linux中的每个字符去重并排序, 重复次数多的排在前面
-```
 
-```
+    ```bash
+    ifconfig | grep -Eo "(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
+    ```
+
+8. 将此字符串: welcome to linux中的每个字符去重并排序, 重复次数多的排在前面
+
+    ```bash
+    
+    ```
 
 ## vim
 
@@ -599,8 +647,8 @@ ifconfig | grep -Eo "(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0
     - 全屏编辑器: `nano`, `vi`
     - `vim`: Vi Improved
 - 其他编辑器
-    - gedit: 一个简单的图形编辑器
-    - gvim:  一个Vim编辑器的图形版本
+    - `gedit`: 一个简单的图形编辑器
+    - `gvim`:  一个Vim编辑器的图形版本
 
 ### Vim命令小抄
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210607235724.png)
@@ -632,14 +680,14 @@ ifconfig | grep -Eo "(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0
 
 **命令模式 --> 插入模式**
 
-- `i`: insert, 在光标所在处输入
-- `I`: 在光标所在行的行首输入
-- `a`: append, 在光标所在处后面输入
-- `A`: 在光标所在行的行尾输入
-- `o`: 在光标所在行的下方打开一个新行
-- `O`: 在光标所在行的上方打开一个新行
+- <kbd>i</kbd>: insert, 在光标所在处输入
+- <kbd>I</kbd>: 在光标所在行的行首输入
+- <kbd>a</kbd>: append, 在光标所在处后面输入
+- <kbd>A</kbd>: 在光标所在行的行尾输入
+- <kbd>o</kbd>: 在光标所在行的下方打开一个新行
+- <kbd>O</kbd>: 在光标所在行的上方打开一个新行
 
-```
+```mermaid
 graph LR
 命令模式--i, I, a, A, o, O-->插入模式
 插入模式--ESC-->命令模式
@@ -659,8 +707,8 @@ graph LR
 
 **命令模式**
 
-- `ZZ`: 保存退出
-- `ZQ`: 不保存退出
+- <kbd>Z</kbd><kbd>Z</kbd>: 保存退出
+- <kbd>Z</kbd><kbd>Q</kbd>: 不保存退出
 
 
 ### 扩展命令模式
@@ -685,60 +733,61 @@ graph LR
 
 **字符间跳转**
 
-- `h`: 左
-- `l`: 右
-- `j`: 下
-- `k`: 上
--`#COMMAND`: 跳转由#指定的个数的字符
+- <kbd>h</kbd>: 左
+- <kbd>l</kbd>: 右
+- <kbd>j</kbd>: 下
+- <kbd>k</kbd>: 上
+- `#COMMAND`: 跳转由#指定的个数的字符
 
 **单词间跳转**
-- `w`: 下一个单词的词首
-- `e`: 当前或下一个单词的词尾
-- `b`: 当前或前一个单词的词首
+- <kbd>w</kbd>: 下一个单词的词首
+- <kbd>e</kbd>: 当前或下一个单词的词尾
+- <kbd>b</kbd>: 当前或前一个单词的词首
 - `#COMMAND`: 由#指定一次跳转的单词数
 
 **当前页跳转**
-- `H`: 页首
-- `M`: 页中间行
-- `L`: 页底
-- `zt`: 将光标所在行移动到屏幕顶端
-- `zz`: 将光标所在行移动到屏幕中间
-- `zb`: 将光标所在行移动到屏幕底端
+- <kbd>H</kbd>: 页首
+- <kbd>M</kbd>: 页中间行
+- <kbd>L</kbd>: 页底
+- <kbd>z</kbd><kbd>t</kbd>: 将光标所在行移动到屏幕顶端
+- <kbd>z</kbd><kbd>z</kbd>: 将光标所在行移动到屏幕中间
+- <kbd>z</kbd><kbd>b</kbd>: 将光标所在行移动到屏幕底端
 
 **行首行尾跳转**
+
 - `^`: 跳转至行首第一个非空白字符
 - `0`: 跳转至行首
 - `$`: 跳转至行尾
 
 **行间移动**
-- `#G`: 扩展命令模式下, 跳转到第#行
-- `G`: 跳到最后一行
-- `1G`, `gg`: 跳转到第一行
+- `#`<kbd>G</kbd>: 扩展命令模式下, 跳转到第#行
+- <kbd>G</kbd>: 跳到最后一行
+- <kbd>1</kbd><kbd>G</kbd>, <kbd>g</kbd><kbd>g</kbd>: 跳转到第一行
 
 **句间移动**
-- `)`: 下一句
-- `(`: 上一句
+- <kbd>)</kbd>: 下一句
+- <kbd>(</kbd>: 上一句
 
 **段落间移动**
-- `}`: 下一段
-- `{`: 上一段
+- <kbd>}</kbd>: 下一段
+- <kbd>{</kbd>: 上一段
 
 
 #### 翻屏操作
 
-- `Ctrl+f`: 向文件尾部翻一屏
-- `Ctrl+b`: 向文件首部翻一屏
-- `Ctrl+d`: 向文件尾部翻半屏
-- `Ctrl+u`: 向文件首部翻半屏
+- <kbd>Ctrl</kbd>+<kbd>f</kbd>: 向文件尾部翻一屏
+- <kbd>Ctrl</kbd>+<kbd>b</kbd>: 向文件首部翻一屏
+- <kbd>Ctrl</kbd>+<kbd>d</kbd>: 向文件尾部翻半屏
+- <kbd>Ctrl</kbd>+<kbd>u</kbd>: 向文件首部翻半屏
 
 #### 修改操作
 
 **字符编辑**
-- `x`: 剪切光标处的字符
-- `#x`: 剪切光标处起始的#个字符
-- `xp`: 交换光标所在处的字符及其后面字符的位置(剪切后粘贴)
+- <kbd>x</kbd>: 剪切光标处的字符
+- `#`<kbd>x</kbd>: 剪切光标处起始的#个字符
+- <kbd>x</kbd><kbd>p</kbd>: 交换光标所在处的字符及其后面字符的位置(剪切后粘贴)
 - `~`: 转换大小写
-- `J`: 删除当前行后的换行符
+- <kbd>J</kbd>: 删除当前行后的换行符
 
 **替换命令(r, replace)**
 
@@ -747,91 +796,91 @@ graph LR
 
 **删除(剪切)指令(d, delete)**
 
-- `d`: 删除命令, 可结合光标跳转字符, 实现范围删除
-- `#dh`/`#dl`: 向左/右删除#个字符
-- `#dj`/`#dk`: 删除当前行并向下/上删除#行
-- `d$`: 删除至行尾
-- `d^`: 删除到非空行首
-- `d0`: 删除到行首
-- `dw`: 从光标处删除到下一个单词的词首
-- `de`: 从光标处删除到下一个单词的词尾
-- `db`: 从光标处删除到上一个单词的词首
-- `dG`: 从光标所在行删除到文件末尾
-- `dgg`: 从光标所在行删除到文件顶端
-- `#d*`: *代表任意可以移动光标的操作
-- `dd`: 删除光标所在行, 剪切
-- `#dd`: 删除下#行
+- <kbd>d</kbd>: 删除命令, 可结合光标跳转字符, 实现范围删除
+- `#`<kbd>d</kbd><kbd>h</kbd>/`#`<kbd>d</kbd><kbd>l</kbd>: 向左/右删除#个字符
+- `#`<kbd>d</kbd><kbd>j</kbd>/`#`<kbd>d</kbd><kbd>k</kbd>: 删除当前行并向下/上删除#行
+- <kbd>d</kbd>`$`: 删除至行尾
+- <kbd>d</kbd>`^`: 删除到非空行首
+- <kbd>d</kbd>`0`: 删除到行首
+- <kbd>d</kbd><kbd>w</kbd>: 从光标处删除到下一个单词的词首
+- <kbd>d</kbd><kbd>e</kbd>: 从光标处删除到下一个单词的词尾
+- <kbd>d</kbd><kbd>b</kbd>: 从光标处删除到上一个单词的词首
+- <kbd>d</kbd>`G`: 从光标所在行删除到文件末尾
+- <kbd>d</kbd><kbd>g</kbd><kbd>g</kbd>: 从光标所在行删除到文件顶端
+- `#`<kbd>d</kbd>`*`: *代表任意可以移动光标的操作
+- <kbd>d</kbd><kbd>d</kbd>: 删除光标所在行, 剪切
+- `#`<kbd>d</kbd><kbd>d</kbd>: 删除下#行
 - `D`: 从当前光标位置删除至行尾, 等同于`d$`
 
 **复制指令(y, yank)**
 
-- `y`: 复制, 行为类似于d命令
-- `y$`: 
-- `y0`:
-- `y^`:
-- `ye`:
-- `yw`:
-- `yb`:
-- `#y*`: *代表任意可以移动光标的操作
-- `#yy`: 复制多行
+- <kbd>y</kbd>: 复制, 行为类似于d命令
+- <kbd>y</kbd>`$`: 
+- <kbd>y</kbd>`0`:
+- <kbd>y</kbd>`^`:
+- <kbd>y</kbd><kbd>e</kbd>:
+- <kbd>y</kbd><kbd>w</kbd>:
+- <kbd>y</kbd><kbd>b</kbd>:
+- `#`<kbd>y</kbd>`*`: *代表任意可以移动光标的操作
+- `#`<kbd>y</kbd><kbd>y</kbd>: 复制多行
 - `Y`: 复制整行
 
 **粘贴指令(p, paste)**
 
-- `p`: 缓存区存的如果为整行, 则粘贴当前光标所在行的下方; 否则, 粘贴至当前光标所在处的后面
-- `p`: 缓存区存的如果为整行, 则粘贴当前光标所在行的上方; 否则, 粘贴至当前光标所在处的前面
+- <kbd>p</kbd>: 缓存区存的如果为整行, 则粘贴当前光标所在行的下方; 否则, 粘贴至当前光标所在处的后面
+- <kbd>p</kbd>: 缓存区存的如果为整行, 则粘贴当前光标所在行的上方; 否则, 粘贴至当前光标所在处的前面
 
 **改变命令(c, change)**
 
 `c`相当于`d`剪切后使用`i`进入插入模式
 
-- `c`: 修改后切换成插入模式
-- `c$`:
-- `c^`:
-- `c0`:
-- `cb`:
-- `ce`:
-- `cw`:
+- <kbd>c</kbd>: 修改后切换成插入模式
+- <kbd>c</kbd>`$`:
+- <kbd>c</kbd>`^`:
+- <kbd>c</kbd>`0`:
+- <kbd>c</kbd><kbd>b</kbd>:
+- <kbd>c</kbd><kbd>e</kbd>:
+- <kbd>c</kbd><kbd>w</kbd>:
 - `#COMMAND`:
-- `cc`: 删除当前行并输入新内容, 相当于`S`
-- `#cc`: 删除多行并进入插入模式
+- <kbd>c</kbd><kbd>c</kbd>: 删除当前行并输入新内容, 相当于`S`
+- `#`<kbd>c</kbd><kbd>c</kbd>: 删除多行并进入插入模式
 - `C`: 删除当前光标到行尾, 并切换成插入模式, 相对于`c$`
 
 
 **撤销更改(u)**
 
-- `u`: 撤销最近的更改
-- `#u`: 撤销之前#次更改
+- <kbd>u</kbd>: 撤销最近的更改
+- `#`<kbd>u</kbd>: 撤销之前#次更改
 - `U`: 撤销光标落在这行后所有此行的更改
-- `Ctrl+r`: 重做最后的"撤销"更改
-- `.`: 重复前一个操作
-- `n.`: 重复前一个操作n次
+- <kbd>Ctrl</kbd>+<kbd>r</kbd>: 重做最后的"撤销"更改
+- <kbd>.</kbd>: 重复前一个操作
+- `n`<kbd>.</kbd>: 重复前一个操作n次
 
 **缩进命令**
 
-- `>>`: 向右缩进一个Tab
-- `<<`: 向左缩进一个Tab
-- `#>>`/`#<<`: 向右/左缩进#个Tab
+- <kbd>\></kbd><kbd>\></kbd>: 向右缩进一个Tab
+- <kbd>\<</kbd><kbd>\<</kbd>: 向左缩进一个Tab
+- `#`<kbd>\></kbd><kbd>\></kbd>/`#`<kbd>\<</kbd><kbd>\<</kbd>: 向右/左缩进#个Tab
 
 **其他命令**
 
-- `#istr[ESC]`: 粘贴"str"#次
+- `#`<kbd>i</kbd>`str`<kbd>ESC</kbd>: 粘贴"str"#次
 - `<start position><command><end position>`
     - COMMAND:
-        - `y`: 复制
-        - `d`: 删除
-        - `gU`: 变大写
-        - `gu`: 变小写
+        - <kbd>y</kbd>: 复制
+        - <kbd>d</kbd>: 删除
+        - <kbd>g</kbd>`U`: 变大写
+        - <kbd>g</kbd><kbd>u</kbd>: 变小写
     - 示例:
-    - `0y$`: 从行首拷贝到行尾
-    - `ye`: 从当前位置拷贝到本单词的最后一个字符
-- `di"`: 光标在""之间, 则删除""之间的内容, 
-- `yi(`: 光标在()之间, 则复制()之间的内容
-- `vi[`: 光标在[]之间, 则选中[]之间的内容
-- `dtx`: 删除字符直到遇见光标后的第一个x字符
-- `ytx`: 复制字符直到遇见光标后的第一个x字符
+    - `0`<kbd>y</kbd>`$`: 从行首拷贝到行尾
+    - <kbd>y</kbd><kbd>e</kbd>: 从当前位置拷贝到本单词的最后一个字符
+- <kbd>d</kbd><kbd>i</kbd>`"`: 光标在`""`之间, 则删除`""`之间的内容
+- <kbd>y</kbd><kbd>i</kbd><kbd>(</kbd>: 光标在()之间, 则复制()之间的内容
+- <kbd>v</kbd><kbd>i</kbd><kbd>[</kbd>: 光标在[]之间, 则选中[]之间的内容
+- <kbd>d</kbd><kbd>t</kbd><kbd>x</kbd>: 删除字符直到遇见光标后的第一个x字符
+- <kbd>y</kbd><kbd>t</kbd><kbd>x</kbd>: 复制字符直到遇见光标后的第一个x字符
 
-可将上方的`d`, `y`互换, 达到相应效果
+可将上方的<kbd>d</kbd>, <kbd>y</kbd>互换, 达到相应效果
 
 ### 扩展命令模式
 
@@ -884,22 +933,28 @@ graph LR
 练习:
 
 1. 将/etc/default/grub文件中的GRUB_CMDLINE_LINUX行的引号内追加xyz
-```
-:%s/\(.*CMD.*\)"/\1 xyz"
-```
+
+   ```bash
+   :%s/\(.*CMD.*\)"/\1 xyz"
+   ```
 
 2. 复制/etc/profile至/tmp目录, 用查找替换命令删除/tmp/profile文件中的行首的空白字符
-```
 
-```
+   ```bash
+   
+   ```
+
 3. 复制/etc/rc.d/init.d/functions文件到/tmp目录, 用查找替换命令为/tmp/functions的每行开头为空白字符的行的行首添加一个#号
-```
 
-```
+   ```bash
+   
+   ```
+
 4. 复制/etc/fstab到/tmp目录, 用查找替换命令为/tmp/fstab的每行不以#开头的行首添加一个#号
-```
-:%s/^[^#]\|^$/#&
-```
+
+   ```bash
+   :%s/^[^#]\|^$/#&
+   ```
 
 ### vim寄存器
 
@@ -913,10 +968,10 @@ graph LR
 
 ### vim的标记和宏(macro)
 
-- `ma`: 将当前位置标记为a, 26个字母均可做标记, 例如: `mb`, `mc`等
+- <kbd>m</kbd>`a`: 将当前位置标记为a, 26个字母均可做标记, 例如: `mb`, `mc`等
 - `'a`: 跳转到a标记的位置; 实用的文档内标记方法, 文档中跳跃编辑时很有用
-- `qa`: 录制宏a, a为宏名称
-- `q`: 停止录制宏
+- <kbd>q</kbd>`a`: 录制宏a, a为宏名称
+- <kbd>q</kbd>: 停止录制宏
 - `@a`: 执行宏a
 - `@@`: 重新执行上次执行的宏
 
@@ -931,16 +986,17 @@ graph LR
 允许选择的文本块
 - `v`: 面向字符
 - `V`: 面向行
-- `Ctrl+v`: 面向块
+- <kbd>Ctrl</kbd>+<kbd>v</kbd>: 面向块
 
 可视化键可用于与移动键结合使用:
-`w`, `)`, `}`, 箭头等
+<kbd>w</kbd>, <kbd>)</kbd>, <kbd>}</kbd>, 箭头等
 
 突出显示的文字可被删除, 复制, 变更, 过滤, 搜索, 替换等
 
 ### 多文件模式
 
 `vim FILE1 FILE2 FILE3 ...`
+
 - `:next`: 下一个
 - `:prev`: 前一个
 - `:first`: 第一个
@@ -957,17 +1013,18 @@ graph LR
 - `Ctrl+w`, `Arrow`: 在窗口间切换
 
 单文件窗口分割
-- `Ctrl+w s`: split, 水平分割
-- `Ctrl+w v`: vertical, 垂直分割
-- `Ctrl+w q`: 取消相邻窗口
-- `Ctrl+w o`: 取消全部窗口
+- <kbd>Ctrl</kbd>+<kbd>w</kbd> `s`: split, 水平分割
+- <kbd>Ctrl</kbd>+<kbd>w</kbd> `v`: vertical, 垂直分割
+- <kbd>Ctrl</kbd>+<kbd>w</kbd> `q`: 取消相邻窗口
+- <kbd>Ctrl</kbd>+<kbd>w</kbd> `o`: 取消全部窗口
 - `wqall`: 退出
 
 ### 定制vim的工作特性
 
 配置文件: 永久有效
-    - 全局配置文件: /etc/vimrc
-    - 个人配置文件: ~/.vimrc
+
+- 全局配置文件: /etc/vimrc
+- 个人配置文件: ~/.vimrc
 
 扩展模式下进行设置: 仅对当前vim进程有效
 - 行号

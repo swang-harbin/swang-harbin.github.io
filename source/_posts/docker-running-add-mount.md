@@ -15,7 +15,7 @@ categories:
 
 1. 查看需要修改的容器ID
 
-   ```shell
+   ```bash
    [root@localhost ~]# docker ps
    CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
    b19505cec84d        tomcat              "catalina.sh run"        3 days ago          Up 4 minutes        0.0.0.0:8888->8080/tcp     affectionate_driscoll
@@ -23,12 +23,12 @@ categories:
 
 2. 停止docker服务
 
-   ```shell
+   ```bash
    systemctl stop docker
    ```
 
 3. 修改配置文件
-  ```/var/lib/docker/containers/{container-id}/hostconfig.json```, 在Binds中添加一个挂载点数组, ":"前为宿主机目录, 后面为docker容器目录
+    ```/var/lib/docker/containers/{container-id}/hostconfig.json```, 在Binds中添加一个挂载点数组, ":"前为宿主机目录, 后面为docker容器目录
 
   ```json
   {
@@ -46,7 +46,7 @@ categories:
   ```
 
 4. 修改配置文件
-  ```/var/lib/docker/containers/{container id}/config.v2.json```, 修改MountPoints的配置, 注意对应关系
+    ```/var/lib/docker/containers/{container id}/config.v2.json```, 修改MountPoints的配置, 注意对应关系
 
   ```json
       "MountLabel":"",
@@ -107,7 +107,7 @@ categories:
 
 1. 查看当前容器
 
-   ```shell
+   ```bash
    [root@localhost ~]# docker ps
    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
    1c12559054c6        tomcat              "catalina.sh run"   About a minute ago   Up About a minute   8080/tcp            mount-test
@@ -115,7 +115,7 @@ categories:
 
 2. 将当前容器提交为新镜像
 
-   ```shell
+   ```bash
    docker commit old-container-id new-image-name
    
    docker commit 1c12559054c6 mount-test-temp
@@ -123,7 +123,7 @@ categories:
 
 3. 查看镜像
 
-   ```shell
+   ```bash
    [root@localhost ~]# docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    mount-test-temp     latest              9df6912cea3f        6 seconds ago       529MB
@@ -131,7 +131,7 @@ categories:
 
 4. 使用该镜像运行新的容器, 并添加挂载目录
 
-   ```shell
+   ```bash
    docker run -itd -v /host/folder:/container/folder image-name
    
    docker run -itd -v /host/folder:/container/folder mount-test-temp
@@ -141,13 +141,13 @@ categories:
 
    - 停止并删除旧容器
 
-     ```shell
+     ```bash
      docker stop old-container-id; docker rm old-container-id
      ```
 
    - 重命名新容器
 
-     ```shell
+     ```bash
      docker rename new-container-id old-container-name
      ```
 
@@ -155,7 +155,7 @@ categories:
 
 1. 将容器导出为文件
 
-   ```shell
+   ```bash
    docker export -o outfile/path/outfile.tar container-id
    ```
 
@@ -163,13 +163,13 @@ categories:
 
 2. 将导出的文件添加为新镜像
 
-   ```shell
+   ```bash
    docker import outfile/path/outfile.tar new-image-name
    ```
 
 3. 查看镜像
 
-   ```shell
+   ```bash
    [root@localhost ~]# docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    export-test-temp    latest              42c12cbe83f0        4 seconds ago       521MB
@@ -177,7 +177,7 @@ categories:
 
 4. 使用该镜像运行新的容器, 并添加挂载目录
 
-   ```shell
+   ```bash
    docker run -itd -v /host/folder:/container/folder image-name
    
    docker run -itd -v /host/folder:/container/folder mount-test-temp
@@ -187,13 +187,13 @@ categories:
 
    - 停止并删除旧容器
 
-     ```shell
+     ```bash
      docker stop old-container-id; docker rm old-container-id
      ```
 
    - 重命名新容器
 
-     ```shell
+     ```bash
      docker rename new-container-id old-container-name
      ```
 

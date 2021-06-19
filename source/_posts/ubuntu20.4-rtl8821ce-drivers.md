@@ -17,7 +17,7 @@ categories:
 ## 查看系统是否有无线网卡
 
 使用`ip addr`显示如下, 发现没有无线网卡
-```
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -29,14 +29,14 @@ categories:
 ```
 
 使用`iwconfig`显示如下, 依旧没有无线网卡
-```
+```bash
 lo        no wireless extensions.
 
 eno1      no wireless extensions.
 ```
 
 使用`lspci -v`显示如下, 发现包含`PCIe Wireless`, 即电脑是有无线网卡的, 网卡型号为`RTL8821CE`,
-```
+```bash
 02:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8821CE 802.11ac PCIe Wireless Network Adapter
 ```
 
@@ -49,7 +49,7 @@ eno1      no wireless extensions.
 在[github的该项目](https://github.com/tomaspinho/rtl8821ce)处, 发现如下描述:
 
 > Ubuntu & Debian
-> ```
+> ```bash
 > sudo apt install bc module-assistant build-essential dkms
 > sudo m-a prepare
 > ```
@@ -58,11 +58,11 @@ eno1      no wireless extensions.
 
 点击上方的==rtl8821ce-dkms==是18.04版本的deb包, 安装后不符合要求, 因此通过[packages.ubuntu.com](https://packages.ubuntu.com/)搜索`rtl8821ce-dkms`, 获取到了对应版本的deb包, 安装成功后, 重启电脑, 就可以使用无线网卡进行连接了. 下方图片红色框中的红色字对应不同Ubuntu版本的名称.
 
-![image.png](http://note.youdao.com/yws/res/70911/WEBRESOURCE7c2bdf0c00b4ae0d99976312c20bed6d)
+![image.png](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210619223814.png)
 
 全部执行命令如下:
 
-```
+```bash
 $ sudo apt install bc module-assistant build-essential dkms
 $ sudo m-a prepare
 $ sudo dpkg -i rtl8821ce-dkms_5.5.2.1-0ubuntu3_all.deb

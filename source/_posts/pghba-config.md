@@ -34,7 +34,6 @@ categories:
 
 - all :
 - 用户名 : 多个用户名用逗号(,)分隔
-- 
 
 ## ADDRESS
 

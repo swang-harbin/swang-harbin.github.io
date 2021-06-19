@@ -40,8 +40,6 @@ You've hit kubia-nwjcc
 
 **无法访问其他节点的`pod`**
 
-
-
 ```ruby
 root@master1:~# kubectl exec kubia-nwjcc -- curl http://10.98.41.49   
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -52,8 +50,6 @@ command terminated with exit code 7
 ```
 
 本问题随机发生，如下：
-
-
 
 ```shell
 root@master1:~# kubectl exec kubia-nwjcc -- curl http://10.98.41.49   
@@ -74,8 +70,6 @@ You've hit kubia-nwjcc
 
 因为是`flannel`使用的默认网卡1导致了这个问题的产生，所以我们需要使用`--iface`参数手动指定它使用网卡2来进行通信，这就需要修改`flannel`的配置文件，执行如下命令即可进行修改：
 
-
-
 ```undefined
 sudo kubectl edit daemonset kube-flannel-ds-amd64 -n kube-system
 ```
@@ -85,8 +79,6 @@ sudo kubectl edit daemonset kube-flannel-ds-amd64 -n kube-system
 **查找`flannel`配置文件名**
 
 首先输入`kubectl get po -n kube-system`，然后找到正在运行的`flannel`pod。
-
-
 
 ```ruby
 root@master1:~# k get po -n kube-system

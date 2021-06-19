@@ -20,7 +20,7 @@ https://github.com/MicrosoftArchive/redis/releases
 
 cmd运行
 
-```
+```bash
 redis-server.exe redis.windows.conf
 ```
 
@@ -28,7 +28,7 @@ redis-server.exe redis.windows.conf
 
 cmd运行
 
-```
+```bash
 redis-cli.exe -h 127.0.0.1 -p 6379
 ```
 
@@ -42,25 +42,25 @@ redis-cli.exe -h 127.0.0.1 -p 6379
 
 ### 安装服务
 
-```
+```bash
 redis-server.exe --service-install redis.windows.conf --service-name redis6380 --loglevel verbose
 ```
 
 ### 启动服务
 
-```
+```bash
 redis-server.exe --service-start --service-name redis6380
 ```
 
 ### 停止服务
 
-```
+```bash
 redis-server.exe --serviec-stop --service-name redis6380
 ```
 
 ### 卸载服务
 
-```
+```bash
 redis-server.exe --service-uninstall --service-name redis6380
 ```
 

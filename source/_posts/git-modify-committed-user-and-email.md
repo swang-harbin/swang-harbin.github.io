@@ -9,17 +9,17 @@ categories:
 ---
 # Git修改已经提交的用户名和邮箱
 
-```shell
+```bash
 git rebase -i HEAD~n
 ```
 
 把`pick`修改为`e`
 
-```shell
+```bash
 git commit --amend --author="userName <xxx@qq.com>"
 ```
 
-```shell
+```bash
 git rebase --continue
 ```
 

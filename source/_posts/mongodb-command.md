@@ -34,29 +34,29 @@ categories:
 
 - 基本命令:`db.集合名.insert(BSON文档)`,如果集合不存在会自动创建
 
-```
-db.col.insert({title: 'MongoDB 教程', 
-    description: 'MongoDB 是一个 Nosql 数据库',
-    by: '菜鸟教程',
-    url: 'http://www.runoob.com',
-    tags: ['mongodb', 'database', 'NoSQL'],
-    likes: 100
-})
-```
+  ```mongodb
+  db.col.insert({title: 'MongoDB 教程', 
+      description: 'MongoDB 是一个 Nosql 数据库',
+      by: '菜鸟教程',
+      url: 'http://www.runoob.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+  })
+  ```
 
 - 定义为变量后插入
 
-```
->document=({title: 'MongoDB 教程', 
-    description: 'MongoDB 是一个 Nosql 数据库',
-    by: '菜鸟教程',
-    url: 'http://www.runoob.com',
-    tags: ['mongodb', 'database', 'NoSQL'],
-    likes: 100
-})
-
->db.col.insert(document)
-```
+  ```mongodb
+  >document=({title: 'MongoDB 教程', 
+      description: 'MongoDB 是一个 Nosql 数据库',
+      by: '菜鸟教程',
+      url: 'http://www.runoob.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+  })
+  
+  >db.col.insert(document)
+  ```
 
 - 使用`db.集合名.save(document)`方式插入,如果不指定_id字段,save()和insert()类似,如果指定_id字段,save()方法会更新该_id的数据
 
@@ -68,7 +68,7 @@ db.col.insert({title: 'MongoDB 教程',
 
 update()方法用于更新已存在的文档.语法格式:
 
-```
+```mongodb
 db.collection.update(
    <query>,
    <update>,
@@ -92,19 +92,19 @@ db.collection.update(
 
 将col集合中title为MongoDB 教程的文档的title修改为MongoDB
 
-```
+```mongodb
 db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"})
 ```
 
 查看修改结果
 
-```
+```mongodb
 db.col.find().pretty()
 ```
 
 以上方式只会更新第一条发现的文档,如要修改多条相同的文档,需要设置multi为true
 
-```
+```mongodb
 db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"}},{multi:true})
 ```
 
@@ -112,7 +112,7 @@ db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"}},{multi:true}
 
 save()方法通过传入的文档来替换已有文档,语法格式:
 
-```
+```mongodb
 db.collection.save(
    <document>,
    {
@@ -130,7 +130,7 @@ db.collection.save(
 
 替换_id为5dd50fc604e9adcbffb78e38的文档数据:
 
-```
+```mongodb
 db.col.save({
     "_id" : ObjectId("5dd50fc604e9adcbffb78e38"),
     "title" : "MongoDB",
@@ -147,7 +147,7 @@ db.col.save({
 
 查看结果
 
-```
+```mongodb
 db.col.pretty()
 ```
 
@@ -155,7 +155,7 @@ db.col.pretty()
 
 语法:
 
-```
+```mongodb
 db.collection.remove(
    <query>,
    <justOne>
@@ -164,7 +164,7 @@ db.collection.remove(
 
 2.6版本后
 
-```
+```mongodb
 db.collection.remove(
    <query>,
    {
@@ -184,19 +184,19 @@ db.collection.remove(
 
 删除所有title为MongoDB 教程的文档
 
-```
+```mongodb
 db.col.remove({"title" : "MongoDB 教程"})
 ```
 
 只删除第一条找到的title为MongoDB 教程的文档
 
-```
+```mongodb
 db.col.remove({"title" : "MongoDB 教程"}, true)
 ```
 
 删除所有文档,(类似于sql的truncate)
 
-```
+```mongodb
 db.col.remove({})
 ```
 
@@ -204,7 +204,7 @@ db.col.remove({})
 
 语法
 
-```
+```mongodb
 db.collection.find(query, projection)
 ```
 
@@ -215,19 +215,19 @@ db.collection.find(query, projection)
 
 使用易读的方式来查询数据,可以使用pretty()方法,以格式化的方式显示所有文档
 
-```
+```mongodb
 db.collection.find().pretty()
 ```
 
 只返回一个文档
 
-```
+```mongodb
 db.collection.findOne()
 ```
 
 只返回title字段
 
-```
+```mongodb
 db.collection.find({}, {"title":1, "_id":0})
 ```
 
@@ -239,18 +239,18 @@ db.collection.find({}, {"title":1, "_id":0})
 
 | 操作     | 格式                       | 范例                                 | RDBMS中的类似语句 |
 | -------- | -------------------------- | ------------------------------------ | ----------------- |
-| 等于     | {<key> : <value>}          | db.col.find({"by" : "菜鸟"})         | where by = "菜鸟" |
-| 小于     | {<key> : {$lt : <value>}}  | db.col.find({"likes" : {$lt : 50}})  | where likes < 50  |
-| 小于等于 | {<key> : {$lte : <value>}} | db.col.find({"likes" : {$lq : 50}})  | where likes <= 50 |
-| 大于     | {<key> : {$gt : <value>}}  | db.col.find({"likes" : {$gt : 50}})  | where likes > 50  |
-| 大于等于 | {<key> : {$gte : 50}       | db.col.find({"likes" : {$gte : 50}}) | where likes >= 50 |
-| 不等于   | {key : {$ne : <value>}}    | db.col.find({"likes" : {$ne : 50}})  | where likes <> 50 |
+| 等于     | `{<key> : <value>}`         | `db.col.find({"by" : "菜鸟"})`       | `where by = "菜鸟"` |
+| 小于     | `{<key> : {$lt : <value>}}` | `db.col.find({"likes" : {$lt : 50}})` | `where likes < 50` |
+| 小于等于 | `{<key> : {$lte : <value>}}` | `db.col.find({"likes" : {$lq : 50}})` | `where likes <= 50` |
+| 大于     | `{<key> : {$gt : <value>}}` | `db.col.find({"likes" : {$gt : 50}})` | `where likes > 50` |
+| 大于等于 | `{<key> : {$gte : 50}`     | `db.col.find({"likes" : {$gte : 50}})` | `where likes >= 50` |
+| 不等于   | `{key : {$ne : <value>}}`  | `db.col.find({"likes" : {$ne : 50}})` | `where likes <> 50` |
 
 #### MongoDB AND 条件
 
 find()方法可以传入多个键,每个键以逗号隔开,常规AND语法
 
-```
+```mongodb
 db.col.find({key1 : value1, key2 : value2})
 ```
 
@@ -258,7 +258,7 @@ db.col.find({key1 : value1, key2 : value2})
 
 通过 by和title查询
 
-```
+```mongodb
 db.col.find({"by" : "菜鸟教程", "title" : "MongoDB 教程"})
 ```
 
@@ -266,7 +266,7 @@ db.col.find({"by" : "菜鸟教程", "title" : "MongoDB 教程"})
 
 使用$or关键字,语法格式
 
-```
+```mongodb
 db.col.find(
     {
         $or:[
@@ -278,13 +278,13 @@ db.col.find(
 
 #### MongoDB AND和OR联合使用
 
-```
+```mongodb
 db.col.find({key1:value1, key2:value2}, $or:[{key3:value3}, {key4:value4}])
 ```
 
 #### MongoDB 使用>和<查询
 
-```
+```mongodb
 db.col.find({"likes": {$gt:50, $lt:100}})
 ```
 
@@ -319,7 +319,7 @@ MongoDB中可以使用的类型如下
 
 获取col集合中title为String类型的文档
 
-```
+```mongodb
 db.col.find({"title" : {$type : 2}})
 或
 db.col.find({"title" : {$type : "string"})
@@ -333,7 +333,7 @@ db.col.find({"title" : {$type : "string"})
 
 语法:
 
-```
+```mongodb
 db.COLLECTION_NAME.find().limit(NUMBER)
 ```
 
@@ -345,7 +345,7 @@ db.COLLECTION_NAME.find().limit(NUMBER)
 
 语法:
 
-```
+```mongodb
 db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
 ```
 
@@ -355,7 +355,7 @@ db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
 
 使用sort()方法进行排序,1为升序排列,-1为降序排列,语法:
 
-```
+```mongodb
 db.COLLECTION_NAME.find().sort({key:1})
 ```
 

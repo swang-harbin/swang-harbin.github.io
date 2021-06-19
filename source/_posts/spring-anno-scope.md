@@ -19,7 +19,7 @@ categories:
 - prototype: 多实例, 每次从容器中获取对象时, 均创建一个新的实例
 - singleton: 单实例(默认值)
 
-> 以下两种仅在web项目中可取 :
+以下两种仅在web项目中可取 :
 
 - request: 同一次请求创建一个实例
 - session: 同一个session创建一个实例

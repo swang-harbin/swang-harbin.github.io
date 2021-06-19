@@ -17,7 +17,7 @@ run a command immune to hangups, with output to a non-tty
 
 运行命令不被挂起, 并输出到非tty
 
-```shell
+```bash
 sage: nohup COMMAND [ARG]...
   or:  nohup OPTION
 运行命令, 忽略挂起信号
@@ -37,13 +37,13 @@ To save output to FILE, use 'nohup COMMAND > FILE'.
 
 将标准输出重定向到nohup.out, 此时并不会后台运行程序
 
-```shell
+```bash
 nohup COMMAND
 ```
 
 将标准输出重定向到指定文件, 此时并不会后台运行程序
 
-```shell
+```bash
 nohup COMMAND > xxx.log
 ```
 
@@ -51,19 +51,19 @@ nohup COMMAND > xxx.log
 
 后台运行命令, 并将标准输出重定向默认的nohup.Out
 
-```shell
+```bash
 nohup COMMAND &
 ```
 
 后台运行命令, 并将标准输出重定向到指定文件
 
-```shell
+```bash
 nohup COMMAND > xxx.log &
 ```
 
 后台运行命令, 并将标准错误重定向到标准输出, 再将标准输出重定向到指定文件
 
-```shell
+```bash
 nohup COMMAND > xxx.file 2>&1 &
 ```
 
@@ -77,6 +77,6 @@ nohup COMMAND > xxx.file 2>&1 &
 
 ## 常用后台运行jar命令
 
-```shell
+```bash
 nohup java -jar xxx.jar > xxx.log 2>&1 &
 ```

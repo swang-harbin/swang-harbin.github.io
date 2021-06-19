@@ -20,8 +20,10 @@ cd /etc/sysconfig/network-scripts/
 ```bash
 vim ifcfg-xxx
 ```
-**参数说明:**
-- 默认参数
+### 参数说明
+
+#### 默认参数
+
 ```bash
 TYPE="Ethernet" # 网络类型
 PROXY_METHOD="none" # 代理方式
@@ -39,7 +41,8 @@ UUID="5e1647e0-5c6e-467d-ab2f-4fdc6e810422" # 通用唯一识别码, 每一个�
 DEVICE="ens33"  # 网卡设备名称,必须和NAME值一样
 ONBOOT="yes"    #是否开启自动启动网络连接
 ```
-- 其他参数
+#### 其他参数
+
 ```bash
 NM_CONTROLLED="yes" # 是否可以由Network Manager托管
 HWADDR=""   # MAC地址

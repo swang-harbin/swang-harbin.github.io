@@ -15,11 +15,11 @@ categories:
 ### 文件系统
 
 - 文件和目录被组织成一个单根倒置树结构
-- 文件系统从根目录开始, 用"/"表示
+- 文件系统从根目录开始, 用`/`表示
 - 根文件系统(rootfs): root filesystem
 - 文件名区分大小写(具体来说是由文件系统决定的, 而不是操作系统决定)
-- 以.开头的文件为隐藏文件
-- 路径分隔符/
+- 以`.`开头的文件为隐藏文件
+- 路径分隔符`/`
 - 文件有两类数据
     - 元数据 : metadata, 就是文件的属性
     - 数据 : data, 就是文件的具体内容
@@ -30,15 +30,34 @@ categories:
 
 #### Linux标准目录结构
 
-![image.png](D:\002_study\hexo.swang-harbin.github.io\source\_posts\WEBRESOURCE5814d273d40609346903c261a9e94973)
+```bash
+/
+├── bin
+├── boot
+├── dev
+├── etc
+├── home
+├── lib
+├── lib64
+├── media
+├── mnt
+├── proc
+├── root
+├── run
+├── sbin
+├── sys
+├── tmp
+├── usr
+└── var
+```
 
 - boot : 引导文件存放目录, 内核文件(vmlinuz), 引导加载器(bootloader, grub)都存放在此目录
-    ```
+    ```bash
     Linux内核 :
     -rwxr-xr-x. 1 root root 8.9M Oct 22 03:34 vmlinuz-5.3.7-301.fc31.x86_64
     ```
 - dev : 设备, 例如硬盘, 光盘等, 也包含逻辑上的设备
-    ```
+    ```bash
     硬盘, b: block, 块设备
     brw-rw----. 1 root disk 8, 0 Jan  8 22:22 /dev/sda
     
@@ -104,19 +123,19 @@ categories:
 - 蓝色->目录 绿色->可执行文件 红色->压缩文件 浅蓝色->链接文件 灰色->其他文件, 在```/etc/DIR_COLORS```文件中配置
 - 除了斜线和NUL, 所有字符都有效. 但使用特殊字符的目录名和文件不推荐使用, 有些字符需要用引号来引导他们
 - 标准Linux文件系统(如ext4), 文件名大小写敏感
-    ```
+    ```bsah
     例如: MAIL, Mail, mail, mAil
     ```
 
 ### Linux下的文件类型
 
-- \- 普通文件
-- d 目录文件
-- b 块设备
-- c 字符设备
-- l 符号链接文件
-- p 管道文件pipe
-- s 套接字文件socket
+- `-` 普通文件
+- `d` 目录文件
+- `b` 块设备
+- `c` 字符设备
+- `l` 符号链接文件
+- `p` 管道文件pipe
+- `s` 套接字文件socket
 
 ### 显示当前工作目录
 
@@ -125,7 +144,7 @@ categories:
 - 显示当前shell CWD的绝对路径
   
     ```pwd```: printing working directory
-    ```
+    ```bash
     -P 显示真实物理路径
     -L 显示链接路径(默认)
     ```
@@ -141,59 +160,60 @@ categories:
     - 指定相对于当前工作目录或某目录的位置
     - 可以作为一个简短的形式指定一个文件名
 - 基名: basename
-    ```
+    ```bash
     $ basename /etc/sysconfig/network-scripts/
     > network-scripts
     ```
 - 目录名: dirname
-    ```
+    ```bash
     $ dirname /etc/sysconfig/network-scripts/
     > /etc/sysconfig
     ```
 
 ### 更改目录
 
-- cd: change directory, 改变目录
+- `cd`: change directory, 改变目录
+  
     - 使用绝对或相对路径:
-    ```
+    ```bash
     cd /home/wang/
     cd home/wang
     ```
-    - 切换至父目录: cd ..
-    - 切换至当前用户主目录: cd 或 cd ~
-    - 切换至指定用户主目录: cd ~username
-    - 切换至以前的工作目录: cd -
-- 选项: -P, 切换到软链接的真实目录
+    - 切换至父目录: `cd ..`
+    - 切换至当前用户主目录: `cd` 或 `cd ~`
+    - 切换至指定用户主目录: `cd ~username`
+    - 切换至以前的工作目录: `cd -`
+- 选项: `-P`, 切换到软链接的真实目录
 - 相关的环境变量:
-    - PWD: 当前目录路径, ```echo $PWD```
-    - OLDPWD: 上一次目录路径, ```echo $OLDPWD```
+    - `PWD`: 当前目录路径, ```echo $PWD```
+    - `OLDPWD`: 上一次目录路径, ```echo $OLDPWD```
 
 ### 列出目录内容
 
 - 列出当前目录的内容或指定目录
-- 用法: ls [options] [files_or_dirs]
+- 用法: `ls [options] [files_or_dirs]`
 - 示例:
-    - ls -a 显示隐藏文件
-    - ls -l 显示额外的信息
-    - ls -R 目录递归通过, 列出所有子目录
-    - ls -ld 目录和符号链接信息, 显示目录本身属性
-    - ls -1 文件分行显示
-    - ls -S 按文件从大到小排序
-    - ls -t 按mtime(modify time)排序
-    - ls -u 配合-t选项, 显示并按atime(access time)从新到旧排序
-    - ls -U 按文件创建时间排序
-    - ls -X 按文件后缀排序
-    - ls -r 反转顺序
-    - ls --time=mtime/atime/ctime 显示修改/访问/元数据改变时间
-    - stat file 同时显示修改, 访问, 元数据改变时间
+    - `ls -a` 显示隐藏文件
+    - `ls -l` 显示额外的信息
+    - `ls -R` 目录递归通过, 列出所有子目录
+    - `ls -ld` 目录和符号链接信息, 显示目录本身属性
+    - `ls -1` 文件分行显示
+    - `ls -S` 按文件从大到小排序
+    - `ls -t` 按mtime(modify time)排序
+    - `ls -u` 配合-t选项, 显示并按atime(access time)从新到旧排序
+    - `ls -U` 按文件创建时间排序
+    - `ls -X` 按文件后缀排序
+    - `ls -r` 反转顺序
+    - `ls --time=mtime/atime/ctime` 显示修改/访问/元数据改变时间
+    - `stat file` 同时显示修改, 访问, 元数据改变时间
 
 ### 查看文件状态
 
-- stat
-    ```
+- `stat`
+  
+    ```bash
     Usage: stat [OPTION]... FILE...
     Display file or file system status.
-    
     ```
 - 文件: 
     - metadata: 元数据, 文件的属性
@@ -205,65 +225,64 @@ categories:
 
 ### 文件通配符
 
-- \* 匹配零个或多个字符
-- ? 匹配任何单个字符
-- ~ 当前用户家目录
-- ~mage 用户mage的家目录
-- ~+ 当前工作目录
-- ~- 前一个工作目录
-- [0-9] 匹配数字范围
-- [a-z] 字母
-- [A-Z] 字母
-- [abcd] 匹配列表中的任何一个字符
-- [^abcd] 匹配列表中的所有字符以外的字符
-- 预定义i的字符类 man 7 glob
-    - [:digit:] 任意数字, 相当于0-9
-    - [:lower:] 任意小写字母
-    - [:upper:] 任意大写字母
-    - [:alpha:] 任意大小写字母
-    - [:alnum:] 任意数字或字母
-    - [:blank:] 水平空白字符
-    - [:space:] 水平或垂直空白字符
-    - [:punct:] 标点符号
-    - [:print:] 可打印字符
-    - [:cntrl:] 控制(非打印)字符
-    - [:graph:] 图形字符
-    - [:xdigit:] 十六进制字符
-
-[[:lower:]] 代表一小写字母
+- `*` 匹配零个或多个字符
+- `?` 匹配任何单个字符
+- `~` 当前用户家目录
+- `~mage` 用户mage的家目录
+- `~+` 当前工作目录
+- `~-` 前一个工作目录
+- `[0-9]` 匹配数字范围
+- `[a-z]` 字母
+- `[A-Z]` 字母
+- `[abcd]` 匹配列表中的任何一个字符
+- `[^abcd]` 匹配列表中的所有字符以外的字符
+- 预定义的字符类 `man 7 glob`
+    - `[:digit:]` 任意数字, 相当于0-9
+    - `[:lower:]` 任意小写字母
+    - `[:upper:]` 任意大写字母
+    - `[:alpha:]` 任意大小写字母
+    - `[:alnum:]` 任意数字或字母
+    - `[:blank:]` 水平空白字符
+    - `[:space:]` 水平或垂直空白字符
+    - `[:punct:]` 标点符号
+    - `[:print:]` 可打印字符
+    - `[:cntrl:]` 控制(非打印)字符
+    - `[:graph:]` 图形字符
+    - `[:xdigit:`] 十六进制字符
+    - `[[:lower:]]` 代表一小写字母
 
 **练习**
 - 显示/var目录下所有以l开头, 以一个小写字母结尾, 且中间出现至少一位数字的文件或目录
-    ```
+    ```bash
     ls -d /var/l*[[:digit:]]*[[:lower:]]
     ```
 - 显示/etc目录下以任意一位数字开头, 且以非数字结尾的文件或目录
-    ```
+    ```bash
     ls -d /etc/[0-9]*[^0-9]
     ```
 - 显/etc目录下以非字母开头, 后面跟了一个字母及其他任意长度任意字符的文件或目录
-    ```
+    ```bash
     ls -d /etc/[^[:alpha:]][[:alpha:]]*
     ```
 - 显示/etc目录下所有以rc开头, 并后面是0-6之间的数字, 其他为任意字符的文件或目录
-    ```
+    ```bash
     ls -d /etc/rc[0-6]*
     ```
 - 显示/etc目录下, 所有以.d结的文件或目录
-    ```
+    ```bash
     ls -d /etc/*d
     ```
 - 显示/etc目录下, 所有以.con结尾, 且以m, n, r, p开头的文件或目录
-    ```
+    ```bash
     ls -d /etc/[mnrp]*.con
     ```
 - 只显示/root下的隐藏文件和目录
-    ```
+    ```bash
     ls -d /root/.*
     ls -daI "[^.]*""
     ```
 - ==只显示/etc下的非隐藏目录==
-    ```
+    ```bash
     ls -d /etc/*/
     ```
 
@@ -271,22 +290,21 @@ categories:
 
 ### 创建空文件和刷新时间
 
-- touch命令
-- 格式: touch [OPTION] ... FILE ...
-    - -a 仅改变atime和ctime
-    - -m 仅改变mtime和ctime
-    - -t [[CC]YY]MMDDhhmm[.ss] 指定atime和mtime的时间戳
-    - -c 如果文件不存在, 则不予创建
-
+- `touch`命令
+- 格式: `touch [OPTION] ... FILE ...`
+    - `-a` 仅改变atime和ctime
+    - `-m` 仅改变mtime和ctime
+    - `-t [[CC]YY]MMDDhhmm[.ss]` 指定atime和mtime的时间戳
+    - `-c` 如果文件不存在, 则不予创建
 
 **练习**
 
 1. 创建```-a```文件
-```
+```bash
 touch -- -a 或 touch ./-a
 ```
 2. 创建```~filename```文件
-```
+```bash
 touch '~filename' 或 touch ./~filename
 ```
 
@@ -294,40 +312,40 @@ touch '~filename' 或 touch ./~filename
 
 ## 复制文件和目录cp(copy)
 
-- cp [OPTION]... [-T] SOURCE DEST
-- cp [OPTION]... SOURCE... DIRECTORY
-- cp [OPTION]... -t DIRECTORY SOURCE...
+- `cp [OPTION]... [-T] SOURCE DEST`
+- `cp [OPTION]... SOURCE... DIRECTORY`
+- `cp [OPTION]... -t DIRECTORY SOURCE...`
 
-| 目标</br>/</br>源     | 不存在                                              | 存在且为文件                                                 | 存在且为目录                                                 |
-| --------------------- | --------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 一个文件              | 新建DEST, 并将SRC中内容填充至DEST中                 | 将SRC中的内容覆盖至DEST中</br>注意数据丢失风险! 建议用-i选项 | 在DEST下新建与原文件同名的文件, 并将SRC中内容填充至新文件中  |
-| 多个文件              | 提示错误                                            | 提示错误                                                     | 在DESC下新建与原文件同名的文件, 并将原文件内容复制进新文件中 |
-| 目录</br>需使用-r选项 | 创建指定DEST同名目录, 复制SRC目录中所有文件至DEST下 | 提示错误                                                     | 在DEST下新建与原目录同名的目录, 并将SRC中内容复制至新目录中  |
+| 目标<br>/<br>源      | 不存在                                              | 存在且为文件                                                | 存在且为目录                                                 |
+| -------------------- | --------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| 一个文件             | 新建DEST, 并将SRC中内容填充至DEST中                 | 将SRC中的内容覆盖至DEST中<br>注意数据丢失风险! 建议用-i选项 | 在DEST下新建与原文件同名的文件, 并将SRC中内容填充至新文件中  |
+| 多个文件             | 提示错误                                            | 提示错误                                                    | 在DESC下新建与原文件同名的文件, 并将原文件内容复制进新文件中 |
+| 目录<br>需使用-r选项 | 创建指定DEST同名目录, 复制SRC目录中所有文件至DEST下 | 提示错误                                                    | 在DEST下新建与原目录同名的目录, 并将SRC中内容复制至新目录中  |
 
 **cp常用选项**
 
-- -i 覆盖前提示
-- -n 不覆盖
-- -r, -R 递归复制目录及内部的所有内容
-- -a 归档, 相当于-dR --preserv=all
-- -d 不复制原文件, 只复制链接名, 相当于--no-dereference --preserv=links
-- -p 等同--preserv=mode,ownership,timestamp
-- -v --verbose 打印复制过程
-- -f --force 强制复制, 如果会覆盖原文件, 不会有提示
-- -u --update 只复制比目标更新或不存在的文件
-- -b 目标存在, 覆盖前先备份
-- --backup=numbered 目标存在, 覆盖前先备份, 加数字后缀
-- --preserv[=ATTR_LIST]
-    - mode 权限
-    - ownership 属主属组
-    - timestamp
-    - links
-    - xatt
-    - context
-    - all
+- `-i` 覆盖前提示
+- `-n` 不覆盖
+- `-r`, -R 递归复制目录及内部的所有内容
+- `-a` 归档, 相当于-dR --preserv=all
+- `-d` 不复制原文件, 只复制链接名, 相当于--no-dereference --preserv=links
+- `-p` 等同--preserv=mode,ownership,timestamp
+- `-v --verbose` 打印复制过程
+- `-f --force` 强制复制, 如果会覆盖原文件, 不会有提示
+- `-u --update` 只复制比目标更新或不存在的文件
+- `-b` 目标存在, 覆盖前先备份
+- `--backup=numbered` 目标存在, 覆盖前先备份, 加数字后缀
+- `--preserv[=ATTR_LIST]`
+    - `mode` 权限
+    - `ownership` 属主属组
+    - `timestamp`
+    - `links`
+    - `xatt`
+    - `context`
+    - `all`
 
-特殊文件使用cp会出问题, 例如```cp /dev/sdb ./```, 该命令会将整个硬盘复制过来, 应该使用```cp -a /dev/sdb```命令, 复制所有属性, 8代表设备类型, 16代表该设备的编号
-```
+特殊文件使用cp会出问题, 例如`cp /dev/sdb ./`, 该命令会将整个硬盘复制过来, 应该使用`cp -a /dev/sdb`命令, 复制所有属性, 8代表设备类型, 16代表该设备的编号
+```bash
 [root@localhost ~]# ll -a /dev/sdb
 brw-rw----. 1 root disk 8, 16 Jan 13 19:58 /dev/sdb
 [root@localhost ~]# cp /dev/sdb .
@@ -343,52 +361,59 @@ brw-rw----. 1 root disk 8, 16 Jan 13 19:58 ./sdb
 
 **练习**
 1. 定义别名命令baketc, 每天将/etc/目录下所有文件, 被分到/app独立的子目录下, 并要求子目录格式为backupYYYY-mm-dd, 备份过程可见
-```
-mkdir /app/
-alias baketc='cp -av /etc/ /app/backup`date +%F`'
-baketc
-```
+
+   ```bash
+   mkdir /app/
+   alias baketc='cp -av /etc/ /app/backup`date +%F`'
+   baketc
+   ```
+
 2. 创建/app/rootdir目录, 并复制/root下所有文件到该目录内, 要求保留原有权限
-```
-mkdir /app/rootdir
-cp -rp /root/ /app/rootdir
-```
+
+   ```bash
+   mkdir /app/rootdir
+   cp -rp /root/ /app/rootdir
+   ```
+
 3. 复制file, file.bak
-```
-cp file{,.bak} 相当于 cp file file.bak
-```
+
+   ```bash
+   cp file{,.bak} 相当于 cp file file.bak
+   ```
 
 ## 移动和重命名文件mv(move)
 
-- mv [OPTION]... [-T] SOURCE DEST
-- mv [OPTION]... SOURCE... DIRECTORY
-- mv [OPTION]... -t DIRECTORY SOURCE...
+- `mv [OPTION]... [-T] SOURCE DEST`
+- `mv [OPTION]... SOURCE... DIRECTORY`
+- `mv [OPTION]... -t DIRECTORY SOURCE...`
 
 **常用选项**
-- -i 交互式
-- -f 强制
-- -b 目标存在, 复制前先备份
+
+- `-i` 交互式
+- `-f` 强制
+- `-b` 目标存在, 复制前先备份
 
 **rename**
 
-- rename [options] <expression> <replacement> <file>...
+- `rename [options] <expression> <replacement> <file>...`
 
 
 把*.conf文件中的conf替换为conf.bak
-```
+```bash
 rename conf conf.bak *.conf
 ```
 
 
 ## 删除rm(remove)
 
-- rm [OPTION]... [FILE]...
+- `rm [OPTION]... [FILE]...`
 
 **常用选项**
-- -i 交互式
-- -f 强制删除
-- -r 递归删除
-- --no-preserve-root 不保留根, 从/目录开始删除
+
+- `-i` 交互式
+- `-f` 强制删除
+- `-r` 递归删除
+- `--no-preserve-root` 不保留根, 从`/`目录开始删除
 
 **示例**
 
@@ -397,96 +422,105 @@ rename conf conf.bak *.conf
 
 **练习**
 
-1. 将rm file命令修改为mv file /data
-```
-alias rm='mv -t /data'
-```
+1. 将`rm file`命令修改为`mv file /data`
+
+   ```bash
+   alias rm='mv -t /data'
+   ```
+
 2. 删除目录下的-foo文件
-```
-rm -- -foo
-或
-rm ./-foo
-```
+
+   ```ba
+   rm -- -foo
+   或
+   rm ./-foo
+   ```
 
 3. 已被删除但未释放空间的操作
 
-在/boot目录下创建一个800M的bigfile文件, `if(input file), of(output file), bs(block store), count`
-```
-dd if=/dev/zero of=/boot/bigfile bs=1M count=800
-```
+   在/boot目录下创建一个800M的bigfile文件, `if(input file), of(output file), bs(block store), count`
 
-查看已被删除, 但没有释放的文件
-```
-lsof | grep deleted
-```
+   ```bash
+   dd if=/dev/zero of=/boot/bigfile bs=1M count=800
+   ```
 
-将已存在的文件内存置为0
-```
-> /boot/bigfile
-```
+   查看已被删除, 但没有释放的文件
+
+   ```bash
+   lsof | grep deleted
+   ```
+
+   将已存在的文件内存置为0
+
+   ```bash
+   > /boot/bigfile
+   ```
 
 ## 目录操作
 
-- tree 显示目录树
-    - -d 只显示目录
-    - -L level, 指定显示的层级数目
-    - -P 只显示由指定pattern匹配到的路径
+- `tree` 显示目录树
+    - `-d` 只显示目录
+    - `-L level` 指定显示的层级数目
+    - `-P` 只显示由指定pattern匹配到的路径
 
-- mkdir(make directory) 创建目录
-    - -p parent, 如果存在不报错, 不存在会创建当前目录及父级目录
-    - -v 显示详细信息
-    - -m MODE, 创建目录时直接指定权限
+- `mkdir`(make directory) 创建目录
+    - `-p parent`, 如果存在不报错, 不存在会创建当前目录及父级目录
+    - `-v` 显示详细信息
+    - `-m MODE` 创建目录时直接指定权限
 
-- rmdir(remove directory) 删除空目录
-    - -p 递归删除父空目录
-    - -v 显示详细信息
+- `rmdir`(remove directory) 删除空目录
+    - `-p` 递归删除父空目录
+    - `-v` 显示详细信息
 
-- rm -f 递归删除目录树
+- `rm -f` 递归删除目录树
 
 **练习**
 
 1. 如何创建/testdir/dir1/x, /testdir/dir1/y, /testdir/dir1/x/a, /testdir/dir1/x/b, /test/dir1/y/a, /testdir/dir1/y/b
-```
-/testdir
-└── dir1
-    ├── x
-    │   ├── a
-    │   └── b
-    └── y
-        ├── a
-        └── b
 
-mkdir -p /testdir/dir1/{x,y}/{a,b}
-```
+   ```bash
+   /testdir
+   └── dir1
+       ├── x
+       │   ├── a
+       │   └── b
+       └── y
+           ├── a
+           └── b
+   
+   mkdir -p /testdir/dir1/{x,y}/{a,b}
+   ```
+
 2. 如何创建/testdir/dir2/x, /testdir/dir2/y, /testdir/dir2/x/a, /testdir/dir2/x/b
-```
-/testdir
-└── dir2
-    ├── x
-    │   ├── a
-    │   └── b
-    └── y
 
-mkdir -p /testdir/dir2/{x/{a,b},y}
-```
+   ```bash
+   /testdir
+   └── dir2
+       ├── x
+       │   ├── a
+       │   └── b
+       └── y
+   
+   mkdir -p /testdir/dir2/{x/{a,b},y}
+   ```
+
 3. 如何创建/testdir/dir3, /testdir/dir4, /testdir/dir5/dir6, /testdir/dir5/dir7
-```
-/testdir
-├── dir3
-├── dir4
-└── dir5
-    ├── dir6
-    └── dir7
-mkdir -p /testdir/dir{3,4,5/dir{6,7}}
-```
 
-
+   ```bash
+   /testdir
+   ├── dir3
+   ├── dir4
+   └── dir5
+       ├── dir6
+       └── dir7
+   mkdir -p /testdir/dir{3,4,5/dir{6,7}}
+   ```
 
 ## 索引节点
 
 ### 索引节点介绍
 
-- inode(index node) : 索引节点表中包含文件系统所有文件列表
+- `inode`(index node) : 索引节点表中包含文件系统所有文件列表
 - 一个节点(索引节点)是索引节点表中的一个表项, 包含有关文件的信息(元数据), 包括
     - 文件类型, 权限, UID, GID
     - 链接数(指向这个文件名路径名称个数)
@@ -505,13 +539,20 @@ mkdir -p /testdir/dir{3,4,5/dir{6,7}}
 
 
 1. 前12个直接指针, 直接之上内存的数据区域
-> 如Blocks大小为4096B, 则前12个直接指针就可以保存48KB文件
+
+   > 如Blocks大小为4096B, 则前12个直接指针就可以保存48KB文件
+
 2. 一级指针可存储文件大小计算
-> 假设每个指针占用4个字节, 则一级指针指向的Block可保存4096/4个指针, 即可指向1024个Block, 一级指针可存储文件数据大小为1024*4096=4MB
+
+   > 假设每个指针占用4个字节, 则一级指针指向的Block可保存4096/4个指针, 即可指向1024个Block, 一级指针可存储文件数据大小为1024*4096=4MB
+
 3. 二级指针可存储文件大小计算
-> 同样假设Blocks大小为4094, 则二级指针可保存的Block指针数量为(4096/4)\*(4096/4)=1014\*1024, 则二级指针可保存的文件数量大小为(1024\*1024)\*4096=4GB
+
+   > 同样假设Blocks大小为4094, 则二级指针可保存的Block指针数量为(4096/4)\*(4096/4)=1014\*1024, 则二级指针可保存的文件数量大小为(1024\*1024)\*4096=4GB
+
 4. 三级指针可存储文件大小计算
-> 以一级, 二级指针计算方法类推, 三级指针可存储的文件数据大小为(1024\*1024\*1024)\*4096=4TB
+
+   > 以一级, 二级指针计算方法类推, 三级指针可存储的文件数据大小为(1024\*1024\*1024)\*4096=4TB
 
 
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210607235657.png)
@@ -521,7 +562,7 @@ mkdir -p /testdir/dir{3,4,5/dir{6,7}}
 
 查看每个分区最大的节点编号
 
-```
+```bash
 [root@localhost ~]# df -i
 Filesystem               Inodes IUsed   IFree IUse% Mounted on
 ...
@@ -530,7 +571,7 @@ Filesystem               Inodes IUsed   IFree IUse% Mounted on
 ```
 
 查看每个分区的容量
-```
+```bash
 [root@localhost ~]# df -h
 Filesystem               Size  Used Avail Use% Mounted on
 ...
@@ -540,18 +581,18 @@ Filesystem               Size  Used Avail Use% Mounted on
 可知/boot目录的最大节点编号为524288, 最大可用内存为879M
 
 此时, 在/boot文件夹中创建一个大文件, 每块1M, 创建900块, 共占用900M>879M
-```
+```bash
 dd if=/dev/zero of=/boot/bigfile bs=1M count=900
 ```
 错误提示:
-```
+```bash
 dd: error writing ‘/boot/bigfile’: No space left on device
 878+0 records in
 877+0 records out
 919797760 bytes (920 MB) copied, 1.58615 s, 580 MB/s
 ```
 此时, 节点编号还有剩余, 硬盘内存已被占满
-```
+```bash
 [root@localhost ~]# df -i
 Filesystem               Inodes IUsed   IFree IUse% Mounted on
 ...
@@ -564,15 +605,15 @@ Filesystem               Size  Used Avail Use% Mounted on
 ...
 ```
 删除刚创建的大文件, 还原到初始环境
-```
+```bash
 [root@localhost ~]# rm -f /boot/bigfile
 ```
 因为/boot下最多包含524288个节点, 因此创建524288万个文件进行测试(1个文件可能占用多个节点编号)
-```
+```bash
 [root@localhost ~]# echo /boot/dir/f{1..524288} | xargs touch
 ```
 错误提示
-```
+```bash
 touch: cannot touch ‘f523963’: No space left on device
 touch: cannot touch ‘f523964’: No space left on device
 ...
@@ -580,7 +621,7 @@ touch: cannot touch ‘f524287’: No space left on device
 touch: cannot touch ‘f524288’: No space left on device
 ```
 此时, 硬盘内存并未占满, 节点号已经用光了
-```
+```bash
 [root@localhost boot]# df -h
 Filesystem               Size  Used Avail Use% Mounted on
 ...
@@ -593,19 +634,20 @@ Filesystem               Inodes  IUsed   IFree IUse% Mounted on
 ...
 ```
 还原环境
-```
+```bash
 [root@localhost boot]# rm -rf /boot/dir/*
 ```
 
 **内存占满或节点耗尽的提示均为 :**
-```
+```bash
 No space left on device
 ```
 
 ### mv, cp与inode的关系
 
 #### mv与inode关系
-mv一个文件时
+`mv`一个文件时
+
 1. 链接数递减, 从而释放的inode号可以被重用
 2. 把数据块放在空闲列表中
 3. 删除目录项
@@ -613,7 +655,8 @@ mv一个文件时
 
 
 #### cp与inode关系
-cp一个文件时
+`cp`一个文件时
+
 1. 分配一个空闲的inode号, 在inode表中生成新条目
 2. 在目录中创建一个目录项, 将名称与inode编号关联
 3. 拷贝数据, 生成新文件
@@ -635,23 +678,23 @@ cp一个文件时
     - 当链接数为0时, 该文件被删除
 - 不能跨驱动器或分区创建
 - 语法:
-    ```
+    ```bash
     ln filename [linkname]
     ```
 
 ### 软链接(符号链接)
 
 - 一个符号链接指向另一个文件
-- ls -l 显示链接的名称和引用的文件
+- `ls -l` 显示链接的名称和引用的文件
 - 一个符号链接的内容是它引用文件的名称
 - 可以对目录创建软链接
 - 可以跨分区
 - 指向的是另一个文件的路径; 齐大小为指向的路径字符串的长度; 不增加或减少目录文件inode的引用计数;
 - 语法
-    ```
+    ```bash
     ln -s filename [linkname]
     ```
-    > filename一般使用相对路径, 该相对路径一定是相对于linkname指定文件的路径
+    filename一般使用相对路径, 该相对路径一定是相对于linkname指定文件的路径
 
 ### 硬链接和软链接的区别
 
@@ -669,13 +712,13 @@ cp一个文件时
 
 - 文件可以包含多种类型的数据
 - 检查文件的类型, 然后确定适当的打开命令或应用程序使用
-- file [options] <filename> ...
+- `file [options] <filename> ...`
 - 常用选项
-    - `-b`: 列出文件辨识结果时, 不显示文件名称
-    - `-f filelist`: 列出filelist文本文件中包含的文件名的文件类型
-    - `-F`: 使用指定分隔符号替换输出文件名后默认的":"分割符
-    - `-L`: 查看对应软链接对应文件的文件类型
-    - `--help`: 显示命令在线帮助
+    - `-b` 列出文件辨识结果时, 不显示文件名称
+    - `-f filelist` 列出filelist文本文件中包含的文件名的文件类型
+    - `-F` 使用指定分隔符号替换输出文件名后默认的":"分割符
+    - `-L` 查看对应软链接对应文件的文件类型
+    - `--help` 显示命令在线帮助
 
 每个文件的头部都包含magic number(魔数), 根据魔数可知文件的类型.
 
@@ -687,7 +730,7 @@ cp一个文件时
 - 程序: 指令 + 数据
     - 读入数据: Input
     - 输出数据: Output
-- 打开的文件都有一个fd: file descriptor(文件描述符)
+- 打开的文件都有一个`fd`: file descriptor(文件描述符)
 - Linux给程序提供三种I/O设备
     - 标准输入(STDIN): `0`, 默认接受来自键盘的输入
     - 标准输出(STDOUT): `1`, 默认输出到终端窗口
@@ -700,70 +743,78 @@ cp一个文件时
 ### 把输出和错误重定向到文件
 
 - STDOUT和STDERR可以被重定向到文件
-    ```
+    ```bash
     命令 操作符号 文件名
     ```
     - 支持的操作符包括
-        - `>`, `1>`, `>>`, `1>>` : 把STDOUT重定向到文件
-        - `2>`, `2>>`: 把STDERR重定向到文件
-        - `&>`, `&>>`: 把所有输出重定向到文件
+        - `>`, `1>`, `>>`, `1>>` 把STDOUT重定向到文件
+        - `2>`, `2>>` 把STDERR重定向到文件
+        - `&>`, `&>>` 把所有输出重定向到文件
 
-- `>` : 覆盖重定向标准输出数据流
+- `>` 覆盖重定向标准输出数据流
+    
     - 使用`set -C`命令禁止将内容覆盖到已有文件, 但可追加
     - 使用`>| file`强制覆盖
     - 使用`set +C`允许覆盖
-
-- `>>`: 追加重定向标准输出数据流
-- `2>`: 覆盖重定向标准错误输出数据流
-- `2>>`: 追加重定向标准错误输出数据流
+    
+- `>>` 追加重定向标准输出数据流
+- `2>` 覆盖重定向标准错误输出数据流
+- `2>>` 追加重定向标准错误输出数据流
 - 将标准输出和标准错误输出重定向不同位置
-    ```
+    ```bash
     COMMAND > /path/to/file.out 2> /path/to/error.out
     例如
     $ ls /existfile /noexistfile > file1 2> file2
     ```
 - 合并标准输出和错误输出为同一个数据流进行重定向
     - 将标准输出和标准错误输出重定向到file
-    ```
-    $ ls /existfile /noexistfile &> file
-    或
-    $ ls /existfile /noexistfile > file 2>&1
-    第二种需要注意顺序, 
-    $ ls /existfile /noexistfile 2>$1 > file
-    此种情况将标准错误重定向到标准输出后, 会立即将错误信息输出到控制台, 然后将之后的标准输出再输出到文件
-    ```
+    
+      ```bash
+      $ ls /existfile /noexistfile &> file
+      或
+      $ ls /existfile /noexistfile > file 2>&1
+      第二种需要注意顺序, 
+      $ ls /existfile /noexistfile 2>$1 > file
+      此种情况将标准错误重定向到标准输出后, 会立即将错误信息输出到控制台, 然后将之后的标准输出再输出到文件
+      ```
+    
     - 将标准输出和错误输出都隐藏
-    ```
-    $ ls /existfile /noexistfile &> /dev/null
-    $ ls /existfile /noexistfile > /dev/null 2>&1
-    $ ls /existfile /noexistfile 2> /dev/null >&2
-    ```
-- `()`: 合并多个程序的STDOUT
-    ```
+    
+      ```bash
+      $ ls /existfile /noexistfile &> /dev/null
+      $ ls /existfile /noexistfile > /dev/null 2>&1
+      $ ls /existfile /noexistfile 2> /dev/null >&2
+      ```
+- `()` 合并多个程序的STDOUT
+    
+    ```bash
     (cal 2007;cal 2008) > all.txt
     ```
 ### 将文件的内容作为标准输入
 
-- `<`: 将标准输入重定向
+- `<` 将标准输入重定向
 - 某些命令能够接受从文件中导入的STDIN
- - `tr 'a-z' 'A-Z' < /etc/issue
- > 此命令会把/etc/issue中的小写字符都转换成大写字符
-- `<<k`: 多行输入重定向, k代表终止词, 一般使用EOF, 即`<<EOF`, End Of File
+ - `tr 'a-z' 'A-Z' < /etc/issue`
+
+   > 此命令会把/etc/issue中的小写字符都转换成大写字符
+
+- `<<k` 多行输入重定向, k代表终止词, 一般使用EOF, 即`<<EOF`, End Of File
+
     - 直到k位置的所有文本都发送给STDIN
+
     - 有时被称为就地文本(heretext)
-    ```
-    $ mail -s "Please Call" admin@example.com <<END
-    > Hi Wang,
-    > 
-    > Please give me a call when you yet in. We may need
-    > to do some maintenance on server1
-    > 
-    > Details when you're on-site
-    > Zhang
-    > END
-    ```
 
-
+      ```bash
+      $ mail -s "Please Call" admin@example.com <<END
+      > Hi Wang,
+      > 
+      > Please give me a call when you yet in. We may need
+      > to do some maintenance on server1
+      > 
+      > Details when you're on-site
+      > Zhang
+      > END
+      ```
 
 #### tr命令
 
@@ -803,7 +854,7 @@ cp一个文件时
 ### 管道
 
 - 管道(使用符号"|"表示), 用来连接命令
-    ```
+    ```bash
     命令1 | 命令2 | 命令3 | ...
     ```
     - 将命令1的STDOUT发送给命令2的STDIN, 命令2的STDOUT发送给命令3的STDIN
@@ -812,28 +863,30 @@ cp一个文件时
     - 组合多种工具的功能: `ls | tr 'a-z' 'A-Z'`
 - 一些支持管道的命令
     - `less`: 一页一页地查看输入
-        ```
+        ```bash
         ls -l /etc | less
         ```
     - `mail`: 通过电子邮件发送输入
-        ```
+        ```bash
         echo "test email" | mail -s "test" user@example.com
         ```
     - `lpr`: 把输入发送给打印机
-        ```
+        ```bash
         echo "test print" | lpr -P printer_name
         ```
 - 管道中的`-`符号
   
     > 示例: 将/home里面的文件打包, 但打包的数据不是记录到文件, 而是传送到stdout, 经过管道后, 将`tar -cvf - /home`传送给后面的`tar -xvf -`, 后面的这个`-`则是取前一个命令的stdout, 因此, 就不需要使用临时file了
     
-    ```
+    ```bash
     $ tar -cvf - /home | tar -xvf -
     ```
 - 重定向到多个目标(tee)
     - `命令1 | tee [-a] 文件名 | 命令2`
-    > 把命令1的STDOUT保存在文件中, 作为命令2的输入
-    > `-a` 追加
+    
+      > 把命令1的STDOUT保存在文件中, 作为命令2的输入
+      > `-a` 追加
+    
     - 使用: 
         - 保存不通阶段的输出
         - 复杂管道的故障排除
@@ -843,67 +896,86 @@ cp一个文件时
 ### 练习
 
 1. 将/etc/issue文件中的内容转换为大写后保存至/tmp/issue.out文件中
-```
-$ tr a-z A-Z < /etc/issue > /tmp/issue.out
-```
-2. 将当前系统登录用户的信息转换为大写后保存至/tmp/who.out文件中
-```
-$ whoami > whoami
-$ tr a-z A-z < whoami > /tmp/who.out
-或
-$ whoami | tr a-z A-Z > /tmp/who.out
-```
-3. 一个linux用户给root发邮件, 要求邮件标题为"help", 邮件正文如下:`Hello, I am 用户名. The system version is here, please help me to check it, thanks! 操作系统版本信息`
-```
-[username@local ~]$ mail -s "help" root <<EOF
-> Hello, I am $USER. The system version is here, please help me to check it, thanks! `cat /etc/centos-release`
-> EOF
-```
-4. 将/root/下文件列表显示成一行, 并且文件名之间用空格隔开
-```
-$ ls > ls.txt
-$ tr -t '\n' ' ' < ls.txt
-或
-$ ls | tr -t '\n' ' '
-```
-5. 计算1+2+3+...+99+100的总和
-```
-$ echo {1..100} > sum.txt 
-$ tr -t ' ' '+' < sum.txt > rep.txt
-$ bc < rep.txt
-或
-$ echo {1..100} | tr -t ' ' '+' | bc
-```
-6. 删除Windows文本文件中的'^M'字符
-```
-$ tr -d ^M < Windows
-```
-7. 处理字符串"xt.,l 1 jr#!&.logmn2 c*/fe 3 uz 4", 只保留其中的数字和空格
-```
-$ echo 'xt.,l 1 jr#!&.logmn2 c*/fe 3 uz 4' | tr -dc '[0-9 ]'
-```
-8. 将PATH变量每个目录显示在独立的一行
-```
-$ echo $PATH > PATH.txt
-$ tr -t : '\n' < PATH.txt
-或
-$ echo $PATH | tr -t : '\n'
-```
-9. 将指定文件中0-9分别替换成a-j
-```
-$ tr -t 0-9 a-j < file
-```
-10. 将文件/etc/cenos-release中每个单词(由字母组成)显示在独立一行, 并无空行
-```
 
-```
+   ```bash
+   $ tr a-z A-Z < /etc/issue > /tmp/issue.out
+   ```
+
+2. 将当前系统登录用户的信息转换为大写后保存至/tmp/who.out文件中
+
+   ```bash
+   $ whoami > whoami
+   $ tr a-z A-z < whoami > /tmp/who.out
+   或
+   $ whoami | tr a-z A-Z > /tmp/who.out
+   ```
+
+3. 一个linux用户给root发邮件, 要求邮件标题为"help", 邮件正文如下:`Hello, I am 用户名. The system version is here, please help me to check it, thanks! 操作系统版本信息`
+
+   ```bash
+   [username@local ~]$ mail -s "help" root <<EOF
+   > Hello, I am $USER. The system version is here, please help me to check it, thanks! `cat /etc/centos-release`
+   > EOF
+   ```
+
+4. 将/root/下文件列表显示成一行, 并且文件名之间用空格隔开
+
+   ```bash
+   $ ls > ls.txt
+   $ tr -t '\n' ' ' < ls.txt
+   或
+   $ ls | tr -t '\n' ' '
+   ```
+
+5. 计算1+2+3+...+99+100的总和
+
+   ```bash
+   $ echo {1..100} > sum.txt 
+   $ tr -t ' ' '+' < sum.txt > rep.txt
+   $ bc < rep.txt
+   或
+   $ echo {1..100} | tr -t ' ' '+' | bc
+   ```
+
+6. 删除Windows文本文件中的'^M'字符
+
+   ```bash
+   $ tr -d ^M < Windows
+   ```
+
+7. 处理字符串"xt.,l 1 jr#!&.logmn2 c*/fe 3 uz 4", 只保留其中的数字和空格
+
+   ```bash
+   $ echo 'xt.,l 1 jr#!&.logmn2 c*/fe 3 uz 4' | tr -dc '[0-9 ]'
+   ```
+
+8. 将PATH变量每个目录显示在独立的一行
+
+   ```bash
+   $ echo $PATH > PATH.txt
+   $ tr -t : '\n' < PATH.txt
+   或
+   $ echo $PATH | tr -t : '\n'
+   ```
+
+9. 将指定文件中0-9分别替换成a-j
+
+   ```bash
+   $ tr -t 0-9 a-j < file
+   ```
+
+10. 将文件/etc/cenos-release中每个单词(由字母组成)显示在独立一行, 并无空行
+
+    ```bash
+    
+    ```
 
 ## 文件查找和压缩
 
 
 ### locate命令
 
-- locate命令依赖与mlocate数据库进行搜索, 对新创建或刚删除的数据不会立即更新数据库, 因此可能搜索不到或搜索到已删除的数据, 可以使用`updatedb`命令来手动更新mlocate数据库. 
+- `locate`命令依赖与mlocate数据库进行搜索, 对新创建或刚删除的数据不会立即更新数据库, 因此可能搜索不到或搜索到已删除的数据, 可以使用`updatedb`命令来手动更新mlocate数据库. 
 - locate命令搜索很快, 因此适合搜索磁盘上稳定不变的数据.
 - 语法: `locate [OPTIONS]... KEYWORD`
 - 选项
@@ -963,12 +1035,13 @@ $ tr -t 0-9 a-j < file
         - `-a`: 与
         - `-o`: 或
         - `-not`, `!`: 非
-    - 德丶摩根定律
+    - 德·摩根定律
         - (非A)或(非B) = 非(A且B)
         - (非A)且(非B) = 非(A或B)
-        示例:
-        > !A -o !B = !(A -a B)
-        > !A -a !B = !(A -o B)
+          示例:
+        
+          > !A -o !B = !(A -a B)
+          > !A -a !B = !(A -o B)
 - 示例
     - `find -name sonw.png`
     - `find -iname snow.png`
@@ -980,16 +1053,20 @@ $ tr -t 0-9 a-j < file
     - `find -not \(-user joe -o -user jane\)`
     - `find / -user joe -o -uid 500`
     - 找出/tml目录下, 属主不是root, 且文件名不以f开头的文件
-        ```
+        ```bash
         find /tmp \(-not -user root -a -not -name 'f*'\) -ls
         find /tmp -not \(-user root -o -name 'f*'\) -ls
         ```
     - 排除目录:
         - 查找/etc下, 除了/etc/sane.d目录的其他所有.conf后缀的文件
-        ```
-        find /etc -path 'etc/sane.d' -a -prune -o -name '*.conf'
-        ```
+        
+          ```bash
+          find /etc -path 'etc/sane.d' -a -prune -o -name '*.conf'
+          ```
+        
         - 查找/etc下, 除了/etc/sane.d和/etc/fonts两个目录的所有.conf后缀的文件
-        ```
-        find /etc \(-path 'etc/sane.d' -o -path 'etc/fonds'\) -a -prune -o -name '*.conf'
-        ```
+        
+          ```bash
+          find /etc \(-path 'etc/sane.d' -o -path 'etc/fonds'\) -a -prune -o -name '*.conf'
+          ```
+

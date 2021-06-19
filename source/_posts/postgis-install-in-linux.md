@@ -21,7 +21,7 @@ PostGIS是以插件的形式安装到PostgreSQL中的, 因此需要首先安装P
 
 解压Postgis源码包
 
-```shell
+```bash
 tar -zxvf postgis-3.0.1.tar.gz
 cd postgis-3.0.1
 ./configure --prefix=/path/to/postgresql --with-pgconfig=/path/to/postgresql/bin/pg_config

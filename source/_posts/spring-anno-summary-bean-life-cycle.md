@@ -51,9 +51,9 @@ categories:
 2. 初始化前执行MyBeanPostProcessor.postProcessBeforeInitialization()
 3. 初始化:
 
-> 对象创建完成, 并赋值好, 调用初始化方法
+   对象创建完成, 并赋值好, 调用初始化方法
 
-1. 初始化后执行MyBeanPostProcessor.postProcessAfterInitialization()
-2. 销毁:
+4. 初始化后执行MyBeanPostProcessor.postProcessAfterInitialization()
+5. 销毁:
    - 单实例: 在容器关闭的时候
    - 多实例: 容器不会管理这个bean; 容器不会调用销毁方法

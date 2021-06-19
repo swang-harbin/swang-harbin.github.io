@@ -17,7 +17,7 @@ categories:
 **可能存在两个问题: **
 
 ### 点击连接后返回如下提示
-```
+```bash
 Connecting to 10.1.7.95:22...
 Connection established.
 To escape to local shell, press 'Ctrl+Alt+]'.
@@ -39,7 +39,7 @@ Type `help' to learn how to use Xshell prompt.
 
 启动sshd服务
 
-```shell
+```bash
 systemctl start sshd
 ```
 
@@ -51,11 +51,11 @@ systemctl start sshd
 #### 解决办法
 
 修改```/etc/ssh/sshd.conf```文件, 修改为下面配置
-```shell
+```bash
 PermitRootLogin yes
 ```
 
 重启sshd服务
-```shell
+```bash
 systemctl reload sshd
 ```

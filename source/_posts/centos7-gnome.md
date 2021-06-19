@@ -16,20 +16,20 @@ yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
 ```
 
 ## 启动图形化页面/默认图形化启动
-- 启动图形化页面
+1. 启动图形化页面
 
-  ```bash
-  startx
-  ```
-  
-  **注意**
-  ```init 5```命令会要求创建新用户,```startx```直接使用当前用户登录
-  
-- 设置默认图形化启动
+   ```bash
+   startx
+   ```
 
-  ```bash
-  ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
-  ```
+   **注意**
+   ```init 5```命令会要求创建新用户,```startx```直接使用当前用户登录
+
+2. 设置默认图形化启动
+
+   ```bash
+   ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
+   ```
 
 
 ## 参考文档

@@ -13,7 +13,7 @@ categories:
 
 ## 错误提示
 
-```console
+```bash
 com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: icu.intelli.springboot.entity.User\$HibernateProxy\$sPsvljjm["hibernateLazyInitializer"])
 ```
 
@@ -23,7 +23,7 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer fou
 
 ## 解决办法
 
-### 法1 :
+### 法1
 
 在实体类上添加如下注解
 
@@ -31,7 +31,7 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer fou
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 ```
 
-### 法2 :
+### 法2
 
 注册一个objectMapper覆盖掉默认的，这样就不用在每个类上面使用`@JsonIgnoreProperties`：
 
@@ -44,7 +44,7 @@ public ObjectMapper objectMapper() {
 // ObjectMapper为com.fasterxml.jackson.databind.ObjectMapper;
 ```
 
-### 法3 :
+### 法3
 
 不使用SpringBoot默认的jackson进行对象json化, 手动使用其他json框架如fastJson进行json化然后返回
 

@@ -24,48 +24,48 @@ categories:
 
 ### 项目准备
 
-**1. pom.xml种添加web和thymeleaf的启动器**
+1. pom.xml种添加web和thymeleaf的启动器
 
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-</dependency>
+   ```xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+   </dependency>
+   
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-web</artifactId>
+   </dependency>
+   ```
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
-```
+2. 创建Controller
 
-**2. 创建Controller**
+   ```java
+   @Controller
+   public class UserController {
+   
+       @RequestMapping("/show")
+       public String showPage() {
+           System.out.println("showPage...");
+           return "index";
+       }
+   }
+   ```
 
-```java
-@Controller
-public class UserController {
+3. 编写页面, 放在resources下的templates中
 
-    @RequestMapping("/show")
-    public String showPage() {
-        System.out.println("showPage...");
-        return "index";
-    }
-}
-```
-
-**3. 编写页面, 放在resources下的templates中**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <span th:text="Hello...."></span>
-</body>
-</html>
-```
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>Title</title>
+   </head>
+   <body>
+       <span th:text="Hello...."></span>
+   </body>
+   </html>
+   ```
 
 ### 使用SpringLoader进行项目的热部署
 
@@ -147,14 +147,14 @@ pom.xml中添加依赖
 
 2. Ctrl + Alt + Shift + / --> Register
 
-勾选 `compiler.automake.allow.when.app.running`
+   勾选 `compiler.automake.allow.when.app.running`
 
-1. application.properties中添加
+3. application.properties中添加
 
-```properties
-spring.devtools.restart.enabled=true
-spring.freemarker.cache = false
-spring.thymeleaf.cache=false
-```
+   ```properties
+   spring.devtools.restart.enabled=true
+   spring.freemarker.cache = false
+   spring.thymeleaf.cache=false
+   ```
 
 本人试验依旧不生效

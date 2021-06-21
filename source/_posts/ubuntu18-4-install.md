@@ -158,25 +158,25 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
 
 默认即可, 关于输入法, 需要后续手动安装.
 
-![image](http://note.youdao.com/yws/res/71330/WEBRESOURCE495013d1ae79fa58245b388d7e8c2f56)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210357.png)
 
 ## 选择安装类型
 
 可以选择标准安装或最小化安装, 此处选择标准安装
 
-![image](http://note.youdao.com/yws/res/71335/WEBRESOURCE136b7a5a6b2bfef9ee776ce95d09a419)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210401.png)
 
 ## 是否清空磁盘
 
 为了安装一个干净的系统, 建议提前将数据备份到外部存储设备, 此处选择删除所有数据.
 
-![image](http://note.youdao.com/yws/res/71339/WEBRESOURCEb81511e0e0d35320d68702607215f003)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210402.png)
 
 ## 选择系统安装位置
 
 将操作系统安装在哪个磁盘上, 因为公司电脑是128固态+1T机械的组合方式, 所以将系统安装到固态硬盘中, 系统运行速度会更快.
 
-![image](http://note.youdao.com/yws/res/71343/WEBRESOURCE84cd546ec2a0411ab5a26abc4f5495b4)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210403.png)
 
 ## 手动分配存储空间
 
@@ -208,10 +208,10 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
 再给一份分好后的样式
 
 固态硬盘:
-![image](http://note.youdao.com/yws/res/71368/WEBRESOURCE88bfc98ad934a3264c663804dea5ac55)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210404.png)
 
 机械硬盘
-![image](http://note.youdao.com/yws/res/71366/WEBRESOURCE1b19eed7b4a27718308505adfb6c820f)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210406.png)
 
 
 ### 实际操作
@@ -220,7 +220,7 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
 2. 请观察*/dev/sda*, */dev/sdb*下**free space**的空间大小, 较小的是固态硬盘, 较大的是机械硬盘. 在我这sdb为固态硬盘, sda为机械硬盘, 分区规划按硬盘类型分, 而不是按盘符, 请自己查看对应关系.
 3. 选中固态硬盘的**free space**后, 点击**加号+**, 弹出如下页面, 在*Size*框中输入分区的大小, 在*Mount point*处选择将分区挂载到哪个挂载点. 点击**OK**即可. 重复该步骤, 按照上方所给的分区规划, 进行分区(也可自行安排).
 
-![image](http://note.youdao.com/yws/res/71387/WEBRESOURCEcfe9450e64b956cbfaafe332d6f03355)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210408.png)
 
 4. *Device for boot loader installation*注意选择我们的固态硬盘!!
 5. 分区完毕后点击**Install Now**开始安装.
@@ -229,24 +229,24 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
 
 此处请选择中国, 用鼠标点击以下中国区域后, 点击**Continue**即可(图片有误, 请选择中国)
 
-![image](http://note.youdao.com/yws/res/71398/WEBRESOURCEe2f5c4dbc959b2f23582c098d851b032)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210409.png)
 
 ## 创建一个普通用户
 
 添加一个普通用户, 用来使用Ubuntu, 请勿在正式环境使用root用户执行所有操作
 
-![image](http://note.youdao.com/yws/res/71405/WEBRESOURCE790d14c42af7cdcff766f53031d9cfe6)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210410.png)
 
 ## 正在安装
 
-![image](http://note.youdao.com/yws/res/71410/WEBRESOURCE15565de1cc3c2ebada7f0ba538eec3c3)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210412.png)
 
 
 ## 安装成功, 重启电脑
 
 出现如下提示, 证明系统已经安装完毕, 点击**Restart Now**会自动重启电脑, 此时可以将启动盘拔出电脑了.
 
-![image](http://note.youdao.com/yws/res/71413/WEBRESOURCEc3dfbe5044ba9b63d50df9d138c08440)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210413.png)
 
 ## 安装完毕后的一些设置
 
@@ -256,7 +256,7 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
 
 点击下方选项框, 选择**Other..** -> **China**, 此处我选择使用阿里的镜像
 
-![image](http://note.youdao.com/yws/res/71423/WEBRESOURCE0e7530cc2204d7c2819534c205703c9b)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210414.png)
 
 ### 安装无线网卡驱动
 
@@ -264,7 +264,7 @@ Ubuntu18.4和Ubuntu20.4均不自带无线网卡驱动, 这样是连不了wifi的
 
 依旧使用4.1中的**Software&Updates**, 点击菜单中的**Additional Drivers**, 按下图方式选中使用, 如果没有请稍等一会, 记得需要插网线哦.
 
-![image](http://note.youdao.com/yws/res/71431/WEBRESOURCE25b9137b861b6905e11764e39208c23b)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210416.png)
 
 ### 给root用户设置个密码
 
@@ -296,11 +296,11 @@ $ reboot
 
 1. 点击右上角右上角, 弹出框中的扳手图标.
 
-![image](http://note.youdao.com/yws/res/71444/WEBRESOURCE6bb436b2afa087e85a900dc30c121638)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210417.png)
 
 2. 点击**Region&Language**
 
-![image](http://note.youdao.com/yws/res/71449/WEBRESOURCEc6eddf285a10447caf3878d04f0a1266)
+![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210621210418.png)
 
 3. 点击**加号+*, 选择**Chinese**, 然后选择**Chinese(Rime)**
 

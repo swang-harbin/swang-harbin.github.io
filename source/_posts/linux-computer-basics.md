@@ -149,7 +149,7 @@ CPU是Central Processing Unit的缩写, 即中央处理器. 由控制器和运�
 
 **CPU性能指标 :**
 
-linux使用```lscpu```查看cpu信息
+linux使用`lscpu`查看cpu信息
 
 -主频: 主频是CPU的始终频率(CPU Clock Speed), 是CPU运算时的工作的频率(1秒内发生的同步脉冲数)的简称. 单位是Hz. 一般来说, 主频越高, CPU的速度越快, 由于内部结构不同, 并非所有的时钟频率相同的CPU的性能都一样
 - 外频: 系统总线的工作频率, CPU与外部(主板芯片组)交换数据, 指令的工作时钟频率
@@ -482,7 +482,7 @@ y = x + 200             // 切换回用户空间</br>
     > 系统级应用, 驱动程序
     
 - 高级语言: java, python, go, php, Objective-C, C#
-    
+  
     > 应用级程序开发
 
 **C: hello.c**

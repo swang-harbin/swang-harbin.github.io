@@ -39,7 +39,7 @@ categories:
 </script>
 ```
 
-注意, 使用此方法上传文件时, 请求头中```ContenType=multipart/form-data```, 此时使用的是Form Data形式的数据, 后台SpringMVC需使用@RequestParam进行接收, 对上传的文件可以直接使用@RequestParam("file")进行封装, 但是对于otherData, 本人使用String类型数据进行接收, 并使用阿里巴巴的JSON类对其进行转换, 进而得到相应对象.
+注意, 使用此方法上传文件时, 请求头中`ContenType=multipart/form-data`, 此时使用的是Form Data形式的数据, 后台SpringMVC需使用@RequestParam进行接收, 对上传的文件可以直接使用@RequestParam("file")进行封装, 但是对于otherData, 本人使用String类型数据进行接收, 并使用阿里巴巴的JSON类对其进行转换, 进而得到相应对象.
 
 ```java
 @RequestMapping(value = "/method")

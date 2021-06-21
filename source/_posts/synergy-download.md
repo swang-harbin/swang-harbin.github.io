@@ -91,7 +91,7 @@ yum install synergy-v1.8.8-stable-Linux-x86_64.rpm -y
 
 ### 设置为客户端, 并设置服务端IP
 
-Windows上使用cmd命令```ipconfig```查看网卡信息
+Windows上使用cmd命令`ipconfig`查看网卡信息
 
 ![image](https://note.youdao.com/yws/res/52870/211F65CC3DC54C96BABE4CA1213107EA)
 

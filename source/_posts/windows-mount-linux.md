@@ -123,7 +123,7 @@ Win+R输入regedit进入注册表编辑器 -> HKEY_LOCAL_MACHINE\SOFTWARE\Micros
 
 **说明**
 
-因为CentOS7中root用户的uid=0,gid=0.可以使用```id 用户名```查看用户id信息,如```id root```.如果是其他用户应该可以修改为对应的id.
+因为CentOS7中root用户的uid=0,gid=0.可以使用`id 用户名`查看用户id信息,如`id root`.如果是其他用户应该可以修改为对应的id.
 
 ## 挂载NFS
 

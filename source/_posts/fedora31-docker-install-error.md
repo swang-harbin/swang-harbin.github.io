@@ -32,7 +32,11 @@ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
 
 ### 法1: 修改/etc/default/grub文件
 
-1. 在该文件的GRUB_CMDLINE_LINUX=里面新增内容```systemd.unified_cgroup_hierarchy=0```
+1. 在该文件的GRUB_CMDLINE_LINUX=里面新增内容
+
+   ```bash
+   systemd.unified_cgroup_hierarchy=0
+   ```
 
 2. 保存退出后, 执行 :
 

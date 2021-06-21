@@ -19,7 +19,7 @@ categories:
    <artifactId>spring-boot-jpa-demo</artifactId>
    <version>1.0-SNAPSHOT</version>
    <packaging>war</packaging>
-
+   ```
 2. 创建好目录结构: 
 
    - IDEA可通过Project Structure快速创建, 手动创建的也需要进入Project Structure将web根目录和web.xml设置好

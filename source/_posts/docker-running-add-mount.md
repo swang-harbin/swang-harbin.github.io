@@ -28,7 +28,7 @@ categories:
    ```
 
 3. 修改配置文件
-    ```/var/lib/docker/containers/{container-id}/hostconfig.json```, 在Binds中添加一个挂载点数组, ":"前为宿主机目录, 后面为docker容器目录
+    `/var/lib/docker/containers/{container-id}/hostconfig.json`, 在Binds中添加一个挂载点数组, ":"前为宿主机目录, 后面为docker容器目录
 
   ```json
   {
@@ -46,7 +46,7 @@ categories:
   ```
 
 4. 修改配置文件
-    ```/var/lib/docker/containers/{container id}/config.v2.json```, 修改MountPoints的配置, 注意对应关系
+    `/var/lib/docker/containers/{container id}/config.v2.json`, 修改MountPoints的配置, 注意对应关系
 
   ```json
       "MountLabel":"",
@@ -93,13 +93,13 @@ categories:
 
 5. 启动docker服务
 
-   ```shell
+   ```bash
    systemctl start docker
    ```
 
 6. 启动docker容器
 
-   ```shell
+   ```bash
    docker start container-id
    ```
 

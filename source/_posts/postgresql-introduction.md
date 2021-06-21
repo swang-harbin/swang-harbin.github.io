@@ -34,3 +34,4 @@ psql -h ip -p port -U username -d database
                    Table "pg_catalog.pg_type"
      Column     |     Type     | Collation | Nullable | Default 
 ----------------+--------------+-----------+----------+---------
+```

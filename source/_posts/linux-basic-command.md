@@ -283,7 +283,7 @@ shutdown [OPTION]... [TIME] [MESSAGE]
 
 `localectl list-locales`或`cat /etc/locale.conf` 查看所有支持的语言和编码表
 
-`localectl set-locale LANG=zh_CN.utf8```或```vim /etc/locale.conf` 设置系统使用中文
+`localectl set-locale LANG=zh_CN.utf8`或`vim /etc/locale.conf` 设置系统使用中文
 
 
 ## tab键

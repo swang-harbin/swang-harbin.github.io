@@ -33,7 +33,7 @@ DNS解析器会按以下的顺序解析记录类型:
 3. A记录
 4. CNAME记录
 
-解析顺序可通过[```dns_order```属性配置](https://docs.konghq.com/1.4.x/configuration/#dns_order)
+解析顺序可通过[`dns_order`属性配置](https://docs.konghq.com/1.4.x/configuration/#dns_order)
 
 ### DNS注意事项
 

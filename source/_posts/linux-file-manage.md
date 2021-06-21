@@ -120,7 +120,7 @@ categories:
 
 - 文件名最长255个字节
 - 包括路径在内文件名称最长4095个字节
-- 蓝色->目录 绿色->可执行文件 红色->压缩文件 浅蓝色->链接文件 灰色->其他文件, 在```/etc/DIR_COLORS```文件中配置
+- 蓝色->目录 绿色->可执行文件 红色->压缩文件 浅蓝色->链接文件 灰色->其他文件, 在`/etc/DIR_COLORS`文件中配置
 - 除了斜线和NUL, 所有字符都有效. 但使用特殊字符的目录名和文件不推荐使用, 有些字符需要用引号来引导他们
 - 标准Linux文件系统(如ext4), 文件名大小写敏感
     ```bsah
@@ -143,7 +143,7 @@ categories:
 - CWD: current work directory
 - 显示当前shell CWD的绝对路径
   
-    ```pwd```: printing working directory
+    `pwd`: printing working directory
     ```bash
     -P 显示真实物理路径
     -L 显示链接路径(默认)
@@ -185,8 +185,8 @@ categories:
     - 切换至以前的工作目录: `cd -`
 - 选项: `-P`, 切换到软链接的真实目录
 - 相关的环境变量:
-    - `PWD`: 当前目录路径, ```echo $PWD```
-    - `OLDPWD`: 上一次目录路径, ```echo $OLDPWD```
+    - `PWD`: 当前目录路径, `echo $PWD`
+    - `OLDPWD`: 上一次目录路径, `echo $OLDPWD`
 
 ### 列出目录内容
 
@@ -299,11 +299,11 @@ categories:
 
 **练习**
 
-1. 创建```-a```文件
+1. 创建`-a`文件
 ```bash
 touch -- -a 或 touch ./-a
 ```
-2. 创建```~filename```文件
+2. 创建`~filename`文件
 ```bash
 touch '~filename' 或 touch ./~filename
 ```
@@ -417,7 +417,7 @@ rename conf conf.bak *.conf
 
 **示例**
 
-```rm -rf /```
+`rm -rf /`
 
 
 **练习**
@@ -752,7 +752,7 @@ No space left on device
         - `&>`, `&>>` 把所有输出重定向到文件
 
 - `>` 覆盖重定向标准输出数据流
-    
+  
     - 使用`set -C`命令禁止将内容覆盖到已有文件, 但可追加
     - 使用`>| file`强制覆盖
     - 使用`set +C`允许覆盖
@@ -786,7 +786,7 @@ No space left on device
       $ ls /existfile /noexistfile 2> /dev/null >&2
       ```
 - `()` 合并多个程序的STDOUT
-    
+  
     ```bash
     (cal 2007;cal 2008) > all.txt
     ```
@@ -1069,4 +1069,3 @@ No space left on device
           ```bash
           find /etc \(-path 'etc/sane.d' -o -path 'etc/fonds'\) -a -prune -o -name '*.conf'
           ```
-

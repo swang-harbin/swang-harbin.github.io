@@ -50,7 +50,7 @@ systemctl start sshd
 
 #### 解决办法
 
-修改```/etc/ssh/sshd.conf```文件, 修改为下面配置
+修改`/etc/ssh/sshd.conf`文件, 修改为下面配置
 ```bash
 PermitRootLogin yes
 ```

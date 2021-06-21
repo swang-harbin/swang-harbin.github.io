@@ -23,7 +23,7 @@ yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
    ```
 
    **注意**
-   ```init 5```命令会要求创建新用户,```startx```直接使用当前用户登录
+   `init 5`命令会要求创建新用户,`startx`直接使用当前用户登录
 
 2. 设置默认图形化启动
 

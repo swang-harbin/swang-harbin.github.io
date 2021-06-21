@@ -31,7 +31,7 @@ b195
 
 ## 修改相应容器的配置文件
 
-配置文件在```/var/lib/docker/containers/{container id}```目录下
+配置文件在`/var/lib/docker/containers/{container id}`目录下
 
 ### 修改hostconfig.json
 

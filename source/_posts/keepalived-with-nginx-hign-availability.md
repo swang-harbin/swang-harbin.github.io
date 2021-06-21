@@ -143,7 +143,7 @@ nginx启动命令默认在如下位置， 启动nginx
 /usr/local/nginx/sbin/nginx
 ```
 
-此时访问http://192.168.64.129:80/test/test.json会返回```{"message" : "This Is Master-129}"```, 访问http://192.168.64.130:80/test/test.json会返回```{"message" : "This Is Backup-130"}```
+此时访问http://192.168.64.129:80/test/test.json会返回`{"message" : "This Is Master-129}"`, 访问http://192.168.64.130:80/test/test.json会返回`{"message" : "This Is Backup-130"}`
 
 ### 配置Keepalived
 
@@ -255,7 +255,7 @@ systemctl start keepalived
 ```
 
 
-**2. 使用```ip addr```命令, 查看master主服务器的网卡信息, 发现ens33中包含VIP的信息**
+**2. 使用`ip addr`命令, 查看master主服务器的网卡信息, 发现ens33中包含VIP的信息**
 
 ```bash
 [root@localhost keepalived]# ip addr
@@ -275,7 +275,7 @@ systemctl start keepalived
        valid_lft forever preferred_lft forever
 ```
 
-**3. 使用```ip addr```命令, 查看backup备用服务器的网卡信息, ens33网卡中不包含VIP的信息**
+**3. 使用`ip addr`命令, 查看backup备用服务器的网卡信息, ens33网卡中不包含VIP的信息**
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -301,7 +301,7 @@ systemctl start keepalived
 
 请求被主服务器master处理
 
-**5. 关闭master主服务器的keepalived服务, 使用```ip addr```再次查看, 已不存在VIP**
+**5. 关闭master主服务器的keepalived服务, 使用`ip addr`再次查看, 已不存在VIP**
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -318,7 +318,7 @@ systemctl start keepalived
        valid_lft forever preferred_lft forever
 ```
 
-**6. 使用```ip addr```查看backup备用服务器, VIP已经飘移到该服务器**
+**6. 使用`ip addr`查看backup备用服务器, VIP已经飘移到该服务器**
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000

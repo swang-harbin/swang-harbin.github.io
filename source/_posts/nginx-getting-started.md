@@ -13,14 +13,14 @@ categories:
 
 Nginx有一个主进程和几个工作进程, 主进程负责读取配置和维护工作进程. 工作进程对请求作出实际的处理. Nginx通过基本事件模块及操作系统来高效的对工作进程进行任务的分配. 所有的工作进程都是在配置文件中定义的, 这些配置文件可能在一个固定的位置, 也可能是根据可用的CPU内核数自动调整的.
 
-Nginx和其模块的工作方式是在配置文件中确定的. 配置文件的默认名称是```nginx.conf```, 存放位置在```/usr/local/nginx/conf``` 或 ```/etc/nginx``` 或 ```/usr/local/etc/nginx```.
+Nginx和其模块的工作方式是在配置文件中确定的. 配置文件的默认名称是`nginx.con`, 存放位置在`/usr/local/nginx/conf` 或 `/etc/nginx` 或 `/usr/local/etc/nginx`.
 
 ## 启动, 停止及重载配置
 通过可执行文件启动nginx, 启动后可通过以下命令来控制nginx
 ```bash
 nginx -s signal
 ```
-其中```signal```可被下列参数替换
+其中`signal`可被下列参数替换
 - stop : 立即停止
 - quit : 优雅的停止
 - reload : 重新加载配置文件
@@ -63,11 +63,11 @@ name {
 )
 ```
 
-指令放在除配置文件以外的任何地方, 都被认为是主上下文. ```events```和```http```命令在主上下文, ```server```在```http```中, ```location```在```server```中.
+指令放在除配置文件以外的任何地方, 都被认为是主上下文. `events`和`http`命令在主上下文, `server`在`http`中, `location`在`server`中.
 
 ## 通过nginx服务访问静态内容
 
-创建两个目录```/data/www```(里面放html页面), ```/data/images```(里面放一些图片). 这时就需要在**http块**的**server块**中添加两个**location块**. 通常, server块中包含多个location块, 他们通过监听的端口和服务名称区分, 一旦nginx决定哪个服务解决请求, 他会检验location中定义URI
+创建两个目录`/data/www`(里面放html页面), `/data/images`(里面放一些图片). 这时就需要在**http块**的**server块**中添加两个**location块**. 通常, server块中包含多个location块, 他们通过监听的端口和服务名称区分, 一旦nginx决定哪个服务解决请求, 他会检验location中定义URI
 
 ```nginx
 # 配置文件中需要包含该标签, 不然会报错
@@ -92,9 +92,9 @@ http {
 ```
 如果请求匹配, 那么该URI会被添加root指令指定的路径下. 匹配会优先匹配长的前缀, 如果多个前缀均可以匹配, 会使用最长的前缀.
 
-重启nginx, 默认监听80端口的请求.如果请求以```/images/```开头, 例如```http://localhost/images/example.png```, nginx会返回```/data/images/example.png```, 如果文件不存在, 返回404; 如果请求不以```/images/```开头, 将会映射到```/data/www```目录, 例如```http://localhost/some/example.html```, 将会返回```/data/www/some/example.html```.
+重启nginx, 默认监听80端口的请求.如果请求以`/images/`开头, 例如`http://localhost/images/example.png`, nginx会返回`/data/images/example.png`, 如果文件不存在, 返回404; 如果请求不以`/images/`开头, 将会映射到`/data/www`目录, 例如`http://localhost/some/example.html`, 将会返回`/data/www/some/example.html`.
 
-如果一些事情没有按照预期的方式发生, 可以查看```access.log``` 和 ```error.log```文件, 位于```/usr/local/nginx/logs``` 或 ```/var/log/nginx```目录下.
+如果一些事情没有按照预期的方式发生, 可以查看`access.log` 和 `error.log`文件, 位于`/usr/local/nginx/logs` 或 `/var/log/nginx`目录下.
 
 ## 建立一个简单的代理服务
 
@@ -120,7 +120,7 @@ http {
     }
 }
 ```
-这会创建一个普通的服务, 监听8080端口, 并将所有的请求映射到本地的/data/up1目录. 此时root指令是在```server```的上下文中, 如果使用location块来相应请求, 并且其内部没有指定root指令, 那么会使用上下文中的root指令来作为它的root指令
+这会创建一个普通的服务, 监听8080端口, 并将所有的请求映射到本地的/data/up1目录. 此时root指令是在`server`的上下文中, 如果使用location块来相应请求, 并且其内部没有指定root指令, 那么会使用上下文中的root指令来作为它的root指令
 
 ### 创建代理服务器
 重新解压一份新的nginx, 在nginx.conf中使用如下配置, 并在**/data/images**创建一个**example.png**
@@ -143,12 +143,12 @@ http {
 
 指定**代理服务器**的**协议**, **服务名**和**端口**作为**proxy_pass指令**的参数
 
-第二个location块使用了正则表达式, 此时会匹配所有以```.gif```, ```.jpg``` 或 ```.png```结尾的URI. 正则表达式需要有一个~符号在前面, 符合的请求会被映射到```/data/images```目录, 而其他的请求都会被映射到上面的代理服务器. 
+第二个location块使用了正则表达式, 此时会匹配所有以`.gif`, `.jpg` 或 `.png`结尾的URI. 正则表达式需要有一个~符号在前面, 符合的请求会被映射到`/data/images`目录, 而其他的请求都会被映射到上面的代理服务器. 
 
-当nginx选择了一个```location```块去服务请求, 它第一次会检查详细的```location```指令, 记住其中最长的那个前缀, 然后再去匹配正则表达式, 如果正则匹配成功, 就使用匹配成功的, 否则, 使用之前记录的最长的那个前缀
+当nginx选择了一个`location`块去服务请求, 它第一次会检查详细的`location`指令, 记住其中最长的那个前缀, 然后再去匹配正则表达式, 如果正则匹配成功, 就使用匹配成功的, 否则, 使用之前记录的最长的那个前缀
 
 ## 测试访问
-此时被代理的服务器端口为8080, 代理服务器的端口为80, 通过访问代理服务器```http://localhost:80/example.json``` 或 ```http://localhost:80/example.png```进行测试.
+此时被代理的服务器端口为8080, 代理服务器的端口为80, 通过访问代理服务器`http://localhost:80/example.json` 或 `http://localhost:80/example.png`进行测试.
 
 ## 建立一个FastCGI代理
 
@@ -171,7 +171,7 @@ http{
 }
 ```
 
-以上除了符合改正则```~\.(gif|jpg|png)$```的请求会被映射到```/data/images```目录下, 其余的请求都会被代理服务器路由到FastCGI服务器.
+以上除了符合改正则`~\.(gif|jpg|png)$`的请求会被映射到`/data/images`目录下, 其余的请求都会被代理服务器路由到FastCGI服务器.
 
 ## 参考文档
 [官方文档 Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)

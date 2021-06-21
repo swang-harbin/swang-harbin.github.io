@@ -176,7 +176,7 @@ categories:
 
    
 
-  ```
+  ```sql
   select * from set_config('enable_seqcan', 'off', false)
   ```
 
@@ -296,3 +296,4 @@ pg_advisory_lock(key bigint) | void | Obtain exclusive session level advisory lo
 postgres=# select pg_relation_filepath('pg_class'::regclass);
     pg_realation_filepath
 -----------------------------
+```

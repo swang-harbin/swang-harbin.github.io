@@ -106,7 +106,7 @@ curl http://route's IP or domain:8000/hello/hi
 ## 遇到的问题
 
 通过上述方式访问, 我遇到过返回404的问题, 通过对真实服务添加Filter调试发现, 
-使用浏览器访问```http://route's IP or domain:8000/hello/hi```, 后台真实访问的是```http://route's IP or domain:8000/hi```, 缺少了**/hello**路径, 具体原因暂未探讨, 请注意, 使用的kong版本为1.4.0.
+使用浏览器访问`http://route's IP or domain:8000/hello/hi`, 后台真实访问的是`http://route's IP or domain:8000/hi`, 缺少了**/hello**路径, 具体原因暂未探讨, 请注意, 使用的kong版本为1.4.0.
 
 
 ## 参考文档

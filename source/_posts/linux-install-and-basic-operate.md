@@ -43,69 +43,69 @@ sha256sum /dev/sr0 : 计算下载文件的sha256码, 可用于验证文件是否
 
 ### 安装过程中的快捷键
 
-可以使用```Ctrl+Alt+F1~F6```来查看各种安装信息等.
+可以使用<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F1~F6</kbd>来查看各种安装信息等.
 
-可以使用```cat /proc/meminfo```查看内存等信息, 使用```shift+Page Up/Down```翻页
+可以使用`cat /proc/meminfo`查看内存等信息, 使用<kbd>Shift</kbd>+<kbd>Page Up</kbd>/<kbd>Page Down</kbd>翻页
 
-可以使用```cat /proc/partitions```查看分区信息
+可以使用`cat /proc/partitions`查看分区信息
 
-```rpm -qa | wc -l```查看安装了多少个包
+`rpm -qa | wc -l`查看安装了多少个包
 
 ## Linux基本操作
 
 
-- ```init 3``` 切换到纯字符界面
-- ```init 5``` 切换到图形界面, 需要登陆
+- `init 3` 切换到纯字符界面
+- `init 5` 切换到图形界面, 需要登陆
 
-字符界面和图形界面称为模式, 可通过```runlevel```查看系统的运行模式
+字符界面和图形界面称为模式, 可通过`runlevel`查看系统的运行模式
 
-```startx``` 也可以切换到图形界面, 并且不需要登陆, 该命令只是代表用户启动了一个应用, 因此不需要登陆, 并且不会修改运行模式.
+`startx` 也可以切换到图形界面, 并且不需要登陆, 该命令只是代表用户启动了一个应用, 因此不需要登陆, 并且不会修改运行模式.
 
 init的其他命令 :
 
-- ```init 6``` 相当于reboot
-- ```init 0``` 相当于poweroff(关机并断电), halt(关机不断电)
+- `init 6` 相当于reboot
+- `init 0` 相当于poweroff(关机并断电), halt(关机不断电)
 
 
-```Ctrl+Alt+F1``` 切换回图形界面
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F1</kbd> 切换回图形界面
 
-```Ctrl+Alt+FX```或```chvt X``` 临时切换到字符界面, X=[2, 6]
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>FX</kbd>或`chvt X` 临时切换到字符界面, X=[2, 6]
 
-```tty``` 查看当前终端号
+`tty` 查看当前终端号
 
-```whoami``` 查看当前系统用户
+`whoami` 查看当前系统用户
 
-```nmcli connection modify``` 网卡相关
+`nmcli connection modify` 网卡相关
 
-```cat /etc/centos-release```或```lsb_release``` 查看操作系统版本
+`cat /etc/centos-release`或`lsb_release` 查看操作系统版本
 
-```uname -r``` 查看Linux内核版本
+`uname -r` 查看Linux内核版本
 
-```lscpu``` 查看CPU配置
+`lscpu` 查看CPU配置
 
-```free -h```或```cat /proc/meminfo```查看内存信息, 使用```shift+Page Up/Down```翻页
+`free -h`或`cat /proc/meminfo`查看内存信息, 使用<kbd>Shift</kbd>+<kbd>Page Up</kbd>/<kbd>Page Down</kbd>翻页
 
-```lsblk``` 查看硬盘信息
+`lsblk` 查看硬盘信息
 
-```mii-tool netcardName``` 查看指定(netcardName)网卡信息
+`mii-tool netcardName` 查看指定(netcardName)网卡信息
 
-```who am i``` 查看的那个用户和终端以及登陆时间和IP
+`who am i` 查看的那个用户和终端以及登陆时间和IP
 
-```who``` 查看当前已经登陆的账户信息
+`who` 查看当前已经登陆的账户信息
 
-```cat /etc/shells``` 查看系统支持的shell类型
+`cat /etc/shells` 查看系统支持的shell类型
 
-```/bin/sh``` 根据shell路径切换shell
+`/bin/sh` 根据shell路径切换shell
 
-```echo $SHELL``` 查看当前系统使用的shell类型
+`echo $SHELL` 查看当前系统使用的shell类型
 
-```exit```或```logout```或```Ctrl + D``` 退出登陆
+`exit`或`logout`或<kbd>Ctrl</kbd>+<kbd>D</kbd> 退出登陆
 
-```clear```或```Ctrl+L``` 清屏
+`clear`或<kbd>Ctrl</kbd>+<kbd>L</kbd>清屏
 
-```hostname``` 查看主机名
+`hostname` 查看主机名
 
-```/etc/motd``` 修改每日提示语句(message of the day)
+`/etc/motd` 修改每日提示语句(message of the day)
 
 
 ### 用户登陆
@@ -135,7 +135,7 @@ AutomaticLogin=root
 - 权限有限
 - 造成损害的能力比较有限
 
-使用```id -u```根据uid来查看账号类型, 0:管理员, 1:普通用户
+使用`id -u`根据uid来查看账号类型, 0:管理员, 1:普通用户
 
 ### 终端(Terminal)
 
@@ -204,11 +204,11 @@ shell程序(命令解释器): sh(b类型嗯ourn 史蒂夫·伯恩), csh, tcsh, k
 
 - 显示当前使用的shell
 
-    ```echo ${SHELL}```
+    `echo ${SHELL}`
 
 - 显示当前系统使用的所有shell
 
-    ```cat /etc/shells```
+    `cat /etc/shells`
 
 ### 命令提示符
 

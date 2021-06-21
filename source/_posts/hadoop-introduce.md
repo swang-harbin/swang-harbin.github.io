@@ -556,7 +556,7 @@ hadoop-hadooptest-datanode-192-168-122-101.log
            <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
        </property>
    </configuration>
-
+   ```
 3. etc/hadoop/mapred-env.sh
 
    ```bash
@@ -598,7 +598,7 @@ hadoop-hadooptest-datanode-192-168-122-101.log
    $ sbin/start-yarn.sh
    ```
 
-   使用```jps```查看启动状态
+   使用`jps`查看启动状态
 
    ```bash
    $ jps
@@ -1121,7 +1121,7 @@ http://192.168.122.101:50070
 
 **==注意事项说明及后续必须操作 :==**
 
-- 此处需要将101服务器的公钥拷贝到自己服务器上一份, 是因为通过```ssh 192.168.122.101```连接本机的时候也需要输入密码. 
+- 此处需要将101服务器的公钥拷贝到自己服务器上一份, 是因为通过`ssh 192.168.122.101`连接本机的时候也需要输入密码. 
 
 - 为101设置免登录到102, 103是因为101上的NameNode需要访问另外两个节点上的DataNode
 

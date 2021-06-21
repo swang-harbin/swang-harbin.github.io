@@ -128,7 +128,7 @@ Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设�
    启动选项菜单
    
    操作系统的管理员(UEFI) - ubuntu (SK hynix SC311 SATA 128GB)
-   USB硬盘(UEFI) - Generic STORAGE DEVICE (GENERIC STORAGE DEVICE)```
+   USB硬盘(UEFI) - Generic STORAGE DEVICE (GENERIC STORAGE DEVICE)
    内置网络设备(IPv4 UEFI)
    内置网络设备(IPv6 UEFI)
    从EFI文件启动
@@ -340,32 +340,42 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 将当前用户加入到docker组后, 在执行`docker`命令时, 就不需要添加`sudo`了
 
 1. 查看docker组id
-```bash
-$ sudo cat /etc/group | grep docker
-docker:x:999:
-```
-> 我的docker组id为999, 如果有不同的, 请将后续命令中的id号更改为对应的
+
+   ```bash
+   $ sudo cat /etc/group | grep docker
+   docker:x:999:
+   ```
+
+   我的docker组id为999, 如果有不同的, 请将后续命令中的id号更改为对应的
 
 2. 将当前用户添加到docker组
-```bash
-$ sudo usermod -aG 999 `whoami`
-```
+
+   ```bash
+   $ sudo usermod -aG 999 `whoami`
+   ```
+
 3. 重启计算机, 因为用户的组信息需要重新登录才会加载到内存
-```bash
-$ reboot
-```
+
+   ```bash
+   $ reboot
+   ```
+
 4. 查看是否已在docker组中
-```bash
-$ id
-```
+
+   ```bash
+   $ id
+   ```
+
 ### 安装IntelliJ IDEA
 
 最近发现JetBrains提供的ToolBox挺好的, 可以管理其公司旗下的所有软件, 例如PyCharm, WebStrom, IDEA等. 此处使用ToolBox安装IDEA. ToolBox安装包已提供
 
 1. 安装toolbox
-```bash
-$ ./jetbrains-toolbox
-```
+
+   ```bash
+   $ ./jetbrains-toolbox
+   ```
+
 2. 使用toolbox安装IDEA, 启动Toolbox后, 需要等待一会, 现在IntelliJ IDEA Ultimate已经更新到2020.1版本, 点击Install按钮右侧的倒三角可以选择版本安装. 
 
 ### 数据库管理工具DBeaver安装
@@ -409,4 +419,4 @@ $ sudo apt -f install gimp
 
 ## 软件自启管理
 
-`Super`键, 然后搜索**Startup Application**进行设置即可
+<kbd>Super</kbd>键, 然后搜索**Startup Application**进行设置即可

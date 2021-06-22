@@ -1,7 +1,6 @@
 ---
 title: Git入门
 date: '2019-07-18 00:00:00'
-updated: '2019-07-18 00:00:00'
 tags:
 - Git
 categories:

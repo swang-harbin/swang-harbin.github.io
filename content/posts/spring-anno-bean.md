@@ -1,13 +1,13 @@
 ---
 title: Spring注解-@Bean指定初始化和销毁方法
 date: '2020-02-19 00:00:00'
-updated: '2020-02-19 00:00:00'
 tags:
 - Spring
 - Spring Annotation
 - Java
 categories:
-- [Java, Spring注解系列]
+- Java
+- Spring注解系列
 ---
 
 # Spring注解-@Bean指定初始化和销毁方法

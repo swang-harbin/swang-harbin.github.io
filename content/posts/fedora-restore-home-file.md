@@ -1,12 +1,12 @@
 ---
 title: Fedora恢复Home目录
 date: '2020-01-04 00:00:00'
-updated: '2020-01-04 00:00:00'
 tags:
 - Linux
 - Fedora
 categories:
-- [Linux, Fedora]
+- Linux
+- Fedora
 ---
 # Fedora恢复Home目录
 

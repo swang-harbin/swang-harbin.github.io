@@ -1,7 +1,6 @@
 ---
 title: 接口的过渡抽象类
 date: '2019-12-13 00:00:00'
-updated: '2019-12-13 00:00:00'
 tags:
 - Java
 categories:

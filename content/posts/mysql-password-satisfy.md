@@ -1,7 +1,6 @@
 ---
 title: MySQL密码策略
 date: '2019-12-03 00:00:00'
-updated: '2019-12-03 00:00:00'
 tags:
 - MySQL
 categories:

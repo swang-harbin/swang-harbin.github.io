@@ -1,12 +1,12 @@
 ---
 title: Fedora垃圾箱位置
 date: '2020-01-30 00:00:00'
-updated: '2020-01-30 00:00:00'
 tags:
 - Linux
 - Fedora
 categories:
-- [Linux, Fedora]
+- Linux
+- Fedora
 ---
 # Fedora垃圾箱位置
 

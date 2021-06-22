@@ -1,7 +1,6 @@
 ---
 title: Oracle和MySQL区别
 date: '2019-12-06 00:00:00'
-updated: '2019-12-06 00:00:00'
 tags:
 - Oracle
 - MySQL

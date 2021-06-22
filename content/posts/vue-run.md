@@ -1,7 +1,6 @@
 ---
 title: 运行vue项目
 date: '2019-11-21 00:00:00'
-updated: '2019-11-21 00:00:00'
 tags:
 - VUE
 categories:

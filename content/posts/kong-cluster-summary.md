@@ -1,7 +1,6 @@
 ---
 title: Kong集群部署总结
 date: '2019-12-12 00:00:00'
-updated: '2019-12-12 00:00:00'
 tags:
 - Kong
 categories:

@@ -1,7 +1,6 @@
 ---
 title: 修改R语言包下载镜像源
 date: '2020-09-09 00:00:00'
-updated: '2020-09-09 00:00:00'
 tags:
 - R
 categories:

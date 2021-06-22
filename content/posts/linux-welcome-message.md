@@ -1,11 +1,12 @@
 ---
 title: Linux设置欢迎语
 date: '2020-01-04 00:00:00'
-updated: '2020-01-04 00:00:00'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 # Linux设置欢迎语
 

@@ -1,7 +1,6 @@
 ---
 title: 后台运行jar包
 date: '2020-01-10 00:00:00'
-updated: '2020-01-10 00:00:00'
 tags:
 - Java
 - Linux

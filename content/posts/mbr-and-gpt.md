@@ -1,7 +1,6 @@
 ---
 title: MBR分区结构和GPT分区结构
 date: '2020-04-26 00:00:00'
-updated: '2020-04-26 00:00:00'
 tags:
 - Computer
 categories:

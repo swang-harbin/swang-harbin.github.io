@@ -1,11 +1,12 @@
 ---
 title: Linux基本命令
-date: 2020-01-08 22:26:17
-updated: 2020-01-08 22:26:17
+date: '2020-01-08 22:26:17'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 
 # Linux基本命令

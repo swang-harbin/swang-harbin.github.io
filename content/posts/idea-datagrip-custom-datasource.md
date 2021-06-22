@@ -1,7 +1,6 @@
 ---
 title: IDEA/DataGrip添加自定义数据源
 date: '2021-06-22 14:02:00'
-updated: '2021-06-22 14:02:00'
 tags:
 - Java
 - IDEA

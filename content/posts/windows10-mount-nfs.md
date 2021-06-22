@@ -1,7 +1,6 @@
 ---
 title: Windows挂载nfs
 date: '2020-10-19 00:00:00'
-updated: '2020-10-19 00:00:00'
 tags:
 - Windows
 categories:

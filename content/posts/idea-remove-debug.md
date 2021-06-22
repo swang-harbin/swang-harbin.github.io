@@ -1,7 +1,6 @@
 ---
 title: IDEA远程调试
 date: '2020-01-02 00:00:00'
-updated: '2020-01-02 00:00:00'
 tags:
 - IDEA
 - Java

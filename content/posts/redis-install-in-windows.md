@@ -1,7 +1,6 @@
 ---
 title: Windows安装Redis
 date: '2019-10-18 00:00:00'
-updated: '2019-10-18 00:00:00'
 tags:
 - Redis
 categories:

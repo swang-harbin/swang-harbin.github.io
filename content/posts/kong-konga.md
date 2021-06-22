@@ -1,7 +1,6 @@
 ---
 title: Kong的图形化管理页面konga
 date: '2019-12-11 00:00:00'
-updated: '2019-12-11 00:00:00'
 tags:
 - Kong
 categories:

@@ -1,9 +1,8 @@
 ---
 title: 接口的过渡抽象类
 date: '2019-11-29 00:00:00'
-updated: '2019-11-29 00:00:00'
 tags:
-- 'Spring Cloud'
+- Spring Cloud
 - Microserver
 - Java
 categories:

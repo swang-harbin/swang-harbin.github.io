@@ -1,7 +1,6 @@
 ---
 title: yum安装There are unfinished transactions remaining
 date: '2019-10-25 00:00:00'
-updated: '2019-10-25 00:00:00'
 tags:
 - Linux
 categories:

@@ -1,7 +1,6 @@
 ---
 title: Annotation注解
 date: '2019-12-23 00:00:00'
-updated: '2019-12-23 00:00:00'
 tags:
 - Annotation
 - Java

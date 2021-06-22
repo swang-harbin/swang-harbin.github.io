@@ -1,12 +1,12 @@
 ---
 title: CentOS7安装TigerVNC
 date: '2020-02-26 00:00:00'
-updated: '2020-02-26 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # 怎样在 CentOS 7.0 上安装和配置 VNC 服务器
 

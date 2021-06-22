@@ -1,7 +1,6 @@
 ---
 title: MySQL在Linux上区分大小写
 date: '2019-11-21 00:00:00'
-updated: '2019-11-21 00:00:00'
 tags:
 - MySQL
 categories:

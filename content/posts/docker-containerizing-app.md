@@ -1,7 +1,6 @@
 ---
 title: Docker用集装箱装运(Containerizing)一个应用
 date: '2019-10-19 00:00:00'
-updated: '2019-10-19 00:00:00'
 tags:
 - Docker
 categories:

@@ -1,7 +1,6 @@
 ---
 title: Spring Boot添加swagger
 date: '2020-09-11 00:00:00'
-updated: '2020-09-11 00:00:00'
 tags:
 - Swagger
 - Spring Boot

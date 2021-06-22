@@ -1,7 +1,6 @@
 ---
 title: systemd启动配置文件说明
 date: '2020-09-10 00:00:00'
-updated: '2020-09-10 00:00:00'
 tags:
 - Linux
 categories:

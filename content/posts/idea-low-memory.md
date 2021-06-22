@@ -2,7 +2,6 @@
 title: The IDE is running low on memory and this might affect performance. Please
   consider increasing available heap.
 date: '2019-11-22 00:00:00'
-updated: '2019-11-22 00:00:00'
 tags:
 - IDEA
 - Exception

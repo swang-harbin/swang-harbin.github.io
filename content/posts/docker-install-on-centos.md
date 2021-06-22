@@ -1,7 +1,6 @@
 ---
 title: CentOS7安装和卸载Docker
 date: '2019-10-19 00:00:00'
-updated: '2019-10-19 00:00:00'
 tags:
 - Docker
 - CentOS

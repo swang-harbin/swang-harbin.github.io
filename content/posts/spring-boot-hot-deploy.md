@@ -1,12 +1,12 @@
 ---
 title: Spring Boot热部署
 date: '2020-01-20 00:00:00'
-updated: '2020-01-20 00:00:00'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 
 # Spring Boot热部署

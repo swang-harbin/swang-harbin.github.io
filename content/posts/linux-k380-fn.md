@@ -1,7 +1,6 @@
 ---
 title: Linux设置k380锁定fn按键
 date: '2020-01-03 00:00:00'
-updated: '2020-01-03 00:00:00'
 tags:
 - Linux
 categories:

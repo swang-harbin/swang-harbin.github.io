@@ -1,11 +1,12 @@
 ---
 title: Linux文本处理&正则表达式&Vim
-date: 2020-04-20 22:27:27
-updated: 2020-04-20 22:27:27
+date: '2020-04-20 22:27:27'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 
 # Linux文本处理&正则表达式&Vim

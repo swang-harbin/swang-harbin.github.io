@@ -1,7 +1,6 @@
 ---
 title: 指定配置文件位置
 date: '2019-12-19 00:00:00'
-updated: '2019-12-19 00:00:00'
 tags:
 - Keepalived
 categories:

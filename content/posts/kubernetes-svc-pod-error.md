@@ -1,7 +1,6 @@
 ---
 title: 解决k8s无法通过svc访问其他节点pod的问题
 date: '2020-07-12 00:00:00'
-updated: '2020-07-12 00:00:00'
 tags:
 - Kubernetes
 categories:

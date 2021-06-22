@@ -1,7 +1,6 @@
 ---
 title: Spring Data JPA自动生成主键, 创建时间和更新时间
 date: '2020-05-18 00:00:00'
-updated: '2020-05-18 00:00:00'
 tags:
 - Spring Boot
 - Spring Data JPA

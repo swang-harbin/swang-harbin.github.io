@@ -1,7 +1,6 @@
 ---
 title: PostgreSQL物理, 逻辑, 进程结构及系统表系统函数
 date: '2020-03-17 00:00:00'
-updated: '2020-03-17 00:00:00'
 tags:
 - PostgreSQL
 - Java
@@ -272,28 +271,3 @@ categories:
 
 Name | Return Type | Description 
 --- | --- | ---
-pg_advisory_lock(key bigint) | void | Obtain exclusive session level advisory lock pg_advisory_lock(key1 int, key2 int) | void | Obtain exclusive session level advisory lock pg_advisory_lock_shared(key bigint) | void | Obtain shared session level advisory lock pg_advisory_lock_shared(key1 int, key2 int) | void | Obtain shared session level advisory lock pg_advisory_unlock(key bigint) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock(key1 int, key2 int) | boolean | Release an exclusive session level advisory lock pg_advisory_unlock_all() | void | Release all session level advisory locks held by the current session pg_advisory_unlock_shared(key bigint) | boolean | Release a shared session level advisory lock pg_advisory_unlock_shared(key1 int, key2 int) | boolean | Release a shared session level advisory lock pg_advisory_xact_lock(key bigint) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock(key1 int, key2 int) | void | Obtain exclusive transaction level advisory lock pg_advisory_xact_lock_shared(key bigint) | void | Obtain shared transaction level advisory lock pg_advisory_xact_lock_shared(key1 int, key2 int) | void | Obtain shared transaction level advisory lock pg_try_advisory_lock(key bigint) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock(key1 int, key2 int) | boolean | Obtain exclusive session level advisory lock if available pg_try_advisory_lock_shared(key bigint) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_lock_shared(key1 int, key2 int) | boolean | Obtain shared session level advisory lock if available pg_try_advisory_xact_lock(key bigint) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock(key1 int, key2 int) | boolean | Obtain exclusive transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key bigint) | boolean | Obtain shared transaction level advisory lock if available pg_try_advisory_xact_lock_shared(key1 int, key2 int) | boolean | Obtain shared transaction level advisory lock if available
-
-## PostgreSQL进程结构
-
-进程源码大部分再: src/backend/postmaster
-
-- postmaster: 所有数据库进程的主进程(负责监听和fork子进程)
-- startup: 主要用于数据库恢复的进程
-- syslogger: 记录系统日志
-- pgstat: 收集统计信息
-- pgarch: 如果开启了归档, 那么postmaster会fork一个归档进程
-- checkpointer: 负责检查点的进程
-- bgwriter: 负责把shared buffer中的脏数据写入磁盘的进程
-- autovacuum lanucher: 负责回收垃圾数据的进程, 如果开启了autovacuum, 那么postmaster会fork此进程
-- autovacuum worker: 负责回收垃圾数据的work进程, 是lanucher进程fork出来的
-
-## PostgreSQL物理结构
-
-对象对应的物理文件再哪里?
-
-```shell
-postgres=# select pg_relation_filepath('pg_class'::regclass);
-    pg_realation_filepath
------------------------------
-```

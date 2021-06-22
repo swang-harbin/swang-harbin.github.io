@@ -1,7 +1,6 @@
 ---
 title: PostgreSQL psql的使用, SQL语法, 数据类型, 递归SQL用法
 date: '2020-05-23 00:00:00'
-updated: '2020-05-23 00:00:00'
 tags:
 - PostgreSQL
 categories:
@@ -34,4 +33,3 @@ psql -h ip -p port -U username -d database
                    Table "pg_catalog.pg_type"
      Column     |     Type     | Collation | Nullable | Default 
 ----------------+--------------+-----------+----------+---------
-```

@@ -1,12 +1,12 @@
 ---
 title: Spring Boot定时任务
 date: '2020-01-15 00:00:00'
-updated: '2020-01-15 00:00:00'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 
 # SpringBoot定时任务

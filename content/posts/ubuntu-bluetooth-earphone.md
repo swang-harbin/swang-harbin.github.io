@@ -1,12 +1,12 @@
 ---
 title: Ubuntu连接不上蓝牙耳机
 date: '2020-07-10 00:00:00'
-updated: '2020-07-10 00:00:00'
 tags:
 - Linux
 - Ubuntu
 categories:
-- [Linux, Ubuntu]
+- Linux
+- Ubuntu
 ---
 # Ubuntu连接不上蓝牙耳机
 

@@ -1,7 +1,6 @@
 ---
 title: Sentinel服务熔断
 date: '2019-11-28 00:00:00'
-updated: '2019-11-28 00:00:00'
 tags:
 - Sentinel
 - Java

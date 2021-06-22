@@ -1,7 +1,6 @@
 ---
 title: 远程连接Kong的Admin API
 date: '2019-12-09 00:00:00'
-updated: '2019-12-09 00:00:00'
 tags:
 - Kong
 categories:

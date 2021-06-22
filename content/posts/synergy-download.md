@@ -1,7 +1,6 @@
 ---
 title: 下载安装Synergy
 date: '2019-12-25 00:00:00'
-updated: '2019-12-25 00:00:00'
 tags:
 - Synergy
 - Computer

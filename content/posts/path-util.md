@@ -1,7 +1,6 @@
 ---
 title: PathUtil
 date: '2020-01-09 00:00:00'
-updated: '2020-01-09 00:00:00'
 tags:
 - Java
 categories:

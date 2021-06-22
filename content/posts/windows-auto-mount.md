@@ -1,7 +1,6 @@
 ---
 title: Windows配置自动启动批处理任务
 date: '2019-11-19 00:00:00'
-updated: '2019-11-19 00:00:00'
 tags:
 - Windows
 categories:

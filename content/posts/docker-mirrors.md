@@ -1,7 +1,6 @@
 ---
 title: Docker设置阿里云镜像地址
 date: '2019-10-19 00:00:00'
-updated: '2019-10-19 00:00:00'
 tags:
 - Docker
 categories:

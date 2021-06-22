@@ -1,7 +1,6 @@
 ---
 title: logback配置文件介绍
 date: '2019-12-13 00:00:00'
-updated: '2019-12-13 00:00:00'
 tags:
 - Logback
 - Java

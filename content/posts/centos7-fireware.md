@@ -1,12 +1,12 @@
 ---
 title: CentOS7防火墙相关命令
 date: '2019-10-26 00:00:00'
-updated: '2019-10-26 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # CentOS7防火墙相关命令
 

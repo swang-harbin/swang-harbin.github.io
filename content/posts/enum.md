@@ -1,7 +1,6 @@
 ---
 title: 枚举
 date: '2019-12-13 00:00:00'
-updated: '2019-12-13 00:00:00'
 tags:
 - Enum
 - Java

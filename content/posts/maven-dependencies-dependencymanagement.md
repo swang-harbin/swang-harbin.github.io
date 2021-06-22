@@ -1,7 +1,6 @@
 ---
 title: Maven的dependencies和dependencyManagement区别
-date: 2021-06-21 19:48:31
-updated: 2021-06-21 19:48:31
+date: '2021-06-21 19:48:31'
 tags:
 - Java
 - Maven

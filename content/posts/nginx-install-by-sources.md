@@ -1,7 +1,6 @@
 ---
 title: 源码方式编译安装nginx
 date: '2020-05-10 00:00:00'
-updated: '2020-05-10 00:00:00'
 tags:
 - Nginx
 categories:

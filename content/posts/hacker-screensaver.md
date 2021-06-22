@@ -1,7 +1,6 @@
 ---
 title: 黑客屏保
 date: '2020-04-26 00:00:00'
-updated: '2020-04-26 00:00:00'
 tags:
 - Linux
 categories:

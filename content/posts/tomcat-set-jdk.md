@@ -1,7 +1,6 @@
 ---
 title: 指定tomcat使用的JDK
 date: '2019-12-04 00:00:00'
-updated: '2019-12-04 00:00:00'
 tags:
 - Tomcat
 - Java

@@ -1,7 +1,6 @@
 ---
 title: Java执行cmd命令
 date: '2019-10-30 00:00:00'
-updated: '2019-10-30 00:00:00'
 tags:
 - Java
 categories:

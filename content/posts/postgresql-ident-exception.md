@@ -1,7 +1,6 @@
 ---
 title: failed to retrieve PostgreSQL server_version_num
 date: '2019-12-09 00:00:00'
-updated: '2019-12-09 00:00:00'
 tags:
 - PostgreSQL
 categories:

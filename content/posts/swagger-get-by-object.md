@@ -1,7 +1,6 @@
 ---
 title: swagger使用GET请求接收query参数
 date: '2020-09-11 00:00:00'
-updated: '2020-09-11 00:00:00'
 tags:
 - Swagger
 - Java

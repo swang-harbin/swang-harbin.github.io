@@ -1,7 +1,6 @@
 ---
 title: 项目管理工具Maven快速入门
 date: '2019-12-26 00:00:00'
-updated: '2019-12-26 00:00:00'
 tags:
 - Maven
 - Java

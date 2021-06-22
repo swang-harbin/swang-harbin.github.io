@@ -1,12 +1,12 @@
 ---
 title: Spring Boot与Docker
 date: '2019-12-17 00:00:00'
-updated: '2019-12-17 00:00:00'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 
 # Spring Boot与Docker

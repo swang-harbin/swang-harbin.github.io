@@ -1,7 +1,6 @@
 ---
 title: Kong熔断(Request Termination)
 date: '2020-04-04 00:00:00'
-updated: '2020-04-04 00:00:00'
 tags:
 - Kong
 categories:
@@ -126,22 +125,3 @@ plugins:
 
 表单参数 | 描述
 --- | ---
-`name` | 当前使用插件的名字, 该插件为`request-termination`
-`service.id` | 该插件针对的Service ID
-`route.id` | 该插件针对的Route ID
-`consumer.id` | 该插件针对的Consumer ID
-`enabled` 默认值:`true` | 是否应用该插件
-`config.status_code` 可选项, 默认值:`503` | 响应的状态码
-`config.message` 可选项 | 返回的消息, 如果使用了默认的相应生成器
-`config.body` 可选项 | 返回的原始Response Body, 这与`config.message`字段互斥
-`config.content_type` 可选项, 默认值:`application/json; charset=utf-8` | 使用`config.body`配置的原始响应内容类型
-
-一旦应用, 每个请求(在Service, Route, Consumer或Global的已配置插件范围内)将通过发送已配置的响应立即终止.
-
-## 用例范例
-
-- 暂时停用Service(例如, 正在维护中)
-- 暂时停用Route(例如, 该服务的其余部分已启动并正在运行, 但是必须禁用特定的端点)
-- 暂时禁用Consumer(例如, 过度消费)
-- 在logical `OR` setup中使用multiple auth plugins阻止匿名用户访问
-

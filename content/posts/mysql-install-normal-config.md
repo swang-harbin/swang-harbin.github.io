@@ -1,7 +1,6 @@
 ---
 title: MySQL设置大小写及字符集
 date: '2020-05-08 00:00:00'
-updated: '2020-05-08 00:00:00'
 tags:
 - MySQL
 categories:

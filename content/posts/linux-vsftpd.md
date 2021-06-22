@@ -1,7 +1,6 @@
 ---
 title: linux使用vsftpd搭建FTP服务器
 date: '2020-05-30 00:00:00'
-updated: '2020-05-30 00:00:00'
 tags:
 - Linux
 - FTP

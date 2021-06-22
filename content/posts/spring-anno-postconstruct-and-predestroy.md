@@ -1,13 +1,13 @@
 ---
 title: Spring注解-使用@PostConstruct和@PreDestroy
 date: '2020-02-19 00:00:00'
-updated: '2020-02-19 00:00:00'
 tags:
 - Spring
 - Spring Annotation
 - Java
 categories:
-- [Java, Spring注解系列]
+- Java
+- Spring注解系列
 ---
 
 # Spring注解-使用@PostConstruct和@PreDestroy

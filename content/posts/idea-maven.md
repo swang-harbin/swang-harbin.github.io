@@ -1,7 +1,6 @@
 ---
 title: IDEA中maven的使用
 date: '2019-09-05 00:00:00'
-updated: '2019-09-05 00:00:00'
 tags:
 - IDEA
 - Java

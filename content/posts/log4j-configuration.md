@@ -1,7 +1,6 @@
 ---
 title: log4j详细配置
 date: '2019-12-12 00:00:00'
-updated: '2019-12-12 00:00:00'
 tags:
 - Log4j
 - Java

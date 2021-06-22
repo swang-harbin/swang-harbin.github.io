@@ -1,7 +1,6 @@
 ---
 title: Nginx代理解决跨域请求问题
 date: '2020-04-22 00:00:00'
-updated: '2020-04-22 00:00:00'
 tags:
 - Nginx
 categories:

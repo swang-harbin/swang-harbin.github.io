@@ -1,12 +1,12 @@
 ---
 title: SpringBoot基础系列目录
 date: '2021-06-03 15:57:57'
-updated: '2021-06-03 15:57:57'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 # [SpringBoot基础系列目录](spring-boot-table.md)
 

@@ -1,7 +1,6 @@
 ---
 title: IDEA导入普通Web项目
 date: '2020-04-22 00:00:00'
-updated: '2020-04-22 00:00:00'
 tags:
 - IDEA
 - Java

@@ -1,7 +1,6 @@
 ---
 title: 普通用户安装MySQL
 date: '2020-07-13 00:00:00'
-updated: '2020-07-13 00:00:00'
 tags:
 - MySQL
 - Linux

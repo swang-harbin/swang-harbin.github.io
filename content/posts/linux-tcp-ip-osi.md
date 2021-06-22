@@ -1,11 +1,12 @@
 ---
 title: 进阶-TCP/IP协议及OSI七层模型
-date: 2020-06-09 22:42:39
-updated: 2020-06-09 22:42:39
+date: '2020-06-09 22:42:39'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段二:网络基础]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段二:网络基础
 ---
 
 # 进阶-TCP/IP协议及OSI七层模型

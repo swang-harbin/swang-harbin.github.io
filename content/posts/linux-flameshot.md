@@ -1,7 +1,6 @@
 ---
 title: 截图工具Flameshot
 date: '2020-04-27 00:00:00'
-updated: '2020-04-27 00:00:00'
 tags:
 - Linux
 categories:

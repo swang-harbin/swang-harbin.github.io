@@ -2,7 +2,6 @@
 title: 'Cannot start compilation: the output path is not specified for module "..."
   Specify the output path'
 date: '2019-09-05 00:00:00'
-updated: '2019-09-05 00:00:00'
 tags:
 - IDEA
 - Exception

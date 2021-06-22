@@ -1,7 +1,6 @@
 ---
 title: VrtualBox网络相关及设置网络互通
 date: '2020-06-28 00:00:00'
-updated: '2020-06-28 00:00:00'
 tags:
 - VirtualBox
 categories:

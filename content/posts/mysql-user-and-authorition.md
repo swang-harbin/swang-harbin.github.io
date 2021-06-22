@@ -1,7 +1,6 @@
 ---
 title: MySQL用户及权限管理
 date: '2020-03-31 00:00:00'
-updated: '2020-03-31 00:00:00'
 tags:
 - MySQL
 categories:

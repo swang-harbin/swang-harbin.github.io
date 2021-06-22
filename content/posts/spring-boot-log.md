@@ -1,12 +1,12 @@
 ---
 title: Spring Boot与日志
 date: '2019-12-16 00:00:00'
-updated: '2019-12-16 00:00:00'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 
 # Spring Boot与日志

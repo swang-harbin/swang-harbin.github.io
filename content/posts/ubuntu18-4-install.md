@@ -1,13 +1,12 @@
 ---
 title: Ubuntu18.4LST安装
 date: '2020-04-27 00:00:00'
-updated: '2020-04-27 00:00:00'
-
 tags:
 - Linux
 - Ubuntu
 categories:
-- [Linux, Ubuntu]
+- Linux
+- Ubuntu
 ---
 # Ubuntu18.4LST安装
 

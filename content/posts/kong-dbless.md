@@ -1,7 +1,6 @@
 ---
 title: Kong使用DB-less模式
 date: '2019-12-08 00:00:00'
-updated: '2019-12-08 00:00:00'
 tags:
 - Kong
 categories:

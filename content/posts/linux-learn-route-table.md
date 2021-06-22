@@ -1,11 +1,11 @@
 ---
 title: 阿里云Linux运维学习路线目录
-date: 2020-01-04 21:56:18
-updated: 2020-01-04 21:56:18
+date: '2020-01-04 21:56:18'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线]
+- Linux
+- 阿里云Linux运维学习路线
 ---
 
 # 阿里云Linux运维学习路线目录

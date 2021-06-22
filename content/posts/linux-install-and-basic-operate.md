@@ -1,11 +1,12 @@
 ---
 title: Linux系统安装与基本操作
-date: 2020-04-13 22:22:57
-updated: 2020-04-13 22:22:57
+date: '2020-04-13 22:22:57'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 
 # Linux系统安装与基本操作

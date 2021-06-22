@@ -1,7 +1,6 @@
 ---
 title: 使用Docker搭建VPN
 date: '2019-12-27 00:00:00'
-updated: '2019-12-27 00:00:00'
 tags:
 - Docker
 - VPN

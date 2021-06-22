@@ -1,7 +1,6 @@
 ---
 title: 将Nginx设置为开机启动
 date: '2020-08-31 00:00:00'
-updated: '2020-08-31 00:00:00'
 tags:
 - Nginx
 categories:

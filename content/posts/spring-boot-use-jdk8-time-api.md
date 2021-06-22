@@ -1,7 +1,6 @@
 ---
 title: Spring Boot自动序列化/反序列化JDK8的时间API
 date: '2020-11-24 00:00:00'
-updated: '2020-11-24 00:00:00'
 tags:
 - Spring Boot
 - Java

@@ -1,7 +1,6 @@
 ---
 title: Nginx中location与root, alias, proxy_pass的使用
 date: '2020-05-18 00:00:00'
-updated: '2020-05-18 00:00:00'
 tags:
 - Nginx
 categories:

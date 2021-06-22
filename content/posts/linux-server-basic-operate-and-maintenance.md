@@ -1,11 +1,12 @@
 ---
 title: Linux服务器运维基本操作
-date: 2020-06-01 22:46:44
-updated: 2020-06-01 22:46:44
+date: '2020-06-01 22:46:44'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段三:Linux服务器运维]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段三:Linux服务器运维
 ---
 
 # Linux服务器运维基本操作

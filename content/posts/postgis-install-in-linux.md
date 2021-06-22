@@ -1,7 +1,6 @@
 ---
 title: Linux安装PostGIS3
 date: '2020-07-03 00:00:00'
-updated: '2020-07-03 00:00:00'
 tags:
 - PostGIS
 - PostgreSQL

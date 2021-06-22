@@ -1,7 +1,6 @@
 ---
 title: 使用WireGuard建立VPN
 date: '2020-06-14 00:00:00'
-updated: '2020-06-14 00:00:00'
 tags:
 - Linux
 - VPN

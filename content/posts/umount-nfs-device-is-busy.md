@@ -1,7 +1,6 @@
 ---
 title: umount.nfs device is busy问题
 date: '2020-10-22 00:00:00'
-updated: '2020-10-22 00:00:00'
 tags:
 - Linux
 categories:

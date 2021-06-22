@@ -1,13 +1,13 @@
 ---
 title: Spring注解-@ComponentScan包扫描&指定扫描规则
 date: '2020-02-18 00:00:00'
-updated: '2020-02-18 00:00:00'
 tags:
 - Spring
 - Spring Annotation
 - Java
 categories:
-- [Java, Spring注解系列]
+- Java
+- Spring注解系列
 ---
 # Spring注解-@ComponentScan包扫描&指定扫描规则
 
@@ -457,4 +457,3 @@ public class MainConfig {
 
 ```shell
 --->icu.intelli.bean.Person
-```

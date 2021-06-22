@@ -1,7 +1,6 @@
 ---
 title: vue上传文件并携带数据
 date: '2020-03-23 00:00:00'
-updated: '2020-03-23 00:00:00'
 tags:
 - VUE
 categories:

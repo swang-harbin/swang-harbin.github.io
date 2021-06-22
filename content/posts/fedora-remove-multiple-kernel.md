@@ -1,12 +1,12 @@
 ---
 title: Frdora启动页面出现多个内核选项
 date: '2020-04-29 00:00:00'
-updated: '2020-04-29 00:00:00'
 tags:
 - Linux
 - Fedora
 categories:
-- [Linux, Fedora]
+- Linux
+- Fedora
 ---
 # Frdora启动页面出现多个内核选项
 

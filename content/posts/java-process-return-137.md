@@ -1,7 +1,6 @@
 ---
 title: Java使用Process.waitFor()返回137
 date: '2020-06-10 00:00:00'
-updated: '2020-06-10 00:00:00'
 tags:
 - Exception
 - Java

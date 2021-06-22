@@ -1,7 +1,6 @@
 ---
 title: Git提交规范
 date: '2020-04-15 00:00:00'
-updated: '2020-04-15 00:00:00'
 tags:
 - Git
 categories:

@@ -1,7 +1,6 @@
 ---
 title: Disable SerializationFeature.FAIL_ON_EMPTY_BEANS
 date: '2019-12-18 00:00:00'
-updated: '2019-12-18 00:00:00'
 tags:
 - Exception
 - Java

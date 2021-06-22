@@ -1,7 +1,6 @@
 ---
 title: Windows远程连接图形化Linux
 date: '2019-12-25 00:00:00'
-updated: '2019-12-25 00:00:00'
 tags:
 - Linux
 categories:

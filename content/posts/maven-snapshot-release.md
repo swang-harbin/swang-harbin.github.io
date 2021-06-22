@@ -1,7 +1,6 @@
 ---
 title: Maven的SNAPSHOT和RELEASE的区别
-date: 2021-06-21 17:50:09
-updated: 2021-06-21 17:50:09
+date: '2021-06-21 17:50:09'
 tags:
 - JAVA
 - Maven

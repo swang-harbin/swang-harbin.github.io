@@ -1,7 +1,6 @@
 ---
 title: Java静态导入
 date: '2020-01-03 00:00:00'
-updated: '2020-01-03 00:00:00'
 tags:
 - Java
 categories:

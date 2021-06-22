@@ -1,12 +1,12 @@
 ---
 title: Ubuntu20.4无线网卡rtl8821ce驱动安装
 date: '2020-04-27 00:00:00'
-updated: '2020-04-27 00:00:00'
 tags:
 - Linux
 - Ubuntu
 categories:
-- [Linux, Ubuntu]
+- Linux
+- Ubuntu
 ---
 # Ubuntu20.4无线网卡rtl8821ce驱动安装
 

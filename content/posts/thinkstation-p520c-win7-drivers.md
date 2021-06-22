@@ -1,7 +1,6 @@
 ---
 title: ThinkStation P520c Win7驱动
 date: '2020-10-19 00:00:00'
-updated: '2020-10-19 00:00:00'
 tags:
 - Computer
 categories:

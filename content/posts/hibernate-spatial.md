@@ -1,12 +1,11 @@
 ---
 title: hibernate-spatial文档
 date: '2020-09-03 00:00:00'
-updated: '2020-09-03 00:00:00'
 tags:
-- 'Spring Data JPA'
+- Spring Data JPA
 - PostGIS
 categories:
-- 'Spring Data'
+- Spring Data
 ---
 
 # Spring Data JPA操作空间数据

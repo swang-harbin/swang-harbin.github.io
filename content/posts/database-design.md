@@ -1,7 +1,6 @@
 ---
 title: 数据库设计
 date: '2019-11-22 00:00:00'
-updated: '2019-11-22 00:00:00'
 tags:
 - Database
 categories:

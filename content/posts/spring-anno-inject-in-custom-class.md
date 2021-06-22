@@ -1,13 +1,13 @@
 ---
 title: Spring注解-向自定义组件中注入Spring底层组件及原理
 date: '2020-02-21 00:00:00'
-updated: '2020-02-21 00:00:00'
 tags:
 - Spring
 - Spring Annotation
 - Java
 categories:
-- [Java, Spring注解系列]
+- Java
+- Spring注解系列
 ---
 
 # Spring注解-向自定义组件中注入Spring底层组件及原理

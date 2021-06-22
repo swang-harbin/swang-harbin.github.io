@@ -1,12 +1,12 @@
 ---
 title: Spring Boot自定义starters
 date: '2019-12-22 00:00:00'
-updated: '2019-12-22 00:00:00'
 tags:
 - Spring Boot
 - Java
 categories:
-- [Java, SpringBoot基础系列]
+- Java
+- SpringBoot基础系列
 ---
 
 # Spring Boot自定义starters

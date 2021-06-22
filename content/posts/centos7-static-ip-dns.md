@@ -1,12 +1,12 @@
 ---
 title: CentOS7设置静态IP和DNS解析
 date: '2019-10-24 00:00:00'
-updated: '2019-10-24 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # CentOS7设置静态IP和DNS解析
 

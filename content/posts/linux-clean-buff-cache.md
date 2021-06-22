@@ -1,7 +1,6 @@
 ---
 title: Linux内存buff/cache占用过多
 date: '2019-10-30 00:00:00'
-updated: '2019-10-30 00:00:00'
 tags:
 - Linux
 categories:

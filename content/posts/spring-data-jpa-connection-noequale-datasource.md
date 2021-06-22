@@ -1,7 +1,6 @@
 ---
 title: Spring Data JPA连接不同类型的多源数据库
 date: '2020-03-12 00:00:00'
-updated: '2020-03-12 00:00:00'
 tags:
 - Spring Data JPA
 - Java

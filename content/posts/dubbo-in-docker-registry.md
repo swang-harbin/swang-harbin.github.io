@@ -1,7 +1,6 @@
 ---
 title: Dubbo部署在Docker中使用宿主机IP进行注册
 date: '2020-03-19 00:00:00'
-updated: '2020-03-19 00:00:00'
 tags:
 - Dubbo
 - Docker

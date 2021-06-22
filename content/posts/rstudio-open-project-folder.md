@@ -1,12 +1,12 @@
 ---
 title: RStudio打开项目文件夹
 date: '2020-09-09 00:00:00'
-updated: '2020-09-09 00:00:00'
 tags:
 - RStudio
 - R
 categories:
-- [R, RStudio]
+- R
+- RStudio
 ---
 # RStudio打开项目文件夹
 

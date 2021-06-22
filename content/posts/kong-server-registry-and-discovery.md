@@ -1,7 +1,6 @@
 ---
 title: 服务注册与发现
 date: '2019-12-09 00:00:00'
-updated: '2019-12-09 00:00:00'
 tags:
 - Kong
 categories:

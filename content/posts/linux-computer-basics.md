@@ -1,11 +1,12 @@
 ---
 title: 计算机基础
-date: 2020-01-04 21:56:18
-updated: 2020-01-04 21:56:18
+date: '2020-01-04 21:56:18'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 
 # 计算机基础

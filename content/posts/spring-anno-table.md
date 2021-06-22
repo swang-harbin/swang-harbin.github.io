@@ -1,13 +1,13 @@
 ---
 title: Spring注解-目录
 date: '2021-06-03 15:55:55'
-updated: '2021-06-03 15:55:55'
 tags:
 - Spring
 - Spring Annotation
 - Java
 categories:
-- [Java, Spring注解系列]
+- Java
+- Spring注解系列
 ---
 
 # [Spring 注解系列目录](spring-anno-table.md)

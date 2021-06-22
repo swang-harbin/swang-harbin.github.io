@@ -1,7 +1,6 @@
 ---
 title: CentOS7安装绿色版MySQL57
 date: '2019-12-09 00:00:00'
-updated: '2019-12-09 00:00:00'
 tags:
 - MySQL
 - CentOS

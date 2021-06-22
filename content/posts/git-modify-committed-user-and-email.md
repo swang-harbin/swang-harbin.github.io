@@ -1,7 +1,6 @@
 ---
 title: Git修改已经提交的用户名和邮箱
 date: '2021-04-05 00:00:00'
-updated: '2021-04-05 00:00:00'
 tags:
 - Git
 categories:

@@ -1,7 +1,6 @@
 ---
 title: systemctl常用命令
 date: '2019-12-06 00:00:00'
-updated: '2019-12-06 00:00:00'
 tags:
 - Linux
 categories:

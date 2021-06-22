@@ -1,12 +1,12 @@
 ---
 title: CentOS7配置Java环境
 date: '2019-10-26 00:00:00'
-updated: '2019-10-26 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # CentOS7配置Java环境
 

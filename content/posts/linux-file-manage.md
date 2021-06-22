@@ -1,11 +1,12 @@
 ---
 title: 文件管理
-date: 2020-04-11 22:26:45
-updated: 2020-04-11 22:26:45
+date: '2020-04-11 22:26:45'
 tags:
 - Linux
 categories:
-- [Linux, 阿里云Linux运维学习路线, 阶段一:Linux入门]
+- Linux
+- 阿里云Linux运维学习路线
+- 阶段一:Linux入门
 ---
 
 # 文件管理

@@ -1,13 +1,13 @@
 ---
 title: SSH无法连接
 date: '2019-12-02 00:00:00'
-updated: '2019-12-02 00:00:00'
 tags:
 - Linux
 - Fedora
 - SSH
 categories:
-- [Linux, Fedora]
+- Linux
+- Fedora
 ---
 # SSH无法连接
 

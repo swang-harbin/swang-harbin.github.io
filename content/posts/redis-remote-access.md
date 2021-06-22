@@ -1,7 +1,6 @@
 ---
 title: 远程访问Redis
 date: '2019-10-26 00:00:00'
-updated: '2019-10-26 00:00:00'
 tags:
 - Redis
 categories:

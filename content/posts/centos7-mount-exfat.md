@@ -1,12 +1,12 @@
 ---
 title: CentOS7挂载exFAT格式的U盘
 date: '2019-12-26 00:00:00'
-updated: '2019-12-26 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # CentOS7挂载exFAT格式的U盘
 

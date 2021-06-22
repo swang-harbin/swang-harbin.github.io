@@ -1,12 +1,12 @@
 ---
 title: Fedora31安装Docker报错
 date: '2020-03-11 00:00:00'
-updated: '2020-03-11 00:00:00'
 tags:
 - Docker
 - Fedora
 categories:
-- [Linux, Fedora]
+- Linux
+- Fedora
 ---
 # Fedora31安装Docker报错
 

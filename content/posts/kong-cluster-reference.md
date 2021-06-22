@@ -1,7 +1,6 @@
 ---
 title: Kong集群参考
 date: '2019-12-11 00:00:00'
-updated: '2019-12-11 00:00:00'
 tags:
 - Kong
 categories:

@@ -1,7 +1,6 @@
 ---
 title: 修改npm镜像
 date: '2019-10-20 00:00:00'
-updated: '2019-10-20 00:00:00'
 tags:
 - NodeJS
 categories:

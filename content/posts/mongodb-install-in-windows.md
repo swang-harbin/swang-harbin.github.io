@@ -1,7 +1,6 @@
 ---
 title: Windows安装绿色版MongoDB
 date: '2019-11-20 00:00:00'
-updated: '2019-11-20 00:00:00'
 tags:
 - MongoDB
 categories:

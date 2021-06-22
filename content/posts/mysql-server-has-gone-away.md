@@ -1,7 +1,6 @@
 ---
 title: MySQL server has gone away
 date: '2019-09-06 00:00:00'
-updated: '2019-09-06 00:00:00'
 tags:
 - Exception
 - MySQL

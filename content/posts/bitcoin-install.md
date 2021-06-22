@@ -1,7 +1,6 @@
 ---
 title: 安装比特币程序
 date: '2020-05-10 00:00:00'
-updated: '2020-05-10 00:00:00'
 tags:
 - Bitcoin
 categories:

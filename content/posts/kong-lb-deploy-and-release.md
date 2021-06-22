@@ -1,7 +1,6 @@
 ---
 title: Kong负载均衡&蓝绿部署&金丝雀发布
 date: '2019-12-10 00:00:00'
-updated: '2019-12-10 00:00:00'
 tags:
 - Kong
 categories:

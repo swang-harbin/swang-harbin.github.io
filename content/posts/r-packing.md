@@ -1,7 +1,6 @@
 ---
 title: 将已有的R项目打包
 date: '2020-09-09 00:00:00'
-updated: '2020-09-09 00:00:00'
 tags:
 - R
 categories:

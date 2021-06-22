@@ -1,7 +1,6 @@
 ---
 title: 未能加载 Visual C++ 组件“VCBuild.exe”
 date: '2019-12-11 00:00:00'
-updated: '2019-12-11 00:00:00'
 tags:
 - NodeJS
 categories:

@@ -1,12 +1,12 @@
 ---
 title: CentOS7安装GNOME图形化界面
 date: '2019-10-25 00:00:00'
-updated: '2019-10-25 00:00:00'
 tags:
 - Linux
 - CentOS
 categories:
-- [Linux, CentOS]
+- Linux
+- CentOS
 ---
 # CentOS7安装GNOME图形化界面
 

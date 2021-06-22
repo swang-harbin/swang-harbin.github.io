@@ -1,7 +1,6 @@
 ---
 title: PowerDesigner16.5导入MySQL数据
 date: '2019-11-21 00:00:00'
-updated: '2019-11-21 00:00:00'
 tags:
 - PowerDesigner
 categories:

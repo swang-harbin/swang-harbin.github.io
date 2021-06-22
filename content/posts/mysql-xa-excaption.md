@@ -1,7 +1,6 @@
 ---
 title: 'MySQL: XA错误'
 date: '2020-04-29 00:00:00'
-updated: '2020-04-29 00:00:00'
 tags:
 - Exception
 - MySQL

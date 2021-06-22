@@ -1,7 +1,6 @@
 ---
 title: java.Net.UnknownHostException异常处理方法
 date: '2019-11-21 00:00:00'
-updated: '2019-11-21 00:00:00'
 tags:
 - Exception
 - Java

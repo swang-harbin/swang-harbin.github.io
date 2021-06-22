@@ -1,7 +1,6 @@
 ---
 title: Nginx中proxy_set_header的作用
 date: '2019-12-12 00:00:00'
-updated: '2019-12-12 00:00:00'
 tags:
 - Nginx
 categories:

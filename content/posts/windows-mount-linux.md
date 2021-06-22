@@ -1,7 +1,6 @@
 ---
 title: Win10挂载linux盘
 date: '2019-10-26 00:00:00'
-updated: '2019-10-26 00:00:00'
 tags:
 - Windows
 - Linux
@@ -100,47 +99,3 @@ exportfs -a
 
 参数 | 作用
 --- | ---
-ro | 只读
-rw | 读写
-root_squash | 当NFS客户端以root用户访问时,映射为NFS服务器的匿名用户
-no_root_squash | 当NFS客户端以root用户访问时,映射为NFS服务器的root用户
-all_squash | 无论NFS客户端使用什么账户访问,均映射为NFS服务器的匿名用户
-sync | 同时将数据写入到内存与硬盘中,保证不丢失数据
-async | 优先将数据保存到内存,然后再写入磁盘;效率更高,但可能丢失数据
-
-## 开启Windows客户端上的NFS(Network File System)网络文件系统
-
-- 开启NFS
-
-  控制面板 -> 打开或关闭windows功能 -> 勾选NFS及其子节点 -> 立即重启计算机
-
-- 验证结果
-
-  cmd输入`mount -h`
-
-## 如遇权限问题,修改Windows客户端用户UID和GID
-Win+R输入regedit进入注册表编辑器 -> HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ClientForNFS\CurrentVersion\Default下新建两个DWORD(32)位值,添加AnonymousUid和AnonymousGid,值均为0.
-
-**说明**
-
-因为CentOS7中root用户的uid=0,gid=0.可以使用`id 用户名`查看用户id信息,如`id root`.如果是其他用户应该可以修改为对应的id.
-
-## 挂载NFS
-
-cmd输入`mount \\\\NFS的IP地址或者主机名\nfs目录名 挂载点 `
-用法:  mount [-o options] [-u:username] [-p:<password | *>] <\\computername\sharename> <devicename | *>
-
-```bash
-mount -u:username -p:password \\192.168.121.128\mynfs x:
-```
-
-## 取消挂载
-cmd输入`umount 挂载点`
-
-```bash
-umount x:
-```
-
-## 参考文档
-- [如何在Windows上挂载Linux系统分区](https://www.cnblogs.com/pyng/p/10173404.html)
-- [NFS服务器搭建与配置](https://blog.csdn.net/qq_38265137/article/details/83146421)

@@ -1,7 +1,6 @@
 ---
 title: Docker备份与迁移
 date: '2020-04-20 00:00:00'
-updated: '2020-04-20 00:00:00'
 tags:
 - Docker
 categories:

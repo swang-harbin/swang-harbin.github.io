@@ -281,7 +281,8 @@ categories:
     ls -d /root/.*
     ls -daI "[^.]*""
     ```
-- ==只显示/etc下的非隐藏目录==
+- **只显示/etc下的非隐藏目录**
+    
     ```bash
     ls -d /etc/*/
     ```

@@ -578,7 +578,7 @@ ccc和ddd是目录, 所以执行命令后, 均包含可执行权限
 
 **命令格式 :**
 - `chmod [OPTION]... MODE[,MODE]... FILE...`
-    
+  
     - OPTION : 
         - `-R` : 递归修改权限
     - MODE :
@@ -663,7 +663,7 @@ umask为1的位会遮掩原来的值, 变为为0, umask为0的位, 结果不变.
   
     使用字母的方式, 显示新建文件夹的默认权限
 - 输出可被调用 : `umask -p`
-    
+  
     输出 : umask 0102  
     可将其直接重定向到配置文件中 : `umask -p >> ~/.bashrc`
 - 全局配置文件 : /etc/bashrc
@@ -753,7 +753,7 @@ umask为1的位会遮掩原来的值, 变为为0, umask为0的位, 结果不变.
         一个二进制程序包含SGID, 则任何用户执行时都会继承该二进制程序所属组的身份, 获得所属组权限
         
     - 文件夹
-        
+      
         默认情况下, 用户创建文件时, 其属组为此用户所属的主组, 一旦某目录设定了SGID权限, 则对此目录有写权限的用户在此目录中创建的文件所属的组为此目录的所属组
         
         - 使用场景 : 通常用于创建一个协作目录
@@ -824,7 +824,7 @@ chmod 4777 /tmp/a.txt
 [root@localhost webdir]# lsattr wang1
 ----i----------- wang1
 ```
-==**该操作对root帐号也会生效**==
+**该操作对root帐号也会生效**
 
 ## 访问控制列表
 
@@ -936,7 +936,7 @@ chmod 4777 /tmp/a.txt
     setfacl -X file.acl directory
     ```
 - ACL文件上的group权限是mask值(自定义用户, 自定义组, 拥有组的最大权限), 而非传统的组权限
-    
+  
     如果使用了ACL权限, 则会将`ll file`显示的传统属组权限修改为ACL权限中的mask值, 此时使用`chmod g=rw file`修改的是ACL权限中的mask值, 也可以通过`setfacl -m mask::rw file`来修改ACL权限中的mask值. 
     
     mask值代表了所有ACL权限的最高权限, 即, 如果mask::r, 那么所有ACL权限都只能读, 不能写和执行, 效果如下方两处`#effective:r--`
@@ -957,13 +957,13 @@ chmod 4777 /tmp/a.txt
 - mask只影响除所有者和other之外的人和组的最大权限, mask需要与用户的权限进行逻辑与运算后, 才能变成有限的权限(Effective Permission)
     用户或组的设置必须存在于mask权限设定范围内才会生效
 - `--set`选项会把原有的ACL项都删除, 用新的替代, 需要注意的是一定要包含UGO的设置, 不能像`-m`一样只是添加ACL就可以
-    
+  
     ```bash
     示例 :
     setfacl --set u::rw,u:wang:rw,g::r,o::- file1
     ```
 - 备份和恢复ACL
-    
+  
     主要的文件操作命令cp和mv都支持ACL, 知识cp命令需要加上-p参数. 但是tar等常见的备份工具是不会保留目录和文件的ACL信息.
     
     ```bash

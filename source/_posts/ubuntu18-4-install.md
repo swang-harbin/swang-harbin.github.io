@@ -82,7 +82,7 @@ categories:
 
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143004.png)
 
-Rufus会警告在所选的U盘上的数据会被清除. ==请确认选中的设备是否正确, 会清除所有数据的!!==. 确认后点击**OK**即可
+Rufus会警告在所选的U盘上的数据会被清除. **请确认选中的设备是否正确, 会清除所有数据的!!**. 确认后点击**OK**即可
 
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143005.png)
 

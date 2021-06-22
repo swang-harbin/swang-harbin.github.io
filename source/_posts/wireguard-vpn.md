@@ -82,7 +82,7 @@ $ sudo apt-get install wireguard
 
    该操作会在当前目录生成两个文件*publickey*和*privatekey*, 可使用`cat`查看.
 
-2. 创建配置文件*/etc/wireguard/wg0.conf*并添加以下内容. 将`<Private Key>`替换为刚生成的`privatekey`中的内容, 该服务器在新建VPN网络中的IP在*Address*中设置. ==此处注意需要将*PostUp*和*PostDown*中的**eth0**替换对应的网络接口名称==
+2. 创建配置文件*/etc/wireguard/wg0.conf*并添加以下内容. 将`<Private Key>`替换为刚生成的`privatekey`中的内容, 该服务器在新建VPN网络中的IP在*Address*中设置. **此处注意需要将*PostUp*和*PostDown*中的**eth0**替换对应的网络接口名称**
 
    ```properties
    [Interface]

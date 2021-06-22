@@ -11,8 +11,8 @@ categories:
 
 ## Hadoop是什么
 
-1. Hadoop是一个由Apache基金会所开发的==分布式==系统==基础架构==.
-2. 主要解决, 海量数据的==存储==和海量数据的==分析计算==问题.
+1. Hadoop是一个由Apache基金会所开发的**分布式**系统**基础架构**.
+2. 主要解决, 海量数据的**存储**和海量数据的**分析计算**问题.
 3. 广义上来说, Hadoop通常是指一个更广泛的概念--Hadoop生态圈.
 
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609142848.png)
@@ -409,7 +409,7 @@ $ cat output/*
 
 ### 启动集群
 
-1. ==格式化NameNode==(第一次启动时格式化, 以后就不要总格式化)
+1. 格式化NameNode(第一次启动时格式化, 以后就不要总格式化)
 
    ```bash
    $ bin/hdfs namenode -format
@@ -683,7 +683,7 @@ $ jps
 
 - 日志聚集功能好处: 可以方便的查看到程序运行详情, 方便开发测试
 
-==注意: 开启日志聚集功能, 需要重新启动NodeManager, ResourceManager和HistoryManager.==
+**注意: 开启日志聚集功能, 需要重新启动NodeManager, ResourceManager和HistoryManager.**
 
 #### 配置etc/hadoop/yarn-site.xml
 
@@ -757,11 +757,11 @@ Hadoop配置文件分为两类: 默认配置文件和自定义配置文件, 只�
 
 ### 虚拟机准备
 
-==详见3.1章==
+**详见3.1章**
 
 步骤分析:
 
-1. 准备3台客户机(==关闭防火墙==, ==设置静态ip==, ==修改主机名称==)
+1. 准备3台客户机(**关闭防火墙**, **设置静态ip**, **修改主机名称**)
 2. 安装JDK
 3. 配置环境变量
 4. 安装Hadoop
@@ -863,7 +863,7 @@ rsync和scp区别: 用rsync做文件的复制要比scp的速度快, rsync只对�
       xsync /home/hadooptest/bin
       ```
   
-      ==注意: 如果将xsync放到/home/hadooptest/bin目录下仍然不能实现全局使用, 可以将xsync移动到/user/local/bin目录下.==
+      **注意: 如果将xsync放到/home/hadooptest/bin目录下仍然不能实现全局使用, 可以将xsync移动到/user/local/bin目录下.**
 
 ### 集群配置
 
@@ -1040,7 +1040,7 @@ $ xsync /opt/module/hadoop-2.7.7/
 http://192.168.122.101:50070
 ```
 
-==此处暂未使用单点启动yarn, 可使用后续配置群集启动HDFS和YARN==
+**此处暂未使用单点启动yarn, 可使用后续配置群集启动HDFS和YARN**
 
 
 ### SSH无密登录配置
@@ -1119,7 +1119,7 @@ http://192.168.122.101:50070
    [hadooptest@192-168-122-101 .ssh]$ ssh 192.168.122.10X
    ```
 
-**==注意事项说明及后续必须操作 :==**
+**注意事项说明及后续必须操作 :**
 
 - 此处需要将101服务器的公钥拷贝到自己服务器上一份, 是因为通过`ssh 192.168.122.101`连接本机的时候也需要输入密码. 
 
@@ -1165,7 +1165,7 @@ authorized_keys | 存放授权过得无密登录服务器公钥
 
 此处存放的是所有DataNode节点
 
-==注意: 该文件中添加的内容结尾不允许有空格, 文件中不允许有空行.==
+**注意: 该文件中添加的内容结尾不允许有空格, 文件中不允许有空行.**
 
 同步所有节点配置文件
 
@@ -1211,7 +1211,7 @@ xsync etc/hadoop/slaves
 [hadooptest@192-168-122-102 hadoop-2.7.7]$ sbin/start-yarn.sh
 ```
 
-==注意: NameNode和ResourceManager如果不是同一台机器, 不能在NameNode上启动YARN, 应该在ResourceManger所在的机器上启动YARN.==
+**注意: NameNode和ResourceManager如果不是同一台机器, 不能在NameNode上启动YARN, 应该在ResourceManger所在的机器上启动YARN.**
 
 #### 集群基本测试
 
@@ -1302,7 +1302,7 @@ xsync etc/hadoop/slaves
    sbin/yarn-daemon.sh start/stop resourcemanager/nodemanager
    ```
 
-#### 各个模块分开启动/停止(配置ssh是前提) ==常用==
+#### 各个模块分开启动/停止(配置ssh是前提) *常用*
 
 1. 整体启动/停止HDFS
 
@@ -1316,7 +1316,7 @@ xsync etc/hadoop/slaves
    sbin/start-yarn.sh / sbin/stop-yarn.sh
    ```
 
-   ==官网不建议使用start-all.sh和stop-all.sh==
+   **官网不建议使用start-all.sh和stop-all.sh**
 
 ### 集群时间同步
 

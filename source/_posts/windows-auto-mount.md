@@ -47,14 +47,14 @@ mount \\172.168.13.119\home X:
 ### 任务计划程序无法应用你的更改。用户账户未知、密码错误或用户账户没有修改此任务的权限。
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143031.png)
 
-==解决方法:==
+**解决方法:**
 
 可选择**常规**,选择**只在用户登录时运行(R)**
 ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143032.png)
 
 ### 可能的原因包括不允许空密码,登录时间限制,或强制的策略限制
 
-==解决方法:==
+**解决方法:**
 
 1. 按**Win+R**输入gpedit.msc打开**本地组策略编辑器**
 

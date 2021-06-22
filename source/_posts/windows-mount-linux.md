@@ -83,20 +83,20 @@ systemctl reload nfs
 或
 exportfs -a
 ```
-==NFS主要配置文件==
+**NFS主要配置文件**
 - 主要配置文件：/etc/exports
 这是 NFS 的主要配置文件了。该文件是空白的，有的系统可能不存在这个文件，主要手动建立。NFS的配置一般只在这个文件中配置即可。
 - 分享资源的登录档：/var/lib/nfs/*tab
 在 NFS 服务器的登录文件都放置到 /var/lib/nfs/ 目录里面，在该目录下有两个比较重要的登录档， 一个是 etab ，主要记录了 NFS 所分享出来的目录的完整权限设定值；另一个 xtab 则记录曾经链接到此 NFS 服务器的相关客户端数据。
 - NFS系统配置文件:/etc/sysconfig/nfs,可以指定NFS的端口等信息
 
-==NFS主要指令==
+**NFS主要指令**
 - NFS 文件系统维护指令：/usr/sbin/exportfs
 这个是维护 NFS 分享资源的指令，可以利用这个指令重新分享 /etc/exports 变更的目录资源、将 NFS Server 分享的目录卸除或重新分享。
 - 客户端查询服务器分享资源的指令：/usr/sbin/showmount
 这是另一个重要的 NFS 指令。exportfs 是用在 NFS Server 端，而 showmount 则主要用在 Client 端。showmount 可以用来察看 NFS 分享出来的目录资源。
 
-==/etc/exports参数说明==
+**/etc/exports参数说明**
 
 参数 | 作用
 --- | ---

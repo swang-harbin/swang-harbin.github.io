@@ -12,7 +12,7 @@ categories:
 
 ## location与root
 
-root后的文件路径是否有`/`效果是相同的, ==会将location后面的xxx拼接到root配置的路径后==
+root后的文件路径是否有`/`效果是相同的, **会将location后面的xxx拼接到root配置的路径后**
 ```nginx
 location /xxx/ {
     root /path/to/static;
@@ -29,7 +29,7 @@ location /xxx/ {
 
 ## location与alias
 
-按如方式配置, alias配置的路径后必须包含`/`, ==不会将location后面的xxx拼接到root配置的路径后==
+按如方式配置, alias配置的路径后必须包含`/`, **不会将location后面的xxx拼接到root配置的路径后**
 
 ```nginx
 location /xxx/ {

@@ -1,23 +1,23 @@
 ---
-title: Spring Data JPA连接不同类型的多源数据库
+title: Spring Data JPA 连接不同类型的多源数据库
 date: '2020-03-12 00:00:00'
 tags:
 - Spring Data JPA
 - Java
 ---
 
-# Spring Data JPA连接不同类型的多源数据库
+# Spring Data JPA 连接不同类型的多源数据库
 
-## 环境说明:
+## 环境说明
 
-- Spring Boot : 1.5.X
-- Spring Data JPA : 1.11.16
+- Spring Boot：1.5.X
+- Spring Data JPA：1.11.16
 
 ## 编写配置类
 
 ### 数据源配置
 
-DataSourceConfig.java, **确保该类会被添加到IOC容器中**
+DataSourceConfig.java，**确保该类会被添加到 IOC 容器中**
 
 ```java
 import com.alibaba.druid.pool.DruidDataSource;
@@ -28,12 +28,12 @@ import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
-// 表示是Spring的配置类
+// 表示是 Spring 的配置类
 @Configuration
 public class DataSourceConfig {
 
     // 第一个数据源
-    // 创建一个名为primaryDataSource的对象, 放到容器中
+    // 创建一个名为 primaryDataSource 的对象，放到容器中
     @Bean(name = "primaryDataSource")
     // 指定读取配置文件的前缀
     @ConfigurationProperties(prefix = "spring.datasource.primary")
@@ -41,8 +41,8 @@ public class DataSourceConfig {
     @Primary
     public DataSource primaryDataSource() {
         /**
-         * 使用DataSourceBuilder.create().build();会按照如下顺序选择数据源, 
-         * 因当前项目使用Druid数据源, 因此返回DruidDataSource对象
+         * 使用 DataSourceBuilder.create().build();会按照如下顺序选择数据源, 
+         * 因当前项目使用 Druid 数据源，因此返回 DruidDataSource 对象
          *
          * private static final String[] DATA_SOURCE_TYPE_NAMES = new String[] {
          * 			"org.apache.tomcat.jdbc.pool.DataSource",
@@ -63,9 +63,9 @@ public class DataSourceConfig {
 }
 ```
 
-### 第一个数据源的JPA配置
+### 第一个数据源的 JPA 配置
 
-注意修改Repository所在位置和实体类所在位置, 该配置类需被添加到IOC容器
+注意修改 Repository 所在位置和实体类所在位置，该配置类需被添加到 IOC 容器
 
 ```java
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +88,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 第一个数据源的JPA相关配置
+ * 第一个数据源的 JPA 相关配置
  */
 @Configuration
 @EnableTransactionManagement
@@ -130,7 +130,7 @@ public class PrimaryDataSourceJpaConfig {
     }
 
     /**
-     * 注入Jpa属性对象
+     * 注入 Jpa 属性对象
      */
     @Autowired
     private JpaProperties jpaProperties;
@@ -141,13 +141,13 @@ public class PrimaryDataSourceJpaConfig {
     @Value("${spring.jpa.primary.dialect}")
     private String primaryDialect;
     /**
-     * JPA属性设置
+     * JPA 属性设置
      *
      * @param dataSource
      * @return
      */
     private Map<String, String> getVendorProperties(DataSource dataSource) {
-        // 存放自定义的jpa属性
+        // 存放自定义的 jpa 属性
         Map<String, String> prop = new HashMap<>();
         prop.put("hibernate.dialect", primaryDialect);
         jpaProperties.setProperties(prop);
@@ -155,7 +155,7 @@ public class PrimaryDataSourceJpaConfig {
     }
 
     /**
-     * JPA事务管理设置
+     * JPA 事务管理设置
      *
      * @param builder
      * @return
@@ -168,9 +168,9 @@ public class PrimaryDataSourceJpaConfig {
 }
 ```
 
-### 第二个数据源的JPA配置
+### 第二个数据源的 JPA 配置
 
-注意修改Repository所在位置和实体类所在位置, 该配置类需被添加到IOC容器
+注意修改 Repository 所在位置和实体类所在位置，该配置类需被添加到 IOC 容器
 
 ```java
 import org.springframework.beans.factory.annotation.Autowired;
@@ -192,7 +192,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 第二数据源的Jpa相关配置
+ * 第二数据源的 Jpa 相关配置
  */
 @Configuration
 @EnableTransactionManagement
@@ -244,10 +244,10 @@ public class SecondaryDataSourceJpaConfig {
 
 ## 编写配置文件
 
-该配置文件需要被添加到Spring容器中, 可以在SpringBoot启动类上使用`@PropertySource("classpath:jdbc.properties")`添加
+该配置文件需要被添加到 Spring 容器中，可以在 SpringBoot 启动类上使用 `@PropertySource("classpath:jdbc.properties")` 添加
 
 ```properties
-# 第一个数据源配置(MySQL)
+# 第一个数据源配置（MySQL）
 spring.datasource.primary.url=jdbc:mysql://127.0.0.1:3306/database1?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8
 spring.datasource.primary.username=root
 spring.datasource.primary.password=root
@@ -270,7 +270,7 @@ spring.datasource.primary.max-open-prepared-statements=100
 spring.datasource.primary.max-pool-prepared-statement-per-connection-size=20
 spring.datasource.primary.filters=wall,stat
 spring.datasource.primary.connection-properties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-# 第二个数据源配置(PostgreSQL)
+# 第二个数据源配置（PostgreSQL）
 spring.datasource.secondary.url=jdbc:postgresql://127.0.0.1:5432/database2
 spring.datasource.secondary.username=root
 spring.datasource.secondary.password=root
@@ -294,14 +294,14 @@ spring.datasource.secondary.max-pool-prepared-statement-per-connection-size=20
 spring.datasource.secondary.filters=wall,stat
 spring.datasource.secondary.connection-properties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
-# JPA公共配置
+# JPA 公共配置
 spring.jpa.show-sql=true
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
-# JPA指定配置
-# 第一数据源相关配置(MySQL)
+# JPA 指定配置
+# 第一数据源相关配置（MySQL）
 spring.jpa.primary.dialect=org.hibernate.dialect.MySQL5Dialect
-# 第二数据源相关配置(Postgis)
+# 第二数据源相关配置（Postgis）
 spring.jpa.secondary.dialect=org.hibernate.spatial.dialect.postgis.PostgisDialect
 ```
 
@@ -356,4 +356,4 @@ public class myTest {
 
 ## 参考文档
 
-[SpringBoot 1.5.XX多数据源配置](https://blog.csdn.net/u011751078/article/details/79784228)
+[SpringBoot 1.5.XX 多数据源配置](https://blog.csdn.net/u011751078/article/details/79784228)

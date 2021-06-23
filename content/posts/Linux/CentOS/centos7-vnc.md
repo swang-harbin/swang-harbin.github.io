@@ -1,5 +1,5 @@
 ---
-title: CentOS7安装TigerVNC
+title: CentOS7 安装 TigerVNC
 date: '2020-02-26 00:00:00'
 tags:
 - Linux
@@ -9,7 +9,7 @@ tags:
 
 转载自: https://linux.cn/article-5335-1.html?spm=a2c4e.11153940.blogcont529843.16.418e5adbHynoah
 
-这是一个关于怎样在你的 CentOS 7 上安装配置 [VNC](http://en.wikipedia.org/wiki/Virtual_Network_Computing) 服务的教程。当然这个教程也适合 RHEL 7 。在这个教程里，我们将学习什么是 VNC 以及怎样在 CentOS 7 上安装配置 [VNC 服务器](http://en.wikipedia.org/wiki/Virtual_Network_Computing)。
+这是一个关于怎样在你的 CentOS 7 上安装配置 [VNC](http://en.wikipedia.org/wiki/Virtual_Network_Computing) 服务的教程。当然这个教程也适合 RHEL 7。在这个教程里，我们将学习什么是 VNC 以及怎样在 CentOS 7 上安装配置 [VNC 服务器](http://en.wikipedia.org/wiki/Virtual_Network_Computing)。
 
 我们都知道，作为一个系统管理员，大多数时间是通过网络管理服务器的。在管理服务器的过程中很少会用到图形界面，多数情况下我们只是用 SSH 来完成我们的管理任务。在这篇文章里，我们将配置 VNC 来提供一个连接我们 CentOS 7 服务器的方法。VNC 允许我们开启一个远程图形会话来连接我们的服务器，这样我们就可以通过网络远程访问服务器的图形界面了。
 
@@ -29,7 +29,7 @@ VNC 服务器是一个自由开源软件，它可以让用户可以远程访问�
 
 首先，我们需要一个可用的桌面环境（X-Window），如果没有的话要先安装一个。
 
-**注意：以下命令必须以 root 权限运行。要切换到 root ，请在终端下运行“sudo -s”，当然不包括双引号（“”）**
+**注意：以下命令必须以 root 权限运行。要切换到 root，请在终端下运行“sudo -s”，当然不包括双引号（“”）**
 
 ### 1. 安装 X-Window
 
@@ -91,7 +91,7 @@ VNC 服务器是一个自由开源软件，它可以让用户可以远程访问�
 
 *copying vnc server configuration*
 
-接着我们用自己最喜欢的编辑器（这儿我们用的 **nano** ）打开 `/etc/systemd/system/vncserver@:1.service` ，找到下面这几行，用自己的用户名替换掉 。举例来说，我的用户名是 linoxide 所以我用 linoxide 来替换掉 ：
+接着我们用自己最喜欢的编辑器（这儿我们用的 **nano**）打开 `/etc/systemd/system/vncserver@:1.service`，找到下面这几行，用自己的用户名替换掉。举例来说，我的用户名是 linoxide 所以我用 linoxide 来替换掉：
 
 ```
 ExecStart=/sbin/runuser -l <USER> -c "/usr/bin/vncserver %i"PIDFile=/home/<USER>/.vnc/%H%i.pid
@@ -113,7 +113,7 @@ ExecStart=/sbin/runuser -l root -c "/usr/bin/vncserver %i"PIDFile=/root/.vnc/%H%
 
 *configuring user*
 
-好了，下面重启 systemd 。
+好了，下面重启 systemd。
 
 ```
 # systemctl daemon-reload
@@ -129,7 +129,7 @@ ExecStart=/sbin/runuser -l root -c "/usr/bin/vncserver %i"PIDFile=/root/.vnc/%H%
 
 *setting vnc password*
 
-**确保你输入的密码多于6个字符**
+**确保你输入的密码多于 6 个字符**
 
 ### 4. 开启服务
 
@@ -157,7 +157,7 @@ $ sudo firewall-cmd --permanent --add-service vnc-server$ sudo systemctl restart
 
 *allowing firewalld*
 
-现在就可以用 IP 和端口号（LCTT 译注：例如 192.168.1.1:1 ，这里的端口不是服务器的端口，而是视 VNC 连接数的多少从1开始排序）来连接 VNC 服务器了。
+现在就可以用 IP 和端口号（LCTT 译注：例如 192.168.1.1:1，这里的端口不是服务器的端口，而是视 VNC 连接数的多少从 1 开始排序）来连接 VNC 服务器了。
 
 ### 6. 用 VNC 客户端连接服务器
 
@@ -169,11 +169,11 @@ $ sudo firewall-cmd --permanent --add-service vnc-server$ sudo systemctl restart
 
 你可以用像 [Tightvnc viewer](http://www.tightvnc.com/) 和 [Realvnc viewer](https://www.realvnc.com/) 的客户端来连接到服务器。
 
-要用更多的用户连接，需要创建配置文件和端口，请回到第3步，添加一个新的用户和端口。你需要创建 `vncserver@:2.service` 并替换配置文件里的用户名和之后步骤里相应的文件名、端口号。**请确保你登录 VNC 服务器用的是你之前配置 VNC 密码的时候使用的那个用户名**。
+要用更多的用户连接，需要创建配置文件和端口，请回到第 3 步，添加一个新的用户和端口。你需要创建 `vncserver@:2.service` 并替换配置文件里的用户名和之后步骤里相应的文件名、端口号。**请确保你登录 VNC 服务器用的是你之前配置 VNC 密码的时候使用的那个用户名**。
 
-VNC 服务本身使用的是5900端口。鉴于有不同的用户使用 VNC ，每个人的连接都会获得不同的端口。配置文件名里面的数字告诉 VNC 服务器把服务运行在5900的子端口上。在我们这个例子里，第一个 VNC 服务会运行在5901（5900 + 1）端口上，之后的依次增加，运行在5900 + x 号端口上。其中 x 是指之后用户的配置文件名 `vncserver@:x.service` 里面的 x 。
+VNC 服务本身使用的是 5900 端口。鉴于有不同的用户使用 VNC，每个人的连接都会获得不同的端口。配置文件名里面的数字告诉 VNC 服务器把服务运行在 5900 的子端口上。在我们这个例子里，第一个 VNC 服务会运行在 5901（5900 + 1）端口上，之后的依次增加，运行在 5900 + x 号端口上。其中 x 是指之后用户的配置文件名 `vncserver@:x.service` 里面的 x。
 
-在建立连接之前，我们需要知道服务器的 IP 地址和端口。IP 地址是一台计算机在网络中的独特的识别号码。我的服务器的 IP 地址是96.126.120.92，VNC 用户端口是1。
+在建立连接之前，我们需要知道服务器的 IP 地址和端口。IP 地址是一台计算机在网络中的独特的识别号码。我的服务器的 IP 地址是 96.126.120.92，VNC 用户端口是 1。
 
 执行下面的命令可以获得服务器的公网 IP 地址（LCTT 译注：如果你的服务器放在内网或使用动态地址的话，可以这样获得其公网 IP 地址）。
 

@@ -1,11 +1,11 @@
 ---
-title: CentOS7防火墙相关命令
+title: CentOS7 防火墙相关命令
 date: '2019-10-26 00:00:00'
 tags:
 - Linux
 - CentOS
 ---
-# CentOS7防火墙相关命令
+# CentOS7 防火墙相关命令
 
 ## 防火墙相关命令
 
@@ -91,7 +91,7 @@ firewall-cmd --zone=public --remove-port=8080/tcp --permanent
 firewall-cmd --zone=public --add-port=8000-8003/tcp
 ```
 
-允许指定ip访问某一端口,允许192.168.142.166访问6379端口
+允许指定 ip 访问某一端口，允许 192.168.142.166 访问 6379 端口
 
 ```bash
 firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="6379" accept" --permanent
@@ -100,13 +100,13 @@ firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.142.166
 firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.233" accept" --permanent
 ```
 
-允许指定ip段访问某一端口,允许192.168.142.0-192.168.142.10范围内的ip访问6379端口
+允许指定 ip 段访问某一端口，允许 192.168.142.0-192.168.142.10 范围内的 ip 访问 6379 端口
 
 ```bash
 firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.142.0/10" port protocol="tcp" port="6379" accept" --permanent
 ```
 
-删除某个IP
+删除某个 IP
 
 ```bash
 firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.1.51" accept" --permanent
@@ -119,6 +119,6 @@ firewall-cmd --reload
 ```
 
 ## 参考文档
-- [CentOS7服务管理(重启,停止,自动启动命令)](https://www.cnblogs.com/lywJ/p/10710591.html)
-- [CentOS7 Firewall常用命令汇总，开放端口及查看已开放的端口](https://blog.csdn.net/lvqingyao520/article/details/81075094)
-- [centos7 firewall指定IP与端口访问（常用）](https://www.cnblogs.com/caidingyu/p/11008160.html)
+- [CentOS7 服务管理(重启，停止，自动启动命令)](https://www.cnblogs.com/lywJ/p/10710591.html)
+- [CentOS7 Firewall 常用命令汇总，开放端口及查看已开放的端口](https://blog.csdn.net/lvqingyao520/article/details/81075094)
+- [centos7 firewall 指定 IP 与端口访问（常用）](https://www.cnblogs.com/caidingyu/p/11008160.html)

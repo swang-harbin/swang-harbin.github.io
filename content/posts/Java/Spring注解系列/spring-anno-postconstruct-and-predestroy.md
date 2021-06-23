@@ -1,5 +1,5 @@
 ---
-title: Spring注解-使用@PostConstruct和@PreDestroy
+title: Spring 注解：使用 @PostConstruct 和 @PreDestroy
 date: '2020-02-19 00:00:00'
 tags:
 - Spring
@@ -7,11 +7,11 @@ tags:
 - Java
 ---
 
-# Spring注解-使用@PostConstruct和@PreDestroy
+# Spring 注解：使用 `@PostConstruct` 和 `@PreDestroy`
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-创建Dog类, 标注Component注解, 可取消Cat类上的@Component
+创建 Dog 类，标注 `@Component` 注解，可取消 Cat 类上的 `@Component`
 
 ```java
 package icu.intelli.bean;
@@ -73,23 +73,23 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class IOCTest {
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
-        System.out.println("IOC容器创建完成...");
+        System.out.println("IOC 容器创建完成...");
 
-        // 关闭IOC容器
+        // 关闭 IOC 容器
         applicationContext.close();
-        System.out.println("IOC容器已关闭...");
+        System.out.println("IOC 容器已关闭...");
     }
 }
 ```
 
-执行IOCTest输出
+执行 IOCTest 输出
 
 ```
 dog constructor...
 dog postConstruct...
-IOC容器创建完成...
+IOC 容器创建完成...
 dog preDestroy...
-IOC容器已关闭...
+IOC 容器已关闭...
 ```

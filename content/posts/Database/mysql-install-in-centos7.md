@@ -1,12 +1,12 @@
 ---
-title: CentOS7安装绿色版MySQL57
+title: CentOS7 安装绿色版 MySQL57
 date: '2019-12-09 00:00:00'
 tags:
 - MySQL
 - CentOS
 ---
 
-# CentOS7安装绿色版MySQL57
+# CentOS7 安装绿色版 MySQL57
 
 ## 创建用户和组
 
@@ -15,7 +15,7 @@ tags:
 # useradd -r -g mysql -s /bin/false mysql
 ```
 
-因为这个用户只需要有所有权, 不需要登录, **useradd**使用 -r 和 -s /bin/false选项创建一个不能登录服务主机的用户. 如果**useradd**命令不支持这些, 可以忽略它们. 用户名和组名也可以不叫mysql
+因为这个用户只需要有所有权，不需要登录，`useradd` 使用 `-r -s /bin/false` 选项创建一个不能登录服务主机的用户。如果 `useradd` 命令不支持这些，可以忽略它们。用户名和组名也可以不叫 mysql
 
 ## 压缩包下载
 
@@ -29,35 +29,35 @@ tags:
 # tar -zxvf mysql-VERSION-OS.tar.gz
 ```
 
-**文件夹介绍** :
+**文件夹介绍**
 
 | 文件夹        | 内容                              |
 | ------------- | --------------------------------- |
-| bin           | mysqld服务, 客户端和实用程序      |
-| docs          | MySQL信息手册                     |
+| bin           | mysqld 服务，客户端和实用程序      |
+| docs          | MySQL 信息手册                     |
 | man           | Unix 手册页                       |
-| include       | 包含(头)文件                      |
+| include       | 包含（头）文件                      |
 | lib           | 库                                |
-| share         | 数据库安装时的错误信息, 字典和SQL |
+| share         | 数据库安装时的错误信息，字典和 SQL |
 | support-files | 其他支持文件                      |
 
-**可选: 创建连接**
+**可选：创建连接**
 
 ```shell
 # ln -s full-path-to-mysql-VERSION-OS mysql
 ```
 
-**可选: 添加bin到环境变量**
+**可选：添加 bin 到环境变量**
 
-在/etc/profile中添加
+在 /etc/profile 中添加
 
 ```shell
 export PATH=$PATH:/usr/local/mysql/bin
 ```
 
-## 三. 初始化数据文件夹
+## 初始化数据文件夹
 
-在mysql文件夹中创建存储mysql数据的文件夹, 将所有权赋给mysql和mysql组, 并设置一个适当的目录权限
+在 mysql 文件夹中创建存储 mysql 数据的文件夹，将所有权赋给 mysql 和 mysql 组，并设置一个适当的目录权限
 
 ```shell
 # mkdir data

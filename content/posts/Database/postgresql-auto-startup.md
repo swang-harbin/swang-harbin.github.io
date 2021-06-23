@@ -1,19 +1,19 @@
 ---
-title: Linux设置PostgreSQL开机自启
+title: Linux 设置 PostgreSQL 开机自启
 date: '2020-09-10 00:00:00'
 tags:
 - PostgreSQL
 ---
 
-# PostgreSQL设置开机自启动
+# PostgreSQL 设置开机自启动
 
-[PG11. server-start](https://www.postgresql.org/docs/11/server-start.html)
+[PG11 server-start](https://www.postgresql.org/docs/11/server-start.html)
 
-官网的可能要在编译时指定了`--with-systemd`才能用, 具体原因未知
+官网的可能要在编译时指定了 `--with-systemd` 才能用，具体原因未知
 
 整个野的
 
-添加 **/etc/systemd/system/postgresql.service**
+添加 /etc/systemd/system/postgresql.service
 
 ```properties
 [Unit]

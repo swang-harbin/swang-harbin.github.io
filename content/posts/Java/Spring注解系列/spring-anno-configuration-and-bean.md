@@ -1,5 +1,5 @@
 ---
-title: Spring注解-@Configuration指定配置类&@Bean注册Bean
+title: Spring 注解：@Configuration 指定配置类和 @Bean 注册 Bean
 date: '2020-02-18 00:00:00'
 tags:
 - Spring
@@ -7,17 +7,17 @@ tags:
 - Java
 ---
 
-# Spring注解-@Configuration指定配置类&@Bean注册Bean
+# Spring 注解：`@Configuration` 指定配置类和 `@Bean` 注册 Bean
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-环境:
-- spring: 4.3.25.RELEASE
-- jdk: 1.8
+环境：
+- spring：4.3.25.RELEASE
+- jdk：1.8
 
-## 注册Bean
+## 注册 Bean
 
-创建一个Person类
+创建一个 Person 类
 
 ```java
 package icu.intelli.config;
@@ -63,7 +63,7 @@ public class Person {
 
 ### 注解方式
 
-创建一个配置类MainConfig
+创建一个配置类 MainConfig
 
 ```java
 package icu.intelli.config;
@@ -72,12 +72,13 @@ import icu.intelli.bean.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-// 配置类==配置文件
-@Configuration  // 告诉Spring， 这是一个配置类
+// 配置类==配置文件，@Configuration，告诉 Spring，这是一个配置类
+@Configuration
 public class MainConfig {
 
-    // 给容器中注册一个Bean; 类型为返回值类型
-    @Bean(value = "person") // id默认是方法名, 可以通过value值指定id
+    // 给容器中注册一个 Bean；类型为返回值类型
+    // id 默认是方法名，可以通过 value 值指定 id
+    @Bean(value = "person")
     public Person person() {
         return new Person("lisi", 20);
     }
@@ -94,10 +95,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class MainTest {
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
-        // Person bean = (Person) applicationContext.getBean("person");  // 通过ID获取Bean
-        Person bean = applicationContext.getBean(Person.class); // 根据类型获取Bean
+        // 通过 ID 获取 Bean
+        // Person bean = (Person) applicationContext.getBean("person");
+        // 根据类型获取 Bean
+        Person bean = applicationContext.getBean(Person.class);
         System.out.println(bean);
     }
 }
@@ -110,7 +113,7 @@ Person{name='lisi', age=20}
 
 ### 配置文件方式
 
-需要在类路径下创建一个beans.xml
+需要在类路径下创建一个 beans.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -136,10 +139,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainTest {
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beans.xml");
-        Person bean = (Person) applicationContext.getBean("person");  // 通过ID获取Bean
-        // Person bean = applicationContext.getBean(Person.class); // 根据类型获取Bean
+        // 通过 ID 获取 Bean
+        Person bean = (Person) applicationContext.getBean("person");
+        // 根据类型获取 Bean
+        // Person bean = applicationContext.getBean(Person.class);
         System.out.println(bean);
     }
 }

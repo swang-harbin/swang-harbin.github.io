@@ -1,15 +1,18 @@
 ---
-title: 使用Docker搭建VPN
+title: 使用 Docker 搭建 VPN
 date: '2019-12-27 00:00:00'
 tags:
 - Docker
 - VPN
 ---
 
+# 使用 Docker 搭建 VPN
+
+未测试
+
 http://medium.com/@gurayy/set-up-a-vpn-server-with-docker-in-5-minutes-a66184882c45
 
-
-
+```bash
 git clone https://github.com/kylemanna/docker-openvpn.git
 
 cd docker-openvpn
@@ -28,4 +31,5 @@ docker run -v $PWD/vpn-data:/etc/openvpn -d -p 3000:1194/udp --cap-add=NET_ADMIN
 docker run -v $PWD/vpn-data:/etc/openvpn --rm -it myownvpn easyrsa build-client-full user1 nopass
 
 docker run -v $PWD/vpn-data:/etc/openvpn --rm myownvpn ovpn_getclient user1 > user1.ovpn
+```
 

@@ -1,15 +1,15 @@
 ---
-title: Nginx中location与root, alias, proxy_pass的使用
+title: Nginx 中 location 与 root，alias，proxy_pass 的使用
 date: '2020-05-18 00:00:00'
 tags:
 - Nginx
 ---
-# Nginx中location与root, alias, proxy_pass的使用
+# Nginx 中 location 与 root，alias，proxy_pass 的使用
 
 
-## location与root
+## location 与 root
 
-root后的文件路径是否有`/`效果是相同的, **会将location后面的xxx拼接到root配置的路径后**
+root 后的文件路径是否有 `/` 效果是相同的，**会将 location 后面的 xxx 拼接到 root 配置的路径后**
 ```nginx
 location /xxx/ {
     root /path/to/static;
@@ -21,25 +21,25 @@ location /xxx/ {
 }
 ```
 
-`/xxx/index.html`均可以访问到`/path/to/static/xxx/index.html`资源
+`/xxx/index.html` 均可以访问到 `/path/to/static/xxx/index.html` 资源
 
 
-## location与alias
+## location 与 alias
 
-按如方式配置, alias配置的路径后必须包含`/`, **不会将location后面的xxx拼接到root配置的路径后**
+按如方式配置，alias 配置的路径后必须包含 `/`，**不会将 location 后面的 xxx 拼接到 root 配置的路径后**
 
 ```nginx
 location /xxx/ {
     alias /path/to/static/;
 }
 ```
-使用`/xxx/index.html`访问, 可访问到`/path/to/static/index.html`文件
+使用 `/xxx/index.html` 访问，可访问到 `/path/to/static/index.html` 文件
 
-## location与proxy_pass
+## location 与 proxy_pass
 
-对`proxy_pass`的配置包含如下两种情况
+对 `proxy_pass` 的配置包含如下两种情况
 
-1. backend后面没有`/`: 
+1. backend 后面没有 `/`
 
    ```nginx
    location /xxx/ {
@@ -47,7 +47,7 @@ location /xxx/ {
    }
    ```
 
-2. backend后面有`/`: 
+2. backend 后面有 `/`
 
    ```nginx
    location /xxx/ {
@@ -55,7 +55,7 @@ location /xxx/ {
    }
    ```
 
-如果此时有一个请求为Url为`/xxx/endpoint`
-- 第1种向backend发送的请求为`http://192.168.1.1:8080/xxx/endpoint`, 包含location中的配置
-- 第2种向backend发送的请求为`http://192.168.1.1:8080/endpoint`， 不包含location中的配置
+如果此时有一个请求为 Url 为 `/xxx/endpoint`
+- 第 1 种向 backend 发送的请求为 `http://192.168.1.1:8080/xxx/endpoint`，包含 location 中的配置
+- 第 2 种向 backend 发送的请求为 `http://192.168.1.1:8080/endpoint`，不包含 location 中的配置
 

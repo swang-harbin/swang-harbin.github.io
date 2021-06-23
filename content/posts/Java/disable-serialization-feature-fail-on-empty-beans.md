@@ -10,17 +10,15 @@ tags:
 
 ## 错误提示
 
-```bash
-com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: icu.intelli.springboot.entity.User\$HibernateProxy\$sPsvljjm["hibernateLazyInitializer"])
-```
+> com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: icu.intelli.springboot.entity.User\$HibernateProxy\$sPsvljjm["hibernateLazyInitializer"])
 
 ## 出错原因
 
-使用SpringBoot2.2.2整合JPA时, 调用`userRepository.getOne(id)`方法时, 出的错
+使用 SpringBoot 2.2.2 整合 JPA 时，调用 `userRepository.getOne(id)` 方法时，出的错
 
 ## 解决办法
 
-### 法1
+### 方法一
 
 在实体类上添加如下注解
 
@@ -28,9 +26,9 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer fou
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 ```
 
-### 法2
+### 方法二
 
-注册一个objectMapper覆盖掉默认的，这样就不用在每个类上面使用`@JsonIgnoreProperties`：
+注册一个 objectMapper 覆盖掉默认的，这样就不用在每个类上面使用 `@JsonIgnoreProperties`
 
 ```java
 @Bean
@@ -38,12 +36,12 @@ public ObjectMapper objectMapper() {
      return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 }
 
-// ObjectMapper为com.fasterxml.jackson.databind.ObjectMapper;
+// ObjectMapper 为 com.fasterxml.jackson.databind.ObjectMapper;
 ```
 
-### 法3
+### 方法三
 
-不使用SpringBoot默认的jackson进行对象json化, 手动使用其他json框架如fastJson进行json化然后返回
+不使用 SpringBoot 默认的 jackson 进行对象 json 化，手动使用其他 json 框架如 fastJson 进行 json 化然后返回
 
 ```xml
 <dependency>

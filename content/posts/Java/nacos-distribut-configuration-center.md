@@ -1,5 +1,5 @@
 ---
-title: Nacos分布式配置中心
+title: Nacos 分布式配置中心
 date: '2019-11-28 00:00:00'
 tags:
 - Nacos
@@ -8,17 +8,19 @@ tags:
 
 # 分布式配置中心
 
-配置中心 : 把关于应用的配置, 集中的放在一个地点.
+[Nacos 系列目录](./nacos-al)
 
-nacos可以做配置中心
+配置中心：把关于应用的配置，集中的放在一个地点。
+
+nacos 可以做配置中心
 
 ## 使用配置中心的好处
 
-- 分离的多环境配置 : 简化应用的配置过程, 比如, 同一个应用部署到不同的环境(test, dev, prod)使用不同的配置.
+- 分离的多环境配置：简化应用的配置过程，比如，同一个应用部署到不同的环境（test，dev，prod）使用不同的配置。
 - 可以更灵活的管理权限
-- 安全性高 : 将密码等信息部署在相对安全的地方
+- 安全性高：将密码等信息部署在相对安全的地方
 
-## 使用nacos做配置中心
+## 使用 nacos 做配置中心
 
 ### 添加配置文件
 
@@ -28,12 +30,12 @@ nacos可以做配置中心
 
 ```properties
 # 指定使用哪个配置文件
-# 此处指定的是名称为 nacos-config-example 的配置文件, 对应上图中的Data ID
-# Group默认是DEFAULT_GROUP
+# 此处指定的是名称为 nacos-config-example 的配置文件，对应上图中的 Data ID
+# Group 默认是 DEFAULT_GROUP
 spring.application.name=nacos-config-example
 # 当前服务的端口
 server.port=18083
-# nacos服务的地址和端口
+# nacos 服务的地址和端口
 spring.cloud.nacos.config.server-addr=127.0.0.1:8848
 ```
 
@@ -87,41 +89,41 @@ class EchoController {
 }
 ```
 
-## 使用nacos作为配置中心的其他技巧
+## 使用 nacos 作为配置中心的其他技巧
 
-### 使用yaml格式文件作为配置文件
+### 使用 yaml 格式文件作为配置文件
 
-修改bootstrap.properties, 添加**spring.cloud.nacos.config.file-extension=yaml**
+修改 bootstrap.properties，添加 **spring.cloud.nacos.config.file-extension=yaml**
 
 ```properties
 # 指定使用哪个配置文件
-# 此处指定的是名称为 nacos-config-example 的配置文件, 对应上图中的Data ID
-# Group默认是DEFAULT_GROUP
+# 此处指定的是名称为 nacos-config-example 的配置文件，对应上图中的 Data ID
+# Group 默认是 DEFAULT_GROUP
 spring.application.name=nacos-config-example
 # 当前服务的端口
 server.port=18083
-# nacos服务的地址和端口
+# nacos 服务的地址和端口
 spring.cloud.nacos.config.server-addr=127.0.0.1:8848
 
 # 指定读取的配置文件格式
 spring.cloud.nacos.config.file-extension=yaml
 ```
 
-在nacos控制台修改配置文件, 不需要重启应用即可实现配置的动态更新.
+在 nacos 控制台修改配置文件，不需要重启应用即可实现配置的动态更新。
 
-### profile的使用
+### profile 的使用
 
-#### 在nacos中创建配置文件
+#### 在 nacos 中创建配置文件
 
 nacos-config-example-{profile}
 
-> 例如:
+> 例如
 > nacos-config-example-develop.yaml
 > application-product.properties
 
-#### 修改bootstrap.properties
+#### 修改 bootstrap.properties
 
-添加**spring.profiles.active=粒度**, 并修改**[spring.application.name](http://spring.application.name/)**和**spring.cloud.nacos.config.file-extension**的值
+添加 **spring.profiles.active=粒度**，并修改 **[spring.application.name](http://spring.application.name/)** 和 **spring.cloud.nacos.config.file-extension** 的值
 
 ```properties
 spring.application.name=nacos-config-example
@@ -129,29 +131,22 @@ spring.cloud.nacos.config.file-extension=yaml
 spring.profiles.active=develop
 ```
 
-### namespace的使用
+### namespace 的使用
 
-#### 在nacos中创建新的namespace
+#### 在 nacos 中创建新的 namespace
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222145102.png)
 
-#### 在新的namespace中创建配置文件
+#### 在新的 namespace 中创建配置文件
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222145117.png)
 
-#### 修改bootstrapt.properties
+#### 修改 bootstrapt.properties
 
-添加**spring.cloud.nacos.config.namespace=Namespace ID**
+添加 **spring.cloud.nacos.config.namespace=Namespace ID**
 
 ```properties
-# 例:
+# 例
 spring.cloud.nacos.config.namespace=74ce8dac-3b1f-43e1-82ad-645f9c7ff741
 ```
 
-## 链接
-
-一. [Nacos服务注册与发现](./nacos-service-registry-and-discovery.md)
-
-二.[Nacos分布式配置中心](./nacos-distribut-configuration-center.md)
-
-三.[Nacos服务注册中心](./nacos-service-registry-center.md)

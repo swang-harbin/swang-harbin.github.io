@@ -1,14 +1,14 @@
 ---
-title: 指定tomcat使用的JDK
+title: 指定 tomcat 使用的 JDK
 date: '2019-12-04 00:00:00'
 tags:
 - Tomcat
 - Java
 ---
 
-# 指定Tomcat使用的JDK
+# 指定 Tomcat 使用的 JDK
 
-修改bin目录下的setclasspath.sh, 在上方添加
+修改 bin 目录下的 setclasspath.sh，在上方添加
 
 ```shell
 export JAVA_HOME=/home/wangshuo/java/jdk1.8.0_231

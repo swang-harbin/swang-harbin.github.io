@@ -1,11 +1,11 @@
 ---
-title: Java执行cmd命令
+title: Java 执行 cmd 命令
 date: '2019-10-30 00:00:00'
 tags:
 - Java
 ---
 
-# Java使用cmd调用进程
+# Java 使用 cmd 调用进程
 
 ```java
 import java.io.BufferedReader;
@@ -64,7 +64,7 @@ public class ProcCmd {
                 return isSuccess;
             } else {
                 writeComLog("Process err :执行超时：" + commandstr);
-                //超时
+                // 超时
                 return false;
             }
         } catch (IOException e) {
@@ -94,7 +94,7 @@ public class ProcCmd {
 
             outputLog(process, true, true);
 
-            //阻塞线程,等待命令执行完毕
+            // 阻塞线程，等待命令执行完毕
             process.waitFor();
             return true;
         } catch (Exception e) {

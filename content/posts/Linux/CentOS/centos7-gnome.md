@@ -1,11 +1,11 @@
 ---
-title: CentOS7安装GNOME图形化界面
+title: CentOS7 安装 GNOME 图形化界面
 date: '2019-10-25 00:00:00'
 tags:
 - Linux
 - CentOS
 ---
-# CentOS7安装GNOME图形化界面
+# CentOS7 安装 GNOME 图形化界面
 
 ## 安装图形化页面包
 ```bash
@@ -20,7 +20,7 @@ yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
    ```
 
    **注意**
-   `init 5`命令会要求创建新用户,`startx`直接使用当前用户登录
+   `init 5` 命令会要求创建新用户，`startx` 直接使用当前用户登录
 
 2. 设置默认图形化启动
 
@@ -30,4 +30,4 @@ yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
 
 
 ## 参考文档
-[centos7安装图形化界面](https://cloud.tencent.com/developer/article/1197735)
+[centos7 安装图形化界面](https://cloud.tencent.com/developer/article/1197735)

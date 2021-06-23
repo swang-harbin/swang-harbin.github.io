@@ -1,5 +1,5 @@
 ---
-title: Spring注解-@Conditional按照条件注册Bean
+title: Spring 注解：@Conditional 按照条件注册 Bean
 date: '2020-02-18 00:00:00'
 tags:
 - Spring
@@ -7,15 +7,15 @@ tags:
 - Java
 ---
 
-# Spring注解-@Conditional按照条件注册Bean
+# Spring 注解：`@Conditional` 按照条件注册 Bean
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-Conditional, 按照一定的条件进行判断, 满足条件才往容器中注册bean, 既可以放在方法上, 也可以放在类上
+Conditional，按照一定的条件进行判断，满足条件才往容器中注册 bean，既可以放在方法上，也可以放在类上
 
 ## 注解在方法上
 
-MainConfig.java, 向容器中添加两个Person类的对象, bill和linus
+MainConfig.java，向容器中添加两个 Person 类的对象，bill 和 linus
 
 ```java
 @Configuration
@@ -32,25 +32,25 @@ public class MainConfig {
 }
 ```
 
-IOCTest.java, 输出系统名称和所有在容器中的Person类对象
+IOCTest.java，输出系统名称和所有在容器中的 Person 类对象
 
 ```java
 public class IOCTest {
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
         Environment environment = applicationContext.getEnvironment();
         // 动态获取操作系统的名称
         String property = environment.getProperty("os.name");
-        System.out.println("操作系统的名称为: " + property);
+        System.out.println("操作系统的名称为：" + property);
 
-        // 获取容器中所有Person类对象的名字
+        // 获取容器中所有 Person 类对象的名字
         String[] namesForType = applicationContext.getBeanNamesForType(Person.class);
         for (String name : namesForType) {
             System.out.println(name);
         }
-        // 获取容器中Person类型的对象
+        // 获取容器中 Person 类型的对象
         Map<String, Person> beansOfType = applicationContext.getBeansOfType(Person.class);
         System.out.println(beansOfType);
 
@@ -58,18 +58,18 @@ public class IOCTest {
 }
 ```
 
-此时, 程序输出如下, 包含bill和linus
+此时，程序输出如下，包含 bill 和 linus
 
 ```
-操作系统的名称为: Linux
+操作系统的名称为：Linux
 bill
 linus
 {bill=Person{name='Bill Gates', age=62}, linus=Person{name='linus', age=48}}
 ```
 
-**现在有一需求, 若系统为Windos则, 向容器中注入bill; 若系统为Linux, 则向容器中注入linus.**
+**现在有一需求，若系统为 Windos 则，向容器中注入 bill; 若系统为 Linux，则向容器中注入 linus**
 
-如下可知, @Conditional中需要放置Condition类型的数组
+如下可知，`@Conditional` 中需要放置 Condition 类型的数组
 
 ```java
 public @interface Conditional {
@@ -81,7 +81,7 @@ public @interface Conditional {
 }
 ```
 
-因此, 创建LinuxCondition和WindowsCondition, 实现Condition接口
+因此，创建 LinuxCondition 和 WindowsCondition，实现 Condition 接口
 
 LinuxCondition.java
 
@@ -96,18 +96,18 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * 判断系统是否时Linux
+ * 判断系统是否时 Linux
  */
 public class LinuxCondition implements Condition {
 
     /**
-     * @param context  判断条件能使用的上下文(环境)
+     * @param context  判断条件能使用的上下文（环境）
      * @param metadata 注释信息
      * @return
      */
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 
-        // 1. 能获取到ioc使用的beanfactory
+        // 1. 能获取到 ioc 使用的 beanfactory
         ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 
         //2. 获取类加载器
@@ -116,10 +116,10 @@ public class LinuxCondition implements Condition {
         // 3. 获取当前环境信息
         Environment environment = context.getEnvironment();
 
-        // 4. 获取到bean定义的注册类
+        // 4. 获取到 bean 定义的注册类
         BeanDefinitionRegistry registry = context.getRegistry();
 
-        // 是否Linux系统, Unix Linux
+        // 是否 Linux 系统，Unix Linux
         return environment.getProperty("os.name").contains("nux");
     }
 }
@@ -136,7 +136,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * 判断系统是否为Windos
+ * 判断系统是否为 Windos
  */
 public class WindowsCondition implements Condition {
 
@@ -144,13 +144,13 @@ public class WindowsCondition implements Condition {
 
         Environment environment = context.getEnvironment();
 
-        // 是否Windows系统, Windows
+        // 是否 Windows 系统，Windows
         return environment.getProperty("os.name").contains("indows");
     }
 }
 ```
 
-修改MainConfig, 添加@Conditional注解
+修改 MainConfig，添加 `@Conditional` 注解
 
 ```java
 package icu.intelli.config;
@@ -166,7 +166,7 @@ import org.springframework.context.annotation.Configuration;
 public class MainConfig {
 
     /**
-     * @Conditional({Condition}), 按照一定的条件进行判断, 满足条件才将bean注册到容器中
+     * @Conditional({Condition})，按照一定的条件进行判断，满足条件才将 bean 注册到容器中
      */
     @Conditional({WindowsCondition.class})
     @Bean("bill")
@@ -182,7 +182,7 @@ public class MainConfig {
 }
 ```
 
-执行IOCTest, 程序输出
+执行 IOCTest，程序输出
 
 ```
 os.name: Linux
@@ -190,7 +190,7 @@ linus
 {linus=Person{name='linus', age=48}}
 ```
 
-修改VM options`-Dos.name="Windows 10"`, 执行IOCTest, 程序输出
+修改 VM options 为 `-Dos.name="Windows 10"`，执行 IOCTest，程序输出
 
 ```
 os.name: Windows 10
@@ -200,11 +200,11 @@ bill
 
 ## 注解在类上
 
-修改MainConfig.java
+修改 MainConfig.java
 
 ```java
 /**
-* 注解在类上, 只有符合条件, 这个类中的bean注册才能生效
+* 注解在类上，只有符合条件，这个类中的 bean 注册才能生效
 */
 @Conditional({LinuxCondition.class})
 @Configuration
@@ -224,14 +224,14 @@ public class MainConfig {
 }
 ```
 
-执行IOCTest, 程序输出
+执行 IOCTest，程序输出
 
 ```
 os.name: Windows 10
 {}
 ```
 
-取消对VM option的修改, 执行IOCTest, 程序输出
+取消对 VM option 的修改，执行 IOCTest，程序输出
 
 ```
 os.name: Linux

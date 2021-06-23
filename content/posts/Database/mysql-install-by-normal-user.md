@@ -1,25 +1,25 @@
 ---
-title: 普通用户安装MySQL
+title: 普通用户安装 MySQL
 date: '2020-07-13 00:00:00'
 tags:
 - MySQL
 - Linux
 ---
 
-# 普通用户安装MySQL
+# 普通用户安装 MySQL
 
 [官方文档](https://dev.mysql.com/doc/refman/5.7/en/source-installation.html)
 
-将mysql安装到`/home/normal/software/mysql`目录下
+将 mysql 安装到 /home/normal/software/mysql 目录下
 
-解压二进制包, 移动文件
+解压二进制包，移动文件
 
 ```bash
 tar -zxvf mysql-5.7.30-el7-x86_64.tar.gz
 mv ./mysql-5.7.30-el7-x86_64 /home/normal/softwore/mysql
 ```
 
-创建data, conf, log目录
+创建 data，conf，log 目录
 
 ```bash
 mkdir data conf log
@@ -48,25 +48,25 @@ lower_case_table_names=1
 default-character-set=utf8mb4
 ```
 
-后台启动mysqld服务
+后台启动 mysqld 服务
 
 ```bash
 nohup ./bin/mysqld_safe --defaults-file=./conf/my.cnf 2>&1 1>>log/mysql.log &
 ```
 
-查看随机生成的密码, 文件对应配置文件中的*log_error*
+查看随机生成的密码，文件对应配置文件中的 log_error
 
 ```bash
 cat /home/normal/software/mysql/error.log
 ```
 
-使用mysql客户端登录, 需要使用-S指定sock文件位置, 对应在配置文件中*socket*的配置
+使用 mysql 客户端登录，需要使用 `-S` 指定 sock 文件位置，对应在配置文件中 socket 的配置
 
 ```bash
 ./bin/mysql -uroot -p -S /home/normal/software/mysql/mysql.sock
 ```
 
-修改root用户密码, 开启root用户远程访问
+修改 root 用户密码，开启 root 用户远程访问
 
 ```mysql
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';

@@ -12,21 +12,21 @@ tags:
 
 ## 报错原因
 
-IDEA设置的堆内存过小, 需要修改IDEA的堆内存大小
+IDEA 设置的堆内存过小，需要修改 IDEA 的堆内存大小
 
 ## 解决方法
 
-修改IDEA安装目录的bin目录下的**idea64.exe.vmoptions**配置文件, 将堆内存设置为2G(自定义)
+修改 IDEA 安装目录的 bin 目录下的 idea64.exe.vmoptions 配置文件，将堆内存设置为 2G（自定义）
 
 ```bash
 -Xmx2048m
 ```
 
-如果依旧出错, 在IDE页面点击**Help** -> **Change Memory Settings**, **Change Memory Settings**也可能在**Diagnostic**中
+如果依旧出错，在 IDEA 页面点击 Help→ Change Memory Settings, Change Memory Settings 也可能在 Diagnostic 中
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222154640.png)
 
-此处可以看到IDEA使用的配置文件位置, 可以通过输入框直接修改
+此处可以看到 IDEA 使用的配置文件位置，可以通过输入框直接修改
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222154655.png)
 

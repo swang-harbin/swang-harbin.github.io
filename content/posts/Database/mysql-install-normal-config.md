@@ -1,22 +1,22 @@
 ---
-title: MySQL设置大小写及字符集
+title: MySQL 设置大小写及字符集
 date: '2020-05-08 00:00:00'
 tags:
 - MySQL
 ---
 
-# MySQL设置大小写及字符集
+# MySQL 设置大小写及字符集
 
-## MySQL设置不区分表名大小写
+## MySQL 设置不区分表名大小写
 
-Windows默认不区分, Linux默认区分. 0代表区分, 1代表不区分
+Windows 默认不区分，Linux 默认区分。0 代表区分，1 代表不区分。
 
 ```properties
 [mysqld]
 lower_case_table_names=1
 ```
 
-## MySQK设置默认字符集
+## MySQL 设置默认字符集
 
 查看默认字符集
 

@@ -1,13 +1,13 @@
 ---
-title: MongoDB常用命令
+title: MongoDB 常用命令
 date: '2019-11-20 00:00:00'
 tags:
 - MongoDB
 ---
 
-# MongoDB常用命令
+# MongoDB 常用命令
 
-连接MongoDB `mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]`
+连接 MongoDB `mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]`
 
 查看所有数据库列表 `show dbs`
 
@@ -29,7 +29,7 @@ tags:
 
 ### 插入文档
 
-- 基本命令:`db.集合名.insert(BSON文档)`,如果集合不存在会自动创建
+- 基本命令：`db.集合名.insert(BSON 文档)`，如果集合不存在会自动创建
 
   ```mongodb
   db.col.insert({title: 'MongoDB 教程', 
@@ -55,15 +55,15 @@ tags:
   >db.col.insert(document)
   ```
 
-- 使用`db.集合名.save(document)`方式插入,如果不指定_id字段,save()和insert()类似,如果指定_id字段,save()方法会更新该_id的数据
+- 使用 `db.集合名.save(document)` 方式插入，如果不指定 `_id` 字段，`save()` 和 `insert()` 类似，如果指定 `_id` 字段，`save()` 方法会更新该 `_id `的数据
 
 ### 更新文档
 
-使用update()方法和save()方法来更新集合中的文档.
+使用 `update()` 方法和 `save()` 方法来更新集合中的文档。
 
-#### update()方法
+#### update() 方法
 
-update()方法用于更新已存在的文档.语法格式:
+`update()` 方法用于更新已存在的文档。语法格式
 
 ```mongodb
 db.collection.update(
@@ -79,15 +79,15 @@ db.collection.update(
 
 **参数说明**
 
-- query : update的查询条件,类似sql update查询内where后面的
-- update : update的对象和一些更新的操作符(如$,$inc...等),可以理解为sql update内set后面的
-- upsert : 可选,如果不存在update的记录,是否插入objNew,默认false,不插入
-- multi : 可选,只更新找到的第一条记录,如果为true,则把按条件查出来的多条记录全部更新,默认为false
-- writeConcern : 可选,抛出异常的级别
+- query：update 的查询条件，类似 sql update 查询内 where 后面的
+- update：update 的对象和一些更新的操作符（如\$，\$inc...等）可以理解为 sql update 内 set 后面的
+- upsert：可选，如果不存在 update 的记录，是否插入 objNew，默认 false，不插入
+- multi：可选，只更新找到的第一条记录，如果为 true，则把按条件查出来的多条记录全部更新，默认为 false
+- writeConcern：可选，抛出异常的级别
 
 **实例**
 
-将col集合中title为MongoDB 教程的文档的title修改为MongoDB
+将 col 集合中 title 为 MongoDB 教程的文档的 title 修改为 MongoDB
 
 ```mongodb
 db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"})
@@ -99,15 +99,15 @@ db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"})
 db.col.find().pretty()
 ```
 
-以上方式只会更新第一条发现的文档,如要修改多条相同的文档,需要设置multi为true
+以上方式只会更新第一条发现的文档，如要修改多条相同的文档，需要设置 multi 为 true
 
 ```mongodb
 db.col.update({"title":"MongoDB 教程"},{$set:{"title":"MongoDB"}},{multi:true})
 ```
 
-#### save()方法
+#### save() 方法
 
-save()方法通过传入的文档来替换已有文档,语法格式:
+`save()` 方法通过传入的文档来替换已有文档，语法格式
 
 ```mongodb
 db.collection.save(
@@ -120,12 +120,12 @@ db.collection.save(
 
 **参数说明**
 
-- document : 文档数据
-- writeConcern : 可选,抛出的异常的级别
+- document：文档数据
+- writeConcern：可选，抛出的异常的级别
 
 **实例**
 
-替换_id为5dd50fc604e9adcbffb78e38的文档数据:
+替换 `_id` 为 `5dd50fc604e9adcbffb78e38` 的文档数据
 
 ```mongodb
 db.col.save({
@@ -150,7 +150,7 @@ db.col.pretty()
 
 ### 删除文档
 
-语法:
+语法
 
 ```mongodb
 db.collection.remove(
@@ -159,7 +159,7 @@ db.collection.remove(
 )
 ```
 
-2.6版本后
+2.6 版本后
 
 ```mongodb
 db.collection.remove(
@@ -173,25 +173,25 @@ db.collection.remove(
 
 **参数说明**
 
-- query : 可选,删除的文档的条件。
-- justOne : 可选,如果设为true或1，则只删除一个文档，如果不设置该参数，或使用默认值false，则删除所有匹配条件的文档。
-- writeConcern : 可选,抛出异常的级别。
+- query：可选，删除的文档的条件。
+- justOne：可选，如果设为 true 或 1，则只删除一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档。
+- writeConcern：可选，抛出异常的级别。
 
 **实例**
 
-删除所有title为MongoDB 教程的文档
+删除所有 title 为 MongoDB 教程的文档
 
 ```mongodb
 db.col.remove({"title" : "MongoDB 教程"})
 ```
 
-只删除第一条找到的title为MongoDB 教程的文档
+只删除第一条找到的 title 为 MongoDB 教程的文档
 
 ```mongodb
 db.col.remove({"title" : "MongoDB 教程"}, true)
 ```
 
-删除所有文档,(类似于sql的truncate)
+删除所有文档，（类似于 sql 的 truncate）
 
 ```mongodb
 db.col.remove({})
@@ -207,10 +207,10 @@ db.collection.find(query, projection)
 
 **参数说明**
 
-- query : 可选,使用查询操作符指定查询条件
-- projection : 可选,使用投影操作符指定返回的键.
+- query：可选，使用查询操作符指定查询条件
+- projection：可选，使用投影操作符指定返回的键。
 
-使用易读的方式来查询数据,可以使用pretty()方法,以格式化的方式显示所有文档
+使用易读的方式来查询数据，可以使用 `pretty()` 方法，以格式化的方式显示所有文档
 
 ```mongodb
 db.collection.find().pretty()
@@ -222,19 +222,19 @@ db.collection.find().pretty()
 db.collection.findOne()
 ```
 
-只返回title字段
+只返回 title 字段
 
 ```mongodb
 db.collection.find({}, {"title":1, "_id":0})
 ```
 
-注:默认会显示_id字段,1代表显示,0代表不显示
+注：默认会显示 `_id` 字段，1 代表显示，0 代表不显示
 
 ### 条件操作符
 
-#### MongoDB与RDBMS WHERE语句比较
+#### MongoDB 与 RDBMS WHERE 语句比较
 
-| 操作     | 格式                       | 范例                                 | RDBMS中的类似语句 |
+| 操作     | 格式                       | 范例                                 | RDBMS 中的类似语句 |
 | -------- | -------------------------- | ------------------------------------ | ----------------- |
 | 等于     | `{<key> : <value>}`         | `db.col.find({"by" : "菜鸟"})`       | `where by = "菜鸟"` |
 | 小于     | `{<key> : {$lt : <value>}}` | `db.col.find({"likes" : {$lt : 50}})` | `where likes < 50` |
@@ -245,7 +245,7 @@ db.collection.find({}, {"title":1, "_id":0})
 
 #### MongoDB AND 条件
 
-find()方法可以传入多个键,每个键以逗号隔开,常规AND语法
+`find()` 方法可以传入多个键，每个键以逗号隔开，常规 AND 语法
 
 ```mongodb
 db.col.find({key1 : value1, key2 : value2})
@@ -253,7 +253,7 @@ db.col.find({key1 : value1, key2 : value2})
 
 **实例**
 
-通过 by和title查询
+通过 by 和 title 查询
 
 ```mongodb
 db.col.find({"by" : "菜鸟教程", "title" : "MongoDB 教程"})
@@ -261,7 +261,7 @@ db.col.find({"by" : "菜鸟教程", "title" : "MongoDB 教程"})
 
 #### MongoDB OR 条件
 
-使用$or关键字,语法格式
+使用 `$or`关键字，语法格式
 
 ```mongodb
 db.col.find(
@@ -273,22 +273,22 @@ db.col.find(
 )
 ```
 
-#### MongoDB AND和OR联合使用
+#### MongoDB AND 和 OR 联合使用
 
 ```mongodb
 db.col.find({key1:value1, key2:value2}, $or:[{key3:value3}, {key4:value4}])
 ```
 
-#### MongoDB 使用>和<查询
+#### MongoDB 使用 \> 和 \< 查询
 
 ```mongodb
 db.col.find({"likes": {$gt:50, $lt:100}})
 ```
 
-#### MongoDB中的$type操作符
+#### MongoDB 中的 \$type 操作符
 
-$type操作符是基于BSON类型来检索集合中匹配的数据类型,并返回结果.
-MongoDB中可以使用的类型如下
+`$type` 操作符是基于 BSON 类型来检索集合中匹配的数据类型，并返回结果
+MongoDB 中可以使用的类型如下
 
 | 类型                   | 数字 | 备注          |
 | ---------------------- | ---- | ------------- |
@@ -314,7 +314,7 @@ MongoDB中可以使用的类型如下
 
 **实例**
 
-获取col集合中title为String类型的文档
+获取 col 集合中 title 为 String 类型的文档
 
 ```mongodb
 db.col.find({"title" : {$type : 2}})
@@ -324,42 +324,42 @@ db.col.find({"title" : {$type : "string"})
 
 ### 分页操作
 
-#### Limit()方法
+#### Limit() 方法
 
-使用limit()方法读取指定数量的数据
+使用 `limit()` 方法读取指定数量的数据
 
-语法:
+语法
 
 ```mongodb
 db.COLLECTION_NAME.find().limit(NUMBER)
 ```
 
-注:如果没有指定limit()方法的参数,则显示所有数据
+注：如果没有指定 `limit()` 方法的参数，则显示所有数据
 
-#### Skip()方法
+#### Skip() 方法
 
-使用skip()方法跳过指定数量的数据
+使用 `skip()` 方法跳过指定数量的数据
 
-语法:
+语法
 
 ```mongodb
 db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
 ```
 
-注:skip()方法默认参数为0
+注：`skip()` 方法默认参数为 0
 
 ### 排序操作
 
-使用sort()方法进行排序,1为升序排列,-1为降序排列,语法:
+使用 `sort()` 方法进行排序，1 为升序排列，-1 为降序排列，语法
 
 ```mongodb
 db.COLLECTION_NAME.find().sort({key:1})
 ```
 
-#### 同时包含limit(),skip(),sort()时,执行顺序是sort() -> skip() -> limit()
+**同时包含 limit()，skip()，sort() 时，执行顺序是 sort() → skip() → limit()**
 
 ## [TODO](https://www.runoob.com/mongodb/mongodb-indexing.html)
 
 ## 参考文档
 
-[MongoDB教程](https://www.runoob.com/mongodb/mongodb-tutorial.html)
+[MongoDB 教程](https://www.runoob.com/mongodb/mongodb-tutorial.html)

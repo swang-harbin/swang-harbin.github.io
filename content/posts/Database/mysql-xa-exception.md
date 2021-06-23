@@ -1,12 +1,12 @@
 ---
-title: 'MySQL: XA错误'
+title: 'MySQL XA 错误'
 date: '2020-04-29 00:00:00'
 tags:
 - Exception
 - MySQL
 ---
 
-# MySQL XA错误
+# MySQL XA 错误
 
 ## 异常信息
 
@@ -14,7 +14,7 @@ tags:
 
 ## 解决方式
 
-在数据库连接url中添加如下内容
+在数据库连接 url 中添加如下内容
 
 ```properties
 pinGlobalTxToPhysicalConnection=true

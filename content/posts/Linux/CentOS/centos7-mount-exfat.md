@@ -1,11 +1,11 @@
 ---
-title: CentOS7挂载exFAT格式的U盘
+title: CentOS7 挂载 exFAT 格式的 U 盘
 date: '2019-12-26 00:00:00'
 tags:
 - Linux
 - CentOS
 ---
-# CentOS7挂载exFAT格式的U盘
+# CentOS7 挂载 exFAT 格式的 U 盘
 
 ## 安装依赖包
 
@@ -35,7 +35,7 @@ Disk identifier: 0x3c3fff2d
 
 ## 挂载分区
 
-将/dev/sdb1挂载到/mnt下
+将 /dev/sdb1 挂载到 /mnt 下
 ```bash
 $ mount /dev/sdb1 /mnt
 ```

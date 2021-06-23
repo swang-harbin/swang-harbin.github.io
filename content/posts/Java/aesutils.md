@@ -32,7 +32,7 @@ public class AESUtils {
      */
     public static String encrypt(String content, String key) {
         try {
-            // 转换为AES专用密钥
+            // 转换为 AES 专用密钥
             SecretKeySpec keySpec = generateKeySpec(key);
             // 创建密码器
             Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -45,13 +45,13 @@ public class AESUtils {
     }
 
     /**
-     * @param content AES加密过的密文
+     * @param content AES 加密过的密文
      * @param key     密钥
      * @return 明文
      */
     public static String decrypt(String content, String key) {
         try {
-            // 转换为AES专用密钥
+            // 转换为 AES 专用密钥
             SecretKeySpec keySpec = generateKeySpec(key);
             // 创建密码器
             Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -64,13 +64,13 @@ public class AESUtils {
     }
 
     private static SecretKeySpec generateKeySpec(String key) throws NoSuchAlgorithmException {
-        // 创建AES的Key生产者
+        // 创建 AES 的 Key 生产者
         KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM);
         /*
         SecureRandom 实现完全随操作系统本身的內部状态，
-        除非调用方先调用getInstance方法，然后调用setSeed方法；
-        该实现在windows上每次生成的key都相同，但是在solaris或部分linux系统上则不同。
-        关于SecureRandom类的详细介绍，见http://yangzb.iteye.com/blog/325264
+        除非调用方先调用 getInstance 方法，然后调用 setSeed 方法；
+        该实现在 windows 上每次生成的 key 都相同，但是在 solaris 或部分 linux 系统上则不同。
+        关于 SecureRandom 类的详细介绍，见 http://yangzb.iteye.com/blog/325264
          */
         SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
         secureRandom.setSeed(key.getBytes());

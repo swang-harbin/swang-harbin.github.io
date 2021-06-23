@@ -1,5 +1,5 @@
 ---
-title: Spring注解-向自定义组件中注入Spring底层组件及原理
+title: Spring 注解：向自定义组件中注入 Spring 底层组件及原理
 date: '2020-02-21 00:00:00'
 tags:
 - Spring
@@ -7,15 +7,15 @@ tags:
 - Java
 ---
 
-# Spring注解-向自定义组件中注入Spring底层组件及原理
+# Spring 注解：向自定义组件中注入 Spring 底层组件及原理
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-如需向自定义组件中注入ApplicationContext, BeanFactory等Spring底层组件, 只需要让自定义组件实现xxxAware接口即可, 在创建对象的时候, 会调用该接口规定的方法, 注入Spring容器底层的组件
+如需向自定义组件中注入 ApplicationContext，BeanFactory 等 Spring 底层组件，只需要让自定义组件实现 xxxAware 接口即可，在创建对象的时候，会调用该接口规定的方法，注入 Spring 容器底层的组件
 
-## 为Red类注入一些Spring底层组件
+## 为 Red 类注入一些 Spring 底层组件
 
-让red类实现需要的xxxAware接口即可, 如需在其他方法中使用, 可将其赋值给全局变量
+让 red 类实现需要的 xxxAware 接口即可，如需在其他方法中使用，可将其赋值给全局变量
 
 ```java
 package icu.intelli.bean;
@@ -35,15 +35,15 @@ public class Red implements ApplicationContextAware, BeanNameAware, EmbeddedValu
 
     private StringValueResolver stringValueResolver;
 
-    // 获取ioc容器
+    // 获取 ioc 容器
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("传入的ioc:" + applicationContext);
+        System.out.println("传入的 ioc:" + applicationContext);
         this.applicationContext = applicationContext;
     }
 
-    // 获取当前bean的名字
+    // 获取当前 bean 的名字
     public void setBeanName(String name) {
-        System.out.println("当前bean的名字" + name);
+        System.out.println("当前 bean 的名字" + name);
     }
 
     // StringValueResolver, 用来解析字符串中的占位符
@@ -85,10 +85,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class IOCTest {
 
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
-        System.out.println("测试类中获取的ioc容器: " + applicationContext);
+        System.out.println("测试类中获取的 ioc 容器: " + applicationContext);
     }
 }
 ```
@@ -96,76 +96,78 @@ public class IOCTest {
 测试输出
 
 ```
-当前bean的名字red
-解析后的字符串: 你好Linux, 我是360
-传入的ioc:org.springframework.context.annotation.AnnotationConfigApplicationContext@300ffa5d: startup date [Fri Mar 13 14:19:51 CST 2020]; root of context hierarchy
-测试类中获取的ioc容器: org.springframework.context.annotation.AnnotationConfigApplicationContext@300ffa5d: startup date [Fri Mar 13 14:19:51 CST 2020]; root of context hierarchy
+当前 bean 的名字 red
+解析后的字符串：你好 Linux, 我是 360
+传入的 ioc:org.springframework.context.annotation.AnnotationConfigApplicationContext@300ffa5d: startup date [Fri Mar 13 14:19:51 CST 2020]; root of context hierarchy
+测试类中获取的 ioc 容器: org.springframework.context.annotation.AnnotationConfigApplicationContext@300ffa5d: startup date [Fri Mar 13 14:19:51 CST 2020]; root of context hierarchy
 ```
 
-> 获取到的IOC容器就是当前的SpringIOC容器
+获取到的 IOC 容器就是当前的 SpringIOC 容器
 
 ## 原理
 
-**对xxxAware接口方法的调用是xxxAwareProcessor来完成的**
+**对 xxxAware 接口方法的调用是 xxxAwareProcessor 来完成的**
 
-以ApplicationContextAware为例, 执行流程如下:
+以 ApplicationContextAware 为例，执行流程如下：
 
-在Red类的setApplicationContext中打断点, debug启动
+1. 在 Red 类的 setApplicationContext 中打断点, debug 启动
 
-执行ApplicationContextProcessor的postProcessBeforeInitialization方法
+2. 执行 ApplicationContextProcessor 的 postProcessBeforeInitialization 方法
 
-```java
-	public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {
-		AccessControlContext acc = null;
+   ```java
+   public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {
+       AccessControlContext acc = null;
+   
+       if (System.getSecurityManager() != null &&
+           (bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
+            bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
+            bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
+           acc = this.applicationContext.getBeanFactory().getAccessControlContext();
+       }
+   
+       if (acc != null) {
+           AccessController.doPrivileged(new PrivilegedAction<Object>() {
+               @Override
+               public Object run() {
+                   invokeAwareInterfaces(bean);
+                   return null;
+               }
+           }, acc);
+       }
+       else {
+           invokeAwareInterfaces(bean);
+       }
+   
+       return bean;
+   }
+   ```
 
-		if (System.getSecurityManager() != null &&
-				(bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
-						bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
-						bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {
-			acc = this.applicationContext.getBeanFactory().getAccessControlContext();
-		}
+3. 调用 invokeAwareInterfaces 方法，回调相应的 set 方法注入 Spring 底层 Bean
 
-		if (acc != null) {
-			AccessController.doPrivileged(new PrivilegedAction<Object>() {
-				@Override
-				public Object run() {
-					invokeAwareInterfaces(bean);
-					return null;
-				}
-			}, acc);
-		}
-		else {
-			invokeAwareInterfaces(bean);
-		}
+   ```java
+   private void invokeAwareInterfaces(Object bean) {
+       if (bean instanceof Aware) {
+           if (bean instanceof EnvironmentAware) {
+               ((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());
+           }
+           if (bean instanceof EmbeddedValueResolverAware) {
+               ((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);
+           }
+           if (bean instanceof ResourceLoaderAware) {
+               ((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);
+           }
+           if (bean instanceof ApplicationEventPublisherAware) {
+               ((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);
+           }
+           if (bean instanceof MessageSourceAware) {
+               ((MessageSourceAware) bean).setMessageSource(this.applicationContext);
+           }
+           if (bean instanceof ApplicationContextAware) {
+               ((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);
+           }
+       }
+   }
+   ```
 
-		return bean;
-	}
-```
-
-调用invokeAwareInterfaces方法, 回调相应的set方法注入Spring底层Bean
-
-```java
-	private void invokeAwareInterfaces(Object bean) {
-		if (bean instanceof Aware) {
-			if (bean instanceof EnvironmentAware) {
-				((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());
-			}
-			if (bean instanceof EmbeddedValueResolverAware) {
-				((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);
-			}
-			if (bean instanceof ResourceLoaderAware) {
-				((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);
-			}
-			if (bean instanceof ApplicationEventPublisherAware) {
-				((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);
-			}
-			if (bean instanceof MessageSourceAware) {
-				((MessageSourceAware) bean).setMessageSource(this.applicationContext);
-			}
-			if (bean instanceof ApplicationContextAware) {
-				((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);
-			}
-		}
-	}
-```
+   
 

@@ -7,7 +7,7 @@ tags:
 
 # 未能加载 Visual C++ 组件“VCBuild.exe”
 
-缺少python环境, 或缺少组件等
+缺少 python 环境，或缺少组件等
 
 安装构建工具
 ```bash

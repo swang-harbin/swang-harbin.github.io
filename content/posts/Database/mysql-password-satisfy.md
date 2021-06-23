@@ -1,5 +1,5 @@
 ---
-title: MySQL密码策略
+title: MySQL 密码策略
 date: '2019-12-03 00:00:00'
 tags:
 - MySQL
@@ -9,11 +9,11 @@ tags:
 
 ## 出错原因
 
-由于MySQL数据库对密码的验证策略较为严格造成.
+由于 MySQL 数据库对密码的验证策略较为严格造成。
 
 ## 解决方法
 
-### 查看MySQL密码策略
+### 查看 MySQL 密码策略
 
 ```mysql
 SHOW VARIABLES LIKE 'validate_password%';
@@ -23,7 +23,7 @@ SHOW VARIABLES LIKE 'validate_password%';
 
 ### 修改验证强度等级
 
-将validate_password_policy设置为LOW, 则只验证密码长度
+将 validate_password_policy 设置为 LOW，则只验证密码长度
 
 ```mysql
 set global validate_password_policy=LOW; 
@@ -31,7 +31,7 @@ set global validate_password_policy=LOW;
 
 ### 修改密码长度验证
 
-可将validate_password_length设置为4, 最小值为4
+可将 validate_password_length 设置为 4，最小值为 4
 
 ```mysql
 set global validate_password_length=4;
@@ -39,10 +39,10 @@ set global validate_password_length=4;
 
 ## 密码策略参数说明
 
-1. `validate_password_length`  固定密码的总长度
+1. `validate_password_length` 固定密码的总长度
 2. `validate_password_dictionary_file` 指定密码验证的文件路径
-3. `validate_password_mixed_case_count`  整个密码中至少要包含大/小写字母的总个数
-4. `validate_password_number_count`  整个密码中至少要包含阿拉伯数字的个数
+3. `validate_password_mixed_case_count` 整个密码中至少要包含大/小写字母的总个数
+4. `validate_password_number_count` 整个密码中至少要包含阿拉伯数字的个数
 5. `validate_password_policy` 指定密码的强度验证等级，默认为 MEDIUM
 
 > 关于 validate_password_policy 的取值：

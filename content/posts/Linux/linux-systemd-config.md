@@ -1,10 +1,10 @@
 ---
-title: systemd启动配置文件说明
+title: systemd 启动配置文件说明
 date: '2020-09-10 00:00:00'
 tags:
 - Linux
 ---
-# systemd启动配置文件说明
+# systemd 启动配置文件说明
 
 ## 配置文件包含三个区块
 - [Unit]
@@ -14,7 +14,7 @@ tags:
 
 ### [Unit]
 
-通常是配置文件的第一个区块, 用来定义Unit的元数据, 以及配置与其他Unit的关系. 它的主要字段如下:
+通常是配置文件的第一个区块，用来定义 Unit 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下:
 
 - `Description`：简短描述
 - `Documentation`：文档地址
@@ -44,7 +44,7 @@ tags:
 - `Type=simple`：默认值，执行`ExecStart`指定的命令，启动主进程
 - `Type=forking`：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
 - `Type=oneshot`：一次性进程，Systemd 会等当前服务退出，再继续往下执行
-- `Type=dbus`：当前服务通过D-Bus启动
+- `Type=dbus`：当前服务通过 D-Bus 启动
 - `Type=notify`：当前服务启动完毕，会通知`Systemd`，再继续往下执行
 - `Type=idle`：若有其他任务执行完毕，当前服务才会运行
 - `ExecStart`：启动当前服务的命令
@@ -62,9 +62,9 @@ tags:
 
 # [阮一峰 Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
-作者： [阮一峰](http://www.ruanyifeng.com/)
+作者：[阮一峰](http://www.ruanyifeng.com/)
 
-日期： [2016年3月 7日](http://www.ruanyifeng.com/blog/2016/03/)
+日期：[2016 年 3 月 7 日](http://www.ruanyifeng.com/blog/2016/03/)
 
 Systemd 是 Linux 系统工具，用来启动[守护进程](http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html)，已成为大多数发行版的标准配置。
 
@@ -94,7 +94,7 @@ Systemd 是 Linux 系统工具，用来启动[守护进程](http://www.ruanyifen
 
 Systemd 就是为了解决这些问题而诞生的。它的设计目标是，为系统的启动和管理提供一套完整的解决方案。
 
-根据 Linux 惯例，字母`d`是守护进程（daemon）的缩写。 Systemd 这个名字的含义，就是它要守护整个系统。
+根据 Linux 惯例，字母`d`是守护进程（daemon）的缩写。Systemd 这个名字的含义，就是它要守护整个系统。
 
 ![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016030702.jpg)
 
@@ -129,7 +129,7 @@ Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方
 > # 关闭系统，切断电源
 > $ sudo systemctl poweroff
 > 
-> # CPU停止工作
+> # CPU 停止工作
 > $ sudo systemctl halt
 > 
 > # 暂停系统
@@ -210,7 +210,7 @@ Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方
 `loginctl`命令用于查看当前登录的用户。
 
 > ```bash
-> # 列出当前session
+> # 列出当前 session
 > $ loginctl list-sessions
 > 
 > # 列出当前登录用户
@@ -226,7 +226,7 @@ Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方
 
 Systemd 可以管理所有系统资源。不同的资源统称为 Unit（单位）。
 
-Unit 一共分成12种。
+Unit 一共分成 12 种。
 
 > - Service unit：系统服务
 > - Target unit：多个 Unit 构成的一个组
@@ -241,13 +241,13 @@ Unit 一共分成12种。
 > - Swap Unit：swap 文件
 > - Timer Unit：定时器
 
-`systemctl list-units`命令可以查看当前系统的所有 Unit 。
+`systemctl list-units`命令可以查看当前系统的所有 Unit。
 
 > ```bash
 > # 列出正在运行的 Unit
 > $ systemctl list-units
 > 
-> # 列出所有Unit，包括没有找到配置文件的或者启动失败的
+> # 列出所有 Unit，包括没有找到配置文件的或者启动失败的
 > $ systemctl list-units --all
 > 
 > # 列出所有没有运行的 Unit
@@ -341,7 +341,7 @@ Unit 之间存在依赖关系：A 依赖于 B，就意味着 Systemd 在启动 A
 
 ### 概述
 
-每一个 Unit 都有一个配置文件，告诉 Systemd 怎么启动这个 Unit 。
+每一个 Unit 都有一个配置文件，告诉 Systemd 怎么启动这个 Unit。
 
 Systemd 默认从目录`/etc/systemd/system/`读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录`/usr/lib/systemd/system/`，真正的配置文件存放在那个目录。
 
@@ -468,7 +468,7 @@ Systemd 默认从目录`/etc/systemd/system/`读取配置文件。但是，里�
 > - `Type=simple`：默认值，执行`ExecStart`指定的命令，启动主进程
 > - `Type=forking`：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
 > - `Type=oneshot`：一次性进程，Systemd 会等当前服务退出，再继续往下执行
-> - `Type=dbus`：当前服务通过D-Bus启动
+> - `Type=dbus`：当前服务通过 D-Bus 启动
 > - `Type=notify`：当前服务启动完毕，会通知`Systemd`，再继续往下执行
 > - `Type=idle`：若有其他任务执行完毕，当前服务才会运行
 > - `ExecStart`：启动当前服务的命令
@@ -488,7 +488,7 @@ Unit 配置文件的完整字段清单，请参考[官方文档](https://www.fre
 
 启动计算机的时候，需要启动大量的 Unit。如果每一次启动，都要一一写明本次启动需要哪些 Unit，显然非常不方便。Systemd 的解决方案就是 Target。
 
-简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于"状态点"，启动某个 Target 就好比启动到某种状态。
+简单说，Target 就是一个 Unit 组，包含许多相关的 Unit。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于"状态点"，启动某个 Target 就好比启动到某种状态。
 
 传统的`init`启动模式里面，有 RunLevel 的概念，跟 Target 的作用很类似。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动。
 
@@ -529,7 +529,7 @@ Target 与 传统 RunLevel 的对应关系如下。
 
 > **（1）默认的 RunLevel**（在`/etc/inittab`文件设置）现在被默认的 Target 取代，位置是`/etc/systemd/system/default.target`，通常符号链接到`graphical.target`（图形界面）或者`multi-user.target`（多用户命令行）。
 >
-> **（2）启动脚本的位置**，以前是`/etc/init.d`目录，符号链接到不同的 RunLevel 目录 （比如`/etc/rc3.d`、`/etc/rc5.d`等），现在则存放在`/lib/systemd/system`和`/etc/systemd/system`目录。
+> **（2）启动脚本的位置**，以前是`/etc/init.d`目录，符号链接到不同的 RunLevel 目录（比如`/etc/rc3.d`、`/etc/rc5.d`等），现在则存放在`/lib/systemd/system`和`/etc/systemd/system`目录。
 >
 > **（3）配置文件的位置**，以前`init`进程的配置文件是`/etc/inittab`，各种服务的配置文件存放在`/etc/sysconfig`目录。现在的配置文件主要存放在`/lib/systemd`目录，在`/etc/systemd`目录里面的修改可以覆盖原始设置。
 
@@ -540,7 +540,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 `journalctl`功能强大，用法非常多。
 
 > ```bash
-> # 查看所有日志（默认情况下 ，只保存本次启动的日志）
+> # 查看所有日志（默认情况下，只保存本次启动的日志）
 > $ sudo journalctl
 > 
 > # 查看内核日志（不显示应用日志）
@@ -560,7 +560,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 > $ sudo journalctl --since "2015-01-10" --until "2015-01-11 03:00"
 > $ sudo journalctl --since 09:00 --until "1 hour ago"
 > 
-> # 显示尾部的最新10行日志
+> # 显示尾部的最新 10 行日志
 > $ sudo journalctl -n
 > 
 > # 显示尾部指定行数的日志
@@ -591,7 +591,7 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 > # 合并显示多个 Unit 的日志
 > $ journalctl -u nginx.service -u php-fpm.service --since today
 > 
-> # 查看指定优先级（及其以上级别）的日志，共有8级
+> # 查看指定优先级（及其以上级别）的日志，共有 8 级
 > # 0: emerg
 > # 1: alert
 > # 2: crit
@@ -626,5 +626,5 @@ Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以
 
 ### 文档信息
 
-- 版权声明：自由转载-非商用-非衍生-保持署名（[创意共享3.0许可证](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)）
-- 发表日期： 2016年3月 7日
+- 版权声明：自由转载-非商用-非衍生-保持署名（[创意共享 3.0 许可证](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)）
+- 发表日期：2016 年 3 月 7 日

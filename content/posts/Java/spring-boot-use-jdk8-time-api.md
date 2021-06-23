@@ -1,12 +1,12 @@
 ---
-title: Spring Boot自动序列化/反序列化JDK8的时间API
+title: Spring Boot 自动序列化/反序列化 JDK8 的时间 API
 date: '2020-11-24 00:00:00'
 tags:
 - Spring Boot
 - Java
 ---
 
-# Spring Boot自动序列化/反序列化JDK8的时间API
+# Spring Boot 自动序列化/反序列化 JDK8 的时间 API
 
 ## Jdk8TimeConfig.java
 
@@ -29,8 +29,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * JDK8时间序列化/反序列化支持, 仅对Controller层序列化返回以及@RequestBody反序列化生效,
- * 对GET请求不生效, 参照{@link converter.jdk8time.Jdk8TimeConverter}
+ * JDK8 时间序列化/反序列化支持，仅对 Controller 层序列化返回以及@RequestBody 反序列化生效,
+ * 对 GET 请求不生效，参照{@link converter.jdk8time.Jdk8TimeConverter}
  *
  * @author wangshuo
  * @date 2020/10/27
@@ -77,7 +77,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * JDK8时间格式转换器, 用于GET请求时, 将URL中的时间字符串反序列化为时间对象
+ * JDK8 时间格式转换器，用于 GET 请求时，将 URL 中的时间字符串反序列化为时间对象
  *
  * @author wangshuo
  * @date 2020/10/28

@@ -1,10 +1,10 @@
 ---
-title: systemctl常用命令
+title: systemctl 常用命令
 date: '2019-12-06 00:00:00'
 tags:
 - Linux
 ---
-# systemctl常用命令
+# systemctl 常用命令
 
 ```shell
 # 列出当前系统服务的状态
@@ -35,6 +35,6 @@ systemctl unmask servicename
 systemctl set-default multi-user.target
 # 开机启动图形
 systemctl set-default graphical.target
-# 文本界面设定color
+# 文本界面设定 color
 setterm
 ```

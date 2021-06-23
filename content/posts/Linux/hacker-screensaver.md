@@ -48,7 +48,7 @@ tags:
    sudo make install
    ```
 
-8. 可将命令建立软链接到bin
+8. 可将命令建立软链接到 bin
 
    ```bash
    sudo ln -s /opt/cmatrix/bin/cmatrix /bin/cmatrix
@@ -57,4 +57,4 @@ tags:
 
 ## 参考文档
 
-[Linux下cmatrix的安装和使用(黑客屏保)](https://www.lxh1.com/2019/12/06/linux_appendix/Linux%E4%B8%8Bcmatrix%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8(%E9%BB%91%E5%AE%A2%E5%B1%8F%E4%BF%9D)/)
+[Linux 下 cmatrix 的安装和使用(黑客屏保)](https://www.lxh1.com/2019/12/06/linux_appendix/Linux%E4%B8%8Bcmatrix%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8(%E9%BB%91%E5%AE%A2%E5%B1%8F%E4%BF%9D)/)

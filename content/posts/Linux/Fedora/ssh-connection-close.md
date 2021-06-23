@@ -1,19 +1,17 @@
 ---
-title: SSH无法连接
+title: SSH 无法连接
 date: '2019-12-02 00:00:00'
 tags:
 - Linux
 - Fedora
 - SSH
 ---
-# SSH无法连接
+# SSH 无法连接
 
 ## 问题描述
-新安装的Fedora系统, 无法使用Xshell工具连接.
+新安装的 Fedora 系统，无法使用 Xshell 工具连接。
 
-**可能存在两个问题: **
-
-### 点击连接后返回如下提示
+## 点击连接后返回如下提示
 ```bash
 Connecting to 10.1.7.95:22...
 Connection established.
@@ -28,31 +26,31 @@ Type `help' to learn how to use Xshell prompt.
 [D:\~]$
 ```
 
-#### 问题原因
+### 问题原因
 
-可能是sshd服务没有开启
+可能是 sshd 服务没有开启
 
-#### 解决办法
+### 解决办法
 
-启动sshd服务
+启动 sshd 服务
 
 ```bash
 systemctl start sshd
 ```
 
-### 无法使用root用户登录
+## 无法使用 root 用户登录
 
-#### 问题原因
-可能ssh配置文件中禁止了root用户远程登录
+### 问题原因
+可能 ssh 配置文件中禁止了 root 用户远程登录
 
-#### 解决办法
+### 解决办法
 
-修改`/etc/ssh/sshd.conf`文件, 修改为下面配置
+修改 `/etc/ssh/sshd.conf` 文件，修改为下面配置
 ```bash
 PermitRootLogin yes
 ```
 
-重启sshd服务
+重启 sshd 服务
 ```bash
 systemctl reload sshd
 ```

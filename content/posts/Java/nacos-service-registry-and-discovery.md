@@ -1,44 +1,44 @@
 ---
-title: Nacos服务注册与发现
+title: Nacos 服务注册与发现
 date: '2019-11-28 00:00:00'
 tags:
 - Nacos
 - Java
 ---
 
-# Nacos服务注册与发现
+# Nacos 服务注册与发现
+
+[Nacos 系列目录](./nacos-alibaba-table.md)
 
 ## 服务注册
 
-服务实例将自身服务注册到注册中心, 包括服务所在IP和Port, 服务版本以及访问协议等.
+服务实例将自身服务注册到注册中心，包括服务所在 IP 和 Port，服务版本以及访问协议等。
 
-类比为增强版的DNS
+类比为增强版的 DNS
 
 ## 服务发现
 
-应用实例通过注册中心, 获取到注册到其中的服务实例的信息, 通过这些信息去请求它们提供的服务.
+应用实例通过注册中心，获取到注册到其中的服务实例的信息，通过这些信息去请求它们提供的服务。
 
 ## 为什么需要服务注册和发现
 
-在微服务中, 由于自动扩缩, 故障与升级, 整组服务实例会动态变更
+在微服务中，由于自动扩缩，故障与升级，整组服务实例会动态变更
 
-## 安装启动nacos
+## 安装启动 nacos
 
-nacos : 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+nacos：一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
 
-nocas包含一个监听的API, 以及一个控制台
+nocas 包含一个监听的 API，以及一个控制台
 
-控制台访问地址
+控制台访问地址：http://localhost:8848/nacos/
+username：nacos
+password：nacos
 
-> http://localhost:8848/nacos/
-> username : nacos
-> password : nacos
+## nacos 注册与发现示例代码
 
-## nacos注册与发现示例代码
+github 地址：https://github.com/szihai/Nacos-discovery-demo
 
-github地址 : https://github.com/szihai/Nacos-discovery-demo
-
-### 服务端:
+### 服务端
 
 #### ProviderApplication.java
 
@@ -61,7 +61,7 @@ class EchoController {
 }
 ```
 
-**@EnableDiscoveryClient** : 让服务中心(nacos)来扫描, 并将其加入到注册中心中, 是Spring Cloud的Annotation
+**`@EnableDiscoveryClient`**：让服务中心（nacos）来扫描，并将其加入到注册中心中，是 Spring Cloud 的 Annotation
 
 #### application.properties
 
@@ -70,13 +70,13 @@ class EchoController {
 spring.application.name=service-provider
 # 服务发布端口
 server.port=8081
-# 把nocas的服务地址和端口号告诉该应用程序
+# 把 nocas 的服务地址和端口号告诉该应用程序
 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
-# 暴露这些endpoint
+# 暴露这些 endpoint
 management.endpoints.web.exposure.include=*
 ```
 
-启动provider后, 在nacos上即可发现该服务
+启动 provider 后，在 nacos 上即可发现该服务
 
 ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222144612.png)
 
@@ -118,26 +118,26 @@ management.endpoints.web.exposure.include=*
 </dependencyManagement>
 ```
 
-#### Actuator端点
+#### Actuator 端点
 
 - 监控和管理服务
-- /info, /health
+- /info，/health
 - http://localhost:8081/actuator/nacos-discovery
 
 application.properties
 
 ```properties
-# 暴露这些endpoint
+# 暴露这些 endpoint
 management.endpoints.web.exposure.include=*
 ```
 
-以及POM中引入的一些依赖, 需要了解Spring Cloud
+以及 POM 中引入的一些依赖，需要了解 Spring Cloud
 
-详情需要了解Spring Boot的端点相关
+详情需要了解 Spring Boot 的端点相关
 
 ### 消费端
 
-#### POM文件
+#### POM 文件
 
 ```xml
 <dependencies>
@@ -170,7 +170,7 @@ management.endpoints.web.exposure.include=*
 </dependencyManagement>
 ```
 
-比服务端多了个**spring-cloud-starter-openfeign**, 需要手动引入
+比服务端多了个 **spring-cloud-starter-openfeign**，需要手动引入
 
 #### application.properties
 
@@ -179,13 +179,13 @@ management.endpoints.web.exposure.include=*
 spring.application.name=service-consumer
 # 服务端口
 server.port=18082
-# nacos地址和端口
+# nacos 地址和端口
 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
 ```
 
 #### ConsumerApplication
 
-nacos支持**REST Template**和**Feign client**
+nacos 支持 **REST Template** 和 **Feign client**
 
 ```java
 @SpringBootApplication
@@ -229,11 +229,3 @@ class TestController {
     }
 }
 ```
-
-## 链接
-
-一. [Nacos服务注册与发现](./nacos-service-registry-and-discovery.md)
-
-二.[Nacos分布式配置中心](./nacos-distribut-configuration-center.md)
-
-三.[Nacos服务注册中心](./nacos-service-registry-center.md)

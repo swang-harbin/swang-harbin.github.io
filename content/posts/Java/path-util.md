@@ -19,7 +19,7 @@ public class PathUtils {
 
 
     /**
-     * 文件路径中的分隔副全部转换为Unix风格：/
+     * 文件路径中的分隔副全部转换为 Unix 风格：/
      * <p>
      * 例如：C:\\temp\ -> C://temp/
      *
@@ -31,9 +31,9 @@ public class PathUtils {
     }
 
     /**
-     * 文件路径中的分隔符全部转换为Windows风格：\
+     * 文件路径中的分隔符全部转换为 Windows 风格：\
      * <p>
-     * 例如： C://temp/ -> C:\\temp\
+     * 例如：C://temp/ -> C:\\temp\
      *
      * @param path
      * @return
@@ -57,7 +57,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Unix风格并以一个/结尾
+     * 将文件路径中的分隔符转换为 Unix 风格并以一个/结尾
      * <p>
      * 例如：C:\\temp\\ -> C://temp/
      * C:\\temp -> C://temp/
@@ -70,7 +70,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Windows风格并以一个\结尾
+     * 将文件路径中的分隔符转换为 Windows 风格并以一个\结尾
      * <p>
      * 例如：C:/temp -> C:\temp\
      * C://temp// -> C:\\temp\
@@ -83,8 +83,8 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为当前系统的分隔符， 并且结尾包含一个分隔符
-     * 例如： Windows ：
+     * 将文件路径中的分隔符转换为当前系统的分隔符，并且结尾包含一个分隔符
+     * 例如：Windows：
      * C://temp -> C:\\temp\
      * C://temp/ -> C:\\temp\
      * C：//temp// -> C:\\temp\
@@ -103,8 +103,8 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Unix风格, 并且结尾没有/
-     * 例如： C:\\temp\ -> C://temp
+     * 将文件路径中的分隔符转换为 Unix 风格，并且结尾没有/
+     * 例如：C:\\temp\ -> C://temp
      * C:\\temp\\ -> C://temp
      *
      * @param path
@@ -115,8 +115,8 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Windows风格, 并且结尾没有\
-     * 例如： C://temp/ -> C:\\temp
+     * 将文件路径中的分隔符转换为 Windows 风格，并且结尾没有\
+     * 例如：C://temp/ -> C:\\temp
      * C://temp// -> C:\\temp
      *
      * @param path
@@ -128,8 +128,8 @@ public class PathUtils {
 
 
     /**
-     * 将文件路径中的分隔符转换为当前系统的分隔符， 并且结尾没有分隔符
-     * 例如： Windows ：
+     * 将文件路径中的分隔符转换为当前系统的分隔符，并且结尾没有分隔符
+     * 例如：Windows：
      * C://temp -> C:\\temp
      * C://temp/ -> C:\\temp
      * C：//temp// -> C:\\temp
@@ -149,7 +149,7 @@ public class PathUtils {
 
 
     /**
-     * 将文件路径中的分隔符转换为Unix的分隔符， 相邻的多个分隔符只保留一个, 并且结尾包含一个分隔符
+     * 将文件路径中的分隔符转换为 Unix 的分隔符，相邻的多个分隔符只保留一个，并且结尾包含一个分隔符
      * <p>
      * 例如:C:\\temp -> C:/temp/
      * C:\\temp\ -> C:/temp/
@@ -165,7 +165,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Windows的分隔符， 相邻的多个分隔符只保留一个, 并且结尾包含一个分隔符
+     * 将文件路径中的分隔符转换为 Windows 的分隔符，相邻的多个分隔符只保留一个，并且结尾包含一个分隔符
      * <p>
      * 例如:C://temp -> C:\temp\
      * C://temp/ -> C:\temp\
@@ -181,7 +181,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为系统分隔符， 相邻的多个分隔符只保留一个, 并且结尾包含一个分隔符
+     * 将文件路径中的分隔符转换为系统分隔符，相邻的多个分隔符只保留一个，并且结尾包含一个分隔符
      * <p>
      * 例如:
      * <p>
@@ -206,7 +206,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Unix的分隔符， 相邻的多个分隔符只保留一个, 并且结尾没有分隔符
+     * 将文件路径中的分隔符转换为 Unix 的分隔符，相邻的多个分隔符只保留一个，并且结尾没有分隔符
      * <p>
      * 例如:C:\\temp -> C:/temp
      * C:\\temp\ -> C:/temp
@@ -222,7 +222,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为Windows的分隔符， 相邻的多个分隔符只保留一个, 并且结尾没有分隔符
+     * 将文件路径中的分隔符转换为 Windows 的分隔符，相邻的多个分隔符只保留一个，并且结尾没有分隔符
      * <p>
      * 例如:C://temp -> C:\temp
      * C://temp/-> C:\temp
@@ -238,7 +238,7 @@ public class PathUtils {
     }
 
     /**
-     * 将文件路径中的分隔符转换为系统分隔符， 相邻的多个分隔符只保留一个, 并且结尾没有分隔符
+     * 将文件路径中的分隔符转换为系统分隔符，相邻的多个分隔符只保留一个，并且结尾没有分隔符
      * <p>
      * 例如:
      * <p>
@@ -293,7 +293,7 @@ public class PathUtils {
 
 
     /**
-     * 系统分隔符号为/返回true
+     * 系统分隔符号为/返回 true
      *
      * @return
      */
@@ -302,7 +302,7 @@ public class PathUtils {
     }
 
     /**
-     * 分隔符号为\返回true
+     * 分隔符号为\返回 true
      *
      * @return
      */

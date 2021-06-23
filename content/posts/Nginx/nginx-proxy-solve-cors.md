@@ -1,10 +1,10 @@
 ---
-title: Nginx代理解决跨域请求问题
+title: Nginx 代理解决跨域请求问题
 date: '2020-04-22 00:00:00'
 tags:
 - Nginx
 ---
-# Nginx代理解决跨域请求问题
+# Nginx 代理解决跨域请求问题
 
 ```nginx
 user  root;

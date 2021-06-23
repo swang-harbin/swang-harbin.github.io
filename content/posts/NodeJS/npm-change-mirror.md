@@ -1,19 +1,19 @@
 ---
-title: 修改npm镜像
+title: 修改 npm 镜像
 date: '2019-10-20 00:00:00'
 tags:
 - NodeJS
 ---
-# 修改npm镜像
+# 修改 npm 镜像
 
-## 国内优秀npm镜像
-### 淘宝npm镜像
-- 搜索地址 : http://npm.taobao.org/
-- registry地址 : http://registry.npm.taobao.org/
+## 国内优秀 npm 镜像
+### 淘宝 npm 镜像
+- 搜索地址：http://npm.taobao.org/
+- registry 地址：http://registry.npm.taobao.org/
 
-### cnpmjs镜像
-- 搜索地址 : http://cnpmjs.org/
-- registry地址 : http://r.cnpmjs.org/
+### cnpmjs 镜像
+- 搜索地址：http://cnpmjs.org/
+- registry 地址：http://r.cnpmjs.org/
 
 ## 使用方式
 
@@ -32,7 +32,7 @@ npm config get registry
 npm info express
 ```
 
-### 使用cnpm
+### 使用 cnpm
 ```bash
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 

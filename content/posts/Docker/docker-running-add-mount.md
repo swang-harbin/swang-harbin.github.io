@@ -1,14 +1,15 @@
 ---
-title: 给已运行的容器添加挂载点
-date: '2020-03-13 00:00:00'
+title: Docker 给运行中的容器添加挂载点
+date: '2020-04-26 00:00:00'
 tags:
 - Docker
 ---
-# 给运行中的容器添加挂载点
 
-## 方式一: 修改配置文件方式
+# Docker 给运行中的容器添加挂载点
 
-**注 :** 此方式需要重启docker服务
+## 方式一：修改配置文件方式
+
+注意：此方式需要重启 docker 服务
 
 1. 查看需要修改的容器ID
 
@@ -24,83 +25,81 @@ tags:
    systemctl stop docker
    ```
 
-3. 修改配置文件
-    `/var/lib/docker/containers/{container-id}/hostconfig.json`, 在Binds中添加一个挂载点数组, ":"前为宿主机目录, 后面为docker容器目录
+3. 修改配置文件 `/var/lib/docker/containers/{container-id}/hostconfig.json`，在 Binds 中添加一个挂载点数组，`:`前为宿主机目录，后面为 docker 容器目录
 
-  ```json
-  {
-      "Binds":[
-          "/host/folder:/container/folder",
-          "/host/folder2:/container/folder2"
-      ],
-      "ContainerIDFile":"",
-      "LogConfig":{
-          "Type":"json-file",
-          "Config":{
-  
-          }
-      },
-  ```
+    ```json
+    {
+        "Binds":[
+            "/host/folder:/container/folder",
+            "/host/folder2:/container/folder2"
+        ],
+        "ContainerIDFile":"",
+        "LogConfig":{
+            "Type":"json-file",
+            "Config":{
+    
+            }
+        },
+    ```
 
-4. 修改配置文件
-    `/var/lib/docker/containers/{container id}/config.v2.json`, 修改MountPoints的配置, 注意对应关系
+4. 修改配置文件 `/var/lib/docker/containers/{container id}/config.v2.json`，修改 MountPoints 的配置，注意对应关系
 
-  ```json
-      "MountLabel":"",
-      "ProcessLabel":"",
-      "RestartCount":0,
-      "HasBeenStartedBefore":true,
-      "HasBeenManuallyStopped":false,
-      "MountPoints":{
-          "/container/folder":{
-              "Source":"/host/folder",
-              "Destination":"/container/folder",
-              "RW":true,
-              "Name":"",
-              "Driver":"",
-              "Type":"bind",
-              "Propagation":"rprivate",
-              "Spec":{
-                  "Type":"bind",
-                  "Source":"/host/folder",
-                  "Target":"/container/folder"
-              },
-              "SkipMountpointCreation":false
-          },
-          "/container/folder2":{
-              "Source":"/host/folder2",
-              "Destination":"/container/folder2",
-              "RW":true,
-              "Name":"",
-              "Driver":"",
-              "Type":"bind",
-              "Propagation":"rprivate",
-              "Spec":{
-                  "Type":"bind",
-                  "Source":"/host/folder2",
-                  "Target":"/container/folder2"
-              },
-              "SkipMountpointCreation":false
-          }
-      },
-      "SecretReferences":null,
-      "ConfigReferences":null,
-      "AppArmorProfile":"",
-  ```
+    ```json
+        "MountLabel":"",
+        "ProcessLabel":"",
+        "RestartCount":0,
+        "HasBeenStartedBefore":true,
+        "HasBeenManuallyStopped":false,
+        "MountPoints":{
+            "/container/folder":{
+                "Source":"/host/folder",
+                "Destination":"/container/folder",
+                "RW":true,
+                "Name":"",
+                "Driver":"",
+                "Type":"bind",
+                "Propagation":"rprivate",
+                "Spec":{
+                    "Type":"bind",
+                    "Source":"/host/folder",
+                    "Target":"/container/folder"
+                },
+                "SkipMountpointCreation":false
+            },
+            "/container/folder2":{
+                "Source":"/host/folder2",
+                "Destination":"/container/folder2",
+                "RW":true,
+                "Name":"",
+                "Driver":"",
+                "Type":"bind",
+                "Propagation":"rprivate",
+                "Spec":{
+                    "Type":"bind",
+                    "Source":"/host/folder2",
+                    "Target":"/container/folder2"
+                },
+                "SkipMountpointCreation":false
+            }
+        },
+        "SecretReferences":null,
+        "ConfigReferences":null,
+        "AppArmorProfile":"",
+    ```
 
-5. 启动docker服务
+5. 启动 docker 服务
 
    ```bash
    systemctl start docker
    ```
 
-6. 启动docker容器
+6. 启动 docker 容器
 
    ```bash
    docker start container-id
    ```
 
-## 方式二: 提交现有容器为镜像, 然后重新运行
+## 方式二：提交现有容器为镜像，然后重新运行
 
 1. 查看当前容器
 
@@ -148,7 +147,7 @@ tags:
      docker rename new-container-id old-container-name
      ```
 
-## 方式三: export容器为镜像, 使用import为新镜像
+## 方式三：export 容器为镜像，使用 import 为新镜像
 
 1. 将容器导出为文件
 
@@ -156,7 +155,7 @@ tags:
    docker export -o outfile/path/outfile.tar container-id
    ```
 
-   > -o: 将输入内容写到文件, 即将容器导出为文件
+   `-o`：将输入内容写到文件，即将容器导出为文件
 
 2. 将导出的文件添加为新镜像
 
@@ -172,7 +171,7 @@ tags:
    export-test-temp    latest              42c12cbe83f0        4 seconds ago       521MB
    ```
 
-4. 使用该镜像运行新的容器, 并添加挂载目录
+4. 使用该镜像运行新的容器，并添加挂载目录
 
    ```bash
    docker run -itd -v /host/folder:/container/folder image-name
@@ -196,3 +195,4 @@ tags:
 
 ## 参考文档
 [docker-修改容器的挂载目录三种方式](https://blog.csdn.net/zedelei/article/details/90208183)
+

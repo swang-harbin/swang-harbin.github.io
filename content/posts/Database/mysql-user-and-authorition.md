@@ -1,17 +1,17 @@
 ---
-title: MySQL用户及权限管理
+title: MySQL 用户及权限管理
 date: '2020-03-31 00:00:00'
 tags:
 - MySQL
 ---
 
-# MySQL的用户及权限管理
+# MySQL 的用户及权限管理
 
-MySQL版本: 5.7
+MySQL 版本：5.7
 
 ## 用户相关常用命令
 
-用户相关信息存储在mysql.user表中
+用户相关信息存储在 mysql.user 表中
 
 - 修改用户密码
 
@@ -19,7 +19,7 @@ MySQL版本: 5.7
   ALTER USER 'user'@'host' IDENTIFIED BY 'new_password';
   ```
 
-  执行ALTER USER指令, 必须具有全局的CREATE USER权限或mysql系统数据库的UPDATE权限. 如果数据库系统设置了read only属性, 则还需添加SUPER权限.
+  执行 `ALTER USER` 指令，必须具有全局的 `CREATE USER` 权限或 mysql 系统数据库的 UPDATE 权限。如果数据库系统设置了 read only 属性，则还需添加 SUPER 权限。
 
 - 创建用户
 
@@ -27,18 +27,18 @@ MySQL版本: 5.7
   CREATE USER 'user'@'host';
   CREATE USER 'user'@'host' IDENTIFIED BY 'password';
   ```
-
-如果不指定host, 默认的host为'%', 代表任意ip均可使用
-
-执行CREATE USER指令, 必须具有全局的CREATE USER权限或mysql系统数据库的INSERT权限. 如果数据库系统设置了read only属性, 则还需添加SUPER权限.
-
+  
+  如果不指定 host，默认的 host 为 `'%'`，代表任意 ip 均可使用
+  
+  执行 `CREATE USER` 指令，必须具有全局的 `CREATE USER `权限或 mysql 系统数据库的 INSERT 权限。如果数据库系统设置了 read only 属性，则还需添加 SUPER 权限。
+  
 - 删除用户
 
   ```bash
   DROP USER 'user'@'host'
   ```
 
-  执行DROP USER指令, 必须具有全局的CREATE USER权限或mysql系统数据库的DELETE权限. 如果数据库系统设置了read only属性, 则还需添加SUPER权限.
+  执行 `DROP USER` 指令，必须具有全局的 CREATE USER 权限或 mysql 系统数据库的 DELETE 权限。如果数据库系统设置了 read only 属性，则还需添加 SUPER 权限。
 
 - 修改用户名
 
@@ -48,7 +48,7 @@ MySQL版本: 5.7
 
 ## 权限相关常用命令
 
-用户信息及全局权限信息保存在mysql.user表中, 数据库权限信息保存在mysql.db表中, 表权限信息保存在mysql.tables_priv表中, 列权限信息保存在mysql.columns_priv表中.
+用户信息及全局权限信息保存在 mysql.user 表中，数据库权限信息保存在 mysql.db 表中，表权限信息保存在 mysql.tables_priv 表中，列权限信息保存在 mysql.columns_priv 表中。
 
 - 常用格式
 
@@ -56,7 +56,7 @@ MySQL版本: 5.7
   GRANT priv_type[ ,priv_type ,...] ON priv_level TO 'user'@'host' [WITH GRANT OPTION]
   ```
 
-  priv_type包含
+  priv_type 包含
 
   | Privilege               | Meaning and Grantable Levels                                 |
   | ----------------------- | ------------------------------------------------------------ |
@@ -117,7 +117,7 @@ MySQL版本: 5.7
   GRANT ALL ON db_name.* TO 'user'@'host';
   ```
 
-- 授予某用户所有权限, 包括GRANT权限
+- 授予某用户所有权限，包括 GRANT 权限
 
   ```mysql
   GRANT ALL ON *.* TO 'user'@'host' WITH GRANT OPTION;
@@ -125,7 +125,7 @@ MySQL版本: 5.7
 
 - 取消授权
 
-  格式与GRANT基本相同, 只需将TO修改为FROM
+  格式与 GRANT 基本相同，只需将 TO 修改为 FROM
 
   ```mysql
   REVOKE priv_type[ ,priv_type ,... ,GRANT OPTION] ON priv_level FROM 'user'@'host' ;
@@ -137,15 +137,15 @@ MySQL版本: 5.7
   SHOW GRANTS FOR 'user'@'host';
   ```
 
-## MySQL对用户权限的判断流程
+## MySQL 对用户权限的判断流程
 
-1. 首先判断GLOABLE权限(mysql.user表), 如果具备权限, 则不再向下一级别判断.
-2. 然后判断database级权限(mysql.db表), 如果具备权限, 则不再向下一级别判断.
-3. 然后判断table级权限(mysql.tables_priv表), 如果具备权限, 则不再向下一级别判断.
-4. 然后判断columns权限(mysql.columns_priv表), 如果具备权限, 则不再向下一级别判断.
+1. 首先判断 GLOABLE 权限( mysql.user 表)，如果具备权限，则不再向下一级别判断。
+2. 然后判断 database 级权限( mysql.db 表)，如果具备权限，则不再向下一级别判断。
+3. 然后判断 table 级权限( mysql.tables_priv 表)，如果具备权限，则不再向下一级别判断。
+4. 然后判断 columns 权限( mysql.columns_priv 表)，如果具备权限，则不再向下一级别判断。
 
-示例 : 如果mysql.user表中, wang@%用户具有SELECT权限 则其对所有数据库均具有SELECT权限, 即使mysql.db表中, wang@%用户对testdatabase数据库没有SELECT权限, 其也可以使用SELECT语句查询testdatabase数据库中的信息, 因为在判断GLOABLE权限时, 即已经确认具有权限.
+示例：如果 mysql.user 表中，wang@% 用户具有 SELECT 权限 则其对所有数据库均具有 SELECT 权限，即使 mysql.db 表中，wang@% 用户对 testdatabase 数据库没有 SELECT 权限，其也可以使用 SELECT 语句查询 testdatabase 数据库中的信息，因为在判断 GLOABLE 权限时，即已经确认具有权限。
 
-如果mysql.user表中, wang@%用户不具有INSERT权限, 则其对数据库是否能够INSERT, 需要去下一级别的表中查找, 如果在mysql.db表中, wang@%用户对testdatabase数据库具有INSERT权限, 则其可以对testdatabase数据库进行INSERT操作, 对其他数据表/列是否具备INSERT权限, 需要逐级去mysql.tables_priv, 甚至mysql.columns_priv表查看.
+如果 mysql.user 表中，wang@% 用户不具有 INSERT 权限，则其对数据库是否能够 INSERT，需要去下一级别的表中查找，如果在 mysql.db 表中，wang@% 用户对 testdatabase 数据库具有 INSERT 权限，则其可以对 testdatabase 数据库进行 INSERT 操作，对其他数据表/列是否具备 INSERT 权限，需要逐级去 mysql.tables_priv，甚至 mysql.columns_priv 表查看。
 
-[官网: account-management-statements](https://dev.mysql.com/doc/refman/5.7/en/account-management-statements.html)
+[官网：account-management-statements](https://dev.mysql.com/doc/refman/5.7/en/account-management-statements.html)

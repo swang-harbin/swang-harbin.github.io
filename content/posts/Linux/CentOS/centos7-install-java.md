@@ -1,13 +1,13 @@
 ---
-title: CentOS7配置Java环境
+title: CentOS7 配置 Java 环境
 date: '2019-10-26 00:00:00'
 tags:
 - Linux
 - CentOS
 ---
-# CentOS7配置Java环境
+# CentOS7 配置 Java 环境
 
-## 修改/etc/profile
+## 修改 /etc/profile
 ```bash
 vim /etc/profile
 ```

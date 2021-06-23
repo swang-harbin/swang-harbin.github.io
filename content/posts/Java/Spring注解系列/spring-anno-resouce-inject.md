@@ -1,5 +1,5 @@
 ---
-title: Spring注解-@Resource,@Inject自动装配
+title: Spring 注解：@Resource，@Inject 自动装配
 date: '2020-02-21 00:00:00'
 tags:
 - Spring
@@ -7,29 +7,27 @@ tags:
 - Java
 ---
 
-# Spring注解-@Resource,@Inject自动装配
+# Spring 注解：`@Resource`，`@Inject` 自动装配
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-Spring也支持Java规范的自动装配注解
+Spring 也支持 Java 规范的自动装配注解
 
-- @Resource: JSR250定义
-- @Inject: JSR330定义
+- `@Resource`：JSR250 定义
+- `@Inject`：JSR330 定义
 
-## @Resource
+## `@Resource`
 
-可以和@Autowired一样实现自动装配; 默认是按照属性名进行装配, 可以使用name属性指定名称
+可以和 `@Autowired` 一样实现自动装配；默认是按照属性名进行装配，可以使用 name 属性指定名称
 
-不支持@Primary功能和@Autowired的require=false功能
+不支持 `@Primary` 功能和 `@Autowired` 的 `require=false` 功能
 
-## @Inject
+## `@Inject`
 
-需要导入javax.inject的包, 和Autowired功能一样, 支持@Primary功能, 但是不支持require=false的功能
-
-依赖导入
+需要导入 `javax.inject` 的包，和 `@Autowired` 功能一样，支持 `@Primary` 功能，但是不支持 `require=false` 的功能
 
 ```xml
-<!-- JSR-330依赖注入 -->
+<!-- JSR-330 依赖注入 -->
 <dependency>
 	<groupId>javax.inject</groupId>
 	<artifactId>javax.inject</artifactId>

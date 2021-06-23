@@ -1,27 +1,27 @@
 ---
-title: Spring Boot热部署
+title: Spring Boot 热部署
 date: '2020-01-20 00:00:00'
 tags:
 - Spring Boot
 - Java
 ---
 
-# Spring Boot热部署
+# Spring Boot 热部署
 
-[SpringBoot基础系列目录](spring-boot-table.md)
+[Spring Boot 基础系列目录](spring-boot-table.md)
 
-## SpringBoot的热部署方式
+## SpringBoot 的热部署方式
 
-**2种**
+**2 种**
 
-- SpringLoader插件
-- DevTools工具
+- SpringLoader 插件
+- DevTools 工具
 
-## SpringLoader的使用
+## SpringLoader 的使用
 
 ### 项目准备
 
-1. pom.xml种添加web和thymeleaf的启动器
+1. pom.xml 中添加 web 和 thymeleaf 的启动器
 
    ```xml
    <dependency>
@@ -35,7 +35,7 @@ tags:
    </dependency>
    ```
 
-2. 创建Controller
+2. 创建 Controller
 
    ```java
    @Controller
@@ -49,7 +49,7 @@ tags:
    }
    ```
 
-3. 编写页面, 放在resources下的templates中
+3. 编写页面，放在 resources 下的 templates 中
 
    ```html
    <!DOCTYPE html>
@@ -64,11 +64,11 @@ tags:
    </html>
    ```
 
-### 使用SpringLoader进行项目的热部署
+### 使用 SpringLoader 进行项目的热部署
 
-#### 方式一: 以Maven插件方式使用SpringLoader
+#### 方式一：以 Maven 插件方式使用 SpringLoader
 
-**pom.xml中添加SpringLoader插件**
+**pom.xml 中添加 SpringLoader 插件**
 
 ```xml
 <build>
@@ -88,65 +88,65 @@ tags:
 </build>
 ```
 
-**要使插件生效, 需要使用maven的命令来启动**
+**要使插件生效，需要使用 maven 的命令来启动**
 
-```shell
+```bash
 spring-boot:run
 ```
 
-我使用SpringBoot2.2.1, 提示不存在springloaded这个插件, 暂不清楚原因.
+我使用 SpringBoot 2.2.1, 提示不存在 springloaded 这个插件，暂不清楚原因。
 
-**SpringLoader缺陷 :**
+**SpringLoader 缺陷**
 
-- 只能对Java代码做热部署处理, 但是对页面代码无能为力
-- 使用springloader热部署程序是在系统后台以进程的形式运行, 使用idea或eclipse并不能彻底将其关闭, 所以再次启动会出现端口占用问题, 需要在任务管理器中手动关闭该进程.
+- 只能对 Java 代码做热部署处理，但是对页面代码无能为力
+- 使用 springloader 热部署程序是在系统后台以进程的形式运行，使用 idea 或 eclipse 并不能彻底将其关闭，所以再次启动会出现端口占用问题，需要在任务管理器中手动关闭该进程。
 
-**此方式很坑, 不建议使用**
+**此方式很坑，不建议使用**
 
-#### 方式二: 在项目中直接使用jar包的形式
+#### 方式二：在项目中直接使用 jar 包的形式
 
-视频使用的springboot1.X, eclipse, 将springloaded的jar包放在了lib目录下, 我使用springboot2.x, idea使用在pom.xml中引入依赖的方式, 设置不生效. 配上原示例:
+视频使用的 springboot1.X, eclipse, 将 springloaded 的 jar 包放在了 lib 目录下，我使用 springboot 2.x, idea 使用在 pom.xml 中引入依赖的方式，设置不生效。配上原示例
 
-Run Configuration -> VM arguments添加
+Run Configuration → VM arguments 添加
 
-```shell
+```bash
 -javaagent:springloaded-1.2.8.RELEASE.jar -noverify
 ```
 
-该方式可以直接通过eclipse关闭. 依旧只能热部署Java代码
+该方式可以直接通过 eclipse 关闭。依旧只能热部署 Java 代码
 
-## DevTools工具
+## DevTools 工具
 
-### SpringLoader于DevTools的区别
+### SpringLoader 与 DevTools 的区别
 
-SpringLoader: 在部署项目时, 使用的是热部署的方式 DevTools: 在部署项目时, 使用的是重新部署的方式
+SpringLoader：在部署项目时，使用的是热部署的方式 DevTools：在部署项目时，使用的是重新部署的方式
 
-### DevTools的使用
+### DevTools 的使用
 
-pom.xml中添加依赖
+pom.xml 中添加依赖
 
-视频使用的springboot1.X, eclipse, , 我使用springboot2.x, idea使用在pom.xml中引入依赖的方式, 设置不生效. 配上原示例:
+视频使用的 springboot1.X, eclipse，我使用 springboot2.x, idea 使用在 pom.xml 中引入依赖的方式，设置不生效。配上原示例
 
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-devtools</artifactId>
-    <!-- 表示当前依赖不像下传递 -->
+    <!-- 表示当前依赖不向下传递 -->
     <optional>true</optional>
 </dependency>
 ```
 
-网上说需要IDEA开启如下配置
+网上说需要 IDEA 开启如下配置
 
-1. 开启Build Project Auto... 
+1. 开启 Build Project Auto...
 
    ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222135815.png)
 
-2. Ctrl + Alt + Shift + / --> Register
+2. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> → Register
 
    勾选 `compiler.automake.allow.when.app.running`
 
-3. application.properties中添加
+3. application.properties 中添加
 
    ```properties
    spring.devtools.restart.enabled=true

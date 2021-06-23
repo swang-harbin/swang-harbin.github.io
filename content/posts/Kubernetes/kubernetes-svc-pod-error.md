@@ -1,16 +1,16 @@
 ---
-title: 解决k8s无法通过svc访问其他节点pod的问题
+title: 解决 k8s 无法通过 svc 访问其他节点 pod 的问题
 date: '2020-07-12 00:00:00'
 tags:
 - Kubernetes
 ---
-# 解决k8s无法通过svc访问其他节点pod的问题
+# 解决 k8s 无法通过 svc 访问其他节点 pod 的问题
 
-转载自https://www.jianshu.com/p/ed1ae8443fff
+转载自 https://www.jianshu.com/p/ed1ae8443fff
 
 ## 问题描述
 
-有两个（或多个）运行在不同节点上的`pod`，通过一个`svc`提供服务，如下：
+有两个（或多个）运行在不同节点上的 `pod`，通过一个 `svc` 提供服务，如下
 
 ```ruby
 root@master1:~# kubectl get pod -o wide
@@ -23,7 +23,7 @@ NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
 kubia        ClusterIP   10.98.41.49   <none>        80/TCP    34m
 ```
 
-当透过其他`pod`访问该`svc`时（*使用命令`k exec kubia-nwjcc -- curl http://10.98.41.49`*），出现了只能访问到和自己同处于一个节点的`pod`的问题，访问到其他节点上的`pod`时会出现`command terminated with exit code 7`的问题，如下：
+当透过其他 `pod` 访问该 `svc` 时（*使用命令`k exec kubia-nwjcc -- curl http://10.98.41.49`*），出现了只能访问到和自己同处于一个节点的`pod`的问题，访问到其他节点上的`pod`时会出现`command terminated with exit code 7`的问题，如下：
 
 **正常访问到相同节点的`pod`**
 
@@ -61,11 +61,11 @@ You've hit kubia-nwjcc
 
 ## 问题原因
 
-原因是因为，我是用的`VirtualBox`虚拟化出了两台 ubuntu 主机搭建的 k8s ，详见 [virtualbox 虚拟机组网](https://www.jianshu.com/p/e6684182471b) 。在组网的过程中，我采用了双网卡方案，**网卡1使用NAT地址转换用来访问互联网，网卡2使用`Host-only`来实现虚拟机互相访问**。`flannel`默认使用了网卡1的 ip 地址，而网卡1的NAT地址转换是无法访问其他虚拟机的，从而导致的问题的产生。
+原因是因为，我是用的`VirtualBox`虚拟化出了两台 ubuntu 主机搭建的 k8s，详见 [virtualbox 虚拟机组网](https://www.jianshu.com/p/e6684182471b)。在组网的过程中，我采用了双网卡方案，**网卡 1 使用 NAT 地址转换用来访问互联网，网卡 2 使用`Host-only`来实现虚拟机互相访问**。`flannel`默认使用了网卡 1 的 ip 地址，而网卡 1 的 NAT 地址转换是无法访问其他虚拟机的，从而导致的问题的产生。
 
 ## 解决方案
 
-因为是`flannel`使用的默认网卡1导致了这个问题的产生，所以我们需要使用`--iface`参数手动指定它使用网卡2来进行通信，这就需要修改`flannel`的配置文件，执行如下命令即可进行修改：
+因为是`flannel`使用的默认网卡 1 导致了这个问题的产生，所以我们需要使用`--iface`参数手动指定它使用网卡 2 来进行通信，这就需要修改`flannel`的配置文件，执行如下命令即可进行修改：
 
 ```undefined
 sudo kubectl edit daemonset kube-flannel-ds-amd64 -n kube-system
@@ -182,7 +182,7 @@ spec:
 daemonset.extensions/kube-flannel-ds-amd64 edited
 ```
 
-这就说明保存成功了。然后就要重启所有已经存在的`flannel`。使用`kubectl delete pod -n kube-system <pod名1> <pod名2> ...`把所有的`flannel`删除即可。k8s 会自动按照你修改好的`yaml`配置重建`flannel`。
+这就说明保存成功了。然后就要重启所有已经存在的`flannel`。使用`kubectl delete pod -n kube-system <pod 名 1> <pod 名 2> ...`把所有的`flannel`删除即可。k8s 会自动按照你修改好的`yaml`配置重建`flannel`。
 
 
 
@@ -201,8 +201,6 @@ pod "kube-flannel-ds-amd64-jb79v" deleted
 
 然后再次`kubectl get pod -n kube-system | grep flannel`就发现所有`flannel`都已经重启成功了：
 
-
-
 ```ruby
 root@master1:~# kubectl get pod -n kube-system | grep flannel
 kube-flannel-ds-amd64-2d6tb       1/1     Running   0          89s
@@ -212,8 +210,6 @@ kube-flannel-ds-amd64-r87qc       1/1     Running   0          91s
 ```
 
 然后再随便找个`pod`试一下就可以看到问题解决了：
-
-
 
 ```shell
 root@master1:~# k exec kubia-d7kjl -- curl -s http://10.103.214.110  
@@ -258,8 +254,6 @@ kubia-kn45c   1/1     Running   0          13s   10.244.1.6   worker1   <none>  
 
 **访问相同节点上的 pod**
 
-
-
 ```csharp
 root@master1:~# k exec -it kubia-d7kjl -- ping 10.244.1.6     
 PING 10.244.1.6 (10.244.1.6): 56 data bytes
@@ -269,8 +263,6 @@ PING 10.244.1.6 (10.244.1.6): 56 data bytes
 ```
 
 **访问不同节点上的 pod**
-
-
 
 ```ruby
 root@master1:~# k exec -it kubia-d7kjl -- ping 10.244.3.4

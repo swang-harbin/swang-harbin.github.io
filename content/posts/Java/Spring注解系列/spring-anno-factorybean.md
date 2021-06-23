@@ -1,5 +1,5 @@
 ---
-title: Spring注解-使用FactoryBean接口注册组件
+title: Spring 注解：使用 FactoryBean 接口注册组件
 date: '2020-02-18 00:00:00'
 tags:
 - Spring
@@ -7,11 +7,11 @@ tags:
 - Java
 ---
 
-# Spring注解-使用FactoryBean接口注册组件
+# Spring 注解：使用 FactoryBean 接口注册组件
 
-[跳到Spring注解系列目录](spring-anno-table.md)
+[Spring 注解系列目录](spring-anno-table.md)
 
-创建Color.java类
+创建 Color.java 类
 
 ```java
 package icu.intelli.bean;
@@ -20,19 +20,19 @@ public class Color {
 }
 ```
 
-创建ColorFactoryBean类实现FactoryBean接口
+创建 ColorFactoryBean 类实现 FactoryBean 接口
 
 ```java
 package icu.intelli.bean;
 
 import org.springframework.beans.factory.FactoryBean;
 
-// 创建一个Spring定义的FactoryBean
+// 创建一个 Spring 定义的 FactoryBean
 public class ColorFactoryBean implements FactoryBean<Color> {
 
-    // 返回一个Color对象, 这个对象会添加到容器中
+    // 返回一个 Color 对象，这个对象会添加到容器中
     public Color getObject() throws Exception {
-        System.out.println("调用了ColorFactoryBean.getObject()...");
+        System.out.println("调用了 ColorFactoryBean.getObject()...");
         return new Color();
     }
 
@@ -40,14 +40,14 @@ public class ColorFactoryBean implements FactoryBean<Color> {
         return Color.class;
     }
 
-    // 是否单例, true: 单实例, 在容器中保存一份; false: 多实例, 每次获取都创建一个新对象(通过调用getObject方法)
+    // 是否单例，true：单实例，在容器中保存一份；false：多实例，每次获取都创建一个新对象（通过调用 getObject 方法）
     public boolean isSingleton() {
         return false;
     }
 }
 ```
 
-修改MainConfig, 将ColorFactoryBean注册到容器中
+修改 MainConfig，将 ColorFactoryBean 注册到容器中
 
 ```java
 package icu.intelli.config;
@@ -66,7 +66,7 @@ public class MainConfig {
 }
 ```
 
-修改IOCTest
+修改 IOCTest
 
 ```java
 package icu.intelli;
@@ -77,7 +77,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class IOCTest {
     public static void main(String[] args) {
-        // 获取IOC容器
+        // 获取 IOC 容器
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 
         // 获取容器中所有对象的名字
@@ -86,22 +86,22 @@ public class IOCTest {
             System.out.println(beanDefinitionName);
         }
 
-        // 根据bean名称获取colorFactoryBean
+        // 根据 bean 名称获取 colorFactoryBean
         Object bean1 = applicationContext.getBean("colorFactoryBean");
-        System.out.println("bean1的类型为: " + bean1.getClass());
-        // 根据bean名称获取colorFactoryBean
+        System.out.println("bean1 的类型为: " + bean1.getClass());
+        // 根据 bean 名称获取 colorFactoryBean
         Object bean2 = applicationContext.getBean("colorFactoryBean");
         System.out.println("bean1 == bean2: " + (bean1 == bean2));
 
-        // 添加&前缀, 获取容器中ColorFactoryBean的实例
+        // 添加&前缀，获取容器中 ColorFactoryBean 的实例
         Object bean3 = applicationContext.getBean("&colorFactoryBean");
-        System.out.println("bean3的类型为: " + bean3.getClass());
+        System.out.println("bean3 的类型为: " + bean3.getClass());
 
     }
 }
 ```
 
-运行IOCTest, 结果如下
+运行 IOCTest，结果如下
 
 ```
 org.springframework.context.annotation.internalConfigurationAnnotationProcessor
@@ -112,20 +112,20 @@ org.springframework.context.event.internalEventListenerProcessor
 org.springframework.context.event.internalEventListenerFactory
 mainConfig
 colorFactoryBean
-调用了ColorFactoryBean.getObject()...
-bean1的类型为: class icu.intelli.bean.Color
-调用了ColorFactoryBean.getObject()...
+调用了 ColorFactoryBean.getObject()...
+bean1 的类型为: class icu.intelli.bean.Color
+调用了 ColorFactoryBean.getObject()...
 bean1 == bean2: false
-bean3的类型为: class icu.intelli.bean.ColorFactoryBean
+bean3 的类型为: class icu.intelli.bean.ColorFactoryBean
 ```
 
 **分析**
 
-由于ColorFactoryBean中isSingleton返回false, 因此使用多例模式, 执行了两次getObject()方法, 两个对象bean1与bean2不相等
+由于 ColorFactoryBean 中 `isSingleton()` 返回 `false`, 因此使用多例模式，执行了两次 `getObject()` 方法，两个对象 bean1 与 bean2 不相等
 
-直接通过beanName:colorFactoryBean获取到的bean类型为Color类型
+直接通过 `beanName:colorFactoryBean` 获取到的 bean 类型为 Color 类型
 
-如果需要获取ColorFactoryBean类型的对象, 需要在beanName前添加一个&前缀, 即&colorFactoryBean. 是因为在BeanFactory接口中包含如下变量
+如果需要获取 ColorFactoryBean 类型的对象，需要在 beanName 前添加一个 `&` 前缀，即 `&colorFactoryBean`. 是因为在 BeanFactory 接口中包含如下变量
 
 ```java
 public interface BeanFactory {

@@ -1,21 +1,21 @@
 ---
-title: Windows安装Redis
+title: Windows 安装 Redis
 date: '2019-10-18 00:00:00'
 tags:
 - Redis
 ---
 
-# Windows安装Redis
+# Windows 安装 Redis
 
-## Redis临时服务
+## Redis 临时服务
 
-### windows下redis下载地址
+### windows 下 redis 下载地址
 
 https://github.com/MicrosoftArchive/redis/releases
 
-### 启动redis服务
+### 启动 redis 服务
 
-cmd运行
+cmd 运行
 
 ```bash
 redis-server.exe redis.windows.conf
@@ -23,19 +23,19 @@ redis-server.exe redis.windows.conf
 
 ### 客户端调用
 
-cmd运行
+cmd 运行
 
 ```bash
 redis-cli.exe -h 127.0.0.1 -p 6379
 ```
 
-## 自定义Redis服务/启动多个Redis
+## 自定义 Redis 服务/启动多个 Redis
 
-### 复制一份redis到另一个目录
+### 复制一份 redis 到另一个目录
 
-### 修改redis.windows.conf
+### 修改 redis.windows.conf
 
-> 将port 6379 修改为port 6380 等,指定端口号
+将 `port 6379` 修改为 `port 6380` 等，指定端口号
 
 ### 安装服务
 
@@ -67,4 +67,4 @@ redis-server.exe --service-uninstall --service-name redis6380
 
 ## 参考博文
 
-- [【Redis】windows下redis服务的安装](https://www.cnblogs.com/chuankang/p/10308771.html)
+- [【Redis】windows 下 redis 服务的安装](https://www.cnblogs.com/chuankang/p/10308771.html)

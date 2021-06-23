@@ -1,15 +1,17 @@
 ---
-title: SpringBoot项目打war包
+title: SpringBoot 项目打 war 包
 date: '2020-08-25 00:00:00'
 tags:
 - JAVA
 - Spring Boot
 ---
-**步骤 :** 
+# SpringBoot 项目打 war 包
 
-其实就是将SpringBoot工程修改为了Maven Web工程, 然后添加了一个SpringBootServletInitializer的子类, 在外置tomcat启动后, 自动启动SpringBoot工程.
+**步骤** 
 
-1. 必须创建一个war项目: jar项目可以修改pom.xml中的`<packaging>war</packaging>`
+其实就是将 SpringBoot 工程修改为了 Maven Web 工程，然后添加了一个 SpringBootServletInitializer 的子类，在外置 tomcat 启动后，自动启动 SpringBoot 工程。
+
+1. 必须创建一个 war 项目：jar 项目可以修改 pom.xml 中的 `<packaging>war</packaging>`
 
    ```xml
    <groupId>cc.ccue</groupId>
@@ -17,16 +19,16 @@ tags:
    <version>1.0-SNAPSHOT</version>
    <packaging>war</packaging>
    ```
-2. 创建好目录结构: 
+2. 创建好目录结构：
 
-   - IDEA可通过Project Structure快速创建, 手动创建的也需要进入Project Structure将web根目录和web.xml设置好
+   IDEA 可通过 Project Structure 快速创建，手动创建的也需要进入 Project Structure 将 web 根目录和 web.xml 设置好
 
    ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143024.png)
 
 
    ![image](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210609143025.png)
 
-3. 将嵌入式的tomcat指定为provided
+3. 将嵌入式的 tomcat 指定为 provided
 
    ```xml
    <dependency>
@@ -36,20 +38,20 @@ tags:
    </dependency>
    ```
 
-4. 必须编写一个SpringBootServletInitializer的子类, 并调用configure方法
+4. 必须编写一个 SpringBootServletInitializer 的子类，并调用 configure 方法
 
    ```java
    public class ServletInitializer extends SpringBootServletInitializer {
    
        @Override
        protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-           // 需要传入SpingBoot应用的主程序
+           // 需要传入 SpingBoot 应用的主程序
            return application.sources(Application.class);
        }
    
    }
    ```
 
-5. IDEA通过*Edit Configurations...*添加tomcat容器, 并将当前项目设置进去
+5. IDEA 通过 *Edit Configurations...* 添加 tomcat 容器，并将当前项目设置进去
 
-6. 启动外置tomcat就可以使用(此处直接运行Application.java使用的还是嵌入式的tomcat)
+6. 启动外置 tomcat 就可以使用（此处直接运行 Application.java 使用的还是嵌入式的 tomcat）

@@ -8,14 +8,14 @@ tags:
 - Java
 ---
 
-## 报错:Cannot start compilation: the output path is not specified for module "..." Specify the output path
+# Cannot start compilation: the output path is not specified for module "..." Specify the output path
 
-### 原因:
+## 原因
 
-项目中此时没有指定class文件生成的路径，若单纯指定module的output路径会导致后续出现无法找到类的Error。
+项目中此时没有指定 class 文件生成的路径，若单纯指定 module 的 output 路径会导致后续出现无法找到类的 Error。
 
-### 解决方法:
+## 解决方法
 
-1. 打开project structure->project, 在右侧project compiler output目标路径文件夹，通常是"\Workspace Intelij\project_name\out"；
-2. 打开（project structure->）module, 在paths栏中选择Inherit project compiler output path；
+1. 打开 project structure → project，在右侧 project compiler output 目标路径文件夹，通常是"\Workspace Intelij\project_name\out"
+2. 打开（project structure →）module，在 paths 栏中选择 Inherit project compiler output path
 3. 确定

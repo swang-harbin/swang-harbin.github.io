@@ -1,29 +1,29 @@
 ---
-title: 远程访问Redis
+title: 远程访问 Redis
 date: '2019-10-26 00:00:00'
 tags:
 - Redis
 ---
 
-# Redis设置从其他机器访问
+# 远程访问 Redis
 
-允许所有机器连接redis, 注解掉所有bind, 并将protected-mode属性设置为no.
+允许所有机器连接 redis，注解掉所有 bind，并将 protected-mode 属性设置为 no。
 
-## 配置文件中的bind属性说明
+## 配置文件中的 bind 属性说明
 
 1. 默认情况
 
-   未指定bind(或者`bind 0.0.0.0`),redis将监听本服务器上所有可用网络接口地址.
+   未指定 bind（或者 `bind 0.0.0.0`），redis 将监听本服务器上所有可用网络接口地址。
 
-网络接口地址即计算机上每个网卡对应的IP地址,每一个网卡都有一个IP地址
+网络接口地址即计算机上每个网卡对应的 IP 地址，每一个网卡都有一个 IP 地址
 
 1. 只允许本机访问
 
-   使用`bind 127.0.0.1`,127.0.0.1是一个回环地址(Local Loopback),只有本地才能访问本机的回环地址
+   使用 `bind 127.0.0.1`，127.0.0.1 是一个回环地址（Local Loopback），只有本地才能访问本机的回环地址
 
-2. 指定网卡IP,其他机器通过该网卡访问
+2. 指定网卡 IP，其他机器通过该网卡访问
 
-   使用`bind xxx.xxx.xxx.xxx`监听一个网络接口,或者使用`bind xxx.xxx.xxx.xxx xxx.xxx.xxx.xxx`监听多个网络接口,则其他计算机可以通过绑定的网络接口访问
+   使用 `bind xxx.xxx.xxx.xxx` 监听一个网络接口，或者使用 `bind xxx.xxx.xxx.xxx xxx.xxx.xxx.xxx` 监听多个网络接口，则其他计算机可以通过绑定的网络接口访问
 
 原文
 
@@ -42,14 +42,14 @@ tags:
 # is running).
 ```
 
-## protected-mode属性说明
+## protected-mode 属性说明
 
-**作用**: 只有本机可以访问redis
+**作用**: 只有本机可以访问 redis
 
-必须满足三个条件, protected-mode才生效, 否则, 其将处于关闭状态
+必须满足三个条件，protected-mode 才生效，否则，其将处于关闭状态
 
-1. protected-mode 属性为yes
-2. 没有bind指令
+1. protected-mode 属性为 yes
+2. 没有 bind 指令
 3. 没有设置密码
 
 原文
@@ -74,10 +74,10 @@ tags:
 # are explicitly listed using the "bind" directive.
 ```
 
-## 限制只有指定的主机可以连接到redis
+## 限制只有指定的主机可以连接到 redis
 
 只能通过防火墙来控制
 
 ## 参考链接
 
-[Redis的bind的误区](https://blog.csdn.net/cw_hello1/article/details/83444013)
+[Redis 的 bind 的误区](https://blog.csdn.net/cw_hello1/article/details/83444013)

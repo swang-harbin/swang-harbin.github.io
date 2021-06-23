@@ -1,12 +1,12 @@
 ---
-title: 截图工具Flameshot
+title: 截图工具 Flameshot
 date: '2020-04-27 00:00:00'
 tags:
 - Linux
 ---
-# 截图工具Flameshot
+# 截图工具 Flameshot
 
-## 安装命令:
+## 安装命令
 
 Ubuntu
 ```bash

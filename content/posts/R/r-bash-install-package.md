@@ -1,10 +1,10 @@
 ---
-title: 批量安装R包
+title: 批量安装 R 包
 date: '2020-09-09 00:00:00'
 tags:
 - R
 ---
-# 批量安装R包
+# 批量安装 R 包
 
 ```R
 words <- c("dplyr","purrr","rlang","readr","mlegp","tibble","magrittr","solartime","bigleaf","Rcpp")

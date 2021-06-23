@@ -1,15 +1,13 @@
 ---
-title: Linux设置k380锁定fn按键
+title: Linux 设置 k380 锁定 fn 按键
 date: '2020-01-03 00:00:00'
 tags:
 - Linux
 ---
-# Linux设置k380锁定fn按键
+# Linux 设置 k380 锁定 fn 按键
 
 
-使用如下github开源项目 : [k380-function-keys-conf](https://github.com/jergusg/k380-function-keys-conf)
-
-## k380-function-keys-conf
+使用如下 github 开源项目：[k380-function-keys-conf](https://github.com/jergusg/k380-function-keys-conf)
 
 Make function keys default on Logitech k380 bluetooth keyboard.
 Instructions

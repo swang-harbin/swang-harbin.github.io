@@ -1,20 +1,20 @@
 ---
-title: Windows安装绿色版MongoDB
+title: Windows 安装绿色版 MongoDB
 date: '2019-11-20 00:00:00'
 tags:
 - MongoDB
 ---
 
-# Windows安装绿色版MongoDB
+# Windows 安装绿色版 MongoDB
 
-## 下载MongoDB.zip
+## 下载 MongoDB.zip
 
-- [MongoDB官方下载地址](https://www.mongodb.com/download-center/community)
-- [MongoDB官方安装教程](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+- [MongoDB 官方下载地址](https://www.mongodb.com/download-center/community)
+- [MongoDB 官方安装教程](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 ## 解压
 
-使用的MongoDB版本为mongodb-win32-x86_64-2012plus-4.2.1.zip
+使用的 MongoDB 版本为 mongodb-win32-x86_64-2012plus-4.2.1.zip
 
 解压后得到
 
@@ -22,15 +22,15 @@ tags:
 
 ## 创建存放数据和日志的文件夹和文件
 
-1. 在bin的同级目录下创建data和log**文件夹**
-2. 在data文件夹中创建db空**文件夹**
-3. 在log文件夹下创建mongo.log空**文件**
+1. 在 bin 的同级目录下创建 data 和 log 文件夹
+2. 在 data 文件夹中创建 db 空文件夹
+3. 在 log 文件夹下创建 mongo.log 空文件
 
-注:文件路径在何处创建都无所谓,关键在于mongo.config的配置.
+注：文件路径在何处创建都无所谓，关键在于 mongo.config 的配置。
 
-## 创建mongo.config配置文件
+## 创建 mongo.config 配置文件
 
-在bin的同级目录创建mongo.config文件,注意修改**dbpath**和**logpath**为正确的位置
+在 bin 的同级目录创建 mongo.config 文件，注意修改 **dbpath** 和 **logpath** 为正确的位置
 
 ```properties
 # 数据库文件的存放位置
@@ -49,41 +49,41 @@ dbpath=D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\data\d
 # 日志文件存放的路径
 logpath=D:\Program Files (x86)\MongoDB\mongodb-win32-x86_64-2012plus-4.2.1\log\mongo.log
  
-# 是否追加方式写入日志，默认True
+# 是否追加方式写入日志，默认 True
 logappend=true
  
-# 设置绑定ip
+# 设置绑定 ip
 bind_ip=127.0.0.1
 
 # 设置端口
 port=27017
  
-# 是否以守护进程方式运行，默认false
+# 是否以守护进程方式运行，默认 false
 #fork=true
  
-#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+#这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为 false
 quiet=false
  
 # 启用日志文件，默认启用
 journal=true
  
-# 启用定期记录CPU利用率和 I/O 等待,默认false
+# 启用定期记录 CPU 利用率和 I/O 等待，默认 false
 #cpu=true
  
 # 是否以安全认证方式运行，默认是不认证的非安全方式
 #noauth=true
 #auth=true
  
-# 详细记录输出，默认false
+# 详细记录输出，默认 false
 #verbose=true
  
 #用于开发驱动程序时验证客户端请求
 #objcheck=true
  
-# # 启用数据库配额管理,默认false
+# # 启用数据库配额管理，默认 false
 #quota=true
  
-# 设置oplog日志记录等级，默认0
+# 设置 oplog 日志记录等级，默认 0
 #   0=off (default)
 #   1=W
 #   2=R
@@ -91,16 +91,16 @@ journal=true
 #   7=W+some reads
 #oplog=0
  
-# 是否打开动态调试项，默认false
+# 是否打开动态调试项，默认 false
 #nocursors=true
  
-# 忽略查询提示，默认false
+# 忽略查询提示，默认 false
 #nohints=true
  
-# 禁用http界面，默认为localhost：28017
+# 禁用 http 界面，默认为 localhost：28017
 #nohttpinterface=true
  
-# 关闭服务器端脚本，这将极大的限制功能，默认false
+# 关闭服务器端脚本，这将极大的限制功能，默认 false
 #noscripting=true
  
 # 关闭扫描表，任何查询将会是扫描失败
@@ -109,16 +109,16 @@ journal=true
 # 关闭数据文件预分配
 #noprealloc=true
  
-# 为新数据库指定.ns文件的大小，单位:MB
+# 为新数据库指定.ns 文件的大小，单位:MB
 # nssize=<size>
  
-# 用于Mongo监控服务器的Accout token。
+# 用于 Mongo 监控服务器的 Accout token。
 #mms-token=<token>
  
-# Mongo监控服务器的服务器名称。
+# Mongo 监控服务器的服务器名称。
 #mms-name=<server-name>
  
-# Mongo监控服务器的Ping间隔时间，即心跳
+# Mongo 监控服务器的 Ping 间隔时间，即心跳
 #mms-interval=<seconds>
  
 # Replication Options
@@ -140,7 +140,7 @@ replSet=name
 # 仲裁服务器地址
 #arbiter=<server:port>
  
-# 默认为false，用于从实例设置。是否自动重新同步
+# 默认为 false，用于从实例设置。是否自动重新同步
 #autoresync=true
  
 # 指定的复制操作日志（OPLOG）的最大大小
@@ -149,7 +149,7 @@ replSet=name
 # 限制复制操作的内存使用
 #opIdMem=<bytes>
  
-# 设置ssl认证
+# 设置 ssl 认证
 # Enable SSL on normal ports
 #sslOnNormalPorts=true
  
@@ -165,9 +165,9 @@ replSet=name
 
 ## 安装并启动服务
 
-配置好环境变量(略)或在bin目录下以管理员身份运行cmd
+配置好环境变量（略）或在 bin 目录下以管理员身份运行 cmd
 
-1. 安装mongod服务
+1. 安装 mongod 服务
 
    ```bash
    mongod --config "[配置文件路径]" --serviceName "[服务名]"
@@ -182,4 +182,4 @@ replSet=name
 
 ## 参考文档
 
-[Windows安装MongoDB .zip绿色版](https://blog.csdn.net/HTouying/article/details/88428452)
+[Windows 安装 MongoDB .zip 绿色版](https://blog.csdn.net/HTouying/article/details/88428452)

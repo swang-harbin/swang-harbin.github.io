@@ -31,15 +31,16 @@ tags:
 
 - 《编码：隐匿在计算机软硬件背后的语言》
 - 《深入理解计算机系统》
+
 - 语言：
-  - C：K&R 《C 程序设计语言》《C Primer Plus》
+  - C：K&R《C 程序设计语言》《C Primer Plus》
   - Java
 - 数据结构与算法：--毕生的学习 leetCode
-  - 《Java 数据结构与算法》 《算法》
-  - 《算法导论》 《计算机程序设计艺术》 // 难
+  -《Java 数据结构与算法》《算法》
+  -《算法导论》《计算机程序设计艺术》// 难
   - 操作系统：Linux 内核源码解析 Linux 内核设计与实现 30 天自制操作系统
-  - 网络：机工《TCP/IP 详解》 卷一 翻译一般
-  - 编译原理：机工 龙书（《编译原理》） 《编程语言实现模式》
+  - 网络：机工《TCP/IP 详解》卷一 翻译一般
+  - 编译原理：机工 龙书（《编译原理》）《编程语言实现模式》
   - 数据库：SQLite 源码 Derby-JDK 自带数据库
 
 ## 硬件基础知识
@@ -322,7 +323,7 @@ T t = new T();
 
 #### CPU 层面如何禁止重排序
 
-CPU 层面：Intel → 原语（mfence lfence sfence） 或者锁总线
+CPU 层面：Intel → 原语（mfence lfence sfence）或者锁总线
 
 JVM 层级：8 个 hanppens-before 原则规定哪些指令不能重排序。4 个内存屏障（LL LS SL SS）保证 volitale 修饰的指令不被重排序
 
@@ -565,7 +566,7 @@ linux kernel 2.6 采用 CFS 调度策略：Completely Fair Scheduler
 
 默认调度策略：
 
-实时进程，永远比普通进程先执行。优先级分高低 - FIFO （First In First Out），优先级一样 - RR（Round Robin）普通进程：CFS
+实时进程，永远比普通进程先执行。优先级分高低 - FIFO（First In First Out），优先级一样 - RR（Round Robin）普通进程：CFS
 
 ### 中断
 
@@ -691,7 +692,7 @@ GC 信息记录在指针上，不是记录在头部，immediate memory use
 
 5. 读-写信号量 – downread upread downwrite upwrite（多个写，可以分段写，比较少用）(分段锁）
 
-6. 互斥体（mutex） – 特殊的信号量（二值信号量）
+6. 互斥体（mutex）– 特殊的信号量（二值信号量）
 
 7. 完成变量 – 特殊的信号量（A 发出信号给 B，B 等待在完成变量上）vfork() 在子进程结束时通过完成变量叫醒父进程 类似于(Latch)
 

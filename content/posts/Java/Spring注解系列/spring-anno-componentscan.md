@@ -59,7 +59,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-// 扫描 icu.intelli 及其子包，将被@Controller，@Service，@Repository，@Component 标注的组件扫描到容器
+// 扫描 icu.intelli 及其子包，将被 @Controller，@Service，@Repository，@Component 标注的组件扫描到容器
 @ComponentScan(value = "icu.intelli")
 public class MainConfig {
 
@@ -112,7 +112,7 @@ beans.xml 中添加 `context:component-scan` 标签
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- 包扫描，只要标注了@Controller，@Service，@Repository，@Component -->
+    <!-- 包扫描，只要标注了 @Controller，@Service，@Repository，@Component -->
     <context:component-scan base-package="icu.intelli"/>
 
     <bean id="person" class="icu.intelli.bean.Person">

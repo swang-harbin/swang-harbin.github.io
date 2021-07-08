@@ -33,7 +33,7 @@ Feign 是 Spring Cloud 组件中的一个轻量级 RESTful 的 HTTP 服务客户
 
 ### OpenFeign
 
-OpenFeign 是 Spring Cloud 在 Feign 的基础上支持了 SpringMVC 的注解，如@RequestMapping 等。OpenFeign 的 `@FeignClient` 可以解析 SpringMVC 的 `@RequestMapping` 注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务
+OpenFeign 是 Spring Cloud 在 Feign 的基础上支持了 SpringMVC 的注解，如 `@RequestMapping` 等。OpenFeign 的 `@FeignClient` 可以解析 SpringMVC 的 `@RequestMapping` 注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务
 
 ```xml
 <dependency>

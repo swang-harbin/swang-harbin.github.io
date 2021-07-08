@@ -202,9 +202,9 @@ tags:
 
 ## `@Qualifier`
 
-当容器中存在多个统一类型的 bean 时，可以使用@Qualifier 指定 bean 名称为属性注入指定的 bean
+当容器中存在多个统一类型的 bean 时，可以使用 `@Qualifier` 指定 bean 名称为属性注入指定的 bean
 
-修改 BookController，使用@Qualifier 指定注入名为 bookService 的 bean
+修改 BookController，使用 `@Qualifier` 指定注入名为 bookService 的 bean
 
 ```java
 import icu.intelli.service.BookService;

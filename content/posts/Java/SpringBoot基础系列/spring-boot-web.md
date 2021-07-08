@@ -369,7 +369,7 @@ If you want to take complete control of Spring MVC, you can add your own @Config
 
 **效果：** SpringBoot 对 SpringMVC 的自动配置不需要了，所有都是我们自己配，所有的 SpringMVC 的自动配置都失效
 
-**在我们自己的配置类中添加@EnableWebMvc 即可。**
+**在我们自己的配置类中添加 `@EnableWebMvc` 即可。**
 
 ```java
 // 禁用 SpringMVC 的自动配置，全都由我们自己来配置

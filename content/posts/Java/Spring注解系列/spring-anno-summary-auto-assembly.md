@@ -27,7 +27,7 @@ tags:
 
   可以和`@Autowired` 一样实现自动装配；默认是按照属性名进行装配，可以使用 name 属性指定名称
 
-  不支持 `@Primary` 功能和@Autowired 的 require=false 功能
+  不支持 `@Primary` 功能和 `@Autowired` 的 require=false 功能
 
 - `@Inject`：JSR330 定义
 
@@ -53,7 +53,7 @@ AutowiredAnnotationBeanPostProcessor：解析完成自动装配功能
   - 如果组件中只有一个有参构造器，可以省略 `@Autowired` 注解，效果不变
 - 标注在参数位置
   - 可以标注在有参构造器参数上，效果与标注在有参构造器上一样
-  - 可以标注在@Bean 标注的方法的参数上，会从 ioc 容器中获取该参数的值，可通过 set 方法为返回的 bean 赋值
+  - 可以标注在 `@Bean` 标注的方法的参数上，会从 ioc 容器中获取该参数的值，可通过 set 方法为返回的 bean 赋值
 
 ## 自定义组件想要使用 Spring 容器底层的一些组件
 

@@ -74,7 +74,7 @@ Profile 介绍：Spring 为我们提供的可以根据当前环境，动态的�
        private String driverClass;
    
        @Bean("testDataSource")
-       // 使用@Value 自动设置环境中的变量值，可标注在参数上
+       // 使用 @Value 自动设置环境中的变量值，可标注在参数上
        public DataSource dataSourceTest(@Value("${db.password}") String pwd) throws PropertyVetoException {
            ComboPooledDataSource dataSource = new ComboPooledDataSource();
            dataSource.setUser(user);

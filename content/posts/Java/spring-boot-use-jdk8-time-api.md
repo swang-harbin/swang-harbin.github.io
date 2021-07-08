@@ -29,7 +29,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * JDK8 时间序列化/反序列化支持，仅对 Controller 层序列化返回以及@RequestBody 反序列化生效,
+ * JDK8 时间序列化/反序列化支持，仅对 Controller 层序列化返回以及 @RequestBody 反序列化生效,
  * 对 GET 请求不生效，参照{@link converter.jdk8time.Jdk8TimeConverter}
  *
  * @author wangshuo

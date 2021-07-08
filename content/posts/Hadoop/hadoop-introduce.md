@@ -22,9 +22,9 @@ tags:
 4. 学习和模仿 Google 解决这些问题的方法：微型版 Nutch。
 5. 可以说 Google 是 Hadoop 的思想之源（Google 在大数据方面的三篇论文）
    
-    - GFS --> HDFS
-    - Map-Resuce --> MR
-    - BigTable --> HBase
+    - GFS → HDFS
+    - Map-Resuce → MR
+    - BigTable → HBase
 6. 2003 年至 2004 年，Google 公开了部分 GFS 和 MapReduce 思想的细节，以此为基础 Doug Cutting 等人用了 **2 年业余时间**实现了 DFS 和 MapReduce 机制，使 Nutch 性能飙升。
 7. 2005 年 Hadoop 作为 Lucene 的子项目 Nutch 的一部分正式引入 Apache 基金会。
 8. 2006 年 2 月份，Map-Reduce 和 Nutch Distributed File System（NDFS）分别被纳入称为 Hadoop 的项目中。

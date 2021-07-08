@@ -69,7 +69,7 @@ project/
 
 1. 指定存放 Java 类的目录
 
-   File -> Project Structure...【<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd>】
+   File → Project Structure...【<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd>】
 
    ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222152753.png)
 
@@ -155,7 +155,7 @@ project/
 
 ## 导出 war 包
 
-1. Build -> Build Artifacts...
+1. Build → Build Artifacts...
 
    ![img](https://gitee.com/swang-harbin/pic-bed/raw/master/images/2021/20210222153350.png)
 

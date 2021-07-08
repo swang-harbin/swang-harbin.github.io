@@ -1,6 +1,6 @@
 ---
 title: Spring Cloud Config
-date: '2020-07-04 00:00:00'
+date: '2021-01-17 12:49:00'
 tags:
 - MSB
 - Spring Cloud

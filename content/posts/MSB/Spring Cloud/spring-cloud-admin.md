@@ -1,6 +1,6 @@
 ---
 title: Spring Cloud Admin
-date: '2020-07-04 00:00:00'
+date: '2021-01-15 23:07:00'
 tags:
 - MSB
 - Spring Cloud

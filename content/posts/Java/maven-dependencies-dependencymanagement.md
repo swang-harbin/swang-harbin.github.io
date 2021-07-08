@@ -8,7 +8,7 @@ tags:
 
 # Maven 的 dependencies 和 dependencyManagement 区别
 
-`<dependencyManagement>` 仅是声明依赖，通常在顶级父模块中做版本管理。在父模块中使用 `<dependencyManagement` 标签声明依赖，其子模块不会自动引入 `dependencyManagement` 中的依赖，需要在子模块中手动引入才可以
+`<dependencyManagement>` 仅是声明依赖，通常在顶级父模块中做版本管理。在父模块中使用 `<dependencyManagement>` 标签声明依赖，其子模块不会自动引入 `<dependencyManagement>` 中的依赖，需要在子模块中手动引入才可以
 
 `<dependencies>` 是真实的引入了依赖，子模块会继承父模块 `<dependencies>` 中的依赖
 

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.121.2"><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>计算机基础 | 王硕&#39;s Blog</title>
+
+    <link rel="stylesheet" href="/css/meme.min.444bcd3106642fa679d4a388e876aae08298837c58a47b88a6ed72069e59f8ad.css"/>
+
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.stemmer.support.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.zh.min.js" defer></script><script src="/js/meme.min.a53faa29276c16f3f4813d358c1a014ef75a949fc352a375cab0608ca900f8a8.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="王硕" /><meta name="description" content="计算机基础 计算机系统由硬件（Hardware）系统和软件（Software）系统两大部分组成 计算机硬件 计算机（Computer）：俗称电脑，是一种能接收和存储信息，并按照存储在其内部的程序对海量数据进行自动，高速的处理，然后把处理结果输出的现代化智能电子设……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="王硕&#39;s Blog" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="王硕&#39;s Blog" />
+    <meta name="msapplication-starturl" content="../../../../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../../../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2020-01-04T21:56:18+08:00",
+        "dateModified": "2023-03-14T17:04:55+08:00",
+        "url": "https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/",
+        "headline": "计算机基础",
+        "description": "计算机基础 计算机系统由硬件（Hardware）系统和软件（Software）系统两大部分组成 计算机硬件 计算机（Computer）：俗称电脑，是一种能接收和存储信息，并按照存储在其内部的程序对海量数据进行自动，高速的处理，然后把处理结果输出的现代化智能电子设……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  7309 ,
+        "image": ["https://oss.intelli.icu/images/2021/20210603220214.png-watermark","https://oss.intelli.icu/images/2021/20210603220418.png-watermark","https://oss.intelli.icu/images/2021/20210603220445.png-watermark","https://oss.intelli.icu/images/2021/20210603220516.png-watermark","https://oss.intelli.icu/images/2021/20210603220548.png-watermark","https://oss.intelli.icu/images/2021/20210603220619.png-watermark","https://oss.intelli.icu/images/2021/20210603220640.png-watermark","https://oss.intelli.icu/images/2021/20210603220656.png-watermark","https://oss.intelli.icu/images/2021/20210603220719.png-watermark","https://oss.intelli.icu/images/2021/20210603220735.png-watermark","https://oss.intelli.icu/images/2021/20210603220753.png-watermark","https://oss.intelli.icu/images/2021/20210603220819.png-watermark","https://oss.intelli.icu/images/2021/20210603220843.png-watermark","https://oss.intelli.icu/images/2021/20210603220913.png-watermark","https://oss.intelli.icu/images/2021/20210603220932.png-watermark","https://oss.intelli.icu/images/2021/20210603220951.png-watermark","https://oss.intelli.icu/images/2021/20210603221012.png-watermark","https://oss.intelli.icu/images/2021/20210603221037.png-watermark","https://oss.intelli.icu/images/2021/20210603221056.png-watermark","https://oss.intelli.icu/images/2021/20210603221120.png-watermark","https://oss.intelli.icu/images/2021/20210603221144.png-watermark","https://oss.intelli.icu/images/2021/20210603221201.png-watermark","https://oss.intelli.icu/images/2021/20210603221224.png-watermark","https://oss.intelli.icu/images/2021/20210603221243.png-watermark","https://oss.intelli.icu/images/2021/20210603221311.png-watermark","https://oss.intelli.icu/images/2021/20210603221327.png-watermark","https://oss.intelli.icu/images/2021/20210603221349.png-watermark","https://oss.intelli.icu/images/2021/20210603221409.png-watermark","https://oss.intelli.icu/images/2021/20210603221436.png-watermark","https://oss.intelli.icu/images/2021/20210603221457.png-watermark","https://oss.intelli.icu/images/2021/20210603221527.png-watermark","https://oss.intelli.icu/images/2021/20210603221546.png-watermark"],
+        "author": {
+            "@type": "Person",
+            "description": "馍馍好好吃",
+            "email": "337229941@qq.com",
+            "image": "https://blog.ws.lu/icons/avatar.png",
+            "url": "https://blog.ws.lu/",
+            "name": "王硕"
+        },
+        "license": "本博客所有文章如无特别声明，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议。转载请注明出处 [王硕's Blog](https://blog.ws.lu/)。如有侵权，请联系删除。",
+        "publisher": {
+            "@type": "Organization",
+            "name": "王硕's Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://blog.ws.lu/icons/apple-touch-icon.png"
+            },
+            "url": "https://blog.ws.lu/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://blog.ws.lu/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+
+    
+
+
+
+<meta property="og:title" content="计算机基础" />
+<meta property="og:description" content="计算机基础 计算机系统由硬件（Hardware）系统和软件（Software）系统两大部分组成 计算机硬件 计算机（Computer）：俗称电脑，是一种能接收和存储信息，并按照存储在其内部的程序对海量数据进行自动，高速的处理，然后把处理结果输出的现代化智能电子设……" />
+<meta property="og:url" content="https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/" />
+<meta property="og:site_name" content="王硕&#39;s Blog" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://oss.intelli.icu/images/2021/20210603220214.png-watermark" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2020-01-04T21:56:18&#43;08:00" />
+    <meta property="article:modified_time" content="2023-03-14T17:04:55&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">王硕&#39;s Blog</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon home"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg><span class="menu-item-name">首页</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">文章</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                
+            
+        
+            
+                <li class="menu-item search-item">
+                        <form id="search" class="search" role="search">
+    <label for="search-input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label>
+    <input type="search" id="search-input" class="search-input">
+</form>
+
+<template id="search-result" hidden>
+    <article class="content post">
+        <h2 class="post-title"><a class="summary-title-link"></a></h2>
+        <summary class="summary"></summary>
+        <div class="read-more-container">
+            <a class="read-more-link">阅读更多 »</a>
+        </div>
+    </article>
+</template>
+
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">计算机基础</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2020-01-04T21:56:18&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.1.4</time>
+    
+    
+    
+    
+        
+        
+        
+            
+        
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;7309</span>
+    
+    
+        
+        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;15&nbsp;分钟</span>
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:计算机硬件" href="#计算机硬件">计算机硬件</a>
+      <ol>
+        <li><a id="contents:发展历史" href="#发展历史">发展历史</a></li>
+        <li><a id="contents:世界上第一台计算机-eniac" href="#世界上第一台计算机-eniac">世界上第一台计算机 ENIAC</a></li>
+        <li><a id="contents:冯诺依曼体系" href="#冯诺依曼体系">冯诺依曼体系</a></li>
+        <li><a id="contents:进制" href="#进制">进制</a></li>
+        <li><a id="contents:摩尔定律" href="#摩尔定律">摩尔定律</a></li>
+        <li><a id="contents:按规模分类计算机" href="#按规模分类计算机">按规模分类计算机</a></li>
+        <li><a id="contents:服务器" href="#服务器">服务器</a>
+          <ol>
+            <li><a id="contents:服务器按应用功能可分为" href="#服务器按应用功能可分为">服务器按应用功能可分为：</a></li>
+            <li><a id="contents:按外形分类" href="#按外形分类">按外形分类：</a>
+              <ol>
+                <li><a id="contents:塔式-tower-服务器" href="#塔式-tower-服务器">塔式 Tower 服务器</a></li>
+                <li><a id="contents:刀片式-blade-服务器" href="#刀片式-blade-服务器">刀片式 Blade 服务器</a></li>
+                <li><a id="contents:机架式-rack-服务器" href="#机架式-rack-服务器">机架式 Rack 服务器</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a id="contents:服务器硬件组成" href="#服务器硬件组成">服务器硬件组成</a></li>
+        <li><a id="contents:服务器配置示例" href="#服务器配置示例">服务器配置示例</a></li>
+        <li><a id="contents:服务器硬件" href="#服务器硬件">服务器硬件</a>
+          <ol>
+            <li><a id="contents:cpu" href="#cpu">CPU</a></li>
+            <li><a id="contents:主板mainboard" href="#主板mainboard">主板（mainboard）</a></li>
+            <li><a id="contents:内存和外存" href="#内存和外存">内存和外存</a></li>
+            <li><a id="contents:硬盘" href="#硬盘">硬盘</a>
+              <ol>
+                <li><a id="contents:机械硬盘" href="#机械硬盘">机械硬盘</a>
+                  <ol>
+                    <li><a id="contents:结构" href="#结构">结构</a></li>
+                    <li><a id="contents:基本参数" href="#基本参数">基本参数</a></li>
+                    <li><a id="contents:接口类型" href="#接口类型">接口类型</a></li>
+                    <li><a id="contents:服务器的性能短板" href="#服务器的性能短板">服务器的性能短板</a></li>
+                  </ol>
+                </li>
+                <li><a id="contents:固态硬盘ssd" href="#固态硬盘ssd">固态硬盘（SSD）</a></li>
+              </ol>
+            </li>
+            <li><a id="contents:阵列卡raid" href="#阵列卡raid">阵列卡（Raid）</a></li>
+            <li><a id="contents:电源和风扇" href="#电源和风扇">电源和风扇</a></li>
+            <li><a id="contents:显卡" href="#显卡">显卡</a></li>
+            <li><a id="contents:网卡" href="#网卡">网卡</a></li>
+            <li><a id="contents:热插拔技术" href="#热插拔技术">热插拔技术</a></li>
+            <li><a id="contents:机柜" href="#机柜">机柜</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:存储基础知识" href="#存储基础知识">存储基础知识</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:计算机软件" href="#计算机软件">计算机软件</a>
+      <ol>
+        <li><a id="contents:操作系统" href="#操作系统">操作系统</a></li>
+        <li><a id="contents:开发接口标准" href="#开发接口标准">开发接口标准</a></li>
+        <li><a id="contents:library-function-和-system-call" href="#library-function-和-system-call">Library function 和 system call</a></li>
+        <li><a id="contents:用户空间和内核空间" href="#用户空间和内核空间">用户空间和内核空间</a></li>
+        <li><a id="contents:编程语言" href="#编程语言">编程语言</a></li>
+        <li><a id="contents:服务器三大操作系统" href="#服务器三大操作系统">服务器三大操作系统</a>
+          <ol>
+            <li><a id="contents:windows" href="#windows">Windows</a></li>
+            <li><a id="contents:linux" href="#linux">Linux</a></li>
+            <li><a id="contents:unix" href="#unix">Unix</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:兼容分时系统" href="#兼容分时系统">兼容分时系统</a></li>
+        <li><a id="contents:gnu" href="#gnu">GNU</a></li>
+        <li><a id="contents:linux-起源" href="#linux-起源">Linux 起源</a></li>
+        <li><a id="contents:linux-发行版" href="#linux-发行版">Linux 发行版</a></li>
+        <li><a id="contents:linux-内核" href="#linux-内核">Linux 内核</a></li>
+        <li><a id="contents:开源许可证" href="#开源许可证">开源许可证</a></li>
+        <li><a id="contents:linux-哲学思想" href="#linux-哲学思想">Linux 哲学思想</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <h1 id="计算机基础"><a href="#计算机基础" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:计算机基础" class="headings">计算机基础</a></h1>
+<p>计算机系统由硬件（Hardware）系统和软件（Software）系统两大部分组成</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220214.png-watermark" alt="image"></p>
+<h2 id="计算机硬件"><a href="#计算机硬件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:计算机硬件" class="headings">计算机硬件</a></h2>
+<p>计算机（Computer）：俗称电脑，是一种能<strong>接收</strong>和<strong>存储</strong>信息，并按照存储在其内部的程序对海量数据进行自动，高速的<strong>处理</strong>，然后把处理结果<strong>输出</strong>的现代化智能电子设备</p>
+<h3 id="发展历史"><a href="#发展历史" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:发展历史" class="headings">发展历史</a></h3>
+<ul>
+<li>第一代计算机（1946-1957）：电子管时代</li>
+<li>第二代计算机（1958-1964）：晶体管时代</li>
+<li>第三代计算机（1965-1970）：集成电路时代</li>
+<li>第四代计算机（1971 以后）：大规模集成电路时代</li>
+</ul>
+<h3 id="世界上第一台计算机-eniac"><a href="#世界上第一台计算机-eniac" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:世界上第一台计算机-eniac" class="headings">世界上第一台计算机 ENIAC</a></h3>
+<p>1946 年，世界上第一台计算机 ENIAC（electronic numerical integerator and calculator）在美国宾州大学诞生，是美国奥伯丁武器试验场为了满足计算弹道需要而研制成的。使用了 17468 只电子管，占地 179 平方米，重达 30 吨，耗电 174 千瓦，耗资 40 多万美元。每秒可进行 5000 次加法或减法运算，</p>
+<h3 id="冯诺依曼体系"><a href="#冯诺依曼体系" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:冯诺依曼体系" class="headings">冯诺依曼体系</a></h3>
+<p>1946 年数学家冯诺依曼提出，计算机硬件由运算器，控制器，存储器，输入设备和输出设备五大部分组成</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220418.png-watermark" alt="image"></p>
+<p>主存储器：运行内存，所有被计算机处理的数据都需要放在主存储器
+辅助存储器：硬盘，用来持久化存储数据
+运算器：进行加减乘除与或非运算
+控制器：协调（指挥）各种设备间通讯</p>
+<h3 id="进制"><a href="#进制" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:进制" class="headings">进制</a></h3>
+<p>Linux 中自带 bc 计算器</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入计算器</span>
+</span></span><span class="line"><span class="cl">$ bc
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出 2 进制，o（output）</span>
+</span></span><span class="line"><span class="cl"><span class="nv">obase</span><span class="o">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">12</span>
+</span></span><span class="line"><span class="cl"><span class="m">1100</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出计算器</span>
+</span></span><span class="line"><span class="cl">quit
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置输入二进制</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ibase</span><span class="o">=</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">1100</span>
+</span></span><span class="line"><span class="cl"><span class="m">12</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="摩尔定律"><a href="#摩尔定律" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:摩尔定律" class="headings">摩尔定律</a></h3>
+<p>由英特尔（Intel）创始人之一戈登摩尔于 1965 年提出：</p>
+<p>当价格不变时，集成电路上可容纳的元器件数目，约每隔 18-24 个月便会增加一倍，性能也将提升一倍，</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220445.png-watermark" alt="image"></p>
+<h3 id="按规模分类计算机"><a href="#按规模分类计算机" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:按规模分类计算机" class="headings">按规模分类计算机</a></h3>
+<p><a href="http://www.top500.org" target="_blank" rel="noopener">超级计算机排行</a></p>
+<ul>
+<li>巨型计算机：应用于国防尖端技术和现代科学计算机中。巨型计算机的运算速度可达每秒百万亿次以上，“天河一号”为我国首台千万亿次级的计算机，</li>
+<li>大型计算机：具有较高的运算速度，每秒可以执行几千万条指令，而且有较大的存储空间。往往用与科学计算，数据处理或作为网络服务器使用，如 IBM z13 mainframe</li>
+<li>小型计算机：规模较小，结构简单，运行环境要求较低，一般应用于工业自动控制，测量仪器，医疗设备中的数据采集等方面，</li>
+<li>微型计算机：中央处理器（CPU）采用微处理芯片，体积小巧轻便，官方用于商业，服务业，工厂的自动控制，办公自动化以及大众化的信息处理</li>
+</ul>
+<h3 id="服务器"><a href="#服务器" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器" class="headings">服务器</a></h3>
+<p>服务器 Server 是计算机的一种，是网络中客户端计算机提供各种服务的高性能的计算机，服务器在网络操作系统的控制下，将与其连接的硬盘，磁带，打印机及昂贵的专用通讯设备提供给网络上的客户站点共享，也能为网络用户提供集中计算，信息发布及数据管理等服务</p>
+<p>阿里提出的去 IOE：IBM（小型机）, Oracle（数据库）, EMC（存储）</p>
+<h4 id="服务器按应用功能可分为"><a href="#服务器按应用功能可分为" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器按应用功能可分为" class="headings">服务器按应用功能可分为：</a></h4>
+<ul>
+<li>Web 服务器：apache、nginx</li>
+<li>数据库服务器：mysql、oracle</li>
+<li>文件服务器：NFS、SAMBA、FTP</li>
+<li>中间件应用服务器：Tomcat</li>
+<li>日志服务器：RSYSLOG</li>
+<li>监控服务器：ZABBIX</li>
+<li>程序版本控制服务器：GIT、SVN</li>
+<li>虚拟机服务器：KVM、Docker、K8S</li>
+<li>邮件服务器：SendMail</li>
+<li>打印服务器：</li>
+<li>域控制服务器：Domain Controller（DC）</li>
+<li>多媒体服务器：</li>
+<li>通讯服务器：</li>
+<li>ERP 服务器等</li>
+</ul>
+<h4 id="按外形分类"><a href="#按外形分类" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:按外形分类" class="headings">按外形分类：</a></h4>
+<h5 id="塔式-tower-服务器"><a href="#塔式-tower-服务器" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:塔式-tower-服务器" class="headings">塔式 Tower 服务器</a></h5>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220516.png-watermark" alt="image"></p>
+<h5 id="刀片式-blade-服务器"><a href="#刀片式-blade-服务器" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:刀片式-blade-服务器" class="headings">刀片式 Blade 服务器</a></h5>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220548.png-watermark" alt="clipboard"></p>
+<h5 id="机架式-rack-服务器"><a href="#机架式-rack-服务器" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:机架式-rack-服务器" class="headings">机架式 Rack 服务器</a></h5>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220619.png-watermark" alt="clipboard"></p>
+<h3 id="服务器硬件组成"><a href="#服务器硬件组成" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器硬件组成" class="headings">服务器硬件组成</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220640.png-watermark" alt="clipboard"></p>
+<h3 id="服务器配置示例"><a href="#服务器配置示例" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器配置示例" class="headings">服务器配置示例</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220656.png-watermark" alt="clipboard"></p>
+<p>CPU: 家用 I 系列，服务器 Xeon 至强系列</p>
+<h3 id="服务器硬件"><a href="#服务器硬件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器硬件" class="headings">服务器硬件</a></h3>
+<h4 id="cpu"><a href="#cpu" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:cpu" class="headings">CPU</a></h4>
+<p>CPU 是 Central Processing Unit 的缩写，即中央处理器。由控制器和运算器组成，是整个计算机系统中最重要的部分</p>
+<p><strong>服务器 CPU 公司</strong></p>
+<ul>
+<li>
+<p>Intel</p>
+<ul>
+<li>Xeon    智强</li>
+<li>Itanium 安腾</li>
+</ul>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220719.png-watermark" alt="clipboard"></p>
+</li>
+<li>
+<p>AMD</p>
+<ul>
+<li>Althlon MP</li>
+</ul>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220735.png-watermark" alt="clipboard"></p>
+</li>
+<li>
+<p>IBM</p>
+<ul>
+<li>Power</li>
+</ul>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220753.png-watermark" alt="clipboard"></p>
+</li>
+</ul>
+<p><strong>CPU 性能指标</strong></p>
+<p>linux 使用<code>lscpu</code>查看 cpu 信息</p>
+<p>-主频：主频是 CPU 的始终频率（CPU Clock Speed），是 CPU 运算时的工作的频率（1 秒内发生的同步脉冲数）的简称。单位是 Hz，一般来说，主频越高，CPU 的速度越快，由于内部结构不同，并非所有的时钟频率相同的 CPU 的性能都一样</p>
+<ul>
+<li>外频：系统总线的工作频率，CPU 与外部（主板芯片组）交换数据，指令的工作时钟频率</li>
+<li>倍频：倍频指 CPU 外频与主频相差的倍数</li>
+<li>三者关系是：主频 = 外频 × 倍频</li>
+<li>高速缓存（cache）：高速交换的存储器，CPU 缓存分为一级，二级，三级缓存，即 L1、L2、L3，可将内存中的部分数据缓存到 cache 中，当 CPU 用到这部分数据时，可从 cache 中快速读取，不用去读取内存中的数据（CPU 的速度比内存快得多）</li>
+<li>内存总线速度（Memory-Bus Speed）：一般等于 CPU 的外频，指 CPU 与二级缓存（L2）和内存之间的通信速度</li>
+<li>地址总线宽度：决定了 CPU 可以访问的物理地址空间，32 位/64 位处理器，</li>
+</ul>
+<p><strong>CPU 类型</strong></p>
+<ul>
+<li>x86</li>
+<li>x64（CISC）</li>
+<li>ARM（Acorn RISC Machine）</li>
+<li>m6800，m68k（moto）</li>
+<li>Power（IBM）</li>
+<li>Powerpc（apple，ibm，moto）</li>
+<li>Ultrasparc（Sun）</li>
+<li>Alpha（HP）</li>
+<li>安腾（compaq）</li>
+</ul>
+<p><strong>服务器按 CPU 分类</strong></p>
+<ul>
+<li>
+<p>非 x86 服务器：</p>
+<blockquote>
+<p>使用 RISC（精简指令集）或 EPIC（并行指令代码）处理器，并且主要采用 UNIX 和其他专用操作系统的服务器，指令系统相对简单，他只要求硬件执行很有限且最常用的那部分指令，CPU 主要有 Compaq 的 Alpha，HP 的 PA_RISC，IBM 的 Power PC，MIPS 的 MIPS 和 SUN 的 Sparc，Intel 研发的 EPIC 安腾处理器等。这种服务器价格昂贵，体系封闭，但是稳定性好，性能强，主要用在金融，电信等大型企业的核心系统，</p>
+</blockquote>
+</li>
+<li>
+<p>x86 服务器：</p>
+<blockquote>
+<p>又称 CISC（复杂指令集）架构服务器，即通常所讲的 PC 服务器，他是基于 PC 机体系结构，使用 Intel 或其他兼容 x86 指令集的处理器芯片的服务器。目前主要为 intl 的 Xeon E3、E5、E7 系列，价格相对便宜，兼容性好，稳定性较差，安全性不算太高，</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="主板mainboard"><a href="#主板mainboard" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:主板mainboard" class="headings">主板（mainboard）</a></h4>
+<p>主板（mainboard），系统板（systemboard）或母板（motherboard），安装在机箱内，是计算机最基本的也是最后总要的部件之一</p>
+<p>主板一般为矩形电路板，上面安装了组成计算机的主要电路系统，一般有 BIOS 芯片，I/O 控制芯片，键盘和面板控制开关接口，指示灯插接件，扩展插槽，主板及插卡的直流电源供电接插件等元件</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220819.png-watermark" alt="clipboard"></p>
+<h4 id="内存和外存"><a href="#内存和外存" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:内存和外存" class="headings">内存和外存</a></h4>
+<p><strong>内存</strong>：是介于 CPU 和外部存储之间，是 CPU 对外部存储中程序与数据进行高速运算时存放程序指令，数据和中间结果的临时场所，它的物理实质就是一组具备数据输入输出和数据存储功能的高速集成电路</p>
+<p>内存是 CPU 能直接寻址的存储空间，由半导体器件制成。内存的特点是存取速度快</p>
+<p><strong>外存</strong>：硬盘，U 盘，软盘，光盘</p>
+<p><strong>内存和外存的区别</strong>：</p>
+<ul>
+<li>内存断电后数据丢失</li>
+<li>外存断电后数据可以保存</li>
+</ul>
+<p><strong>容量</strong>：即该内存的存储容量，单位一般为“MB”或“GB”</p>
+<p><strong>内存带宽</strong>：</p>
+<ul>
+<li>
+<p>内存带宽是指内存与北桥芯片之间的数据传输率</p>
+</li>
+<li>
+<p>单通道内存节制器一般都是 64-bit 的，8 个二进制位相当于一字节，换算成字节是 64/8=8，再乘以内存的运行频率，如果是 DDR 内存就要再乘以 2</p>
+</li>
+<li>
+<p>计算公式：</p>
+<blockquote>
+<p>内存带宽 = 内存总线频率 × 数据总线位数/8</p>
+</blockquote>
+</li>
+<li>
+<p>示例：DDR 内存带宽计算</p>
+<pre tabindex="0"><code>DDR2 667, 运行频率为 333MHz, 带宽为
+333×2×64/8=5400MB/s=5.4GB/s
+DDR2 800, 运行频率为 600MHz, 带宽为
+400×2×64/8=6400MB/s=6.4GB/s
+</code></pre></li>
+</ul>
+<p><strong>保证内存中数据不丢失的技术</strong>：</p>
+<ul>
+<li>
+<p>在线备用内存技术</p>
+<ul>
+<li>当主内存或者是扩展内存中的内存出现多位错误或者物理内存故障时，服务器仍继续运行</li>
+<li>由备用内存接替出现故障内存的工作</li>
+<li>备用的内存区域必须比其他区域的内存容量大或相同</li>
+</ul>
+</li>
+<li>
+<p>内存镜像</p>
+<ul>
+<li>镜像为系统在出现多位错或内存物理故障时提供数据保护功能，以保证呢个系统仍能正常运行</li>
+<li>数据同时写入两个镜像的内存区域</li>
+<li>从一个区域进行数据的读取</li>
+</ul>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220843.png-watermark" alt="clipboard"></p>
+</li>
+</ul>
+<h4 id="硬盘"><a href="#硬盘" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:硬盘" class="headings">硬盘</a></h4>
+<h5 id="机械硬盘"><a href="#机械硬盘" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:机械硬盘" class="headings">机械硬盘</a></h5>
+<h6 id="结构"><a href="#结构" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:结构" class="headings">结构</a></h6>
+<p>存储介质（Medis）：盘片</p>
+<blockquote>
+<p>盘片的基板是金属或玻璃材质制成，为达到高密度高稳定的质量，基板要求表面光滑平整，不可有任何瑕疵，</p>
+</blockquote>
+<p>读与写（Read Write Head）：磁头</p>
+<blockquote>
+<p>磁头是硬盘读取数据的关键部件，它的主要作用就是将存储在硬盘盘片上的磁信息转化为电信号向外传输</p>
+</blockquote>
+<p>马达（Spindle Motor&amp;Voice Coil Motor）：</p>
+<blockquote>
+<p>马达上装有一至多片盘片，以 7200、10000、15000RPM 等定速旋转，为保持其平衡不可抖动，所以其质量要求严谨，不产生高温噪音</p>
+</blockquote>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220913.png-watermark" alt="clipboard"></p>
+<h6 id="基本参数"><a href="#基本参数" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:基本参数" class="headings">基本参数</a></h6>
+<ul>
+<li>
+<p>容量：</p>
+<blockquote>
+<p>容量是硬盘最主要的参数。单位有 MB、GB、TB</p>
+</blockquote>
+</li>
+<li>
+<p>转速：</p>
+<blockquote>
+<p>转速是指硬盘盘片每分钟转动的圈数，单位为 RPM，现在硬盘转速已经达到 10000rpm，15000rpm</p>
+</blockquote>
+</li>
+<li>
+<p>传输速率</p>
+<blockquote>
+<p>传输速率（Data Transfer Rate），指硬盘速写数据的速度，单位为兆字节每秒（MB/s）</p>
+</blockquote>
+</li>
+<li>
+<p>缓存</p>
+<blockquote>
+<p>硬盘缓存的目的是为了解决系统前后级读写速度不匹配的问题，以提高硬盘的读写速度</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="接口类型"><a href="#接口类型" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:接口类型" class="headings">接口类型</a></h6>
+<ul>
+<li>IDE 接口：硬盘接口规范，采用 ATA 技术规范</li>
+<li>SCSI 接口：应用于小型机上的高速数据传输技术</li>
+<li>SATA 接口：Serial ATA，提高传输速率，支持热插拔</li>
+<li>SAS 接口：Serial Attached SCSI，兼容 SATA</li>
+</ul>
+<p>目前主流的硬盘接口为 SATA（家用）和 SAS（服务器用）接口</p>
+<h6 id="服务器的性能短板"><a href="#服务器的性能短板" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器的性能短板" class="headings">服务器的性能短板</a></h6>
+<p>木桶效应，如果 CPU 每秒处理 1000 个服务请求的能力，各种总线的负载能力达到 500 个，但网卡只能接受 200 个请求，而硬盘只能承担 150 个的话，那么这台服务器的处理能力只能是 150 个请求/秒，有 85%的处理器计算能力浪费了，</p>
+<p>在计算机系统中，硬盘的读写速率已经成为影像系统性能进一步提高的瓶颈，因此可使用固态硬盘提升，</p>
+<h5 id="固态硬盘ssd"><a href="#固态硬盘ssd" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:固态硬盘ssd" class="headings">固态硬盘（SSD）</a></h5>
+<p>SSD（Solid State Disk）：泛指使用 NAND Flash 组成的固态硬盘。其特别之处在于没有机械结构，以区块写入和抹除的方式作读写的功能，因此在读写的效率上，非常依赖于读写技术上的设计，SSD 读写存取速度快，性能稳定，防震性高，发热低，耐低温，电耗低，无噪音。因为没有机械部分，所以长时间使用出现故障几率也比较小。缺点：价格高，容量小，在普通硬盘前毫无性价比优势</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220932.png-watermark" alt="clipboard"></p>
+<h4 id="阵列卡raid"><a href="#阵列卡raid" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:阵列卡raid" class="headings">阵列卡（Raid）</a></h4>
+<p><img src="https://oss.intelli.icu/images/2021/20210603220951.png-watermark" alt="clipboard"></p>
+<p>用来实现 RAID 的建立和重建，检测和修复多位错误，错误磁盘自动检测等功能，RAID 芯片使 CPU 的资源得以释放</p>
+<p><strong>RAID 卡作用</strong>：</p>
+<ul>
+<li>阵列卡把若干硬盘驱动器按照一定要求组成一个整体，由阵列控制器管理的系统，</li>
+<li>阵列卡用来提高磁盘子系统的性能及可靠性</li>
+</ul>
+<p><strong>阵列卡参数</strong>：</p>
+<ul>
+<li>支持的 RAID 级别</li>
+<li>阵列卡缓存</li>
+<li>电池保护</li>
+</ul>
+<h4 id="电源和风扇"><a href="#电源和风扇" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:电源和风扇" class="headings">电源和风扇</a></h4>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221012.png-watermark" alt="clipboard"></p>
+<ul>
+<li>支持服务器的电力负载</li>
+<li>支持冗余，防止电源故障
+<ul>
+<li>故障预警和防止</li>
+<li>故障之前的预防性维护</li>
+<li>保证服务器持续运行</li>
+</ul>
+</li>
+<li>电源子系统包括
+<ul>
+<li>智能电源和风扇</li>
+</ul>
+</li>
+<li>冗余电源和风扇</li>
+</ul>
+<h4 id="显卡"><a href="#显卡" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:显卡" class="headings">显卡</a></h4>
+<p>服务器都在主板上集成了显卡，但是显存容量不高，一般为 16M 或 32M，</p>
+<p>GPU：Graphic Processing Unit，即“图形处理器”</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221037.png-watermark" alt="clipboard"></p>
+<h4 id="网卡"><a href="#网卡" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:网卡" class="headings">网卡</a></h4>
+<p>服务器都在主板上集成了网卡，传输速率为 1Gbps，即千兆网卡，特殊应用需要高端网卡，如光纤网卡，Infiniband 网卡等，传输速率能达到 10Gbps，20Gbps，即万兆网卡，</p>
+<p>1Gbps：1Gbit/second, 1Gbit/8 = 512MB, 512MB/s
+<img src="https://oss.intelli.icu/images/2021/20210603221056.png-watermark" alt="clipboard"></p>
+<h4 id="热插拔技术"><a href="#热插拔技术" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:热插拔技术" class="headings">热插拔技术</a></h4>
+<p>称为热交换技术（Hot Swap），允许在不关机的状态下更换故障热插拔设备</p>
+<p>常见的热插拔设备：硬盘，电源，PCI 设备，风扇等</p>
+<p>热插拔技术与 RAID 技术配合起来，可以使服务器在不关机的状态下恢复故障硬盘上的数据，同时并不影响网络用户对数据的使用，</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221120.png-watermark" alt="clipboard"></p>
+<h4 id="机柜"><a href="#机柜" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:机柜" class="headings">机柜</a></h4>
+<p>机柜式服务器-服务器放置在机柜中</p>
+<p>通常使用的是 42U（约 2 米高）机柜（1U=44.45mm）</p>
+<p>外观尺寸一般为款 600<em>深 1000</em>高 2000(mm)</p>
+<p>大部分网络设备（交换机，路由器等）深 600mm 即可</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221144.png-watermark" alt="clipboard"></p>
+<p>机柜配件</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221201.png-watermark" alt="clipboard"></p>
+<h3 id="存储基础知识"><a href="#存储基础知识" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:存储基础知识" class="headings">存储基础知识</a></h3>
+<p>用于存放数据信息的设备和介质，是计算机系统的外部存储，数据可安全存放，长期驻留</p>
+<p><strong>传统存储</strong>：</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221224.png-watermark" alt="clipboard"></p>
+<p><strong>磁盘阵列</strong>：</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221243.png-watermark" alt="clipboard"></p>
+<p><strong>存储网络类型</strong>：</p>
+<ul>
+<li>
+<p>DAS：直接连接存储（Direct Attached Storage）</p>
+</li>
+<li>
+<p>NAS：网络连接存储（Network Attached Storage）</p>
+<blockquote>
+<p>通过局域网在多个文件服务器之间实现了互联，基于文件的协议（NFS，SMB/CIFS 等），实现文件共享。只对文件有使用能力，</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221311.png-watermark" alt="clipboard"></p>
+<ul>
+<li>集中管理数据，从而释放带宽，提高性能</li>
+<li>可提供跨平台文件共享功能</li>
+<li>可靠性较差，适用于局域网络或较小的网络</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>SAN：存储区域网络（Storage Area Networks）</p>
+<blockquote>
+<p>利用高速的光纤网络链接服务器与存储设备，基于 SCSI，IP，ATM 等多种高级协议，实现存储共享。对文件有管理能力，</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221327.png-watermark" alt="clipboard"></p>
+<ul>
+<li>服务器跟存储装置两者各司其职</li>
+<li>利用光纤信道来传输数据，以达到一个服务器与存储装置之间多对多的高效能，高稳定度的存储环境</li>
+<li>实施复杂，管理成本高</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>区别：</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>\</th>
+<th>DAS</th>
+<th>NAS</th>
+<th>SAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传输类型</td>
+<td>SCSI，FC</td>
+<td>IP</td>
+<td>IP，FC，SAS</td>
+</tr>
+<tr>
+<td>数据类型</td>
+<td>数据块</td>
+<td>文件</td>
+<td>数据块</td>
+</tr>
+<tr>
+<td>典型应用</td>
+<td>任何</td>
+<td>文件服务器</td>
+<td>数据库应用</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>磁盘与服务器分离，便于统一管理</td>
+<td>不占用应用服务器资源</br> 广泛支持操作系统</br>扩展较容易</br>即插即用，安装简单方便</td>
+<td>高扩展性</br>高可用性</br>数据集中，易管理</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>连接距离短</br>数据分散，共享困难</br>存储空间利用率不高</br>扩展性有限</td>
+<td>不适合存储量大的块级应用</br>数据备份及恢复占用网络带宽</td>
+<td>相比 NAS 成本较高</br>安装和升级比 NAS 复杂</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="计算机软件"><a href="#计算机软件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:计算机软件" class="headings">计算机软件</a></h2>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221349.png-watermark" alt="clipboard"></p>
+<h3 id="操作系统"><a href="#操作系统" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:操作系统" class="headings">操作系统</a></h3>
+<p><strong>OS</strong>：Operating System，通用目的的软件程序，包含如下功能</p>
+<ul>
+<li>硬件驱动</li>
+<li>进程管理</li>
+<li>内存管理</li>
+<li>网络管理</li>
+<li>安全管理</li>
+<li>文件管理</li>
+</ul>
+<p><strong>OS 分类</strong></p>
+<ul>
+<li>服务器 OS：RHEL，CentOS，Windows Server，AIX</li>
+<li>桌面 OS：Windows 10，Windows 7，Mac OS，Fedora</li>
+<li>移动设备 OS：Andriod，IOS，YunOS</li>
+</ul>
+<h3 id="开发接口标准"><a href="#开发接口标准" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:开发接口标准" class="headings">开发接口标准</a></h3>
+<p><strong>ABI：Application Binary Interface</strong></p>
+<blockquote>
+<p>ABI 描述了应用程序与 OS 之间的底层接口，允许编译好的目标代码在使用兼容 ABI 的系统中无需改动就能运行</p>
+</blockquote>
+<p><strong>API：Application Binary Interface</strong></p>
+<blockquote>
+<p>API 定义了源代码和库之间的接口，因此同样的源代码可以在支持这个 API 的任何系统中编译</p>
+</blockquote>
+<p><strong>POSIX：Portable Operating System Interface</strong></p>
+<blockquote>
+<p>IEEE 在操作系统上定义的一系列 API 标准</br>
+POSIX 兼容的程序可以在其他 POSIX 操作系统编译执行</p>
+</blockquote>
+<p><strong>运行程序格式</strong>：</p>
+<ul>
+<li>Windows：EXE，dll（dynamic link library），.lib</li>
+<li>Linux：ELF，.so（shared object），.a</li>
+</ul>
+<h3 id="library-function-和-system-call"><a href="#library-function-和-system-call" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:library-function-和-system-call" class="headings">Library function 和 system call</a></h3>
+<p>函数库和系统调用</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221409.png-watermark" alt="clipboard"></p>
+<p>用户的应用程序包含函数库（Library），函数库通过系统调用（system call）来操作内核（Kernel），内核通过硬件驱动（Device Dirver）从硬件（Hardware）中获取数据</p>
+<p>单核 CPU 同一时间只能做一件事，所以，同一时间只能在一个空间中工作，当运行程序时，CPU 在用户空间和内核空间之间切换工作，称为上下文切换，保留在上一空间正在处理的数据状态，</p>
+<h3 id="用户空间和内核空间"><a href="#用户空间和内核空间" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:用户空间和内核空间" class="headings">用户空间和内核空间</a></h3>
+<p><strong>用户空间（User Space）</strong>：</p>
+<p>用户程序的运行空间。为了安全，他们是隔离的，即使用户的程序崩溃，内核也不受影响，</p>
+<p>只能执行简单的运算，不能直接调用系统资源，必须通过系统接口（system call），才能向内核发出指令</p>
+<p><strong>内核空间（Kernel Space）</strong>：</p>
+<p>是 Linux 内核的运行空间</p>
+<p>可以执行任意命令，调用系统的一切资源</p>
+<p><strong>示例</strong>：</p>
+<p>str = &quot;www.baidu.com&quot;   //用户空间</br>
+x = x + 10              // 用户空间</br>
+file.write(str)         // 切换到内核空间</br>
+y = x + 200             // 切换回用户空间</br></p>
+<p><strong>说明</strong>：第一行和第二行都是简单的赋值运算，在 User space 执行。第三行需要写入文件，就要切换到 Kernel space，因为用户不能直接写文件，必须通过内核安排。第四行又是赋值运算，就切换回 User space，</p>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221436.png-watermark" alt="clipboard"></p>
+<h3 id="编程语言"><a href="#编程语言" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:编程语言" class="headings">编程语言</a></h3>
+<ul>
+<li>
+<p>低级语言</p>
+<blockquote>
+<p>机器语言：0 和 1
+汇编语言：和机器语言一一对应，与硬件相关的特有代码，驱动程序开发</p>
+</blockquote>
+</li>
+<li>
+<p>中级语言：C</p>
+<blockquote>
+<p>系统级应用，驱动程序</p>
+</blockquote>
+</li>
+<li>
+<p>高级语言：java，python，go，php，Objective-C，C#</p>
+<blockquote>
+<p>应用级程序开发</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>C：hello.c</strong></p>
+<pre tabindex="0"><code># include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf(&#34;Hello, world\n&#34;);
+}
+</code></pre><p><strong>Java：hello.java</strong></p>
+<pre tabindex="0"><code>class Hello{
+    public static void main(String[] agrs){
+        System.out.println(&#34;Hello Java&#34;);
+    }
+}
+</code></pre><p><strong>Perl：hello.pl</strong></p>
+<pre tabindex="0"><code>#!/usr/bin/perl
+print &#34;hello perl\n&#34;
+</code></pre><p><strong>Python hello.py</strong></p>
+<pre tabindex="0"><code>#!/usr/bin/python
+print &#39;Hello Python&#39;
+</code></pre><p>将中级语言和高级语言编译为低级语言（0 与 1），才能被计算机执行，</p>
+<h3 id="服务器三大操作系统"><a href="#服务器三大操作系统" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:服务器三大操作系统" class="headings">服务器三大操作系统</a></h3>
+<h4 id="windows"><a href="#windows" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:windows" class="headings">Windows</a></h4>
+<h4 id="linux"><a href="#linux" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux" class="headings">Linux</a></h4>
+<p>GNU/Linux</p>
+<h4 id="unix"><a href="#unix" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:unix" class="headings">Unix</a></h4>
+<p>1969 年 Ken Thompson</p>
+<ul>
+<li>
+<p>System：Bell Lab</p>
+<ul>
+<li>AIX（IBM）</li>
+<li>Solaris（SUN）</li>
+<li>HP-UX（HP）</li>
+</ul>
+</li>
+<li>
+<p>BSD：（BSRG）Berkeley System Distribution</p>
+<ul>
+<li>NetBSD</li>
+<li>OpenBSD</li>
+<li>FreeBSD</li>
+</ul>
+</li>
+</ul>
+<h3 id="兼容分时系统"><a href="#兼容分时系统" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:兼容分时系统" class="headings">兼容分时系统</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221457.png-watermark" alt="clipboard"></p>
+<p>只有一台主机，配置多个键盘和显示器，给多个用户用，</p>
+<p>主机同一时刻只能处理一个用户的请求，</p>
+<p>为进一步强化大型主机功能，让主机的资源可以提供更多的是使用着来利用，在 1964 年，贝尔实验室，麻省理工学院及奇艺公司共同发起了 Multic（多路信息计算系统）计划，目的是让大型主机可以同时支持 300 个以上的终端机连线使用。不过到了 1969 年前后，由于计划进度缓慢，资金短缺，所以计划虽然继续研究，但贝尔实验室退出了，</p>
+<p>1966 年加州大学伯克利分校毕业的 Ken Thompson 加入了贝尔实验室。参与了 Multics 系统的研发，并基于该系统开发了'star travel'游戏。当贝尔实验室退出该项目后，意味着 Ken 将没有机器可以再玩这个游戏。所以 Ken 找到了一台老式的 PDP-7，并在这台机器上重写了他的游戏。利用 PDP-7 上的汇编语言，花费一个月时间完成了操作系统的内核。一周一个内核，一个文件系统，一个编译器和一个编译程序，该操作系统内核就是 unix 的起源，</p>
+<h3 id="gnu"><a href="#gnu" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:gnu" class="headings">GNU</a></h3>
+<p>由于 UNIX 开始收费，相应的软件也开始收费，所以 GNU 诞生了，提供开源免费的，运行在 Unix 上的应用软件，</p>
+<p>GNU（GNU is Not Unix）</p>
+<ul>
+<li>1984 年由 Richard Stallman 发起并创建</li>
+<li>目标是编写大量兼容于 Unix 系统的自由软件</li>
+<li>官方网站：http://www.gnu.org</li>
+<li></li>
+</ul>
+<p>GPL：（GNU General Public License）</p>
+<ul>
+<li>自由软件基金会：Free Software Foundation</li>
+<li>允许用户任意复制，传递，修改及再发布</li>
+<li>基于自由软件修改再次发布的软件，仍需遵循 GPL</li>
+<li></li>
+</ul>
+<p>LGPL（Lesser General Public License）</p>
+<ul>
+<li>LGPL 相对于 GPL 较为宽松，允许不公开全部源代码</li>
+</ul>
+<p>GNU 操作系统：Hurd Hird of Unix-Replacing Daemons</p>
+<p>官网：http://www.gnu.org/home.html</p>
+<h3 id="linux-起源"><a href="#linux-起源" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-起源" class="headings">Linux 起源</a></h3>
+<p>1991 年 10 月 5 日，Torvalds 在 comp.os.minix 新闻组上发布消息，宣布他自行编写的完全自由免费的内核诞生（Freeminix-like kernel sources for 386-AT）-FREAX，英文含义是怪诞的，怪物，异想天开</p>
+<p>类 Unix 内核，在 GPL 下发布</p>
+<p>官网：www.kernel.org</p>
+<p>Linux 操作系统包含：</p>
+<ul>
+<li>完整的类 Unix 操作系统</li>
+<li>Linux 内核 + GNU 工具</li>
+</ul>
+<h3 id="linux-发行版"><a href="#linux-发行版" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-发行版" class="headings">Linux 发行版</a></h3>
+<p><strong>slackware</strong>：SUSE Linux Enterprise Server（SLES）
+OpenSuse 桌面</p>
+<p><strong>debian</strong>：ubuntu，mint</p>
+<p><strong>redhat</strong>：RHEL：RedHat Enterprise Linux，每 18 个月发行一个新版本</p>
+<ul>
+<li>CentOS：兼容 RHEL 的格式</li>
+<li>中标麒麟：中标软件</li>
+<li>Fedora：每 6 个月发行一个新版本</li>
+</ul>
+<p><strong>ArchLinux</strong>：轻量简洁</p>
+<p><strong>Gentoo</strong>：极致性能</p>
+<p><strong>LFS</strong>：Linux From sratch 自定制 Linux，<strong>需要深入理解 Linux 可以去看官网文档</strong></p>
+<p><strong>Android</strong>：kernel+busybox（工具集）+java 虚拟机</p>
+<p><strong>Linux 分支参考网站</strong>：</p>
+<ul>
+<li><a href="http://www.futurist.se/gldt/" target="_blank" rel="noopener">http://www.futurist.se/gldt/</a></li>
+<li><a href="http://www.mindpin.com/d3js-demo/linux/" target="_blank" rel="noopener">http://www.mindpin.com/d3js-demo/linux/</a></li>
+</ul>
+<h3 id="linux-内核"><a href="#linux-内核" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-内核" class="headings">Linux 内核</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221527.png-watermark" alt="clipboard"></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ uname -r
+</span></span><span class="line"><span class="cl">3.10.0-1062.1.2.el7.x86_64
+</span></span><span class="line"><span class="cl">$ cat /etc/redhat-release
+</span></span><span class="line"><span class="cl">CentOS Linux release 7.7.1908 <span class="o">(</span>Core<span class="o">)</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="开源许可证"><a href="#开源许可证" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:开源许可证" class="headings">开源许可证</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210603221546.png-watermark" alt="clipboard"></p>
+<p>GPL 最严格，MIT 最宽松</p>
+<h3 id="linux-哲学思想"><a href="#linux-哲学思想" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-哲学思想" class="headings">Linux 哲学思想</a></h3>
+<ul>
+<li>一切都是一个文件（包括硬件）</li>
+<li>小型，单一用途的程序</li>
+<li>链接程序，共同完成复杂的任务</li>
+<li>避免令人困惑的用户界面</li>
+<li>配置数据存储在文本中</li>
+</ul>
+
+            </div>
+
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://blog.ws.lu/" class="p-author h-card" target="_blank" rel="noopener">王硕</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/" target="_blank" rel="noopener">https://blog.ws.lu/posts/linux/阿里云linux运维学习路线/阶段一-linux入门/linux-computer-basics/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2023-03-14 17:04:55 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2023-03-14</text><text x="915" y="140" textLength="650" transform="scale(.1)">2023-03-14</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        <div class="post-share">
+
+        
+
+        <div class="share-items">
+
+            
+                <div class="share-item twitter">
+                    
+                    <a href="https://twitter.com/share?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;text=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;hashtags=Linux,&amp;via=%25!s%28%3cnil%3e%29" title="分享到「Twitter」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item facebook">
+                    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;hashtag=%23Linux" title="分享到「Facebook」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item linkedin">
+                    
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;title=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;summary=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f%e7%94%b1%e7%a1%ac%e4%bb%b6%ef%bc%88Hardware%ef%bc%89%e7%b3%bb%e7%bb%9f%e5%92%8c%e8%bd%af%e4%bb%b6%ef%bc%88Software%ef%bc%89%e7%b3%bb%e7%bb%9f%e4%b8%a4%e5%a4%a7%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a1%ac%e4%bb%b6%20%e8%ae%a1%e7%ae%97%e6%9c%ba%ef%bc%88Computer%ef%bc%89%ef%bc%9a%e4%bf%97%e7%a7%b0%e7%94%b5%e8%84%91%ef%bc%8c%e6%98%af%e4%b8%80%e7%a7%8d%e8%83%bd%e6%8e%a5%e6%94%b6%e5%92%8c%e5%ad%98%e5%82%a8%e4%bf%a1%e6%81%af%ef%bc%8c%e5%b9%b6%e6%8c%89%e7%85%a7%e5%ad%98%e5%82%a8%e5%9c%a8%e5%85%b6%e5%86%85%e9%83%a8%e7%9a%84%e7%a8%8b%e5%ba%8f%e5%af%b9%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e8%87%aa%e5%8a%a8%ef%bc%8c%e9%ab%98%e9%80%9f%e7%9a%84%e5%a4%84%e7%90%86%ef%bc%8c%e7%84%b6%e5%90%8e%e6%8a%8a%e5%a4%84%e7%90%86%e7%bb%93%e6%9e%9c%e8%be%93%e5%87%ba%e7%9a%84%e7%8e%b0%e4%bb%a3%e5%8c%96%e6%99%ba%e8%83%bd%e7%94%b5%e5%ad%90%e8%ae%be%e2%80%a6%e2%80%a6&amp;source=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「LinkedIn」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon linkedin-icon"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item telegram">
+                    
+                    <a href="https://t.me/share/url?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;text=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80" title="分享到「Telegram」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item weibo">
+                    
+                    <a href="https://service.weibo.com/share/share.php?&amp;url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;title=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;pic=https://oss.intelli.icu/images/2021/20210603220214.png-watermark&amp;searchPic=false" title="分享到「新浪微博」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item douban">
+                    
+                    <a href="https://www.douban.com/share/service?href=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;name=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;text=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f%e7%94%b1%e7%a1%ac%e4%bb%b6%ef%bc%88Hardware%ef%bc%89%e7%b3%bb%e7%bb%9f%e5%92%8c%e8%bd%af%e4%bb%b6%ef%bc%88Software%ef%bc%89%e7%b3%bb%e7%bb%9f%e4%b8%a4%e5%a4%a7%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a1%ac%e4%bb%b6%20%e8%ae%a1%e7%ae%97%e6%9c%ba%ef%bc%88Computer%ef%bc%89%ef%bc%9a%e4%bf%97%e7%a7%b0%e7%94%b5%e8%84%91%ef%bc%8c%e6%98%af%e4%b8%80%e7%a7%8d%e8%83%bd%e6%8e%a5%e6%94%b6%e5%92%8c%e5%ad%98%e5%82%a8%e4%bf%a1%e6%81%af%ef%bc%8c%e5%b9%b6%e6%8c%89%e7%85%a7%e5%ad%98%e5%82%a8%e5%9c%a8%e5%85%b6%e5%86%85%e9%83%a8%e7%9a%84%e7%a8%8b%e5%ba%8f%e5%af%b9%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e8%87%aa%e5%8a%a8%ef%bc%8c%e9%ab%98%e9%80%9f%e7%9a%84%e5%a4%84%e7%90%86%ef%bc%8c%e7%84%b6%e5%90%8e%e6%8a%8a%e5%a4%84%e7%90%86%e7%bb%93%e6%9e%9c%e8%be%93%e5%87%ba%e7%9a%84%e7%8e%b0%e4%bb%a3%e5%8c%96%e6%99%ba%e8%83%bd%e7%94%b5%e5%ad%90%e8%ae%be%e2%80%a6%e2%80%a6" title="分享到「豆瓣」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon douban-icon"><path d="M.643.92v2.412h22.714V.92H.643zm1.974 4.926v9.42h18.764v-9.42H2.617zm2.72 2.408H18.69v4.605H5.338V8.254zm1.657 7.412l-2.512.938c1.037 1.461 1.87 2.825 2.512 4.091H0v2.385h24v-2.385h-6.678c.818-1.176 1.589-2.543 2.303-4.091l-2.73-.938a29.952 29.952 0 01-2.479 5.03h-4.75c-.786-1.962-1.677-3.641-2.672-5.03Z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qq">
+                    
+                    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;title=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;summary=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f%e7%94%b1%e7%a1%ac%e4%bb%b6%ef%bc%88Hardware%ef%bc%89%e7%b3%bb%e7%bb%9f%e5%92%8c%e8%bd%af%e4%bb%b6%ef%bc%88Software%ef%bc%89%e7%b3%bb%e7%bb%9f%e4%b8%a4%e5%a4%a7%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a1%ac%e4%bb%b6%20%e8%ae%a1%e7%ae%97%e6%9c%ba%ef%bc%88Computer%ef%bc%89%ef%bc%9a%e4%bf%97%e7%a7%b0%e7%94%b5%e8%84%91%ef%bc%8c%e6%98%af%e4%b8%80%e7%a7%8d%e8%83%bd%e6%8e%a5%e6%94%b6%e5%92%8c%e5%ad%98%e5%82%a8%e4%bf%a1%e6%81%af%ef%bc%8c%e5%b9%b6%e6%8c%89%e7%85%a7%e5%ad%98%e5%82%a8%e5%9c%a8%e5%85%b6%e5%86%85%e9%83%a8%e7%9a%84%e7%a8%8b%e5%ba%8f%e5%af%b9%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e8%87%aa%e5%8a%a8%ef%bc%8c%e9%ab%98%e9%80%9f%e7%9a%84%e5%a4%84%e7%90%86%ef%bc%8c%e7%84%b6%e5%90%8e%e6%8a%8a%e5%a4%84%e7%90%86%e7%bb%93%e6%9e%9c%e8%be%93%e5%87%ba%e7%9a%84%e7%8e%b0%e4%bb%a3%e5%8c%96%e6%99%ba%e8%83%bd%e7%94%b5%e5%ad%90%e8%ae%be%e2%80%a6%e2%80%a6&amp;pics=https://oss.intelli.icu/images/2021/20210603220214.png-watermark&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qzone">
+                    
+                    <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-computer-basics/&amp;title=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80&amp;summary=%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%9f%ba%e7%a1%80%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f%e7%94%b1%e7%a1%ac%e4%bb%b6%ef%bc%88Hardware%ef%bc%89%e7%b3%bb%e7%bb%9f%e5%92%8c%e8%bd%af%e4%bb%b6%ef%bc%88Software%ef%bc%89%e7%b3%bb%e7%bb%9f%e4%b8%a4%e5%a4%a7%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90%20%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a1%ac%e4%bb%b6%20%e8%ae%a1%e7%ae%97%e6%9c%ba%ef%bc%88Computer%ef%bc%89%ef%bc%9a%e4%bf%97%e7%a7%b0%e7%94%b5%e8%84%91%ef%bc%8c%e6%98%af%e4%b8%80%e7%a7%8d%e8%83%bd%e6%8e%a5%e6%94%b6%e5%92%8c%e5%ad%98%e5%82%a8%e4%bf%a1%e6%81%af%ef%bc%8c%e5%b9%b6%e6%8c%89%e7%85%a7%e5%ad%98%e5%82%a8%e5%9c%a8%e5%85%b6%e5%86%85%e9%83%a8%e7%9a%84%e7%a8%8b%e5%ba%8f%e5%af%b9%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e8%87%aa%e5%8a%a8%ef%bc%8c%e9%ab%98%e9%80%9f%e7%9a%84%e5%a4%84%e7%90%86%ef%bc%8c%e7%84%b6%e5%90%8e%e6%8a%8a%e5%a4%84%e7%90%86%e7%bb%93%e6%9e%9c%e8%be%93%e5%87%ba%e7%9a%84%e7%8e%b0%e4%bb%a3%e5%8c%96%e6%99%ba%e8%83%bd%e7%94%b5%e5%ad%90%e8%ae%be%e2%80%a6%e2%80%a6&amp;pics=https://oss.intelli.icu/images/2021/20210603220214.png-watermark&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ 空间」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532c-.104 0-.251.051-.349.238-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477 0 0 0 .125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061c.103-.017.201.061.201.061s6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463 0 0 0 .159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5 0 0 1 2.861-2.155c1.285-.968 3.559-2.47 3.559-2.731 0-.285-2.144-.781-4.037-.781-1.945 0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276 0 .342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688 0 .342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477 0 0 0 .127-.449z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qrcode">
+                    <div class="qrcode-container" title="通过「二维码」"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id="qrcode-img"></div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+<script>
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'L';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData('https:\/\/blog.ws.lu\/posts\/linux\/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8\/linux-computer-basics\/');
+    qr.make();
+    document.getElementById('qrcode-img').innerHTML = qr.createImgTag();
+</script>
+
+                </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/xrandr-set-scale/" class="related-link">xrandr 设置显示比例</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/umount-nfs-device-is-busy/" class="related-link">umount.nfs device is busy 问题</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/linux-systemd-config/" class="related-link">systemd 启动配置文件说明</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/database/mysql-install-by-normal-user/" class="related-link">普通用户安装 MySQL</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/ubuntu/ubuntu-bluetooth-earphone/" class="related-link">Ubuntu 连接不上蓝牙耳机</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Linux</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/linux-learn-route-table/" rel="prev">&lt; 阿里云 Linux 运维学习路线目录</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/posts/linux/fedora/fedora-restore-home-file/" rel="next">Fedora 恢复 Home 目录 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2019–2024&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;王硕</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright">本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/rss.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:337229941@qq.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/swang-harbin" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://twitter.com/swang_harbin" target="_blank" rel="external noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://t.me/swang_harbin" target="_blank" rel="external noopener" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon social-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js"></script>
+<script>
+    let mermaidConfig = {
+        startOnLoad: true,
+        flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true
+        },
+        theme: 'default'
+    };
+    mermaid.initialize(mermaidConfig);
+</script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

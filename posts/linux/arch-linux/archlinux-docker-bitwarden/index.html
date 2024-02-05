@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.121.2"><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>Arch Linux 使用 Docker 自建 Bitwarden 服务 | 王硕&#39;s Blog</title>
+
+    <link rel="stylesheet" href="/css/meme.min.444bcd3106642fa679d4a388e876aae08298837c58a47b88a6ed72069e59f8ad.css"/>
+
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.stemmer.support.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.zh.min.js" defer></script><script src="/js/meme.min.a53faa29276c16f3f4813d358c1a014ef75a949fc352a375cab0608ca900f8a8.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="王硕" /><meta name="description" content="Arch Linux 使用 Docker 自建 Bitwarden 服务 在 ArchLinux（2023.10.26）上使用 Docker（24.0.7）安装 Bitwarden（2023.10.1），使用 Cloudflare Tunnel 对 Bitwarden 进行反向代理 安装 安装过程参考官网 Install and Deploy - Linux 安装 Docker 和 Docker Compose（略） 新增用户 1 2 3 4 5 6 # 新增 bitwarden……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="王硕&#39;s Blog" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="王硕&#39;s Blog" />
+    <meta name="msapplication-starturl" content="../../../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2023-11-06T20:45:00+08:00",
+        "dateModified": "2024-02-05T12:26:31+08:00",
+        "url": "https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/",
+        "headline": "Arch Linux 使用 Docker 自建 Bitwarden 服务",
+        "description": "Arch Linux 使用 Docker 自建 Bitwarden 服务 在 ArchLinux（2023.10.26）上使用 Docker（24.0.7）安装 Bitwarden（2023.10.1），使用 Cloudflare Tunnel 对 Bitwarden 进行反向代理 安装 安装过程参考官网 Install and Deploy - Linux 安装 Docker 和 Docker Compose（略） 新增用户 1 2 3 4 5 6 # 新增 bitwarden……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  2901 ,
+        "image": "https://blog.ws.lu/icons/apple-touch-icon.png",
+        "author": {
+            "@type": "Person",
+            "description": "馍馍好好吃",
+            "email": "337229941@qq.com",
+            "image": "https://blog.ws.lu/icons/avatar.png",
+            "url": "https://blog.ws.lu/",
+            "name": "王硕"
+        },
+        "license": "本博客所有文章如无特别声明，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议。转载请注明出处 [王硕's Blog](https://blog.ws.lu/)。如有侵权，请联系删除。",
+        "publisher": {
+            "@type": "Organization",
+            "name": "王硕's Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://blog.ws.lu/icons/apple-touch-icon.png"
+            },
+            "url": "https://blog.ws.lu/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://blog.ws.lu/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+
+    
+
+
+
+<meta property="og:title" content="Arch Linux 使用 Docker 自建 Bitwarden 服务" />
+<meta property="og:description" content="Arch Linux 使用 Docker 自建 Bitwarden 服务 在 ArchLinux（2023.10.26）上使用 Docker（24.0.7）安装 Bitwarden（2023.10.1），使用 Cloudflare Tunnel 对 Bitwarden 进行反向代理 安装 安装过程参考官网 Install and Deploy - Linux 安装 Docker 和 Docker Compose（略） 新增用户 1 2 3 4 5 6 # 新增 bitwarden……" />
+<meta property="og:url" content="https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/" />
+<meta property="og:site_name" content="王硕&#39;s Blog" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://blog.ws.lu/icons/apple-touch-icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2023-11-06T20:45:00&#43;08:00" />
+    <meta property="article:modified_time" content="2024-02-05T12:26:31&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">王硕&#39;s Blog</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon home"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg><span class="menu-item-name">首页</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">文章</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                
+            
+        
+            
+                <li class="menu-item search-item">
+                        <form id="search" class="search" role="search">
+    <label for="search-input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label>
+    <input type="search" id="search-input" class="search-input">
+</form>
+
+<template id="search-result" hidden>
+    <article class="content post">
+        <h2 class="post-title"><a class="summary-title-link"></a></h2>
+        <summary class="summary"></summary>
+        <div class="read-more-container">
+            <a class="read-more-link">阅读更多 »</a>
+        </div>
+    </article>
+</template>
+
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">Arch Linux 使用 Docker 自建 Bitwarden 服务</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2023-11-06T20:45:00&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2023.11.6</time>
+    
+    
+    
+    
+        
+        
+        
+            
+        
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2901</span>
+    
+    
+        
+        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;6&nbsp;分钟</span>
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:安装" href="#安装">安装</a></li>
+    <li><a id="contents:备份恢复" href="#备份恢复">备份恢复</a>
+      <ol>
+        <li><a id="contents:备份" href="#备份">备份</a></li>
+        <li><a id="contents:夜间数据库备份恢复" href="#夜间数据库备份恢复">夜间数据库备份&amp;恢复</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <h1 id="arch-linux-使用-docker-自建-bitwarden-服务"><a href="#arch-linux-使用-docker-自建-bitwarden-服务" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:arch-linux-使用-docker-自建-bitwarden-服务" class="headings">Arch Linux 使用 Docker 自建 Bitwarden 服务</a></h1>
+<p>在 ArchLinux（2023.10.26）上使用 Docker（24.0.7）安装 Bitwarden（2023.10.1），使用 Cloudflare Tunnel 对 Bitwarden 进行反向代理</p>
+<h2 id="安装"><a href="#安装" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:安装" class="headings">安装</a></h2>
+<p>安装过程参考官网 <a href="https://bitwarden.com/help/install-on-premise-linux/" target="_blank" rel="noopener">Install and Deploy - Linux</a></p>
+<ol>
+<li>
+<p>安装 Docker 和 Docker Compose（略）</p>
+</li>
+<li>
+<p>新增用户</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 新增 bitwarden 用户</span>
+</span></span><span class="line"><span class="cl">$ sudo useradd -d /opt/bitwarden/ -c <span class="s1">&#39;bitwarden user&#39;</span> -m -r -U -s /bin/bash bitwarden
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 bitwarden 用户密码</span>
+</span></span><span class="line"><span class="cl">$ sudo passwd bitwarden
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 bitwarden 添加到 docker 组</span>
+</span></span><span class="line"><span class="cl">$ sudo usermod -aG docker bitwarden
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>安装 Bitwarden</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 切换到 bitwarden 用户</span>
+</span></span><span class="line"><span class="cl">$ su - bitwarden
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换文件夹</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> /opt/bitwarden
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载安装脚本</span>
+</span></span><span class="line"><span class="cl">$ curl -Lso bitwarden.sh <span class="s2">&#34;https://func.bitwarden.com/api/dl/?app=self-host&amp;platform=linux&#34;</span> <span class="o">&amp;&amp;</span> chmod <span class="m">700</span> bitwarden.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行安装</span>
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh install
+</span></span><span class="line"><span class="cl"> _     _ _                         _            
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span>__ <span class="o">(</span>_<span class="o">)</span> <span class="p">|</span>___      ____ _ _ __ __<span class="p">|</span> <span class="p">|</span> ___ _ __  
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="s1">&#39;_ \| | __\ \ /\ / / _` | &#39;</span>__/ _<span class="sb">`</span> <span class="p">|</span>/ _ <span class="se">\ </span><span class="s1">&#39;_ \ 
+</span></span></span><span class="line"><span class="cl"><span class="s1">| |_) | | |_ \ V  V / (_| | | | (_| |  __/ | | |
+</span></span></span><span class="line"><span class="cl"><span class="s1">|_.__/|_|\__| \_/\_/ \__,_|_|  \__,_|\___|_| |_|
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Open source password management solutions
+</span></span></span><span class="line"><span class="cl"><span class="s1">Copyright 2015-2023, 8bit Solutions LLC
+</span></span></span><span class="line"><span class="cl"><span class="s1">https://bitwarden.com, https://github.com/bitwarden
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">===================================================
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">bitwarden.sh version 2023.10.1
+</span></span></span><span class="line"><span class="cl"><span class="s1">Docker version 24.0.7, build afdd53b4e3
+</span></span></span><span class="line"><span class="cl"><span class="s1">Docker Compose version 2.23.0
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 输入自己 Bitwarden 服务的域名，例如 bitwarden.example.com
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Enter the domain name for your Bitwarden instance (ex. bitwarden.example.com): bitwarden.example.com
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 自己 Bitwarden 的域名必须使用 https 协议，如果该域名没有设置过 SSL 证书，可以在这里使用 Let&#39;</span>s Encrypt 签发证书，需要暴露服务器的 <span class="m">80</span> 和 <span class="m">443</span> 端口，同时 Bitwarden 每次重启时会自动去续签该证书。因为我的域名证书是被 Cloudflare 管理的，所以这里输入 n。
+</span></span><span class="line"><span class="cl"><span class="c1"># 证书相关的问题可以参考：https://bitwarden.com/help/certificates/</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>!<span class="o">)</span> Do you want to use Let<span class="s1">&#39;s Encrypt to generate a free SSL certificate? (y/n): n
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 设置 Bitwarden 数据库的名称，这里默认即可
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Enter the database name for your Bitwarden instance (ex. vault): 
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 此时会去拉取镜像...
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 安装 Bitwarden 需要申请 id 和 key，访问 https://bitwarden.com/host 输入邮箱获取即可
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Enter your installation id (get at https://bitwarden.com/host): abcdefgh-ijkl-mnop-qrst-uvwxyz12345678
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Enter your installation key: hHFDj3cUQeExi1j85Jui
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 按照获取 key 时的选择即可
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Enter your region (US/EU) [US]:
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 如果自己 Bitwarden 的域名已经有 SSL 证书，并且想使用这个证书，这里选 y。否则选 N
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Do you have a SSL certificate to use? (y/N): N
+</span></span></span><span class="line"><span class="cl"><span class="s1"># 是否创建自签名的 SSL 证书。这个证书可以用来加密 Cloudflare Tunnel/Nginx 到 Bitwarden 自建服务间的通信，我这里不需要，所以选 N
+</span></span></span><span class="line"><span class="cl"><span class="s1">(!) Do you want to generate a self-signed SSL certificate? (y/N): N
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Generating key for IdentityServer.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Generating a RSA private key
+</span></span></span><span class="line"><span class="cl"><span class="s1">..................................++++
+</span></span></span><span class="line"><span class="cl"><span class="s1">.......................................++++
+</span></span></span><span class="line"><span class="cl"><span class="s1">writing new private key to &#39;</span>identity.key<span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">-----
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据上方证书的设置，这里也会显示不同的警告信息</span>
+</span></span><span class="line"><span class="cl">!!!!!!!!!! WARNING !!!!!!!!!!
+</span></span><span class="line"><span class="cl">You are not using a SSL certificate. Bitwarden requires HTTPS to operate. 
+</span></span><span class="line"><span class="cl">You must front your installation with a HTTPS proxy or the web vault <span class="o">(</span>and 
+</span></span><span class="line"><span class="cl">other Bitwarden apps<span class="o">)</span> will not work properly.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Building nginx config.
+</span></span><span class="line"><span class="cl">Building docker environment files.
+</span></span><span class="line"><span class="cl">Building docker environment override files.
+</span></span><span class="line"><span class="cl">Building FIDO U2F app id.
+</span></span><span class="line"><span class="cl">Building docker-compose.yml.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Installation <span class="nb">complete</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装成功后不急着启动，还有一些必要配置</span>
+</span></span><span class="line"><span class="cl">If you need to make additional configuration changes, you can modify
+</span></span><span class="line"><span class="cl">the settings in <span class="sb">`</span>./bwdata/config.yml<span class="sb">`</span> and <span class="k">then</span> run:
+</span></span><span class="line"><span class="cl"><span class="sb">`</span>./bitwarden.sh rebuild<span class="sb">`</span> or <span class="sb">`</span>./bitwarden.sh update<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Next steps, run:
+</span></span><span class="line"><span class="cl"><span class="sb">`</span>./bitwarden.sh start<span class="sb">`</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>修改环境配置文件</p>
+<p>Bitwarden 有两个重要的配置文件：环境变量配置文件（<code>global.override.env</code>）和安装配置文件（<code>config.yml</code>）</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vim /opt/bitwarden/bwdata/env/global.override.env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl"><span class="c1"># 因为上方没有给 bitwarden 设置任何证书，所以这里默认是 http，手动把它改成 https</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__baseServiceUri__vault</span><span class="o">=</span>https://bitwarden.example.com
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置发信邮箱信息（以企业微信为例），该邮箱用于给用户发送各种通知邮件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__replyToEmail</span><span class="o">=</span>noreply@example.com
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__smtp__host</span><span class="o">=</span>smtp.exmail.qq.com
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__smtp__port</span><span class="o">=</span><span class="m">465</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__smtp__ssl</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__smtp__username</span><span class="o">=</span>noreply@example.com
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__mail__smtp__password</span><span class="o">=</span>iQL6QB29SbP5UIXc8NEh
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁止用户注册。可以在自己注册一个管理员帐号后，把这个设置为 true，不允许其他用户自行注册帐号</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__disableUserRegistration</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置管理员邮箱，管理员可以访问管理页面</span>
+</span></span><span class="line"><span class="cl"><span class="nv">adminSettings__admins</span><span class="o">=</span>username@example.com
+</span></span><span class="line"><span class="cl">~~~
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>修改安装配置文件</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vim /opt/bitwarden/bwdata/config.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl"><span class="c1"># 因为上方没有给 bitwarden 设置任何证书，所以这里默认是 http，手动把它改成 https</span>
+</span></span><span class="line"><span class="cl">url: https://bitwarden.example.com
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以修改 http 和 https 暴露在宿主机上的端口。因为 docker 默认会以 0.0.0.0:9090 的方式暴露端口，并且不受 firewalld 的控制，就会导致任意外部机器均可以访问 8080 端口，所以这里可以设置为 127.0.0.1:9090，仅将端口暴露在本地，禁止外部服务访问，然后通过 Cloudflare Tunnel/Nginx 反向代理的方式访问该端口</span>
+</span></span><span class="line"><span class="cl">http_port: 127.0.0.1:9090
+</span></span><span class="line"><span class="cl"><span class="c1"># 没有给 bitwarden 设置任何证书，所以不需要暴露 https 端口，设置为空即可。如果设置了证书这里需要配合证书一起使用</span>
+</span></span><span class="line"><span class="cl">https_port:
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># ssl 证书相关，如果需要参照注释配置即可</span>
+</span></span><span class="line"><span class="cl">ssl: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">ssl_versions: 
+</span></span><span class="line"><span class="cl">ssl_ciphersuites: 
+</span></span><span class="line"><span class="cl">ssl_managed_lets_encrypt: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">ssl_certificate_path: 
+</span></span><span class="line"><span class="cl">ssl_key_path: 
+</span></span><span class="line"><span class="cl">ssl_ca_path: 
+</span></span><span class="line"><span class="cl">ssl_diffie_hellman_path: 
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">~~~
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>重启服务</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改了环境配置文件，执行 restart 即可使其生效；修改了安装配置文件，执行 rebuild 即可使其生效。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里先执行 rebuild 重新创建容器，然后再启动容器</span>
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh rebuild
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh start
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>查看服务启动状态</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker ps
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>这里应该可以看到 <code>bitwarden-admin</code> 和 <code>bitwarden-sso</code> 服务的状态是 <code>unhealthy</code>，<code>bitwarden-mssql</code>、<code>bitwarden-web</code>、<code>bitwarden-attachments</code> 的 <code>PORTS</code> 属性都是空， 执行 <code>curl http://127.0.0.1:9090</code>，会报错：<code>502 Bad Gateway</code>。这是因为 docker 网络管理有问题，导致 <code>bitwarden-admin</code> 和 <code>bitwarden-sso</code> 无法访问 <code>bitwarden-mssql</code>，<code>bitwarden-nginx</code> 无法访问 <code>bitwarden-web</code>  导致的。</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>CONTAINER ID</th>
+<th>IMAGE</th>
+<th>COMMAND</th>
+<th>CREATED</th>
+<th>STATUS</th>
+<th>PORTS</th>
+<th>NAMES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>795f0eb0ab19</td>
+<td>bitwarden/nginx:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>80/tcp, 8443/tcp, 127.0.0.1:9090-&gt;8080/tcp</td>
+<td>bitwarden-nginx</td>
+</tr>
+<tr>
+<td>855a95f54a43</td>
+<td>bitwarden/admin:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (unhealthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-admin</td>
+</tr>
+<tr>
+<td>d1ec3b0636a6</td>
+<td>bitwarden/mssql:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td></td>
+<td>bitwarden-mssql</td>
+</tr>
+<tr>
+<td>6c1a5872d2c6</td>
+<td>bitwarden/sso:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (unhealthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-sso</td>
+</tr>
+<tr>
+<td>64e3ac5a2695</td>
+<td>bitwarden/web:2023.10.0</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td></td>
+<td>bitwarden-web</td>
+</tr>
+<tr>
+<td>c94484465d83</td>
+<td>bitwarden/attachments:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td></td>
+<td>bitwarden-attachments</td>
+</tr>
+<tr>
+<td>3073b6d7ff8b</td>
+<td>bitwarden/notifications:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-notifications</td>
+</tr>
+<tr>
+<td>4e808d13a45d</td>
+<td>bitwarden/events:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-events</td>
+</tr>
+<tr>
+<td>8f7b756f74a7</td>
+<td>bitwarden/identity:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-identity</td>
+</tr>
+<tr>
+<td>a9acec0d84e7</td>
+<td>bitwarden/api:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-api</td>
+</tr>
+<tr>
+<td>c8157eb4ab98</td>
+<td>bitwarden/icons:2023.10.1</td>
+<td>&quot;/entrypoint.sh&quot;</td>
+<td>2 minutes ago</td>
+<td>Up 2 minutes (healthy)</td>
+<td>5000/tcp</td>
+<td>bitwarden-icons</td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 bitwarden-admin 的日志可以看到如下错误信息</span>
+</span></span><span class="line"><span class="cl">$ docker logs bitwarden-admin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl">fail: Bit.Admin.HostedServices.DatabaseMigrationHostedService<span class="o">[</span>0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">      Database unavailable <span class="k">for</span> migration. Trying again <span class="o">(</span>attempt <span class="c1">#9)...</span>
+</span></span><span class="line"><span class="cl">      Microsoft.Data.SqlClient.SqlException <span class="o">(</span>0x80131904<span class="o">)</span>: A network-related or instance-specific error occurred <span class="k">while</span> establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. <span class="o">(</span>provider: TCP Provider, error: <span class="m">40</span> - Could not open a connection to SQL Server: Could not open a connection to SQL Server<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning<span class="o">(</span>TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.TdsParser.Connect<span class="o">(</span>ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin<span class="o">(</span>ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover<span class="o">(</span>ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist<span class="o">(</span>TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor<span class="o">(</span>DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection<span class="o">(</span>DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection<span class="o">(</span>DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject<span class="o">(</span>DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest<span class="o">(</span>DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection<span class="o">(</span>DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal<span class="p">&amp;</span> connection<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection<span class="o">(</span>DbConnection owningObject, TaskCompletionSource<span class="sb">`</span><span class="m">1</span> retry, DbConnectionOptions userOptions, DbConnectionInternal<span class="p">&amp;</span> connection<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection<span class="o">(</span>DbConnection owningConnection, TaskCompletionSource<span class="sb">`</span><span class="m">1</span> retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal<span class="p">&amp;</span> connection<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal<span class="o">(</span>DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource<span class="sb">`</span><span class="m">1</span> retry, DbConnectionOptions userOptions<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection<span class="o">(</span>DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource<span class="sb">`</span><span class="m">1</span> retry, DbConnectionOptions userOptions<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlConnection.TryOpen<span class="o">(</span>TaskCompletionSource<span class="sb">`</span><span class="m">1</span> retry, SqlConnectionOverrides overrides<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlConnection.Open<span class="o">(</span>SqlConnectionOverrides overrides<span class="o">)</span>
+</span></span><span class="line"><span class="cl">         at Microsoft.Data.SqlClient.SqlConnection.Open<span class="o">()</span>
+</span></span><span class="line"><span class="cl">         at Bit.Migrator.SqlServerDbMigrator.MigrateDatabase<span class="o">(</span>Boolean enableLogging, CancellationToken cancellationToken<span class="o">)</span> in /home/runner/work/server/server/util/Migrator/SqlServerDbMigrator.cs:line <span class="m">49</span>
+</span></span><span class="line"><span class="cl">         at Bit.Admin.HostedServices.DatabaseMigrationHostedService.StartAsync<span class="o">(</span>CancellationToken cancellationToken<span class="o">)</span> in /home/runner/work/server/server/src/Admin/HostedServices/DatabaseMigrationHostedService.cs:line <span class="m">29</span>
+</span></span><span class="line"><span class="cl">      ClientConnectionId:00000000-0000-0000-0000-000000000000
+</span></span><span class="line"><span class="cl">~~~
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>解决 <code>unhealthy</code> 和 <code>502 Bad Gateway</code></p>
+<p>参考：https://github.com/bitwarden/server/issues/1546</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建 docker-compose.override.yml 并添加以下配置</span>
+</span></span><span class="line"><span class="cl">$ vim /opt/bitwarden/bwdata/docker/docker-compose.override.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl">version: <span class="s1">&#39;3&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  mssql:
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - default
+</span></span><span class="line"><span class="cl">      - public
+</span></span><span class="line"><span class="cl">  web:
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - default
+</span></span><span class="line"><span class="cl">      - public
+</span></span><span class="line"><span class="cl">  attachments:
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - default
+</span></span><span class="line"><span class="cl">      - public
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh restart
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看服务，此时应该都是 healthy 状态，并且 bitwarden-mssql、bitwarden-web、bitwarden-attachments 的 PORTS 属性均不为空</span>
+</span></span><span class="line"><span class="cl">$ docker ps
+</span></span><span class="line"><span class="cl"><span class="c1"># 请求服务，也有正确的响应结果</span>
+</span></span><span class="line"><span class="cl">$ curl http://127.0.0.1:9090
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>访问并创建用户（略）</p>
+</li>
+<li>
+<p>禁用其它用户注册</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vim /opt/bitwarden/bwdata/env/global.override.env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁止用户注册。可以在自己注册一个管理员帐号后，把这个设置为 true，不允许其他用户自行注册帐号</span>
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__disableUserRegistration</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh restart
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<h2 id="备份恢复"><a href="#备份恢复" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:备份恢复" class="headings">备份恢复</a></h2>
+<h3 id="备份"><a href="#备份" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:备份" class="headings">备份</a></h3>
+<p>Bitwarden 的 Docker 容器使用卷映射将所有重要数据都保存在主机的 <code>bwdata</code> 文件夹，所以只需要对该文件夹进行备份即可。如果数据丢失，选择性的恢复该文件夹中的文件即可。</p>
+<p><code>bwdata</code> 文件夹中有几个非常重要的数据：</p>
+<ul>
+<li><code>bwdata/env</code>：环境变量配置，包括数据库和证书密码</li>
+<li><code>bwdata/core/attachments</code>：保管库中存储的附件</li>
+<li><code>bwdata/mssql/data</code>：数据库数据</li>
+</ul>
+<h3 id="夜间数据库备份恢复"><a href="#夜间数据库备份恢复" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:夜间数据库备份恢复" class="headings">夜间数据库备份&amp;恢复</a></h3>
+<p>Bitwarden 会在运行时自动对 mssql 数据库进行夜间备份，并将其存储在 <code>bwdata/mssql/backups</code> 文件夹保留 30 天</p>
+<ol>
+<li>
+<p>获取数据库密码</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat global.override.env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~~~
+</span></span><span class="line"><span class="cl"><span class="nv">globalSettings__sqlServer__connectionString</span><span class="o">=</span>...Password<span class="o">=</span>
+</span></span><span class="line"><span class="cl">~~~
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>离线恢复数据</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入 bitwarden-mssql 容器内部</span>
+</span></span><span class="line"><span class="cl">$ docker <span class="nb">exec</span> -it bitwarden-mssql /bin/bash
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份文件在容器内的该目录下</span>
+</span></span><span class="line"><span class="cl">$ ls etc/bitwarden/mssql/backups
+</span></span><span class="line"><span class="cl">vault_FULL_20201208_003243.BAK
+</span></span><span class="line"><span class="cl"><span class="c1"># 登录 mssql 数据库</span>
+</span></span><span class="line"><span class="cl">$ /opt/mssql-tools/bin/sqlcmd -S localhost -U &lt;sa&gt; -P &lt;sa-password&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 开始 离线恢复数据</span>
+</span></span><span class="line"><span class="cl">1&gt; use master
+</span></span><span class="line"><span class="cl">2&gt; GO
+</span></span><span class="line"><span class="cl">1&gt; alter database vault <span class="nb">set</span> offline with rollback immediate
+</span></span><span class="line"><span class="cl">2&gt; GO
+</span></span><span class="line"><span class="cl">1&gt; restore database vault from <span class="nv">disk</span><span class="o">=</span><span class="s1">&#39;/etc/bitwarden/mssql/backups/vault_FULL_{Backup File Name}.BAK&#39;</span> with replace
+</span></span><span class="line"><span class="cl">2&gt; GO
+</span></span><span class="line"><span class="cl">1&gt; alter database vault <span class="nb">set</span> online
+</span></span><span class="line"><span class="cl">2&gt; GO
+</span></span><span class="line"><span class="cl">1&gt; <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出容器</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">$ ./bitwarden.sh restart
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<hr>
+<p>参考文档：</p>
+<ol>
+<li><a href="https://bitwarden.com/" target="_blank" rel="noopener">bitwarden</a></li>
+<li><a href="https://bitwarden.com/help/install-on-premise-linux/" target="_blank" rel="noopener">Install and Deploy - Linux</a></li>
+<li><a href="https://bitwarden.com/help/certificates/" target="_blank" rel="noopener">Certificate Options</a></li>
+<li><a href="https://github.com/bitwarden/server/issues/1546" target="_blank" rel="noopener">Unhealthy SSo and events on Fresh 1.42.2 #1546</a></li>
+<li><a href="https://bitwarden.com/help/backup-on-premise/" target="_blank" rel="noopener">Backup your Hosted Data</a></li>
+</ol>
+
+            </div>
+
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://blog.ws.lu/" class="p-author h-card" target="_blank" rel="noopener">王硕</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/linux/arch-linux/archlinux-docker-bitwarden/" target="_blank" rel="noopener">https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2024-02-05 12:26:31 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2024-02-05</text><text x="915" y="140" textLength="650" transform="scale(.1)">2024-02-05</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        <div class="post-share">
+
+        
+
+        <div class="share-items">
+
+            
+                <div class="share-item twitter">
+                    
+                    <a href="https://twitter.com/share?url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;text=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;hashtags=Linux,ArchLinux,Bitwarden,&amp;via=%25!s%28%3cnil%3e%29" title="分享到「Twitter」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item facebook">
+                    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;hashtag=%23Linux" title="分享到「Facebook」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item linkedin">
+                    
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;title=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;summary=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1%20%e5%9c%a8%20ArchLinux%ef%bc%882023.10.26%ef%bc%89%e4%b8%8a%e4%bd%bf%e7%94%a8%20Docker%ef%bc%8824.0.7%ef%bc%89%e5%ae%89%e8%a3%85%20Bitwarden%ef%bc%882023.10.1%ef%bc%89%ef%bc%8c%e4%bd%bf%e7%94%a8%20Cloudflare%20Tunnel%20%e5%af%b9%20Bitwarden%20%e8%bf%9b%e8%a1%8c%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%20%e5%ae%89%e8%a3%85%20%e5%ae%89%e8%a3%85%e8%bf%87%e7%a8%8b%e5%8f%82%e8%80%83%e5%ae%98%e7%bd%91%20Install%20and%20Deploy%20-%20Linux%20%e5%ae%89%e8%a3%85%20Docker%20%e5%92%8c%20Docker%20Compose%ef%bc%88%e7%95%a5%ef%bc%89%20%e6%96%b0%e5%a2%9e%e7%94%a8%e6%88%b7%201%202%203%204%205%206%20#%20%e6%96%b0%e5%a2%9e%20bitwarden%e2%80%a6%e2%80%a6&amp;source=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「LinkedIn」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon linkedin-icon"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item telegram">
+                    
+                    <a href="https://t.me/share/url?url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;text=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1" title="分享到「Telegram」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item weibo">
+                    
+                    <a href="https://service.weibo.com/share/share.php?&amp;url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;title=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;pic=https://blog.ws.lu/icons/apple-touch-icon.png&amp;searchPic=false" title="分享到「新浪微博」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item douban">
+                    
+                    <a href="https://www.douban.com/share/service?href=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;name=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;text=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1%20%e5%9c%a8%20ArchLinux%ef%bc%882023.10.26%ef%bc%89%e4%b8%8a%e4%bd%bf%e7%94%a8%20Docker%ef%bc%8824.0.7%ef%bc%89%e5%ae%89%e8%a3%85%20Bitwarden%ef%bc%882023.10.1%ef%bc%89%ef%bc%8c%e4%bd%bf%e7%94%a8%20Cloudflare%20Tunnel%20%e5%af%b9%20Bitwarden%20%e8%bf%9b%e8%a1%8c%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%20%e5%ae%89%e8%a3%85%20%e5%ae%89%e8%a3%85%e8%bf%87%e7%a8%8b%e5%8f%82%e8%80%83%e5%ae%98%e7%bd%91%20Install%20and%20Deploy%20-%20Linux%20%e5%ae%89%e8%a3%85%20Docker%20%e5%92%8c%20Docker%20Compose%ef%bc%88%e7%95%a5%ef%bc%89%20%e6%96%b0%e5%a2%9e%e7%94%a8%e6%88%b7%201%202%203%204%205%206%20#%20%e6%96%b0%e5%a2%9e%20bitwarden%e2%80%a6%e2%80%a6" title="分享到「豆瓣」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon douban-icon"><path d="M.643.92v2.412h22.714V.92H.643zm1.974 4.926v9.42h18.764v-9.42H2.617zm2.72 2.408H18.69v4.605H5.338V8.254zm1.657 7.412l-2.512.938c1.037 1.461 1.87 2.825 2.512 4.091H0v2.385h24v-2.385h-6.678c.818-1.176 1.589-2.543 2.303-4.091l-2.73-.938a29.952 29.952 0 01-2.479 5.03h-4.75c-.786-1.962-1.677-3.641-2.672-5.03Z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qq">
+                    
+                    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;title=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;summary=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1%20%e5%9c%a8%20ArchLinux%ef%bc%882023.10.26%ef%bc%89%e4%b8%8a%e4%bd%bf%e7%94%a8%20Docker%ef%bc%8824.0.7%ef%bc%89%e5%ae%89%e8%a3%85%20Bitwarden%ef%bc%882023.10.1%ef%bc%89%ef%bc%8c%e4%bd%bf%e7%94%a8%20Cloudflare%20Tunnel%20%e5%af%b9%20Bitwarden%20%e8%bf%9b%e8%a1%8c%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%20%e5%ae%89%e8%a3%85%20%e5%ae%89%e8%a3%85%e8%bf%87%e7%a8%8b%e5%8f%82%e8%80%83%e5%ae%98%e7%bd%91%20Install%20and%20Deploy%20-%20Linux%20%e5%ae%89%e8%a3%85%20Docker%20%e5%92%8c%20Docker%20Compose%ef%bc%88%e7%95%a5%ef%bc%89%20%e6%96%b0%e5%a2%9e%e7%94%a8%e6%88%b7%201%202%203%204%205%206%20#%20%e6%96%b0%e5%a2%9e%20bitwarden%e2%80%a6%e2%80%a6&amp;pics=https://blog.ws.lu/icons/apple-touch-icon.png&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qzone">
+                    
+                    <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ws.lu/posts/linux/arch-linux/archlinux-docker-bitwarden/&amp;title=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1&amp;summary=Arch%20Linux%20%e4%bd%bf%e7%94%a8%20Docker%20%e8%87%aa%e5%bb%ba%20Bitwarden%20%e6%9c%8d%e5%8a%a1%20%e5%9c%a8%20ArchLinux%ef%bc%882023.10.26%ef%bc%89%e4%b8%8a%e4%bd%bf%e7%94%a8%20Docker%ef%bc%8824.0.7%ef%bc%89%e5%ae%89%e8%a3%85%20Bitwarden%ef%bc%882023.10.1%ef%bc%89%ef%bc%8c%e4%bd%bf%e7%94%a8%20Cloudflare%20Tunnel%20%e5%af%b9%20Bitwarden%20%e8%bf%9b%e8%a1%8c%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%20%e5%ae%89%e8%a3%85%20%e5%ae%89%e8%a3%85%e8%bf%87%e7%a8%8b%e5%8f%82%e8%80%83%e5%ae%98%e7%bd%91%20Install%20and%20Deploy%20-%20Linux%20%e5%ae%89%e8%a3%85%20Docker%20%e5%92%8c%20Docker%20Compose%ef%bc%88%e7%95%a5%ef%bc%89%20%e6%96%b0%e5%a2%9e%e7%94%a8%e6%88%b7%201%202%203%204%205%206%20#%20%e6%96%b0%e5%a2%9e%20bitwarden%e2%80%a6%e2%80%a6&amp;pics=https://blog.ws.lu/icons/apple-touch-icon.png&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ 空间」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532c-.104 0-.251.051-.349.238-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477 0 0 0 .125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061c.103-.017.201.061.201.061s6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463 0 0 0 .159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5 0 0 1 2.861-2.155c1.285-.968 3.559-2.47 3.559-2.731 0-.285-2.144-.781-4.037-.781-1.945 0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276 0 .342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688 0 .342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477 0 0 0 .127-.449z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qrcode">
+                    <div class="qrcode-container" title="通过「二维码」"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id="qrcode-img"></div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+<script>
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'L';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData('https:\/\/blog.ws.lu\/posts\/linux\/arch-linux\/archlinux-docker-bitwarden\/');
+    qr.make();
+    document.getElementById('qrcode-img').innerHTML = qr.createImgTag();
+</script>
+
+                </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/arch-linux/archlinux-network-ups-tools/" class="related-link">Arch Linux 使用 NUT 管理 UPS</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/arch-linux/archlinux-smartmontools/" class="related-link">Arch Linux 使用 smartmontools 监控硬盘状态</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/arch-linux/archlinux-apc-bk650m2-ch/" class="related-link">Arch Linux 使用 APC BK650M2-CH UPS</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/arch-linux/archlinux-connect-canon-pixma-g3800-via-router/" class="related-link">Arch Linux 通过路由器无线连接 Canon PIXMA G3800</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/arch-linux/pacman-common-commands/" class="related-link">pacman 常用命令</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Linux</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/arch-linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Arch Linux</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/bitwarden/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Bitwarden</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/posts/linux/arch-linux/archlinux-network-ups-tools/" rel="prev">&lt; Arch Linux 使用 NUT 管理 UPS</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/posts/network/cloudflare-zero-trust-tunnels/" rel="next">Cloudflare Zero Trust Tunnels 内网穿透 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2019–2024&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;王硕</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright">本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/rss.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:337229941@qq.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/swang-harbin" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://twitter.com/swang_harbin" target="_blank" rel="external noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://t.me/swang_harbin" target="_blank" rel="external noopener" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon social-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js"></script>
+<script>
+    let mermaidConfig = {
+        startOnLoad: true,
+        flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true
+        },
+        theme: 'default'
+    };
+    mermaid.initialize(mermaidConfig);
+</script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

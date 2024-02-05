@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.121.2"><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>文件管理 | 王硕&#39;s Blog</title>
+
+    <link rel="stylesheet" href="/css/meme.min.444bcd3106642fa679d4a388e876aae08298837c58a47b88a6ed72069e59f8ad.css"/>
+
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.stemmer.support.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/lunr-languages@1.9.0/min/lunr.zh.min.js" defer></script><script src="/js/meme.min.a53faa29276c16f3f4813d358c1a014ef75a949fc352a375cab0608ca900f8a8.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="王硕" /><meta name="description" content="文件管理 文件系统结构元素 文件系统 文件和目录被组织成一个单根倒置树结构 文件系统从根目录开始，用 / 表示 根文件系统（rootfs）：root filesystem 文件名区分大小写（具体来说是由文件系统决定的，而不是操作系统决定） 以 . 开头的文件为隐藏文件 路径分隔符 / 文件有两类数据 元数……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="王硕&#39;s Blog" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="王硕&#39;s Blog" />
+    <meta name="msapplication-starturl" content="../../../../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../../../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2020-04-11T22:26:45+08:00",
+        "dateModified": "2023-03-14T17:04:55+08:00",
+        "url": "https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/",
+        "headline": "文件管理",
+        "description": "文件管理 文件系统结构元素 文件系统 文件和目录被组织成一个单根倒置树结构 文件系统从根目录开始，用 / 表示 根文件系统（rootfs）：root filesystem 文件名区分大小写（具体来说是由文件系统决定的，而不是操作系统决定） 以 . 开头的文件为隐藏文件 路径分隔符 / 文件有两类数据 元数……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  9602 ,
+        "image": ["https://oss.intelli.icu/images/2021/20210607235655.png-watermark","https://oss.intelli.icu/images/2021/20210607235656.png-watermark","https://oss.intelli.icu/images/2021/20210607235657.png-watermark"],
+        "author": {
+            "@type": "Person",
+            "description": "馍馍好好吃",
+            "email": "337229941@qq.com",
+            "image": "https://blog.ws.lu/icons/avatar.png",
+            "url": "https://blog.ws.lu/",
+            "name": "王硕"
+        },
+        "license": "本博客所有文章如无特别声明，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议。转载请注明出处 [王硕's Blog](https://blog.ws.lu/)。如有侵权，请联系删除。",
+        "publisher": {
+            "@type": "Organization",
+            "name": "王硕's Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://blog.ws.lu/icons/apple-touch-icon.png"
+            },
+            "url": "https://blog.ws.lu/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://blog.ws.lu/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+
+    
+
+
+
+<meta property="og:title" content="文件管理" />
+<meta property="og:description" content="文件管理 文件系统结构元素 文件系统 文件和目录被组织成一个单根倒置树结构 文件系统从根目录开始，用 / 表示 根文件系统（rootfs）：root filesystem 文件名区分大小写（具体来说是由文件系统决定的，而不是操作系统决定） 以 . 开头的文件为隐藏文件 路径分隔符 / 文件有两类数据 元数……" />
+<meta property="og:url" content="https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/" />
+<meta property="og:site_name" content="王硕&#39;s Blog" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://oss.intelli.icu/images/2021/20210607235655.png-watermark" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2020-04-11T22:26:45&#43;08:00" />
+    <meta property="article:modified_time" content="2023-03-14T17:04:55&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">王硕&#39;s Blog</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon home"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg><span class="menu-item-name">首页</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">文章</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                
+            
+        
+            
+                <li class="menu-item search-item">
+                        <form id="search" class="search" role="search">
+    <label for="search-input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label>
+    <input type="search" id="search-input" class="search-input">
+</form>
+
+<template id="search-result" hidden>
+    <article class="content post">
+        <h2 class="post-title"><a class="summary-title-link"></a></h2>
+        <summary class="summary"></summary>
+        <div class="read-more-container">
+            <a class="read-more-link">阅读更多 »</a>
+        </div>
+    </article>
+</template>
+
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">文件管理</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2020-04-11T22:26:45&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.4.11</time>
+    
+    
+    
+    
+        
+        
+        
+            
+        
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;9602</span>
+    
+    
+        
+        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;20&nbsp;分钟</span>
+    
+    
+    
+</div>
+
+            
+
+            <nav class="contents">
+  <h2 id="contents" class="contents-title">目录</h2><ol class="toc">
+    <li><a id="contents:文件系统结构元素" href="#文件系统结构元素">文件系统结构元素</a>
+      <ol>
+        <li><a id="contents:文件系统" href="#文件系统">文件系统</a>
+          <ol>
+            <li><a id="contents:linux-标准目录结构" href="#linux-标准目录结构">Linux 标准目录结构</a></li>
+            <li><a id="contents:linux-其他目录" href="#linux-其他目录">Linux 其他目录</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:linux-上的应用程序的组成部分" href="#linux-上的应用程序的组成部分">Linux 上的应用程序的组成部分</a></li>
+        <li><a id="contents:文件名规则" href="#文件名规则">文件名规则</a></li>
+        <li><a id="contents:linux-下的文件类型" href="#linux-下的文件类型">Linux 下的文件类型</a></li>
+        <li><a id="contents:显示当前工作目录" href="#显示当前工作目录">显示当前工作目录</a></li>
+        <li><a id="contents:更改目录" href="#更改目录">更改目录</a></li>
+        <li><a id="contents:列出目录内容" href="#列出目录内容">列出目录内容</a></li>
+        <li><a id="contents:查看文件状态" href="#查看文件状态">查看文件状态</a></li>
+        <li><a id="contents:文件通配符" href="#文件通配符">文件通配符</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:创建和查看文件" href="#创建和查看文件">创建和查看文件</a>
+      <ol>
+        <li><a id="contents:创建空文件和刷新时间" href="#创建空文件和刷新时间">创建空文件和刷新时间</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:复制转移和删除文件" href="#复制转移和删除文件">复制，转移和删除文件</a>
+      <ol>
+        <li><a id="contents:复制文件和目录-cpcopy" href="#复制文件和目录-cpcopy">复制文件和目录 cp（copy）</a></li>
+        <li><a id="contents:移动和重命名文件-mvmove" href="#移动和重命名文件-mvmove">移动和重命名文件 mv（move）</a></li>
+        <li><a id="contents:删除-rmremove" href="#删除-rmremove">删除 rm（remove）</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:目录操作" href="#目录操作">目录操作</a></li>
+    <li><a id="contents:索引节点" href="#索引节点">索引节点</a>
+      <ol>
+        <li><a id="contents:索引节点介绍" href="#索引节点介绍">索引节点介绍</a></li>
+        <li><a id="contents:inode-表结构" href="#inode-表结构">inode 表结构</a>
+          <ol>
+            <li><a id="contents:示例" href="#示例">示例</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:mvcp-与-inode-的关系" href="#mvcp-与-inode-的关系">mv，cp 与 inode 的关系</a>
+          <ol>
+            <li><a id="contents:mv-与-inode-关系" href="#mv-与-inode-关系">mv 与 inode 关系</a></li>
+            <li><a id="contents:cp-与-inode-关系" href="#cp-与-inode-关系">cp 与 inode 关系</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a id="contents:软链接和硬链接" href="#软链接和硬链接">软链接和硬链接</a>
+      <ol>
+        <li><a id="contents:硬链接" href="#硬链接">硬链接</a></li>
+        <li><a id="contents:软链接符号链接" href="#软链接符号链接">软链接（符号链接）</a></li>
+        <li><a id="contents:硬链接和软链接的区别" href="#硬链接和软链接的区别">硬链接和软链接的区别</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:确定文件内容" href="#确定文件内容">确定文件内容</a></li>
+    <li><a id="contents:标准-io-及管道" href="#标准-io-及管道">标准 IO 及管道</a>
+      <ol>
+        <li><a id="contents:标准输入和输出" href="#标准输入和输出">标准输入和输出</a></li>
+        <li><a id="contents:把输出和错误重定向到文件" href="#把输出和错误重定向到文件">把输出和错误重定向到文件</a></li>
+        <li><a id="contents:将文件的内容作为标准输入" href="#将文件的内容作为标准输入">将文件的内容作为标准输入</a>
+          <ol>
+            <li><a id="contents:tr-命令" href="#tr-命令">tr 命令</a></li>
+          </ol>
+        </li>
+        <li><a id="contents:管道" href="#管道">管道</a></li>
+        <li><a id="contents:练习" href="#练习">练习</a></li>
+      </ol>
+    </li>
+    <li><a id="contents:文件查找和压缩" href="#文件查找和压缩">文件查找和压缩</a>
+      <ol>
+        <li><a id="contents:locate-命令" href="#locate-命令">locate 命令</a></li>
+        <li><a id="contents:find-命令" href="#find-命令">find 命令</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav><div class="post-body e-content">
+                <h1 id="文件管理"><a href="#文件管理" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件管理" class="headings">文件管理</a></h1>
+<h2 id="文件系统结构元素"><a href="#文件系统结构元素" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件系统结构元素" class="headings">文件系统结构元素</a></h2>
+<h3 id="文件系统"><a href="#文件系统" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件系统" class="headings">文件系统</a></h3>
+<ul>
+<li>文件和目录被组织成一个单根倒置树结构</li>
+<li>文件系统从根目录开始，用 <code>/</code> 表示</li>
+<li>根文件系统（rootfs）：root filesystem</li>
+<li>文件名区分大小写（具体来说是由文件系统决定的，而不是操作系统决定）</li>
+<li>以 <code>.</code> 开头的文件为隐藏文件</li>
+<li>路径分隔符 <code>/</code></li>
+<li>文件有两类数据
+<ul>
+<li>元数据：metadata，就是文件的属性</li>
+<li>数据：data，就是文件的具体内容
+-文件系统分层结构：LSB（Linux Standard Base）</li>
+</ul>
+</li>
+<li>FHS：Filesystem Hierarchy Standard
+<a href="http://www.pathname.com/fhs/" target="_blank" rel="noopener">http://www.pathname.com/fhs/</a></li>
+</ul>
+<h4 id="linux-标准目录结构"><a href="#linux-标准目录结构" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-标准目录结构" class="headings">Linux 标准目录结构</a></h4>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/
+</span></span><span class="line"><span class="cl">├── bin
+</span></span><span class="line"><span class="cl">├── boot
+</span></span><span class="line"><span class="cl">├── dev
+</span></span><span class="line"><span class="cl">├── etc
+</span></span><span class="line"><span class="cl">├── home
+</span></span><span class="line"><span class="cl">├── lib
+</span></span><span class="line"><span class="cl">├── lib64
+</span></span><span class="line"><span class="cl">├── media
+</span></span><span class="line"><span class="cl">├── mnt
+</span></span><span class="line"><span class="cl">├── proc
+</span></span><span class="line"><span class="cl">├── root
+</span></span><span class="line"><span class="cl">├── run
+</span></span><span class="line"><span class="cl">├── sbin
+</span></span><span class="line"><span class="cl">├── sys
+</span></span><span class="line"><span class="cl">├── tmp
+</span></span><span class="line"><span class="cl">├── usr
+</span></span><span class="line"><span class="cl">└── var
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><ul>
+<li>
+<p>boot：引导文件存放目录，内核文件（vmlinuz），引导加载器(bootloader、grub)都存放在此目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Linux 内核：
+</span></span><span class="line"><span class="cl">-rwxr-xr-x. <span class="m">1</span> root root 8.9M Oct <span class="m">22</span> 03:34 vmlinuz-5.3.7-301.fc31.x86_64
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>dev：设备，例如硬盘，光盘等，也包含逻辑上的设备</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">硬盘，b：block，块设备
+</span></span><span class="line"><span class="cl">brw-rw----. <span class="m">1</span> root disk 8, <span class="m">0</span> Jan  <span class="m">8</span> 22:22 /dev/sda
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">光盘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">字符设备，c：charactor，字符设备
+</span></span><span class="line"><span class="cl">crw-rw-rw-. <span class="m">1</span> root root 1, <span class="m">5</span> Jan  <span class="m">8</span> 20:02 /dev/zero
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">黑洞，会吞噬所有东西
+</span></span><span class="line"><span class="cl">crw-rw-rw-. <span class="m">1</span> root root 1, <span class="m">3</span> Jan  <span class="m">8</span> 20:02 /dev/null
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">用于产生随机数
+</span></span><span class="line"><span class="cl">crw-rw-rw-. <span class="m">1</span> root root 1, <span class="m">8</span> Jan  <span class="m">8</span> 20:02 /dev/random
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>etc：配置文件存放目录</p>
+</li>
+<li>
+<p>home/USERNAME：普通用户家目录</p>
+<pre tabindex="0"><code>上图中 home 目录下包含三个用户的家目录，alice、bob、eve
+</code></pre></li>
+<li>
+<p>root：root 用户的家目录</p>
+</li>
+<li>
+<p>run：运行中生成的数据</p>
+</li>
+<li>
+<p>bin：所有用户使用的基本命令；不能关联至独立分区，OS 启动即会用到的程序</p>
+</li>
+<li>
+<p>sbin：管理类的基本命令；不能关联至独立分区，OS 启动即会用到的程序</p>
+</li>
+<li>
+<p>tmp：临时数据</p>
+</li>
+<li>
+<p>usr：操作系统大部分的数据</p>
+</li>
+<li>
+<p>var：variable data files，存放可变的内容</p>
+<ul>
+<li>cache：应用程序缓存数据目录</li>
+<li>lib：应用程序状态信息数据</li>
+<li>local：专用于为 /usr/local 下的应用程序存储可变数据</li>
+<li>lock：锁文件</li>
+<li>log：日志目录及文件</li>
+<li>opt：专用于为 /opt 下的应用程序存储可变数据</li>
+<li>run：运行中的进程相关数据，通常用于存储进程 pid 文件</li>
+<li>spool：应用程序数据池</li>
+<li>tmp：保存系统两次重启之间产生的临时数据</li>
+</ul>
+</li>
+<li>
+<p>lib：启动时程序依赖的基本共享库文件以及内核模块文件（/lib/modules）</p>
+</li>
+<li>
+<p>lib64：专用于 x86_64 系统上的辅助共享库文件存放位置</p>
+</li>
+</ul>
+<h4 id="linux-其他目录"><a href="#linux-其他目录" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-其他目录" class="headings">Linux 其他目录</a></h4>
+<ul>
+<li>proc：process，用于输出内核与进程信息相关的虚拟文件系统，不在内存上</li>
+<li>sys：用于输出当前系统上硬件设备相关信息的虚拟文件系统
+<pre tabindex="0"><code>虚拟机刷新硬盘
+echo &#39;- - -&#39; &gt; /sys/class/scsi_host/hostX/scan X 为对应的数字
+</code></pre></li>
+<li>mnt：mount，做外围设备挂载点</li>
+<li>media：便携式移动设备挂载点</li>
+<li>selinux：security enhanced Linux，selinux 相关的安全策略等信息的存储位置</li>
+</ul>
+<h3 id="linux-上的应用程序的组成部分"><a href="#linux-上的应用程序的组成部分" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-上的应用程序的组成部分" class="headings">Linux 上的应用程序的组成部分</a></h3>
+<ul>
+<li>二进制程序：/bin、/sbin、/usr/bin、/usr/sbin、/usr/local/bin、/usr/local/sbin</li>
+<li>库文件：/lib、/lib64、/usr/lib、/usr/lib64、/usr/local/lib、/usr/local/lib64</li>
+<li>配置文件：/etc、/etc/DIRECTORY、/usr/local/etc</li>
+<li>帮助文件：/usr/share/man、/usr/share/doc、/usr/local/share/man、/usr/local/share/doc</li>
+</ul>
+<h3 id="文件名规则"><a href="#文件名规则" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件名规则" class="headings">文件名规则</a></h3>
+<ul>
+<li>文件名最长 255 个字节</li>
+<li>包括路径在内文件名称最长 4095 个字节</li>
+<li>蓝色-&gt;目录 绿色-&gt;可执行文件 红色-&gt;压缩文件 浅蓝色-&gt;链接文件 灰色-&gt;其他文件，在 <code>/etc/DIR_COLORS</code> 文件中配置</li>
+<li>除了斜线和 NUL，所有字符都有效。但使用特殊字符的目录名和文件不推荐使用，有些字符需要用引号来引导他们
+-标准 Linux 文件系统（如 ext4），文件名大小写敏感
+<pre tabindex="0"><code class="language-bsah" data-lang="bsah">例如：MAIL，Mail，mail，mAil
+</code></pre></li>
+</ul>
+<h3 id="linux-下的文件类型"><a href="#linux-下的文件类型" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:linux-下的文件类型" class="headings">Linux 下的文件类型</a></h3>
+<ul>
+<li><code>-</code> 普通文件</li>
+<li><code>d</code> 目录文件</li>
+<li><code>b</code> 块设备</li>
+<li><code>c</code> 字符设备</li>
+<li><code>l</code> 符号链接文件</li>
+<li><code>p</code> 管道文件 pipe</li>
+<li><code>s</code> 套接字文件 socket</li>
+</ul>
+<h3 id="显示当前工作目录"><a href="#显示当前工作目录" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:显示当前工作目录" class="headings">显示当前工作目录</a></h3>
+<ul>
+<li>
+<p>每个 shell 和系统进程都有一个当前的工作目录</p>
+</li>
+<li>
+<p>CWD：current work directory</p>
+</li>
+<li>
+<p>显示当前 shell CWD 的绝对路径</p>
+<p><code>pwd</code>：printing working directory</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-P 显示真实物理路径
+</span></span><span class="line"><span class="cl">-L 显示链接路径（默认）
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<p><strong>绝对和相对路径</strong></p>
+<ul>
+<li>绝对路径
+<ul>
+<li>以正斜杠开始</li>
+<li>完整的文件的位置路径</li>
+<li>可用于任何想指定一个文件名的时候</li>
+</ul>
+</li>
+<li>相对路径
+<ul>
+<li>不以斜线开始</li>
+<li>指定相对于当前工作目录或某目录的位置</li>
+<li>可以作为一个简短的形式指定一个文件名</li>
+</ul>
+</li>
+<li>基名：basename
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ basename /etc/sysconfig/network-scripts/
+</span></span><span class="line"><span class="cl">&gt; network-scripts
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>目录名：dirname
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ dirname /etc/sysconfig/network-scripts/
+</span></span><span class="line"><span class="cl">&gt; /etc/sysconfig
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<h3 id="更改目录"><a href="#更改目录" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:更改目录" class="headings">更改目录</a></h3>
+<p><code>cd</code>：change directory，改变目录</p>
+<ul>
+<li>
+<p>使用绝对或相对路径：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /home/wang/
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> home/wang
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>切换至父目录：<code>cd ..</code></p>
+</li>
+<li>
+<p>切换至当前用户主目录：<code>cd</code> 或 <code>cd ~</code></p>
+</li>
+<li>
+<p>切换至指定用户主目录：<code>cd ~username</code></p>
+</li>
+<li>
+<p>切换至以前的工作目录：<code>cd -</code></p>
+</li>
+<li>
+<p>选项：<code>-P</code>，切换到软链接的真实目录</p>
+</li>
+<li>
+<p>相关的环境变量：</p>
+<ul>
+<li><code>PWD</code>：当前目录路径，<code>echo $PWD</code></li>
+<li><code>OLDPWD</code>：上一次目录路径，<code>echo $OLDPWD</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="列出目录内容"><a href="#列出目录内容" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:列出目录内容" class="headings">列出目录内容</a></h3>
+<p><code>ls</code> 列出当前目录的内容或指定目录</p>
+<ul>
+<li>用法：<code>ls [options] [files_or_dirs]</code></li>
+<li>示例：
+<ul>
+<li><code>ls -a</code> 显示隐藏文件</li>
+<li><code>ls -l</code> 显示额外的信息</li>
+<li><code>ls -R</code> 目录递归通过，列出所有子目录</li>
+<li><code>ls -ld</code> 目录和符号链接信息，显示目录本身属性</li>
+<li><code>ls -1</code> 文件分行显示</li>
+<li><code>ls -S</code> 按文件从大到小排序</li>
+<li><code>ls -t</code> 按 mtime（modify time）排序</li>
+<li><code>ls -u</code> 配合-t 选项，显示并按 atime（access time）从新到旧排序</li>
+<li><code>ls -U</code> 按文件创建时间排序</li>
+<li><code>ls -X</code> 按文件后缀排序</li>
+<li><code>ls -r</code> 反转顺序</li>
+<li><code>ls --time=mtime/atime/ctime</code> 显示修改/访问/元数据改变时间</li>
+<li><code>stat file</code> 同时显示修改，访问，元数据改变时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="查看文件状态"><a href="#查看文件状态" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:查看文件状态" class="headings">查看文件状态</a></h3>
+<p><code>stat</code></p>
+<ul>
+<li>
+<p>用法：<code>Usage: stat [OPTION]... FILE...</code></p>
+</li>
+<li>
+<p>文件：</p>
+<ul>
+<li>metadata：元数据，文件的属性</li>
+<li>data：数据，文件的真实数据</li>
+</ul>
+</li>
+<li>
+<p>三个时间戳：</p>
+<ul>
+<li>access time：访问时间，atime，读取文件内容</li>
+<li>modify time：修改时间，mtime，改变文件内容（数据）</li>
+<li>change time：改变时间，ctime，元数据发生改变</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件通配符"><a href="#文件通配符" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件通配符" class="headings">文件通配符</a></h3>
+<ul>
+<li><code>*</code> 匹配零个或多个字符</li>
+<li><code>?</code> 匹配任何单个字符</li>
+<li><code>~</code> 当前用户家目录</li>
+<li><code>~mage</code> 用户 mage 的家目录</li>
+<li><code>~+</code> 当前工作目录</li>
+<li><code>~-</code> 前一个工作目录</li>
+<li><code>[0-9]</code> 匹配数字范围</li>
+<li><code>[a-z]</code> 字母</li>
+<li><code>[A-Z]</code> 字母</li>
+<li><code>[abcd]</code> 匹配列表中的任何一个字符</li>
+<li><code>[^abcd]</code> 匹配列表中的所有字符以外的字符</li>
+<li>预定义的字符类 <code>man 7 glob</code>
+<ul>
+<li><code>[:digit:]</code> 任意数字，相当于 0-9</li>
+<li><code>[:lower:]</code> 任意小写字母</li>
+<li><code>[:upper:]</code> 任意大写字母</li>
+<li><code>[:alpha:]</code> 任意大小写字母</li>
+<li><code>[:alnum:]</code> 任意数字或字母</li>
+<li><code>[:blank:]</code> 水平空白字符</li>
+<li><code>[:space:]</code> 水平或垂直空白字符</li>
+<li><code>[:punct:]</code> 标点符号</li>
+<li><code>[:print:]</code> 可打印字符</li>
+<li><code>[:cntrl:]</code> 控制（非打印）字符</li>
+<li><code>[:graph:]</code> 图形字符</li>
+<li><code>[:xdigit:</code>] 十六进制字符</li>
+<li><code>[[:lower:]]</code> 代表一小写字母</li>
+</ul>
+</li>
+</ul>
+<p><strong>练习</strong></p>
+<ul>
+<li>
+<p>显示 /var 目录下所有以 l 开头，以一个小写字母结尾，且中间出现至少一位数字的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /var/l*<span class="o">[[</span>:digit:<span class="o">]]</span>*<span class="o">[[</span>:lower:<span class="o">]]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>显示 /etc 目录下以任意一位数字开头，且以非数字结尾的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/<span class="o">[</span>0-9<span class="o">]</span>*<span class="o">[</span>^0-9<span class="o">]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>显 /etc 目录下以非字母开头，后面跟了一个字母及其他任意长度任意字符的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/<span class="o">[</span>^<span class="o">[</span>:alpha:<span class="o">]][[</span>:alpha:<span class="o">]]</span>*
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>显示 /etc 目录下所有以 rc 开头，并后面是 0-6 之间的数字，其他为任意字符的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/rc<span class="o">[</span>0-6<span class="o">]</span>*
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>显示 /etc 目录下，所有以 .d 结的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/*d
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>显示 /etc 目录下，所有以 .con 结尾，且以 m，n，r，p 开头的文件或目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/<span class="o">[</span>mnrp<span class="o">]</span>*.con
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>只显示 /root 下的隐藏文件和目录</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /root/.*
+</span></span><span class="line"><span class="cl">ls -daI <span class="s2">&#34;[^.]*&#34;&#34;
+</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p><strong>只显示 /etc 下的非隐藏目录</strong></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -d /etc/*/
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<h2 id="创建和查看文件"><a href="#创建和查看文件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:创建和查看文件" class="headings">创建和查看文件</a></h2>
+<h3 id="创建空文件和刷新时间"><a href="#创建空文件和刷新时间" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:创建空文件和刷新时间" class="headings">创建空文件和刷新时间</a></h3>
+<p><code>touch</code> 命令</p>
+<ul>
+<li>格式：<code>touch [OPTION] ... FILE ...</code>
+<ul>
+<li><code>-a</code> 仅改变 atime 和 ctime</li>
+<li><code>-m</code> 仅改变 mtime 和 ctime</li>
+<li><code>-t [[CC]YY]MMDDhhmm[.ss]</code> 指定 atime 和 mtime 的时间戳</li>
+<li><code>-c</code> 如果文件不存在，则不予创建</li>
+</ul>
+</li>
+</ul>
+<p><strong>练习</strong></p>
+<ol>
+<li>创建 <code>-a</code> 文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">touch -- -a 或 touch ./-a
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><ol start="2">
+<li>创建 <code>~filename</code> 文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">touch <span class="s1">&#39;~filename&#39;</span> 或 touch ./~filename
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h2 id="复制转移和删除文件"><a href="#复制转移和删除文件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:复制转移和删除文件" class="headings">复制，转移和删除文件</a></h2>
+<h3 id="复制文件和目录-cpcopy"><a href="#复制文件和目录-cpcopy" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:复制文件和目录-cpcopy" class="headings">复制文件和目录 cp（copy）</a></h3>
+<p><strong>语法：</strong></p>
+<ul>
+<li><code>cp [OPTION]... [-T] SOURCE DEST</code></li>
+<li><code>cp [OPTION]... SOURCE... DIRECTORY</code></li>
+<li><code>cp [OPTION]... -t DIRECTORY SOURCE...</code></li>
+</ul>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>目标<br>/<br>源</th>
+<th>不存在</th>
+<th>存在且为文件</th>
+<th>存在且为目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个文件</td>
+<td>新建 DEST，并将 SRC 中内容填充至 DEST 中</td>
+<td>将 SRC 中的内容覆盖至 DEST 中<br>注意数据丢失风险! 建议用 <code>-i</code> 选项</td>
+<td>在 DEST 下新建与原文件同名的文件，并将 SRC 中内容填充至新文件中</td>
+</tr>
+<tr>
+<td>多个文件</td>
+<td>提示错误</td>
+<td>提示错误</td>
+<td>在 DESC 下新建与原文件同名的文件，并将原文件内容复制进新文件中</td>
+</tr>
+<tr>
+<td>目录<br>需使用 <code>-r</code>  选项</td>
+<td>创建指定 DEST 同名目录，复制 SRC 目录中所有文件至 DEST 下</td>
+<td>提示错误</td>
+<td>在 DEST 下新建与原目录同名的目录，并将 SRC 中内容复制至新目录中</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>常用选项：</strong></p>
+<ul>
+<li><code>-i</code> 覆盖前提示</li>
+<li><code>-n</code> 不覆盖</li>
+<li><code>-r</code>，<code>-R</code> 递归复制目录及内部的所有内容</li>
+<li><code>-a</code> 归档，相当于 <code>-dR --preserv=all</code></li>
+<li><code>-d</code> 不复制原文件，只复制链接名，相当于 <code>--no-dereference --preserv=links</code></li>
+<li><code>-p</code> 等同 <code>--preserv=mode,ownership,timestamp</code></li>
+<li><code>-v --verbose</code> 打印复制过程</li>
+<li><code>-f --force</code> 强制复制，如果会覆盖原文件，不会有提示</li>
+<li><code>-u --update</code> 只复制比目标更新或不存在的文件</li>
+<li><code>-b</code> 目标存在，覆盖前先备份</li>
+<li><code>--backup=numbered</code> 目标存在，覆盖前先备份，加数字后缀</li>
+<li><code>--preserv[=ATTR_LIST]</code>
+<ul>
+<li><code>mode</code> 权限</li>
+<li><code>ownership</code> 属主属组</li>
+<li><code>timestamp</code></li>
+<li><code>links</code></li>
+<li><code>xatt</code></li>
+<li><code>context</code></li>
+<li><code>all</code></li>
+</ul>
+</li>
+</ul>
+<p>特殊文件使用 cp 会出问题，例如 <code>cp /dev/sdb ./</code>，该命令会将整个硬盘复制过来，应该使用 <code>cp -a /dev/sdb</code>命令，复制所有属性，8 代表设备类型，16 代表该设备的编号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ll -a /dev/sdb</span>
+</span></span><span class="line"><span class="cl">brw-rw----. <span class="m">1</span> root disk 8, <span class="m">16</span> Jan <span class="m">13</span> 19:58 /dev/sdb
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># cp /dev/sdb .</span>
+</span></span><span class="line"><span class="cl">立即 Ctrl+C
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ll -a /dev/sdb ./sdb</span>
+</span></span><span class="line"><span class="cl">brw-rw----. <span class="m">1</span> root disk     8, <span class="m">16</span> Jan <span class="m">13</span> 19:58 /dev/sdb
+</span></span><span class="line"><span class="cl">-rw-r-----. <span class="m">1</span> root root <span class="m">101433344</span> Jan <span class="m">13</span> 21:09 ./sdb
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># cp -a /dev/sdb .</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ll -a /dev/sdb ./sdb</span>
+</span></span><span class="line"><span class="cl">brw-rw----. <span class="m">1</span> root disk 8, <span class="m">16</span> Jan <span class="m">13</span> 19:58 /dev/sdb
+</span></span><span class="line"><span class="cl">brw-rw----. <span class="m">1</span> root disk 8, <span class="m">16</span> Jan <span class="m">13</span> 19:58 ./sdb
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p><strong>练习</strong></p>
+<ol>
+<li>
+<p>定义别名命令 baketc，每天将 /etc/ 目录下所有文件，被分到 /app 独立的子目录下，并要求子目录格式为 backupYYYY-mm-dd，备份过程可见</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir /app/
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">baketc</span><span class="o">=</span><span class="s1">&#39;cp -av /etc/ /app/backup`date +%F`&#39;</span>
+</span></span><span class="line"><span class="cl">baketc
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>创建 /app/rootdir 目录，并复制 /root 下所有文件到该目录内，要求保留原有权限</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir /app/rootdir
+</span></span><span class="line"><span class="cl">cp -rp /root/ /app/rootdir
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>复制 file，file.bak</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp file<span class="o">{</span>,.bak<span class="o">}</span> 相当于 cp file file.bak
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<h3 id="移动和重命名文件-mvmove"><a href="#移动和重命名文件-mvmove" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:移动和重命名文件-mvmove" class="headings">移动和重命名文件 mv（move）</a></h3>
+<p><strong>语法</strong></p>
+<ul>
+<li><code>mv [OPTION]... [-T] SOURCE DEST</code></li>
+<li><code>mv [OPTION]... SOURCE... DIRECTORY</code></li>
+<li><code>mv [OPTION]... -t DIRECTORY SOURCE...</code></li>
+</ul>
+<p><strong>常用选项</strong></p>
+<ul>
+<li><code>-i</code> 交互式</li>
+<li><code>-f</code> 强制</li>
+<li><code>-b</code> 目标存在，复制前先备份</li>
+</ul>
+<p><strong>rename</strong></p>
+<ul>
+<li><code>rename [options] &lt;expression&gt; &lt;replacement&gt; &lt;file&gt;...</code></li>
+</ul>
+<p>把 *.conf 文件中的 conf 替换为 conf.bak</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rename conf conf.bak *.conf
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="删除-rmremove"><a href="#删除-rmremove" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:删除-rmremove" class="headings">删除 rm（remove）</a></h3>
+<p><strong>语法</strong></p>
+<ul>
+<li><code>rm [OPTION]... [FILE]...</code></li>
+</ul>
+<p><strong>常用选项</strong></p>
+<ul>
+<li><code>-i</code> 交互式</li>
+<li><code>-f</code> 强制删除</li>
+<li><code>-r</code> 递归删除</li>
+<li><code>--no-preserve-root</code> 不保留根，从<code>/</code>目录开始删除</li>
+</ul>
+<p><strong>示例</strong></p>
+<p><code>rm -rf /</code></p>
+<p><strong>练习</strong></p>
+<ol>
+<li>
+<p>将 <code>rm file</code> 命令修改为 <code>mv file /data</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;mv -t /data&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>删除目录下的 -foo 文件</p>
+<pre tabindex="0"><code class="language-ba" data-lang="ba">rm -- -foo
+或
+rm ./-foo
+</code></pre></li>
+<li>
+<p>已被删除但未释放空间的操作</p>
+<p>在 /boot 目录下创建一个 800M 的 bigfile 文件，<code>if(input file), of(output file), bs(block store), count</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/boot/bigfile <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">800</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>查看已被删除，但没有释放的文件</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsof <span class="p">|</span> grep deleted
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>将已存在的文件内存置为 0</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; /boot/bigfile
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<h2 id="目录操作"><a href="#目录操作" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:目录操作" class="headings">目录操作</a></h2>
+<ul>
+<li>
+<p><code>tree</code> 显示目录树</p>
+<ul>
+<li><code>-d</code> 只显示目录</li>
+<li><code>-L level</code> 指定显示的层级数目</li>
+<li><code>-P</code> 只显示由指定 pattern 匹配到的路径</li>
+</ul>
+</li>
+<li>
+<p><code>mkdir</code>（make directory） 创建目录
+- <code>-p parent</code>，如果存在不报错，不存在会创建当前目录及父级目录
+- <code>-v</code> 显示详细信息
+- <code>-m MODE</code> 创建目录时直接指定权限</p>
+</li>
+<li>
+<p><code>rmdir</code>（remove directory） 删除空目录
+- <code>-p</code> 递归删除父空目录
+- <code>-v</code> 显示详细信息</p>
+</li>
+<li>
+<p><code>rm -f</code> 递归删除目录树</p>
+</li>
+</ul>
+<p><strong>练习</strong></p>
+<ol>
+<li>
+<p>如何创建 /testdir/dir1/x，/testdir/dir1/y，/testdir/dir1/x/a，/testdir/dir1/x/b，/test/dir1/y/a，/testdir/dir1/y/b</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/testdir
+</span></span><span class="line"><span class="cl">└── dir1
+</span></span><span class="line"><span class="cl">    ├── x
+</span></span><span class="line"><span class="cl">    │   ├── a
+</span></span><span class="line"><span class="cl">    │   └── b
+</span></span><span class="line"><span class="cl">    └── y
+</span></span><span class="line"><span class="cl">        ├── a
+</span></span><span class="line"><span class="cl">        └── b
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p /testdir/dir1/<span class="o">{</span>x,y<span class="o">}</span>/<span class="o">{</span>a,b<span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>如何创建 /testdir/dir2/x，/testdir/dir2/y，/testdir/dir2/x/a，/testdir/dir2/x/b</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/testdir
+</span></span><span class="line"><span class="cl">└── dir2
+</span></span><span class="line"><span class="cl">    ├── x
+</span></span><span class="line"><span class="cl">    │   ├── a
+</span></span><span class="line"><span class="cl">    │   └── b
+</span></span><span class="line"><span class="cl">    └── y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -p /testdir/dir2/<span class="o">{</span>x/<span class="o">{</span>a,b<span class="o">}</span>,y<span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>如何创建 /testdir/dir3，/testdir/dir4，/testdir/dir5/dir6，/testdir/dir5/dir7</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/testdir
+</span></span><span class="line"><span class="cl">├── dir3
+</span></span><span class="line"><span class="cl">├── dir4
+</span></span><span class="line"><span class="cl">└── dir5
+</span></span><span class="line"><span class="cl">    ├── dir6
+</span></span><span class="line"><span class="cl">    └── dir7
+</span></span><span class="line"><span class="cl">mkdir -p /testdir/dir<span class="o">{</span>3,4,5/dir<span class="o">{</span>6,7<span class="o">}}</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<h2 id="索引节点"><a href="#索引节点" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:索引节点" class="headings">索引节点</a></h2>
+<h3 id="索引节点介绍"><a href="#索引节点介绍" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:索引节点介绍" class="headings">索引节点介绍</a></h3>
+<p>inode（index node）：索引节点表中包含文件系统所有文件列表</p>
+<ul>
+<li>一个节点（索引节点）是索引节点表中的一个表项，包含有关文件的信息(元数据)，包括：文件类型，权限，UID，GID</li>
+</ul>
+<p>链接数（指向这个文件名路径名称个数）</p>
+<ul>
+<li>该文件的大小和不同的时间戳</li>
+<li>指向磁盘上文件的数据块指针</li>
+<li>有关文件的其他数据</li>
+</ul>
+<p>文件和目录</p>
+<ul>
+<li>文件引用是一个 inode 号</li>
+<li>人是通过文件名来引用一个文件，计算机使用 inode</li>
+<li>一个目录是目录下所有文件的文件名和文件 inode 号之间的映射
+<img src="https://oss.intelli.icu/images/2021/20210607235655.png-watermark" alt="image"></li>
+</ul>
+<h3 id="inode-表结构"><a href="#inode-表结构" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:inode-表结构" class="headings">inode 表结构</a></h3>
+<p><img src="https://oss.intelli.icu/images/2021/20210607235656.png-watermark" alt="inode.png"></p>
+<ol>
+<li>
+<p>前 12 个直接指针，直接之上内存的数据区域</p>
+<p>如 Blocks 大小为 4096B，则前 12 个直接指针就可以保存 48KB 文件</p>
+</li>
+<li>
+<p>一级指针可存储文件大小计算</p>
+<p>假设每个指针占用 4 个字节，则一级指针指向的 Block 可保存 4096/4 个指针，即可指向 1024 个 Block，一级指针可存储文件数据大小为 1024*4096=4MB</p>
+</li>
+<li>
+<p>二级指针可存储文件大小计算</p>
+<p>同样假设 Blocks 大小为 4094，则二级指针可保存的 Block 指针数量为(4096/4)*(4096/4)=1014*1024，则二级指针可保存的文件数量大小为(1024*1024)*4096=4GB</p>
+</li>
+<li>
+<p>三级指针可存储文件大小计算</p>
+<p>以一级，二级指针计算方法类推，三级指针可存储的文件数据大小为(1024*1024*1024)*4096=4TB</p>
+</li>
+</ol>
+<p><img src="https://oss.intelli.icu/images/2021/20210607235657.png-watermark" alt="image"></p>
+<h4 id="示例"><a href="#示例" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:示例" class="headings">示例</a></h4>
+<p>查看每个分区最大的节点编号</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># df -i</span>
+</span></span><span class="line"><span class="cl">Filesystem               Inodes IUsed   IFree IUse% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1                <span class="m">524288</span>   <span class="m">326</span>  <span class="m">523962</span>    1% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>查看每个分区的容量</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># df -h</span>
+</span></span><span class="line"><span class="cl">Filesystem               Size  Used Avail Use% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1               1014M  136M  879M  14% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>可知/boot 目录的最大节点编号为 524288，最大可用内存为 879M</p>
+<p>此时，在/boot 文件夹中创建一个大文件，每块 1M，创建 900 块，共占用 900M&gt;879M</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/boot/bigfile <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">900</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>错误提示：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd: error writing‘/boot/bigfile’: No space left on device
+</span></span><span class="line"><span class="cl">878+0 records in
+</span></span><span class="line"><span class="cl">877+0 records out
+</span></span><span class="line"><span class="cl"><span class="m">919797760</span> bytes <span class="o">(</span><span class="m">920</span> MB<span class="o">)</span> copied, 1.58615 s, <span class="m">580</span> MB/s
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>此时，节点编号还有剩余，硬盘内存已被占满</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># df -i</span>
+</span></span><span class="line"><span class="cl">Filesystem               Inodes IUsed   IFree IUse% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1                  <span class="m">2192</span>   <span class="m">327</span>    <span class="m">1865</span>   15% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># df -h</span>
+</span></span><span class="line"><span class="cl">Filesystem               Size  Used Avail Use% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1               1014M 1014M  840K 100% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>删除刚创建的大文件，还原到初始环境</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># rm -f /boot/bigfile</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>因为/boot下最多包含 524288 个节点，因此创建 524288 万个文件进行测试（1 个文件可能占用多个节点编号）</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># echo /boot/dir/f{1..524288} | xargs touch</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>错误提示</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">touch: cannot touch‘f523963’: No space left on device
+</span></span><span class="line"><span class="cl">touch: cannot touch‘f523964’: No space left on device
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">touch: cannot touch‘f524287’: No space left on device
+</span></span><span class="line"><span class="cl">touch: cannot touch‘f524288’: No space left on device
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>此时，硬盘内存并未占满，节点号已经用光了</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost boot<span class="o">]</span><span class="c1"># df -h</span>
+</span></span><span class="line"><span class="cl">Filesystem               Size  Used Avail Use% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1               1014M  411M  604M  41% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost boot<span class="o">]</span><span class="c1"># df -i</span>
+</span></span><span class="line"><span class="cl">Filesystem               Inodes  IUsed   IFree IUse% Mounted on
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">/dev/vda1                <span class="m">524288</span> <span class="m">524288</span>       <span class="m">0</span>  100% /boot
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>还原环境</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@localhost boot<span class="o">]</span><span class="c1"># rm -rf /boot/dir/*</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p><strong>内存占满或节点耗尽的提示均为：</strong></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">No space left on device
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 id="mvcp-与-inode-的关系"><a href="#mvcp-与-inode-的关系" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:mvcp-与-inode-的关系" class="headings">mv，cp 与 inode 的关系</a></h3>
+<h4 id="mv-与-inode-关系"><a href="#mv-与-inode-关系" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:mv-与-inode-关系" class="headings">mv 与 inode 关系</a></h4>
+<p><code>mv</code> 一个文件时</p>
+<ol>
+<li>链接数递减，从而释放的 inode 号可以被重用</li>
+<li>把数据块放在空闲列表中</li>
+<li>删除目录项</li>
+<li>数据实际上不会马上删除，但当另一个文件使用数据块时将被覆盖</li>
+</ol>
+<h4 id="cp-与-inode-关系"><a href="#cp-与-inode-关系" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:cp-与-inode-关系" class="headings">cp 与 inode 关系</a></h4>
+<p><code>cp</code> 一个文件时</p>
+<ol>
+<li>分配一个空闲的 inode 号，在 inode 表中生成新条目</li>
+<li>在目录中创建一个目录项，将名称与 inode 编号关联</li>
+<li>拷贝数据，生成新文件</li>
+</ol>
+<h2 id="软链接和硬链接"><a href="#软链接和硬链接" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:软链接和硬链接" class="headings">软链接和硬链接</a></h2>
+<h3 id="硬链接"><a href="#硬链接" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:硬链接" class="headings">硬链接</a></h3>
+<p>对一个文件起多个名字</p>
+<ul>
+<li>创建硬链接会增加额外的记录项以引用文件</li>
+<li>对应与同一文件系统上一个物理文件</li>
+<li>每个文件引用相同的 inode 号</li>
+<li>创建时链接数递增</li>
+<li>删除文件时
+<ul>
+<li>rm 命令递减链接计数</li>
+<li>文件要存在，至少有一个链接数</li>
+<li>当链接数为 0 时，该文件被删除</li>
+</ul>
+</li>
+<li>不能跨驱动器或分区创建</li>
+<li>语法：
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln filename <span class="o">[</span>linkname<span class="o">]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<h3 id="软链接符号链接"><a href="#软链接符号链接" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:软链接符号链接" class="headings">软链接（符号链接）</a></h3>
+<p>相当于 Windows 上的桌面快捷方式</p>
+<ul>
+<li>一个符号链接指向另一个文件</li>
+<li><code>ls -l</code> 显示链接的名称和引用的文件</li>
+<li>一个符号链接的内容是它引用文件的名称</li>
+<li>可以对目录创建软链接</li>
+<li>可以跨分区</li>
+<li>指向的是另一个文件的路径；齐大小为指向的路径字符串的长度；不增加或减少目录文件 inode 的引用计数；</li>
+<li>语法
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln -s filename <span class="o">[</span>linkname<span class="o">]</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div>filename 一般使用相对路径，该相对路径一定是相对于 linkname 指定文件的路径</li>
+</ul>
+<h3 id="硬链接和软链接的区别"><a href="#硬链接和软链接的区别" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:硬链接和软链接的区别" class="headings">硬链接和软链接的区别</a></h3>
+<ol>
+<li>硬链接和原文件是同一个文件，只是名称不同</li>
+<li>硬链接不能跨分区创建，软链接可以跨分区创建</li>
+<li>硬链接会增加链接数，软链接不会增加链接数</li>
+<li>硬链接的 inode 号与原文件相同，软链接有自己的 inode 号</li>
+<li>删除原文件，通过硬链接依旧可以访问文件，而软链接不可以</li>
+<li>硬链接的大小就是原文件的大小，软链接文件的大小是其链接文件的路径大小</li>
+<li>硬链接不支持目录，软链接支持目录（目录默认链接数为 2，因为其内有一个 <code>.</code> 目录，代表当前目录）</li>
+<li>硬链接的相对路径是相对当前所在目录，软链接的相对路径是相对被链接文件的相对路径</li>
+</ol>
+<h2 id="确定文件内容"><a href="#确定文件内容" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:确定文件内容" class="headings">确定文件内容</a></h2>
+<p>文件可以包含多种类型的数据。检查文件的类型，然后确定适当的打开命令或应用程序使用</p>
+<p>语法：<code>file [options] &lt;filename&gt; ...</code></p>
+<p>常用选项：</p>
+<ul>
+<li><code>-b</code> 列出文件辨识结果时，不显示文件名称</li>
+<li><code>-f filelist</code> 列出 filelist 文本文件中包含的文件名的文件类型</li>
+<li><code>-F</code> 使用指定分隔符号替换输出文件名后默认的 <code>:</code> 分割符</li>
+<li><code>-L</code> 查看对应软链接对应文件的文件类型</li>
+<li><code>--help</code> 显示命令在线帮助</li>
+</ul>
+<p>每个文件的头部都包含 magic number（魔数），根据魔数可知文件的类型</p>
+<h2 id="标准-io-及管道"><a href="#标准-io-及管道" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:标准-io-及管道" class="headings">标准 IO 及管道</a></h2>
+<h3 id="标准输入和输出"><a href="#标准输入和输出" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:标准输入和输出" class="headings">标准输入和输出</a></h3>
+<p>程序：指令 + 数据</p>
+<ul>
+<li>读入数据：Input</li>
+<li>输出数据：Output
+-打开的文件都有一个<code>fd</code>：file descriptor（文件描述符）</li>
+</ul>
+<p>Linux 给程序提供三种 I/O 设备</p>
+<ul>
+<li>标准输入（STDIN）：<code>0</code>，默认接受来自键盘的输入</li>
+<li>标准输出（STDOUT）：<code>1</code>，默认输出到终端窗口</li>
+<li>标准错误（STDERR）：<code>2</code>，默认输出到终端窗口</li>
+</ul>
+<p>I/O 重定向：改变默认位置</p>
+<p>**文件描述符：**每个运行中的程序都有一个进程号，在 <code>/proc/进程号/fd</code> 目录下即可看到该进程的输出输出等信息</p>
+<h3 id="把输出和错误重定向到文件"><a href="#把输出和错误重定向到文件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:把输出和错误重定向到文件" class="headings">把输出和错误重定向到文件</a></h3>
+<p>STDOUT 和 STDERR 可以被重定向到文件</p>
+<ul>
+<li>
+<p>语法：<code>命令 操作符号 文件名</code></p>
+</li>
+<li>
+<p>支持的操作符包括</p>
+<ul>
+<li><code>&gt;</code>，<code>1&gt;</code>，<code>&gt;&gt;</code>，<code>1&gt;&gt;</code> 把 STDOUT 重定向到文件</li>
+<li><code>2&gt;</code>，<code>2&gt;&gt;</code> 把 STDERR 重定向到文件</li>
+<li><code>&amp;&gt;</code>，<code>&amp;&gt;&gt;</code> 把所有输出重定向到文件</li>
+</ul>
+</li>
+<li>
+<p><code>&gt;</code> 覆盖重定向标准输出数据流</p>
+<ul>
+<li>使用 <code>set -C</code> 命令禁止将内容覆盖到已有文件，但可追加</li>
+<li>使用 <code>&gt;| file</code> 强制覆盖</li>
+<li>使用 <code>set +C</code> 允许覆盖</li>
+</ul>
+</li>
+<li>
+<p><code>&gt;&gt;</code> 追加重定向标准输出数据流</p>
+</li>
+<li>
+<p><code>2&gt;</code> 覆盖重定向标准错误输出数据流</p>
+</li>
+<li>
+<p><code>2&gt;&gt;</code> 追加重定向标准错误输出数据流</p>
+</li>
+<li>
+<p>将标准输出和标准错误输出重定向不同位置</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">COMMAND &gt; /path/to/file.out 2&gt; /path/to/error.out
+</span></span><span class="line"><span class="cl">例如
+</span></span><span class="line"><span class="cl">$ ls /existfile /noexistfile &gt; file1 2&gt; file2
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>合并标准输出和错误输出为同一个数据流进行重定向</p>
+<ul>
+<li>
+<p>将标准输出和标准错误输出重定向到 file</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls /existfile /noexistfile <span class="p">&amp;</span>&gt; file
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">$ ls /existfile /noexistfile &gt; file 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">第二种需要注意顺序，
+</span></span><span class="line"><span class="cl">$ ls /existfile /noexistfile 2&gt;<span class="nv">$1</span> &gt; file
+</span></span><span class="line"><span class="cl">此种情况将标准错误重定向到标准输出后，会立即将错误信息输出到控制台，然后将之后的标准输出再输出到文件
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将标准输出和错误输出都隐藏</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls /existfile /noexistfile <span class="p">&amp;</span>&gt; /dev/null
+</span></span><span class="line"><span class="cl">$ ls /existfile /noexistfile &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">$ ls /existfile /noexistfile 2&gt; /dev/null &gt;<span class="p">&amp;</span><span class="m">2</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><code>()</code> 合并多个程序的 STDOUT</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>cal 2007<span class="p">;</span>cal 2008<span class="o">)</span> &gt; all.txt
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<h3 id="将文件的内容作为标准输入"><a href="#将文件的内容作为标准输入" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:将文件的内容作为标准输入" class="headings">将文件的内容作为标准输入</a></h3>
+<ul>
+<li>
+<p><code>&lt;</code> 将标准输入重定向</p>
+</li>
+<li>
+<p>某些命令能够接受从文件中导入的 STDIN</p>
+</li>
+<li>
+<p><code>tr 'a-z' 'A-Z' &lt; /etc/issue</code></p>
+<p>此命令会把/etc/issue 中的小写字符都转换成大写字符</p>
+</li>
+<li>
+<p><code>&lt;&lt;k</code> 多行输入重定向，k 代表终止词，一般使用 EOF，即 <code>&lt;&lt;EOF</code>，End Of File</p>
+<ul>
+<li>
+<p>直到 k 位置的所有文本都发送给 STDIN</p>
+</li>
+<li>
+<p>有时被称为就地文本（heretext）</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mail -s <span class="s2">&#34;Please Call&#34;</span> admin@example.com <span class="s">&lt;&lt;END
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; Hi Wang,
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; Please give me a call when you yet in. We may need
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; to do some maintenance on server1
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; Details when you&#39;re on-site
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; Zhang
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; END</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h4 id="tr-命令"><a href="#tr-命令" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:tr-命令" class="headings">tr 命令</a></h4>
+<p>语法：<code>tr [OPTION]... SET1 [SET2]</code> 转换和删除字符</p>
+<p>选项：</p>
+<ul>
+<li><code>-c</code>，<code>-C</code>，<code>--complement</code>：取字符集的补集</li>
+<li><code>-d</code>，<code>--delete</code>：删除所有属于第一字符集的字符</li>
+<li><code>-s</code>，<code>--squeeze-repeats</code>：把连续重复的字符以单独一个字符表示</li>
+<li><code>-t</code>，<code>--truncate-set1</code>：将第一个字符集对应字符转化为第二字符集对应的字符</li>
+</ul>
+<p>SET 的值：</p>
+<ul>
+<li><code>\NNN</code>：八进制</li>
+<li><code>\\</code>：反斜线</li>
+<li><code>\a</code>：audible BEL</li>
+<li><code>\b</code>：退格键</li>
+<li><code>\f</code>：form feed</li>
+<li><code>\n</code>：换行符</li>
+<li><code>\r</code>：回车符</li>
+<li><code>\t</code>：水平的 Tab 键</li>
+<li><code>\v</code>：垂直的 Tab 键</li>
+<li><code>CHAR1-CHAR2</code>：ASCII 表中从 CHAR1 到 CHAR2 的所有字符</li>
+<li><code>[CHAR*]</code>：in SET2，copies of CHAR until length of SET1</li>
+<li><code>[CHAR*REPEAT]</code>：REPEAT copies of CHAR，REPEAT octal if starting with 0</li>
+<li><code>[:alnum:]</code>：字母和数字</li>
+<li><code>[:alpha:]</code>：字母</li>
+<li><code>[:blank:]</code>：all horizontal whitespace</li>
+<li><code>[:cntrl:]</code>：控制（非打印）字符</li>
+<li><code>[:digit:]</code>：数字</li>
+<li><code>[:graph:]</code>：可打印的图形字符，不包括空白字符</li>
+<li><code>[:lower:]</code>：小写字母</li>
+<li><code>[:print:]</code>：可打印的字符，包括空白字符</li>
+<li><code>[:punct:]</code>：标点符号</li>
+<li><code>[:space:]</code>：空白字符</li>
+<li><code>[:upper:]</code>：大写字母</li>
+<li><code>[:xdigit:]</code>：十六进制字符</li>
+<li><code>[=CHAR=]</code>：all characters which are equivalent to CHAR</li>
+</ul>
+<h3 id="管道"><a href="#管道" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:管道" class="headings">管道</a></h3>
+<p>管道（使用符号 <code>|</code> 表示），用来连接命令</p>
+<p>语法：<code>命令 1 | 命令 2 | 命令 3 | ...</code></p>
+<ul>
+<li>
+<p>将命令 1 的 STDOUT 发送给命令 2 的 STDIN，命令 2 的 STDOUT 发送给命令 3 的 STDIN</p>
+</li>
+<li>
+<p>STDERR 默认不能通过管道转发，可利用 <code>2&gt;&amp;1</code> 或 <code>|&amp;</code> 实现</p>
+</li>
+<li>
+<p>最后一个命令会在当前 shell 进程的子 shell 进程中执行用来</p>
+</li>
+<li>
+<p>组合多种工具的功能：<code>ls | tr 'a-z' 'A-Z'</code></p>
+</li>
+<li>
+<p>一些支持管道的命令</p>
+<ul>
+<li>
+<p><code>less</code>：一页一页地查看输入</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -l /etc <span class="p">|</span> less
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p><code>mail</code>：通过电子邮件发送输入</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;test email&#34;</span> <span class="p">|</span> mail -s <span class="s2">&#34;test&#34;</span> user@example.com
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p><code>lpr</code>：把输入发送给打印机</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;test print&#34;</span> <span class="p">|</span> lpr -P printer_name
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>管道中的 <code>-</code> 符号</p>
+<blockquote>
+<p>示例：将 /home 里面的文件打包，但打包的数据不是记录到文件，而是传送到 stdout，经过管道后，将 <code>tar -cvf - /home</code> 传送给后面的 <code>tar -xvf -</code>，后面的这个 <code>-</code> 则是取前一个命令的 stdout，因此，就不需要使用临时 file 了</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tar -cvf - /home <span class="p">|</span> tar -xvf -
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>重定向到多个目标（tee）</p>
+<ul>
+<li>
+<p><code>命令 1 | tee [-a] 文件名 | 命令 2</code></p>
+<blockquote>
+<p>把命令 1 的 STDOUT 保存在文件中，作为命令 2 的输入
+<code>-a</code> 追加</p>
+</blockquote>
+</li>
+<li>
+<p>使用：</p>
+<ul>
+<li>保存不通阶段的输出</li>
+<li>复杂管道的故障排除</li>
+<li>同时查看和记录输出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="练习"><a href="#练习" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:练习" class="headings">练习</a></h3>
+<ol>
+<li>
+<p>将 /etc/issue 文件中的内容转换为大写后保存至 /tmp/issue.out 文件中</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tr a-z A-Z &lt; /etc/issue &gt; /tmp/issue.out
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将当前系统登录用户的信息转换为大写后保存至 /tmp/who.out 文件中</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ whoami &gt; whoami
+</span></span><span class="line"><span class="cl">$ tr a-z A-z &lt; whoami &gt; /tmp/who.out
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">$ whoami <span class="p">|</span> tr a-z A-Z &gt; /tmp/who.out
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>一个 linux 用户给 root 发邮件，要求邮件标题为“help”，邮件正文如下：“Hello, I am 用户名. The system version is here, please help me to check it, thanks! 操作系统版本信息”</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>username@local ~<span class="o">]</span>$ mail -s <span class="s2">&#34;help&#34;</span> root <span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; Hello, I am $USER. The system version is here, please help me to check it, thanks! `cat /etc/centos-release`
+</span></span></span><span class="line"><span class="cl"><span class="s">&gt; EOF</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将 /root/ 下文件列表显示成一行，并且文件名之间用空格隔开</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls &gt; ls.txt
+</span></span><span class="line"><span class="cl">$ tr -t <span class="s1">&#39;\n&#39;</span> <span class="s1">&#39; &#39;</span> &lt; ls.txt
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">$ ls <span class="p">|</span> tr -t <span class="s1">&#39;\n&#39;</span> <span class="s1">&#39; &#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>计算 1+2+3+...+99+100 的总和</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="o">{</span>1..100<span class="o">}</span> &gt; sum.txt 
+</span></span><span class="line"><span class="cl">$ tr -t <span class="s1">&#39; &#39;</span> <span class="s1">&#39;+&#39;</span> &lt; sum.txt &gt; rep.txt
+</span></span><span class="line"><span class="cl">$ bc &lt; rep.txt
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="o">{</span>1..100<span class="o">}</span> <span class="p">|</span> tr -t <span class="s1">&#39; &#39;</span> <span class="s1">&#39;+&#39;</span> <span class="p">|</span> bc
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>删除 Windows 文本文件中的 <code>^M</code> 字符</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tr -d ^M &lt; Windows
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>处理字符串 “xt.,l 1 jr#!&amp;.logmn2 c*/fe 3 uz 4”, 只保留其中的数字和空格</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s1">&#39;xt.,l 1 jr#!&amp;.logmn2 c*/fe 3 uz 4&#39;</span> <span class="p">|</span> tr -dc <span class="s1">&#39;[0-9 ]&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将 PATH 变量每个目录显示在独立的一行</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="nv">$PATH</span> &gt; PATH.txt
+</span></span><span class="line"><span class="cl">$ tr -t : <span class="s1">&#39;\n&#39;</span> &lt; PATH.txt
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="nv">$PATH</span> <span class="p">|</span> tr -t : <span class="s1">&#39;\n&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将指定文件中 0-9 分别替换成 a-j</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tr -t 0-9 a-j &lt; file
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>将文件 /etc/cenos-release 中每个单词（由字母组成）显示在独立一行，并无空行</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ol>
+<h2 id="文件查找和压缩"><a href="#文件查找和压缩" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:文件查找和压缩" class="headings">文件查找和压缩</a></h2>
+<h3 id="locate-命令"><a href="#locate-命令" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:locate-命令" class="headings">locate 命令</a></h3>
+<p><code>locate</code> 命令依赖与 mlocate 数据库进行搜索，对新创建或刚删除的数据不会立即更新数据库，因此可能搜索不到或搜索到已删除的数据，可以使用<code>updatedb</code> 命令来手动更新 mlocate 数据库。</p>
+<p>locate 命令搜索很快，因此适合搜索磁盘上稳定不变的数据。</p>
+<ul>
+<li>语法：<code>locate [OPTIONS]... KEYWORD</code></li>
+<li>选项
+<ul>
+<li><code>-i</code>：不区分大小写的搜索</li>
+<li><code>-n N</code>：只列举前 N 个匹配项目</li>
+<li><code>-r</code>：使用正则表达式</li>
+</ul>
+</li>
+</ul>
+<h3 id="find-命令"><a href="#find-命令" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:find-命令" class="headings">find 命令</a></h3>
+<p>实时查找工具，通过遍历指定路径完成文件查找</p>
+<p>工作特点</p>
+<ul>
+<li>查找速度略慢</li>
+<li>精确查找</li>
+<li>实时查找</li>
+<li>可能只搜索用户具备读取和执行权限的目录</li>
+</ul>
+<p>语法：<code>find [OPTION]... [查找路径] [查找条件] [处理动作]</code></p>
+<ul>
+<li>查找路径：指定具体目标路径；默认为当前目录</li>
+<li>查找条件：指定的查找标准，可以文件名，大小，类型，权限等标准进行；默认为找出指定路径下的所有文件</li>
+<li>处理动作：对符合条件的文件做操作，默认输出至屏幕</li>
+</ul>
+<p>查找条件</p>
+<ul>
+<li>指定搜索层级
+<ul>
+<li><code>maxdepth level</code>：最大搜索目录深度，指定目录为第 1 级</li>
+<li><code>mindepth level</code>：最小搜索目录深度</li>
+</ul>
+</li>
+<li>先处理目录内的文件，再处理目录
+<ul>
+<li><code>depth</code></li>
+</ul>
+</li>
+<li>根据文件名和 inode 查找：
+<ul>
+<li><code>-name &quot;文件名称&quot;</code>：支持使用通配符，<code>*</code>，<code>?</code>，<code>[]</code>，<code>[^]</code></li>
+<li><code>-iname &quot;文件名称&quot;</code>：不区分字母大小写</li>
+<li><code>-inum n</code>：按 inode 号查找</li>
+<li><code>-samefile name</code>：相同 inode 号的文件</li>
+<li><code>-links n</code>：链接数为 n 的文件</li>
+<li><code>-regex &quot;PATTERN&quot;</code>：以 PATTERN 匹配整个文件路径，而非文件名称</li>
+</ul>
+</li>
+<li>根据属主，属组查找
+<ul>
+<li><code>-user USERNAME</code>：查找属主为指定用户（UID）的文件</li>
+<li><code>-group GRPNAME</code>：查找属组为指定组（GID）的文件</li>
+<li><code>-uid UserID</code>：查找属主为指定的 UID 号的文件</li>
+<li><code>-gid GroupID</code>：查找属组为指定的 GID 号的文件</li>
+<li><code>-nouser</code>：查找没有属主的文件</li>
+<li><code>-nogroup</code>：查找没有属组的文件</li>
+</ul>
+</li>
+<li>根据文件类型查找
+<ul>
+<li><code>-type TYPE</code>
+<ul>
+<li><code>f</code>：普通文件</li>
+<li><code>d</code>：目录文件</li>
+<li><code>l</code>：符号链接文件</li>
+<li><code>s</code>：套接字文件</li>
+<li><code>b</code>：块设备文件</li>
+<li><code>c</code>：字符设备文件</li>
+<li><code>p</code>：管道文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>根据文件大小来查找：
+<ul>
+<li><code>-size [+|-]#UNIT</code>：常用单位：k、M、G、c（byte）
+<ul>
+<li><code>#UNIT</code>：(#-1, #), 如 6k 表示 (5k, 6k]</li>
+<li><code>-#UNIT</code>：[0, #-1], 如 -6k 表示 [0, 5k]</li>
+<li><code>+#UNIX</code>：(#, ∞), 如 +6k 表示 (6k, ∞)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>空文件或目录
+<ul>
+<li><code>-empty</code>：<code>find /app -type d -empty</code></li>
+</ul>
+</li>
+<li>组合条件
+<ul>
+<li><code>-a</code>：与</li>
+<li><code>-o</code>：或</li>
+<li><code>-not</code>，<code>!</code>：非</li>
+</ul>
+</li>
+<li>德·摩根定律
+<ul>
+<li>
+<p>(非 A)或(非 B) = 非(A 且 B)</p>
+</li>
+<li>
+<p>(非 A)且(非 B) = 非(A 或 B)
+示例：</p>
+<blockquote>
+<p>!A -o !B = !(A -a B)
+!A -a !B = !(A -o B)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>示例</p>
+<ul>
+<li><code>find -name sonw.png</code></li>
+<li><code>find -iname snow.png</code></li>
+<li><code>find / -name &quot;*.txt&quot;</code></li>
+<li><code>find /var -name &quot;*log&quot;</code></li>
+<li><code>find -user joe -group joe</code></li>
+<li><code>find -user joe -not -group joe</code></li>
+<li><code>find -user joe -o -user jane</code></li>
+<li><code>find -not \(-user joe -o -user jane\)</code></li>
+<li><code>find / -user joe -o -uid 500</code></li>
+<li>找出 /tml 目录下，属主不是 root，且文件名不以 f 开头的文件
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find /tmp <span class="se">\(</span>-not -user root -a -not -name <span class="s1">&#39;f*&#39;</span><span class="se">\)</span> -ls
+</span></span><span class="line"><span class="cl">find /tmp -not <span class="se">\(</span>-user root -o -name <span class="s1">&#39;f*&#39;</span><span class="se">\)</span> -ls
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>排除目录：
+<ul>
+<li>
+<p>查找 /etc 下，除了 /etc/sane.d 目录的其他所有 .conf 后缀的文件</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find /etc -path <span class="s1">&#39;etc/sane.d&#39;</span> -a -prune -o -name <span class="s1">&#39;*.conf&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p>查找 /etc 下，除了 /etc/sane.d 和 /etc/fonts 两个目录的所有 .conf 后缀的文件</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find /etc <span class="se">\(</span>-path <span class="s1">&#39;etc/sane.d&#39;</span> -o -path <span class="s1">&#39;etc/fonds&#39;</span><span class="se">\)</span> -a -prune -o -name <span class="s1">&#39;*.conf&#39;</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://blog.ws.lu/" class="p-author h-card" target="_blank" rel="noopener">王硕</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/" target="_blank" rel="noopener">https://blog.ws.lu/posts/linux/阿里云linux运维学习路线/阶段一-linux入门/linux-file-manage/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2023-03-14 17:04:55 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2023-03-14</text><text x="915" y="140" textLength="650" transform="scale(.1)">2023-03-14</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        <div class="post-share">
+
+        
+
+        <div class="share-items">
+
+            
+                <div class="share-item twitter">
+                    
+                    <a href="https://twitter.com/share?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;text=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;hashtags=Linux,&amp;via=%25!s%28%3cnil%3e%29" title="分享到「Twitter」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item facebook">
+                    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;hashtag=%23Linux" title="分享到「Facebook」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item linkedin">
+                    
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;title=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;summary=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%bb%93%e6%9e%84%e5%85%83%e7%b4%a0%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%20%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e8%a2%ab%e7%bb%84%e7%bb%87%e6%88%90%e4%b8%80%e4%b8%aa%e5%8d%95%e6%a0%b9%e5%80%92%e7%bd%ae%e6%a0%91%e7%bb%93%e6%9e%84%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%bb%8e%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%bc%80%e5%a7%8b%ef%bc%8c%e7%94%a8%20/%20%e8%a1%a8%e7%a4%ba%20%e6%a0%b9%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%ef%bc%88rootfs%ef%bc%89%ef%bc%9aroot%20filesystem%20%e6%96%87%e4%bb%b6%e5%90%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99%ef%bc%88%e5%85%b7%e4%bd%93%e6%9d%a5%e8%af%b4%e6%98%af%e7%94%b1%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%e7%9a%84%ef%bc%8c%e8%80%8c%e4%b8%8d%e6%98%af%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%ef%bc%89%20%e4%bb%a5%20.%20%e5%bc%80%e5%a4%b4%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%ba%e9%9a%90%e8%97%8f%e6%96%87%e4%bb%b6%20%e8%b7%af%e5%be%84%e5%88%86%e9%9a%94%e7%ac%a6%20/%20%e6%96%87%e4%bb%b6%e6%9c%89%e4%b8%a4%e7%b1%bb%e6%95%b0%e6%8d%ae%20%e5%85%83%e6%95%b0%e2%80%a6%e2%80%a6&amp;source=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「LinkedIn」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon linkedin-icon"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item telegram">
+                    
+                    <a href="https://t.me/share/url?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;text=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" title="分享到「Telegram」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item weibo">
+                    
+                    <a href="https://service.weibo.com/share/share.php?&amp;url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;title=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;pic=https://oss.intelli.icu/images/2021/20210607235655.png-watermark&amp;searchPic=false" title="分享到「新浪微博」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item douban">
+                    
+                    <a href="https://www.douban.com/share/service?href=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;name=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;text=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%bb%93%e6%9e%84%e5%85%83%e7%b4%a0%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%20%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e8%a2%ab%e7%bb%84%e7%bb%87%e6%88%90%e4%b8%80%e4%b8%aa%e5%8d%95%e6%a0%b9%e5%80%92%e7%bd%ae%e6%a0%91%e7%bb%93%e6%9e%84%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%bb%8e%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%bc%80%e5%a7%8b%ef%bc%8c%e7%94%a8%20/%20%e8%a1%a8%e7%a4%ba%20%e6%a0%b9%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%ef%bc%88rootfs%ef%bc%89%ef%bc%9aroot%20filesystem%20%e6%96%87%e4%bb%b6%e5%90%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99%ef%bc%88%e5%85%b7%e4%bd%93%e6%9d%a5%e8%af%b4%e6%98%af%e7%94%b1%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%e7%9a%84%ef%bc%8c%e8%80%8c%e4%b8%8d%e6%98%af%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%ef%bc%89%20%e4%bb%a5%20.%20%e5%bc%80%e5%a4%b4%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%ba%e9%9a%90%e8%97%8f%e6%96%87%e4%bb%b6%20%e8%b7%af%e5%be%84%e5%88%86%e9%9a%94%e7%ac%a6%20/%20%e6%96%87%e4%bb%b6%e6%9c%89%e4%b8%a4%e7%b1%bb%e6%95%b0%e6%8d%ae%20%e5%85%83%e6%95%b0%e2%80%a6%e2%80%a6" title="分享到「豆瓣」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon douban-icon"><path d="M.643.92v2.412h22.714V.92H.643zm1.974 4.926v9.42h18.764v-9.42H2.617zm2.72 2.408H18.69v4.605H5.338V8.254zm1.657 7.412l-2.512.938c1.037 1.461 1.87 2.825 2.512 4.091H0v2.385h24v-2.385h-6.678c.818-1.176 1.589-2.543 2.303-4.091l-2.73-.938a29.952 29.952 0 01-2.479 5.03h-4.75c-.786-1.962-1.677-3.641-2.672-5.03Z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qq">
+                    
+                    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;title=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;summary=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%bb%93%e6%9e%84%e5%85%83%e7%b4%a0%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%20%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e8%a2%ab%e7%bb%84%e7%bb%87%e6%88%90%e4%b8%80%e4%b8%aa%e5%8d%95%e6%a0%b9%e5%80%92%e7%bd%ae%e6%a0%91%e7%bb%93%e6%9e%84%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%bb%8e%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%bc%80%e5%a7%8b%ef%bc%8c%e7%94%a8%20/%20%e8%a1%a8%e7%a4%ba%20%e6%a0%b9%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%ef%bc%88rootfs%ef%bc%89%ef%bc%9aroot%20filesystem%20%e6%96%87%e4%bb%b6%e5%90%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99%ef%bc%88%e5%85%b7%e4%bd%93%e6%9d%a5%e8%af%b4%e6%98%af%e7%94%b1%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%e7%9a%84%ef%bc%8c%e8%80%8c%e4%b8%8d%e6%98%af%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%ef%bc%89%20%e4%bb%a5%20.%20%e5%bc%80%e5%a4%b4%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%ba%e9%9a%90%e8%97%8f%e6%96%87%e4%bb%b6%20%e8%b7%af%e5%be%84%e5%88%86%e9%9a%94%e7%ac%a6%20/%20%e6%96%87%e4%bb%b6%e6%9c%89%e4%b8%a4%e7%b1%bb%e6%95%b0%e6%8d%ae%20%e5%85%83%e6%95%b0%e2%80%a6%e2%80%a6&amp;pics=https://oss.intelli.icu/images/2021/20210607235655.png-watermark&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qzone">
+                    
+                    <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.ws.lu/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-file-manage/&amp;title=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86&amp;summary=%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%bb%93%e6%9e%84%e5%85%83%e7%b4%a0%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%20%e6%96%87%e4%bb%b6%e5%92%8c%e7%9b%ae%e5%bd%95%e8%a2%ab%e7%bb%84%e7%bb%87%e6%88%90%e4%b8%80%e4%b8%aa%e5%8d%95%e6%a0%b9%e5%80%92%e7%bd%ae%e6%a0%91%e7%bb%93%e6%9e%84%20%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%bb%8e%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%bc%80%e5%a7%8b%ef%bc%8c%e7%94%a8%20/%20%e8%a1%a8%e7%a4%ba%20%e6%a0%b9%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%ef%bc%88rootfs%ef%bc%89%ef%bc%9aroot%20filesystem%20%e6%96%87%e4%bb%b6%e5%90%8d%e5%8c%ba%e5%88%86%e5%a4%a7%e5%b0%8f%e5%86%99%ef%bc%88%e5%85%b7%e4%bd%93%e6%9d%a5%e8%af%b4%e6%98%af%e7%94%b1%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%e7%9a%84%ef%bc%8c%e8%80%8c%e4%b8%8d%e6%98%af%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%86%b3%e5%ae%9a%ef%bc%89%20%e4%bb%a5%20.%20%e5%bc%80%e5%a4%b4%e7%9a%84%e6%96%87%e4%bb%b6%e4%b8%ba%e9%9a%90%e8%97%8f%e6%96%87%e4%bb%b6%20%e8%b7%af%e5%be%84%e5%88%86%e9%9a%94%e7%ac%a6%20/%20%e6%96%87%e4%bb%b6%e6%9c%89%e4%b8%a4%e7%b1%bb%e6%95%b0%e6%8d%ae%20%e5%85%83%e6%95%b0%e2%80%a6%e2%80%a6&amp;pics=https://oss.intelli.icu/images/2021/20210607235655.png-watermark&amp;site=%e7%8e%8b%e7%a1%95%27s%20Blog" title="分享到「QQ 空间」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532c-.104 0-.251.051-.349.238-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477 0 0 0 .125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061c.103-.017.201.061.201.061s6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463 0 0 0 .159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5 0 0 1 2.861-2.155c1.285-.968 3.559-2.47 3.559-2.731 0-.285-2.144-.781-4.037-.781-1.945 0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276 0 .342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688 0 .342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477 0 0 0 .127-.449z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qrcode">
+                    <div class="qrcode-container" title="通过「二维码」"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id="qrcode-img"></div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+<script>
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'L';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData('https:\/\/blog.ws.lu\/posts\/linux\/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF\/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8\/linux-file-manage\/');
+    qr.make();
+    document.getElementById('qrcode-img').innerHTML = qr.createImgTag();
+</script>
+
+                </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/xrandr-set-scale/" class="related-link">xrandr 设置显示比例</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/umount-nfs-device-is-busy/" class="related-link">umount.nfs device is busy 问题</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/linux-systemd-config/" class="related-link">systemd 启动配置文件说明</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/database/mysql-install-by-normal-user/" class="related-link">普通用户安装 MySQL</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/linux/ubuntu/ubuntu-bluetooth-earphone/" class="related-link">Ubuntu 连接不上蓝牙耳机</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Linux</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/posts/linux/%E9%98%BF%E9%87%8C%E4%BA%91linux%E8%BF%90%E7%BB%B4%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/%E9%98%B6%E6%AE%B5%E4%B8%80-linux%E5%85%A5%E9%97%A8/linux-install-and-basic-operate/" rel="prev">&lt; Linux 系统安装与基本操作</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/posts/linux/linux-close-warn/" rel="next">关闭 Linux 警告声 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2019–2024&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;王硕</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright">本博客所有文章如无特别声明，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处 <a href="https://blog.ws.lu/" target="_blank" rel="noopener">王硕's Blog</a>。如有侵权，请联系删除。</div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/rss.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:337229941@qq.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/swang-harbin" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://twitter.com/swang_harbin" target="_blank" rel="external noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://t.me/swang_harbin" target="_blank" rel="external noopener" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon social-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha256-gPJfuwTULrEAAcI3X4bALVU/2qBU+QY/TpoD3GO+Exw=" crossorigin="anonymous">
+<script>
+    if (typeof renderMathInElement === 'undefined') {
+        var getScript = (options) => {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.crossOrigin = 'anonymous';
+            Object.keys(options).forEach((key) => {
+                script[key] = options[key];
+            });
+            document.body.appendChild(script);
+        };
+        getScript({
+            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js',
+            integrity: 'sha256-YTW9cMncW/ZQMhY69KaUxIa2cPTxV87Uh627Gf5ODUw=',
+            onload: () => {
+                getScript({
+                    src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js',
+                    integrity: 'sha256-yzSfYeVsWJ1x+2g8CYHsB/Mn7PcSp8122k5BM4T3Vxw=',
+                    onload: () => {
+                        getScript({
+                            src: 'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js',
+                            integrity: 'sha256-fxJzNV6hpc8tgW8tF0zVobKa71eTCRGTgxFXt1ZpJNM=',
+                            onload: () => {
+                                renderKaTex();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        renderKaTex();
+    }
+    function renderKaTex() {
+        renderMathInElement(
+            document.body,
+            {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            }
+        );
+    }
+</script>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js"></script>
+<script>
+    let mermaidConfig = {
+        startOnLoad: true,
+        flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true
+        },
+        theme: 'default'
+    };
+    mermaid.initialize(mermaidConfig);
+</script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    let imgNodes = document.querySelectorAll('div.post-body img');
+    imgNodes = Array.from(imgNodes).filter(node => node.parentNode.tagName !== "A");
+
+    mediumZoom(imgNodes, {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>
